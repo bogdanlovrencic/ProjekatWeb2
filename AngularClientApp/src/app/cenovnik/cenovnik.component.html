@@ -1,0 +1,46 @@
+<body>
+    
+   <div class="container cenovnik-container">
+      <h3>Cenovnik</h3>
+      <form (ngSubmit)="onSubmit()">
+      
+        <div class="form-group"> 
+          <label for="tipKarte" class="col-sm-2 control-label"  >Tip karte </label>
+          <select name="cmbboxTipKarte">     
+              <option value="VREMENSKA_KARTA">Vremenska karta</option>
+              <option value="DNEVNA_KARTA">Dnevna karta</option>
+              <option value="MESECNA_KARTA">Mesecna karta </option>
+              <option value="GODISNJA_KARTA">Godisnja karta</option>
+          </select>
+        </div>
+      
+          <div class="form-group"> 
+              <label for="tipPutnika" class="col-sm-2 control-label">Vrsta putnika</label>
+            <select name="cmbboxTipPutnika" >
+              <option value="DJAK">Djak</option>
+              <option value="PENZIONER">Penzioner</option>
+              <option value="REGULARNI_PUTNIK">Regularni putnik</option>
+            </select>
+          </div>
+          <br/>
+          <div class="form-group"><input type="submit" value="Prikazi"/> </div>
+      </form>
+      <br/>
+      <div>
+
+        <table border="1">
+            <tr>
+              <td>Tip karte</td>
+              <td>Vrsta putnika</td>
+              <td>Cena</td>
+            </tr>
+            <tr>
+              <td>{{cmbboxTipKarte.value}}</td>
+              <td>{{cmbboxTipPutnika.value}}</td>
+              <td></td>
+            </tr>
+        </table>
+
+    </div>
+  </div> 
+</body>

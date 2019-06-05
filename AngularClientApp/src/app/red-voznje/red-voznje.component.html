@@ -1,0 +1,42 @@
+
+<body>
+  <div class="container cenovnik-container">
+      <h3>Gradski i prigradski red voznje</h3>
+    <br>
+    <form method="GET" action="/src/app/red-voznje/red-voznje.component.ts" >
+        <div class="form-group" >
+            <label for="redVoznje" class="col-sm-2 control-label">Red voznje</label>
+            
+            <select name="cmbboxRedVoznje">
+              <option value="GRADSKI">Gradski</option>
+              <option value="PRIGRADSKI">Prigradski</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="dan" class="col-sm-2 control-label">Dan</label>
+
+            <select name="cmbboxDan">
+                <option value="RADNI_DAN">Radni dan</option>
+                <option value="SUBOTA">Subota</option>
+                <option value="NEDELJA">Nedelja</option>
+            </select>
+
+        </div>
+        <div class="form-group">
+            <label for="linija" class="col-sm-2 control-label" >Linija </label>
+            
+              <select>
+                <option value="linija1">1 KLISA-CENTAR-LIMAN I</option>
+                <option value="linija2">2 CENTAR-NOVO NASELJE</option>
+                <option value="linija3">3 PETROVARADIN-CENTAR-DETELINARA</option>
+                <option value="linija4">4 LIMAN IV-CENTAR-Z.STANICA</option>
+                <option value="linija5">5 TEMERINSKI PUT-CENTAR-AVIJATICAR. NASELJE</option>
+              </select>
+          
+        </div>
+        <div class="form-group"> 
+            <input type="submit" value="Prikazi"/>
+      </div>
+    </form>
+</div>
+</body>
