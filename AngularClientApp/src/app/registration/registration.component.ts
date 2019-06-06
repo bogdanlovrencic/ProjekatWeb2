@@ -16,8 +16,8 @@ export class RegistrationComponent implements OnInit {
       firstName:['',Validators.required],
       lastName: [''],
       email: ['',Validators.required],
-      password:[''],
-      confPassword:[''],
+      password:['',Validators.required],
+      confPassword:['',Validators.required],
       bithDate:[''],
       address: this.fb.group({           
         city: [''],
@@ -32,7 +32,7 @@ export class RegistrationComponent implements OnInit {
 
   onSubmit()
   {
-    console.warn(this.registrationForm.valid);
+      console.warn(this.registrationForm.valid);
   }
 
 }

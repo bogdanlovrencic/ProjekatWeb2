@@ -17,6 +17,8 @@ namespace JGSPNSWebApp.Models
 
         public TipRedaVoznje TipRedaVoznje { get; set; }
 
+        public string Relacija { get; set; }
+
         public Linija()
         {
             Stanice = new HashSet<Stanica>();

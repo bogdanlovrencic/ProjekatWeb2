@@ -12,4 +12,10 @@ export class RedVoznjeComponent implements OnInit {
   ngOnInit() {
   }
 
+  PrikaziRedVoznje()
+  {
+    
+  }
+  
+
 }

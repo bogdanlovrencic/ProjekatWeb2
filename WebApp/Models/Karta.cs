@@ -14,8 +14,14 @@ namespace JGSPNSWebApp.Models
 
         }
 
+        public Karta(int id,DateTime vremeOd,DateTime vremeDo)
+        {
+            Id = id;
+            VremeOd = vremeOd;
+            VremeDo = vremeDo;
+        }
+
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }      
 
         public DateTime VremeOd { get; set; }

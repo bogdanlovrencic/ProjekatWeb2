@@ -22,5 +22,12 @@ namespace JGSPNSWebApp.Persistence
         }
 
         public System.Data.Entity.DbSet<JGSPNSWebApp.Models.Korisnik> Korisnik { get; set; }
+        public DbSet<Cenovnik> Cenovnik { get; set; }
+        public DbSet<CenovnikStavka> CenovnikStavka { get; set; }
+        public DbSet<Stavka> Stavka { get; set; }
+        public DbSet<RedVoznje> RedVoznje { get; set; }
+       // public DbSet<Linija> Linije { get; set; }
+
+        public System.Data.Entity.DbSet<JGSPNSWebApp.Models.Karta> Karte { get; set; }
     }
 }

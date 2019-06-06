@@ -17,9 +17,9 @@ export class MapComponent implements OnInit {
   public zoom: number;
 
   ngOnInit() {
-    this.markerInfo = new MarkerInfo(new GeoLocation(45.242268, 19.842954), 
-      "assets/ftn.png",
-      "Jugodrvo" , "" , "http://ftn.uns.ac.rs/691618389/fakultet-tehnickih-nauka");
+    this.markerInfo = new MarkerInfo(new GeoLocation(45.264249, 19.82856), 
+      "assets/MAS.png",
+      "Međumesna autobuska stanica" , "" , "http://www.gspns.co.rs/");
 
       this.polyline = new Polyline([], 'blue', { url:"assets/busicon.png", scaledSize: {width: 50, height: 50}});
   }

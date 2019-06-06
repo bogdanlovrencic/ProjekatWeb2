@@ -20,6 +20,7 @@ namespace JGSPNSWebApp.Controllers
        
         //private ApplicationDbContext db = new ApplicationDbContext();
         //private IUnitOfWork unitOfWork;//
+        
 
         //// GET: api/Korisniks
 
