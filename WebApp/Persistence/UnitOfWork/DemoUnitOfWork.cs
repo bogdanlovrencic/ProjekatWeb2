@@ -12,22 +12,28 @@ namespace JGSPNSWebApp.Persistence.UnitOfWork
     public class DemoUnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext _context;
-       
-      
 
         public DemoUnitOfWork(ApplicationDbContext context)
         {
             _context = context;
             Korisnici = new Repository<Korisnik, int>(_context);
-            Karte = new Repository<Karta, int>(_context);
+            Karte = new Repository<Karta, string>(_context);
+            Linije = new Repository<Linija, int>(_context);
+            Cenovnici = new Repository<Cenovnik, int>(_context);
+
         }
         // dodati sve repozitorijume ovde
         [Dependency]
-        public IRepository<Karta, int> Karte { get; set; }
+        public IRepository<Karta, string> Karte { get; set; }
         [Dependency]
         public IRepository<Korisnik, int> Korisnici { get; set; }
 
         public IRepository<EmailService,int> Servisi { get; set; }
+        [Dependency]
+        public IRepository<Linija, int> Linije { get; set; }
+        [Dependency]
+        public IRepository<Cenovnik, int> Cenovnici  { get;  set;}
+
         public int Complete()
         {
             return _context.SaveChanges();

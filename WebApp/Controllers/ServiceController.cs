@@ -17,26 +17,27 @@ namespace JGSPNSWebApp.Controllers
         {
             this.unitOfWork = unitOfWork;
         }
-        public bool ServicesExists(int id)
-        {
-            return unitOfWork.Servisi.Find( x => x.Id == id).Any();
-        }
+        //public bool ServicesExists(int id)
+        //{
+        //    return unitOfWork.Servisi.Find( x => x.Id == id).Any();
+        //}
 
         public bool SendMail(string emailTo, string subject, string body)
         {
-            MailMessage mail = new MailMessage();
-            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-            mail.To.Add(emailTo);
-            mail.Subject = subject;
-            mail.Body = body;
-            mail.From = new MailAddress("titovrentavehicle@gmail.com");
-            SmtpServer.Port = 587;
-            SmtpServer.UseDefaultCredentials = true;
-            SmtpServer.Credentials = new NetworkCredential("titovrentavehicle@gmail.com", "caooo");
-            SmtpServer.EnableSsl = true;
-            SmtpServer.Send(mail);
+            
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                mail.To.Add(emailTo);
+                mail.Subject = subject;
+                mail.Body = body;
+                mail.From = new MailAddress("titovrentavehicle@gmail.com");
+                SmtpServer.Port = 587;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("titovrentavehicle@gmail.com", "drugtito");
+                SmtpServer.EnableSsl = true;
+                SmtpServer.Send(mail);
+           
 
-            return false;
+                return true;
         }
     }
 }

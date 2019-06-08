@@ -15,8 +15,7 @@ namespace JGSPNSWebApp.Models
 
         }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+       
         public int IdStavke { get; set; }
 
         public VrstaKarte VrstaKarte { get; set; }

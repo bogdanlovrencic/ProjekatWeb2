@@ -26,7 +26,17 @@ export class KupiKartuComponent implements OnInit {
        console.warn(this.kupiKartuForm.valid);
        let email = new Email();
        email.Name = this.kupiKartuForm.value.email;
-      this.kartaService.dodajKartu(email).subscribe();
+      this.kartaService.dodajKartu(email).subscribe(
+        (res)=>{
+           alert(res); 
+           this.kupiKartuForm.reset();
+        },
+        (err)=>{
+          console.log(err);
+        }
+       
+      );
+     
   }
 
 }

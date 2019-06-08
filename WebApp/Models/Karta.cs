@@ -14,15 +14,14 @@ namespace JGSPNSWebApp.Models
 
         }
 
-        public Karta(int id,DateTime vremeOd,DateTime vremeDo)
+        public Karta(string id,DateTime vremeOd,DateTime vremeDo)
         {
             Id = id;
             VremeOd = vremeOd;
             VremeDo = vremeDo;
         }
 
-        [Key]
-        public int Id { get; set; }      
+        public string Id { get; set; }      
 
         public DateTime VremeOd { get; set; }
 

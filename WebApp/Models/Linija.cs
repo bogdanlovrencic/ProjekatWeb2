@@ -15,7 +15,7 @@ namespace JGSPNSWebApp.Models
 
         public ICollection<Stanica> Stanice { get; set; }
 
-        public TipRedaVoznje TipRedaVoznje { get; set; }
+        public string TipRedaVoznje { get; set; }
 
         public string Relacija { get; set; }
 
@@ -23,5 +23,15 @@ namespace JGSPNSWebApp.Models
         {
             Stanice = new HashSet<Stanica>();
         }
+
+        public Linija(int id,string tip,string relacija)
+        {
+            IdLinije = id;
+            TipRedaVoznje = tip;
+            Relacija = relacija;
+            Stanice = new HashSet<Stanica>();
+        }
+
+
     }
 }

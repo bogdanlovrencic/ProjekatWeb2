@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace JGSPNSWebApp.Persistence.Repository
 {
-    public interface IKartaRepository : IRepository<Karta, int>
+    public interface IKartaRepository : IRepository<Karta, string>
     {
         //public void Add(Karta entity)
         //{

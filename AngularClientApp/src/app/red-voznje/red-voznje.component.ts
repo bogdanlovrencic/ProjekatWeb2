@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RedVoznjeService } from '../red-voznje.service';
 
 @Component({
   selector: 'app-red-voznje',
@@ -7,14 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RedVoznjeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private redVoznjeService:RedVoznjeService) { }
 
   ngOnInit() {
   }
 
-  PrikaziRedVoznje()
+  PrikaziRedVoznje():void
   {
-    
+      
   }
   
 

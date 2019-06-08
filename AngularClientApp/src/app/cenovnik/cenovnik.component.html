@@ -2,11 +2,11 @@
     
    <div class="container cenovnik-container">
       <h3>Cenovnik</h3>
-      <form (ngSubmit)="onSubmit()">
+      <form [formGroup]="cenovnikForm" >
       
         <div class="form-group"> 
-          <label for="tipKarte" class="col-sm-2 control-label"  >Tip karte </label>
-          <select name="cmbboxTipKarte">     
+          <label for="TipKarte" class="col-sm-2 control-label"  >Tip karte </label>
+          <select name="tipKarte" formControlName="tipKarte">     
               <option value="VREMENSKA_KARTA">Vremenska karta</option>
               <option value="DNEVNA_KARTA">Dnevna karta</option>
               <option value="MESECNA_KARTA">Mesecna karta </option>
@@ -15,15 +15,15 @@
         </div>
       
           <div class="form-group"> 
-              <label for="tipPutnika" class="col-sm-2 control-label">Vrsta putnika</label>
-            <select name="cmbboxTipPutnika" >
+              <label for="TipPutnika" class="col-sm-2 control-label">Vrsta putnika</label>
+            <select name="tipPutnika" formControlName="tipPutnika">
               <option value="DJAK">Djak</option>
               <option value="PENZIONER">Penzioner</option>
               <option value="REGULARNI_PUTNIK">Regularni putnik</option>
             </select>
           </div>
           <br/>
-          <div class="form-group"><input type="submit" value="Prikazi"/> </div>
+          <div class="form-group"><input type="submit" (click)="PrikaziCenovnik()" value="Prikazi"/> </div>
       </form>
       <br/>
       <div>
@@ -35,8 +35,8 @@
               <td>Cena</td>
             </tr>
             <tr>
-              <td>{{cmbboxTipKarte.value}}</td>
-              <td>{{cmbboxTipPutnika.value}}</td>
+              <td>{{CenovnikForm.value.cmbboxTipKarte}}</td>
+              <td>{{CenovnikForm.value.cmbboxTipPutnika}}</td>
               <td></td>
             </tr>
         </table>

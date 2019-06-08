@@ -86,52 +86,87 @@ namespace JGSPNSWebApp.Controllers
 
             var emailAddress = email.Name;
             Random rand = new Random();
-            Karta karta = new Karta(rand.Next(0,1000), DateTime.Now,DateTime.Now.AddHours(1));
+            Karta karta = new Karta(rand.Next(0,1000).ToString(), DateTime.Now,DateTime.Now.AddHours(1));
           
-            //unitOfWork.Karte.Add(karta);
-            //unitOfWork.Complete();
+            unitOfWork.Karte.Add(karta);
+            unitOfWork.Complete();
 
 
             ServiceController serviceController = new ServiceController(unitOfWork);
-            //if(serviceController.ServicesExists(123))
-            //{
-                if (serviceController.SendMail(emailAddress, "JGSP NS online kupovina karte", $"Postovani, kupili ste vremensku kartu sa Rednim brojem: {karta.Id.ToString()} za gradski prevoz u roku vazenja od {karta.VremeOd.ToString()} do {karta.VremeDo.ToString()}"))
-                {
+           string subject= "JGSP NS online kupovina karta";
+            string body = $"Postovani,\n\nKupili ste vremensku kartu sa Rednim brojem: {karta.Id} za gradski prevoz u roku vazenja od {karta.VremeOd.ToString()} do {karta.VremeDo.ToString()}.\nUzivajte u voznji.\n\nVas JGSP Novi Sad.";
+            if (!serviceController.SendMail(emailAddress, subject, body))
+            {
+                return BadRequest();
+            }
 
-                }
-            //}
-            //return CreatedAtRoute("DefaultApi", new { id = karta.Id }, karta);
+            return Ok("Uspesno ste kupili vremensku kartu za gradski prevoz.");
+
+            
+        }
+
+        [HttpPost, Route("prikaziCenovnik")]
+        [ResponseType(typeof(Cenovnik))]
+        public IHttpActionResult PrikazCenovnika([FromBody]string tipKarte,[FromBody]string tipPutnika)
+        {
+            VrstaKarte vrstaKarte;
+            if (tipKarte == "DNEVNA_KARTA")
+                vrstaKarte = VrstaKarte.DNEVNA_KARTA;
+
+            else if (tipKarte == "GODISNJA_KARTA")
+                vrstaKarte = VrstaKarte.GODISNJA_KARTA;
+            
+
+            else if (tipKarte == "MESECNA_KARTA")
+                vrstaKarte = VrstaKarte.MESECNA_KARTA;
+
+            else if (tipKarte == "VREMENSKA_KARTA")
+                vrstaKarte = VrstaKarte.VREMENSKA_KARTA;
+
+            TipPutnika putnik;
+            if (tipPutnika == "DJAK")
+                putnik = TipPutnika.DJAK;
+
+            else if (tipPutnika == "PENZIONER")
+                putnik = TipPutnika.PENZIONER;
+
+            else if (tipPutnika == "REGULARNI_PUTNIK")
+                putnik = TipPutnika.REGULARNI_PUTNIK;
+
+
+
+
             return BadRequest();
         }
 
-        // DELETE: api/Kartas/5
-        //[ResponseType(typeof(Karta))]
-        //public IHttpActionResult DeleteKarta(int id)
-        //{
-        //    Karta karta = db.Kartas.Find(id);
-        //    if (karta == null)
-        //    {
-        //        return NotFound();
-        //    }
+            // DELETE: api/Kartas/5
+            //[ResponseType(typeof(Karta))]
+            //public IHttpActionResult DeleteKarta(int id)
+            //{
+            //    Karta karta = db.Kartas.Find(id);
+            //    if (karta == null)
+            //    {
+            //        return NotFound();
+            //    }
 
-        //    db.Kartas.Remove(karta);
-        //    db.SaveChanges();
+            //    db.Kartas.Remove(karta);
+            //    db.SaveChanges();
 
-        //    return Ok(karta);
-        //}
+            //    return Ok(karta);
+            //}
 
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
+            //protected override void Dispose(bool disposing)
+            //{
+            //    if (disposing)
+            //    {
+            //        db.Dispose();
+            //    }
+            //    base.Dispose(disposing);
+            //}
 
-        //private bool KartaExists(int id)
-        //{
-        //    return db.Kartas.Count(e => e.Id == id) > 0;
-        //}
-    }
+            //private bool KartaExists(int id)
+            //{
+            //    return db.Kartas.Count(e => e.Id == id) > 0;
+            //}
+        }
 }
