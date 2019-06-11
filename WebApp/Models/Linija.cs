@@ -8,10 +8,9 @@ using System.Web;
 namespace JGSPNSWebApp.Models
 {
     public class Linija
-    {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdLinije { get; set; }
+    {      
+        [Key]     
+        public string IdLinije { get; set; }
 
         public ICollection<Stanica> Stanice { get; set; }
 
@@ -24,7 +23,7 @@ namespace JGSPNSWebApp.Models
             Stanice = new HashSet<Stanica>();
         }
 
-        public Linija(int id,string tip,string relacija)
+        public Linija(string id,string tip,string relacija)
         {
             IdLinije = id;
             TipRedaVoznje = tip;

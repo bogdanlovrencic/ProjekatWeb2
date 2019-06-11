@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   private loginForm : FormGroup;
 
-  constructor(private fb: FormBuilder) { 
+  constructor(private loginService: LoginService, private fb: FormBuilder) { 
       this.loginForm=this.fb.group({
         email:['',Validators.required],
         pass: ['',Validators.required]
@@ -24,10 +25,12 @@ export class LoginComponent implements OnInit {
   Login():void
   {
      console.warn(this.loginForm.valid);
-     if(this.loginForm.value.email == "emailadmina" && this.loginForm.value.pass=="passwordadmina") //proverava se na backendu
-     {
+     
+     let email=this.loginForm.value.email ;
+     let password=this.loginForm.value.pass;
         
-     } 
+     this.loginService.Login(email,password).subscribe();
+      
   }
   
 

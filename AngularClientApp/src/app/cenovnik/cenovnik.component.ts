@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CenovnikService } from '../cenovnik.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { Cenovnik } from '../cenovnik';
 
 @Component({
   selector: 'app-cenovnik',
@@ -9,32 +10,19 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class CenovnikComponent implements OnInit {
    
-  private cenovnikForm: FormGroup;
+   Cenovnici  : Cenovnik[];
 
   constructor(private cenovnikService: CenovnikService) { 
-   
+     
   }
 
   ngOnInit() {
+    this.PrikaziCenovnik();
   }
 
   PrikaziCenovnik():void
   {
-     let tipKarte : string;
-      let tipPutnika: string;
-
-    tipKarte = this.cenovnikForm.value.tipKarte;
-    tipPutnika= this.cenovnikForm.value.tipPutnika;
-
-   this.cenovnikService.PrikaziCene(tipKarte,tipPutnika).subscribe(
-     (res)=>{
-        alert(res); 
-      
-     },
-     (err)=>{
-       console.log(err);
-     }
-   );
+     this.cenovnikService.PrikaziCene().subscribe(Cenovnici=> this.Cenovnici = Cenovnici);
   }
-
+    
 }

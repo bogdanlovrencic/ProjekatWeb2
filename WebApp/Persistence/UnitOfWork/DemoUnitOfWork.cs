@@ -18,8 +18,9 @@ namespace JGSPNSWebApp.Persistence.UnitOfWork
             _context = context;
             Korisnici = new Repository<Korisnik, int>(_context);
             Karte = new Repository<Karta, string>(_context);
-            Linije = new Repository<Linija, int>(_context);
+            Linije = new Repository<Linija, string>(_context);
             Cenovnici = new Repository<Cenovnik, int>(_context);
+            Cenovnik = new Repository<Cenovnik1, int>(_context);
 
         }
         // dodati sve repozitorijume ovde
@@ -29,10 +30,15 @@ namespace JGSPNSWebApp.Persistence.UnitOfWork
         public IRepository<Korisnik, int> Korisnici { get; set; }
 
         public IRepository<EmailService,int> Servisi { get; set; }
+
         [Dependency]
-        public IRepository<Linija, int> Linije { get; set; }
+        public IRepository<Linija, string> Linije { get; set; }
         [Dependency]
         public IRepository<Cenovnik, int> Cenovnici  { get;  set;}
+
+        [Dependency]
+        public IRepository<Cenovnik1,int>Cenovnik { get; set; }
+      
 
         public int Complete()
         {

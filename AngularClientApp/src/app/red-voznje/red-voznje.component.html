@@ -3,7 +3,7 @@
   <div class="container cenovnik-container">
       <h3>Gradski i prigradski red voznje</h3>
     <br>
-    <form method="GET" >
+    <form method="GET" name="forma" >
         <div class="form-group" >
             <label for="redVoznje" class="col-sm-2 control-label">Red voznje</label>
             
@@ -20,23 +20,33 @@
                 <option value="SUBOTA">Subota</option>
                 <option value="NEDELJA">Nedelja</option>
             </select>
-
         </div>
-        <div class="form-group">
-            <label for="linija" class="col-sm-2 control-label" >Linija </label>
-            
-              <select>
-                <option value="linija1">1 KLISA-CENTAR-LIMAN I</option>
-                <option value="linija2">2 CENTAR-NOVO NASELJE</option>
-                <option value="linija3">3 PETROVARADIN-CENTAR-DETELINARA</option>
-                <option value="linija4">4 LIMAN IV-CENTAR-Z.STANICA</option>
-                <option value="linija5">5 TEMERINSKI PUT-CENTAR-AVIJATICAR. NASELJE</option>
-              </select>
-          
+        <div class="form-group" *ngIf="Linije">
+          <label for="linija" class="col-sm-2 control-label" >Linija </label>     
+            <select  name="selectLinija">
+              <option *ngFor=" let linija of Linije" value="linija.IdLinije">{{linija.IdLinije}}  {{linija.Relacija}}</option>    
+            </select>       
         </div>
         <div class="form-group"> 
             <input type="submit" (click)="PrikaziRedVoznje()" value="Prikazi"/>
       </div>
-    </form>
+   
+      <!-- <table border="1">
+          <tr colspan="2" *ngIf="Linije" >
+            <td>Linija : {{forma.selectLinija.value.option}}</td>
+          </tr>
+          <tr>
+            <td>SMER A: {{linija.Relacija}}</td>
+            <td>SMER B: {{linija.Relacija}}</td>
+          </tr>
+          <tr>
+    
+          </tr>
+        </table>
+  -->
+  </form>
+
+
+ 
 </div>
 </body>

@@ -93,7 +93,7 @@ namespace JGSPNSWebApp.Controllers
 
 
             ServiceController serviceController = new ServiceController(unitOfWork);
-           string subject= "JGSP NS online kupovina karta";
+            string subject= "JGSP NS online kupovina karta";
             string body = $"Postovani,\n\nKupili ste vremensku kartu sa Rednim brojem: {karta.Id} za gradski prevoz u roku vazenja od {karta.VremeOd.ToString()} do {karta.VremeDo.ToString()}.\nUzivajte u voznji.\n\nVas JGSP Novi Sad.";
             if (!serviceController.SendMail(emailAddress, subject, body))
             {

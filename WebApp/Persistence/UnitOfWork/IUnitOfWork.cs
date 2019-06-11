@@ -14,7 +14,8 @@ namespace JGSPNSWebApp.Persistence.UnitOfWork
         IRepository<Karta,string> Karte { get; set; }
         IRepository<EmailService,int> Servisi { get; set; }
         IRepository<Cenovnik,int> Cenovnici { get; set; }
-        IRepository<Linija,int> Linije { get; set; }
+        IRepository<Linija,string> Linije { get; set; }
+        IRepository<Cenovnik1,int> Cenovnik { get; set; }
         int Complete();
     }
 }

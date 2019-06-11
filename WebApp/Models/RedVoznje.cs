@@ -14,7 +14,6 @@ namespace JGSPNSWebApp.Models
 
         }
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public TipDana DanUNedelji { get; set; }
 

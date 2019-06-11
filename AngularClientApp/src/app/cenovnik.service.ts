@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
+import { Cenovnik } from './cenovnik';
+import { catchError } from 'rxjs/operators';
 
 
 const httpOptions = {
@@ -13,12 +15,21 @@ const httpOptions = {
 })
 export class CenovnikService {
 
-  private karteUrl='http://localhost:52295/api/karte/prikaziCenovnik';
+  private ceneUrl='http://localhost:52295/api/cenovnik/prikaziCene';
 
   constructor(private http:HttpClient) { }
 
-  PrikaziCene(tipKarte:string, tipPutnika:string): Observable<string>
-  {
-      return  this.http.post<string>(this.karteUrl,tipKarte+tipPutnika,httpOptions);
+  PrikaziCene(): Observable<Cenovnik[]>
+  {   
+      return this.http.get<Cenovnik[]>(this.ceneUrl).pipe(
+        catchError(this.handleError<Cenovnik[]>('PrikaziCene', [])));
+
+     
+  }
+
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      return of(result as T);
+    };
   }
 }

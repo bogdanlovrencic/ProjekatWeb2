@@ -16,7 +16,7 @@ namespace JGSPNSWebApp.Models
         }
 
        
-        public int IdStavke { get; set; }
+        public int Id { get; set; }
 
         public VrstaKarte VrstaKarte { get; set; }
 

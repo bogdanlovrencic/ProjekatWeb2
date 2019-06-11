@@ -250,10 +250,21 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Migrations\201906071507321_Linije.cs" />
-    <Compile Include="Migrations\201906071507321_Linije.Designer.cs">
-      <DependentUpon>201906071507321_Linije.cs</DependentUpon>
+    <Compile Include="Controllers\CenovnikController.cs" />
+    <Compile Include="Controllers\RedVoznjeController.cs" />
+    <Compile Include="Migrations\201906101720146_Linije1.cs" />
+    <Compile Include="Migrations\201906101720146_Linije1.Designer.cs">
+      <DependentUpon>201906101720146_Linije1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906101913114_Cenovnik.cs" />
+    <Compile Include="Migrations\201906101913114_Cenovnik.Designer.cs">
+      <DependentUpon>201906101913114_Cenovnik.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906102113409_Linije.cs" />
+    <Compile Include="Migrations\201906102113409_Linije.Designer.cs">
+      <DependentUpon>201906102113409_Linije.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cenovnik1.cs" />
     <Compile Include="Models\Email.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KartasController.cs" />
@@ -270,14 +281,6 @@
     <Compile Include="Migrations\201906030953216_KorisnikAdded.cs" />
     <Compile Include="Migrations\201906030953216_KorisnikAdded.Designer.cs">
       <DependentUpon>201906030953216_KorisnikAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906052346100_CenovnikStavka.cs" />
-    <Compile Include="Migrations\201906052346100_CenovnikStavka.Designer.cs">
-      <DependentUpon>201906052346100_CenovnikStavka.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906052350544_RedVoznje.cs" />
-    <Compile Include="Migrations\201906052350544_RedVoznje.Designer.cs">
-      <DependentUpon>201906052350544_RedVoznje.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201906070827006_Karta.cs" />
     <Compile Include="Migrations\201906070827006_Karta.Designer.cs">
@@ -306,11 +309,14 @@
     <Compile Include="Models\VrstaKarte.cs" />
     <Compile Include="Models\UlogaKorisnika.cs" />
     <Compile Include="Persistence\ApplicationDbContext.cs" />
+    <Compile Include="Persistence\Repository\ICenovnikRepository.cs" />
     <Compile Include="Persistence\Repository\IKartaRepository.cs" />
+    <Compile Include="Persistence\Repository\ILinijeRepository.cs" />
     <Compile Include="Persistence\Repository\IRepository.cs" />
     <Compile Include="Persistence\Repository\IServiceRepository.cs" />
     <Compile Include="Persistence\Repository\IUserRepository.cs" />
     <Compile Include="Persistence\Repository\KartaRepository.cs" />
+    <Compile Include="Persistence\Repository\LinijeRepository.cs" />
     <Compile Include="Persistence\Repository\Repository.cs" />
     <Compile Include="Persistence\Repository\ServiceRepository.cs" />
     <Compile Include="Persistence\Repository\UserRepository.cs" />
@@ -420,17 +426,17 @@
     <EmbeddedResource Include="Migrations\201906030953216_KorisnikAdded.resx">
       <DependentUpon>201906030953216_KorisnikAdded.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906052346100_CenovnikStavka.resx">
-      <DependentUpon>201906052346100_CenovnikStavka.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906052350544_RedVoznje.resx">
-      <DependentUpon>201906052350544_RedVoznje.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906070827006_Karta.resx">
       <DependentUpon>201906070827006_Karta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906071507321_Linije.resx">
-      <DependentUpon>201906071507321_Linije.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906101720146_Linije1.resx">
+      <DependentUpon>201906101720146_Linije1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906101913114_Cenovnik.resx">
+      <DependentUpon>201906101913114_Cenovnik.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906102113409_Linije.resx">
+      <DependentUpon>201906102113409_Linije.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
