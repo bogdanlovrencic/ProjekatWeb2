@@ -3,14 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 
 namespace JGSPNSWebApp.Persistence.Repository
 {
-    public class ServiceRepository : Repository<EmailService, int>,IServiceRepository 
+    public class CenovnikRepository : Repository<Cenovnik1, int>, ICenovnikRepository
     {
-        public ServiceRepository(System.Data.Entity.DbContext context) : base(context)
+        public CenovnikRepository(DbContext context) : base(context)
         {
-
         }
     }
 }

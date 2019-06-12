@@ -19,7 +19,7 @@ export class LoginService {
 
   Login(email:string,password:string):Observable<string>
   {
-      return this.http.post<string>(this.loginUrl,email+" "+password,httpOptions);
+      return;
   }
   
 }

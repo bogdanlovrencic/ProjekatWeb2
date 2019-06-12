@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace JGSPNSWebApp.Persistence.Repository
 {
-    public interface IUserRepository : IRepository<Korisnik,int>  
+    public interface IApplicationUserRepository : IRepository<ApplicationUser,int>  
     {
      
         

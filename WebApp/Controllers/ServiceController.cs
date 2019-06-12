@@ -17,10 +17,7 @@ namespace JGSPNSWebApp.Controllers
         {
             this.unitOfWork = unitOfWork;
         }
-        //public bool ServicesExists(int id)
-        //{
-        //    return unitOfWork.Servisi.Find( x => x.Id == id).Any();
-        //}
+      
 
         public bool SendMail(string emailTo, string subject, string body)
         {

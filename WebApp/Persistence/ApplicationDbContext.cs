@@ -21,7 +21,7 @@ namespace JGSPNSWebApp.Persistence
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<JGSPNSWebApp.Models.Korisnik> Korisnik { get; set; }
+       
         public DbSet<Cenovnik> Cenovnici { get; set; }
         public DbSet<CenovnikStavka> CenovnikStavka { get; set; }
         public DbSet<Stavka> Stavka { get; set; }

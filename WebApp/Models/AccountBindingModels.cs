@@ -13,6 +13,38 @@ namespace JGSPNSWebApp.Models
         public string ExternalAccessToken { get; set; }
     }
 
+    public class KorisnikRegistracijaBindingModel
+    {
+        [Required]
+        [Display(Name = "Ime")]
+        public string Ime { get; set; }
+
+        [Required]
+        [Display(Name = "Prezime")]
+        public string Prezime { get; set; }
+
+        [Required]
+        [Display(Name = "Datum rodjenja")]
+        public string DatumRodjenja { get; set; }
+
+        [Required]
+        [Display(Name = "Adresa")]
+        public string Adresa { get; set; }
+
+        [Required]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Lozinka")]
+        public string Lozinka { get; set; }
+
+        [Required]
+        [Display(Name ="TipKorisnika")]
+        public string TipKorisnika { get; set; }
+    }
+
     public class ChangePasswordBindingModel
     {
         [Required]

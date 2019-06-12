@@ -452,11 +452,6 @@ C:\Users\e3125-2015\Desktop\ProjekatWeb2-master\WebApp\obj\Debug\JGSPNSWebApp.dl
 C:\Users\e3125-2015\Desktop\ProjekatWeb2-master\WebApp\obj\Debug\JGSPNSWebApp.pdb
 C:\Users\e3125-2015\Desktop\ProjekatWeb2-master\WebApp\obj\Debug\JGSPNSWebApp.Migrations.Karta.resources
 C:\Users\e3125-2015\Desktop\ProjekatWeb2-master\WebApp\obj\Debug\JGSPNSWebApp.Migrations.Linije.resources
-C:\Users\Bogdan Lovrencic\Documents\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.Migrations.InitialMigration.resources
-C:\Users\Bogdan Lovrencic\Documents\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.Migrations.KorisnikAdded.resources
-C:\Users\Bogdan Lovrencic\Documents\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.Migrations.Karta.resources
-C:\Users\Bogdan Lovrencic\Documents\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.Migrations.Linije1.resources
-C:\Users\Bogdan Lovrencic\Documents\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.csproj.GenerateResource.Cache
 C:\Users\Bogdan Lovrencic\Documents\GitHub\ProjekatWeb2\WebApp\bin\JGSPNSWebApp.dll.config
 C:\Users\Bogdan Lovrencic\Documents\GitHub\ProjekatWeb2\WebApp\bin\JGSPNSWebApp.dll
 C:\Users\Bogdan Lovrencic\Documents\GitHub\ProjekatWeb2\WebApp\bin\JGSPNSWebApp.pdb
@@ -599,8 +594,13 @@ C:\Users\Bogdan Lovrencic\Documents\GitHub\ProjekatWeb2\WebApp\bin\Microsoft.Owi
 C:\Users\Bogdan Lovrencic\Documents\GitHub\ProjekatWeb2\WebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Bogdan Lovrencic\Documents\GitHub\ProjekatWeb2\WebApp\bin\System.Web.Http.Owin.xml
 C:\Users\Bogdan Lovrencic\Documents\GitHub\ProjekatWeb2\WebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Bogdan Lovrencic\Documents\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.dll
-C:\Users\Bogdan Lovrencic\Documents\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.pdb
+C:\Users\Bogdan Lovrencic\Documents\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.csprojResolveAssemblyReference.cache
+C:\Users\Bogdan Lovrencic\Documents\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.Migrations.InitialMigration.resources
+C:\Users\Bogdan Lovrencic\Documents\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.Migrations.Karta.resources
+C:\Users\Bogdan Lovrencic\Documents\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.Migrations.Linije1.resources
 C:\Users\Bogdan Lovrencic\Documents\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.Migrations.Cenovnik.resources
 C:\Users\Bogdan Lovrencic\Documents\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.Migrations.Linije.resources
-C:\Users\Bogdan Lovrencic\Documents\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.csprojResolveAssemblyReference.cache
+C:\Users\Bogdan Lovrencic\Documents\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.Migrations.ApplicationUser1.resources
+C:\Users\Bogdan Lovrencic\Documents\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.csproj.GenerateResource.Cache
+C:\Users\Bogdan Lovrencic\Documents\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.dll
+C:\Users\Bogdan Lovrencic\Documents\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.pdb

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JGSPNSWebApp.Persistence.Repository
 {
-    interface ILinijeRepository : IRepository<Linija,string>
+    public interface ILinijeRepository : IRepository<Linija,string>
     {
     }
 }

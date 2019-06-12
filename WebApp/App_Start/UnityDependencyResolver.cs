@@ -70,7 +70,10 @@ namespace JGSPNSWebApp.App_Start
            
             container.RegisterType<DbContext, ApplicationDbContext>(new PerResolveLifetimeManager());
             container.RegisterType<IUnitOfWork, DemoUnitOfWork>();
-            container.RegisterType<IUserRepository, UserRepository>();
+            container.RegisterType<IApplicationUserRepository, ApplicationUserRepository>();
+            container.RegisterType<ILinijeRepository, LinijeRepository>();
+            container.RegisterType<IKartaRepository, KartaRepository>();
+            container.RegisterType<ICenovnikRepository, CenovnikRepository>();
         }
 
         public void Dispose()

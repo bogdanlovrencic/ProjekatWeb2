@@ -15,9 +15,20 @@ namespace JGSPNSWebApp.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        [ForeignKey("Korisnik")]
-        public int? KorisnikId { get; set; }
-        public Korisnik Korisnik { get; set; }
+      
+        public string Ime { get; set; }
+
+        public string Prezime { get; set; }
+
+       // public string Email { get; set; }
+
+        public string Lozinka { get; set; }
+
+        public string DatumRodjenja { get; set; }
+
+        public string Adresa { get; set; }
+
+        public string TipPutnika { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
