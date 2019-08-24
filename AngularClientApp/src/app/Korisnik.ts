@@ -7,7 +7,7 @@ export class Korisnik{
     Lozinka: string;
     DatumRodjenja: string;
     Adresa: string;
-    TipKorisnika: string;
-
+    TipPutnika: string;
+    
     constructor(){}
 }

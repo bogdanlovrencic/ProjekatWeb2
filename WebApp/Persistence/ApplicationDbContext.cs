@@ -27,9 +27,10 @@ namespace JGSPNSWebApp.Persistence
         public DbSet<Stavka> Stavka { get; set; }
         public DbSet<RedVoznje> RedVoznje { get; set; }
         public DbSet<Karta> Karte { get; set; }
-        public DbSet<Cenovnik1> Cenovnik { get; set; }
-
+        public DbSet<Cenovnik1> Cenovnik { get; set; }      
         public DbSet<Linija> Linije { get; set; }
+        public DbSet<StatusRegistracije> StatusiRegistracije { get; set; }
+        public DbSet<Rola> Uloge { get; set; }
 
 
     }

@@ -253,21 +253,9 @@
     <Compile Include="Controllers\CenovnikController.cs" />
     <Compile Include="Controllers\RedVoznjeController.cs" />
     <Compile Include="Controllers\RegistracijaController.cs" />
-    <Compile Include="Migrations\201906101720146_Linije1.cs" />
-    <Compile Include="Migrations\201906101720146_Linije1.Designer.cs">
-      <DependentUpon>201906101720146_Linije1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906101913114_Cenovnik.cs" />
-    <Compile Include="Migrations\201906101913114_Cenovnik.Designer.cs">
-      <DependentUpon>201906101913114_Cenovnik.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906102113409_Linije.cs" />
-    <Compile Include="Migrations\201906102113409_Linije.Designer.cs">
-      <DependentUpon>201906102113409_Linije.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906112350123_ApplicationUser1.cs" />
-    <Compile Include="Migrations\201906112350123_ApplicationUser1.Designer.cs">
-      <DependentUpon>201906112350123_ApplicationUser1.cs</DependentUpon>
+    <Compile Include="Migrations\201908231935014_all.cs" />
+    <Compile Include="Migrations\201908231935014_all.Designer.cs">
+      <DependentUpon>201908231935014_all.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Cenovnik1.cs" />
     <Compile Include="Models\Email.cs" />
@@ -278,14 +266,6 @@
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905222056072_InitialMigration.cs" />
-    <Compile Include="Migrations\201905222056072_InitialMigration.Designer.cs">
-      <DependentUpon>201905222056072_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906070827006_Karta.cs" />
-    <Compile Include="Migrations\201906070827006_Karta.Designer.cs">
-      <DependentUpon>201906070827006_Karta.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -301,7 +281,9 @@
     <Compile Include="Models\Lokacija.cs" />
     <Compile Include="Models\Polazak.cs" />
     <Compile Include="Models\RedVoznje.cs" />
+    <Compile Include="Models\Rola.cs" />
     <Compile Include="Models\Stanica.cs" />
+    <Compile Include="Models\StatusRegistracije.cs" />
     <Compile Include="Models\Stavka.cs" />
     <Compile Include="Models\TipDana.cs" />
     <Compile Include="Models\TipPutnika.cs" />
@@ -371,7 +353,11 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="UserImages\jovazmaj12%40gmail.com.jpg" />
+    <Content Include="UserImages\marinko11%40gmail.com.jpg" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -419,23 +405,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201905222056072_InitialMigration.resx">
-      <DependentUpon>201905222056072_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906070827006_Karta.resx">
-      <DependentUpon>201906070827006_Karta.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906101720146_Linije1.resx">
-      <DependentUpon>201906101720146_Linije1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906101913114_Cenovnik.resx">
-      <DependentUpon>201906101913114_Cenovnik.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906102113409_Linije.resx">
-      <DependentUpon>201906102113409_Linije.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906112350123_ApplicationUser1.resx">
-      <DependentUpon>201906112350123_ApplicationUser1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201908231935014_all.resx">
+      <DependentUpon>201908231935014_all.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

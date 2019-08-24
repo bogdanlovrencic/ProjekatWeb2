@@ -7,14 +7,15 @@ import { MrezaLinijaComponent } from './mreza-linija/mreza-linija.component';
 import { TrenutnaLokacijaComponent } from './trenutna-lokacija/trenutna-lokacija.component';
 import { CenovnikComponent } from './cenovnik/cenovnik.component';
 import { KupiKartuComponent } from './kupi-kartu/kupi-kartu.component';
+import { AdminManagementComponent } from './admin-management/admin-management.component';
+import { ProfilKorisnikaComponent } from './profil-korisnika/profil-korisnika.component';
 
 const routes: Routes = [
   
   {
     path: '',
     redirectTo: '/redVoznje',
-    pathMatch: 'full'
-    
+    pathMatch: 'full'   
   },
 
   {
@@ -40,6 +41,16 @@ const routes: Routes = [
   {
     path: 'kupiKartu',
     component:KupiKartuComponent
+  },
+
+  {
+    path:'profil',
+    component:ProfilKorisnikaComponent
+  },
+
+  {
+    path:'management',
+    component:AdminManagementComponent
   },
 
   {

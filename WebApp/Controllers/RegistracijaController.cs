@@ -27,6 +27,18 @@ namespace JGSPNSWebApp.Controllers
         [HttpPost,Route("registrujSe")]
         public IHttpActionResult PostRegistracija([FromBody]KorisnikRegistracijaBindingModel korisnik)
         {
+            string uloga;
+
+            if (User.IsInRole("Admin"))
+            {
+                uloga = "Kontrolor";
+                korisnik.TipPutnika = "Regularni";
+            }
+
+            else
+                uloga = "Putnik";
+
+
             ApplicationUser user = new ApplicationUser()
             {
                 Ime = korisnik.Ime,
@@ -35,17 +47,20 @@ namespace JGSPNSWebApp.Controllers
                 Lozinka = korisnik.Lozinka,
                 DatumRodjenja = korisnik.DatumRodjenja,
                 Adresa = korisnik.Adresa,
-                TipPutnika = korisnik.TipKorisnika,
+                TipPutnika = korisnik.TipPutnika,
                 Id = korisnik.Ime,
                 UserName = korisnik.Email,
-                PasswordHash = ApplicationUser.HashPassword(korisnik.Lozinka)            
+                PasswordHash = ApplicationUser.HashPassword(korisnik.Lozinka),
+                Verifikovan= korisnik.TipPutnika.Equals("Regularni"),
+                Uloga=context.Uloge.Find(uloga)
+                         
             };
 
             var userStore = new UserStore<ApplicationUser>(context);
             var userManager = new UserManager<ApplicationUser>(userStore);
 
 
-            userManager.Create(user);
+            userManager.Create(user);                     
             userManager.AddToRole(user.Id, "AppUser");
 
 

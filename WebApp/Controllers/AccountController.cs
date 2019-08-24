@@ -16,6 +16,10 @@ using Microsoft.Owin.Security.OAuth;
 using JGSPNSWebApp.Models;
 using JGSPNSWebApp.Providers;
 using JGSPNSWebApp.Results;
+using System.Diagnostics;
+using System.IO;
+using System.Net;
+using JGSPNSWebApp.Persistence;
 
 namespace JGSPNSWebApp.Controllers
 {
@@ -316,6 +320,85 @@ namespace JGSPNSWebApp.Controllers
             }
 
             return logins;
+        }
+        //POST api/Account/UploadImage
+        [AllowAnonymous]
+        [Route("UploadImage")]
+        public async Task<IHttpActionResult> UploadImage(string email)
+        {
+            try
+            {
+                if (!Request.Content.IsMimeMultipartContent())
+                {
+                    throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+                }
+
+           
+                var files = HttpContext.Current.Request.Files;
+                if (files.Count == 1)
+                {
+                    using (ApplicationDbContext context = new ApplicationDbContext())
+                    {
+                        // int MaxContentLength = 1024 * 1024 * 1; //Size = 1 MB
+                        var postedFile = files[0];
+
+                        var userStore = new UserStore<ApplicationUser>(context);
+                        var userManager = new UserManager<ApplicationUser>(userStore);
+
+                        IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".png" };
+                        var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
+                        var extension = ext.ToLower();
+                        if (AllowedFileExtensions.Contains(extension))
+                        {
+                            var existingRecord = await context.StatusiRegistracije.FindAsync(email);
+
+                            if (existingRecord != null)
+                            {
+                                //user has already uploaded image(s) previously => delete it
+                                var korisnik = await userManager.FindByEmailAsync(email);
+                                var oldPath = HttpContext.Current.Server.MapPath("~/" + korisnik.ImageUrl);
+                                File.Delete(oldPath);
+
+
+                                existingRecord.Status = "Ocekuje se verfikacija";
+                                existingRecord.ImgUrl = "UserImages/" + email + extension;
+                                korisnik.Status = User.IsInRole("Admin") ? "Potvrdjen" : "Ocekuje se verfikacija";
+                                korisnik.Verifikovan = false;
+
+
+                                await context.SaveChangesAsync();
+                            }
+                            else
+                            {
+                                context.StatusiRegistracije.Add(new StatusRegistracije()
+                                {
+                                    Email = email,
+                                    ImgUrl = "UserImages/" + email + extension,
+                                    Status = User.IsInRole("Admin") ? "Potvrdjen" : "Ocekuje se verfikacija",
+                                });
+
+                                var korisnik = await userManager.FindByEmailAsync(email);
+                                korisnik.ImageUrl = "UserImages/" + email + extension;
+                                korisnik.Status = User.IsInRole("Admin") ? "Potvrdjen" : "Ocekuje se verfikacija";
+
+                                await context.SaveChangesAsync();
+                            }
+
+                            var filePath = HttpContext.Current.Server.MapPath("~/UserImages/" + email + extension);
+                            postedFile.SaveAs(filePath);
+
+
+                        }
+                    }
+                }
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return new System.Web.Http.Results.InternalServerErrorResult(this);
+            }
         }
 
         // POST api/Account/Register

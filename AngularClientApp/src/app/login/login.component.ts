@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { LoginService } from '../login.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -11,10 +13,11 @@ import { LoginService } from '../login.service';
 export class LoginComponent implements OnInit {
 
   private loginForm : FormGroup;
+  
 
-  constructor(private loginService: LoginService, private fb: FormBuilder) { 
+  constructor(private loginService: LoginService, private fb: FormBuilder,private router:Router) { 
       this.loginForm=this.fb.group({
-        email:['',Validators.required],
+        username:['',Validators.required],
         pass: ['',Validators.required]
       });
   }
@@ -26,11 +29,21 @@ export class LoginComponent implements OnInit {
   {
      console.warn(this.loginForm.valid);
      
-     let email=this.loginForm.value.email ;
+     let username=this.loginForm.value.username ;
      let password=this.loginForm.value.pass;
         
-     this.loginService.Login(email,password).subscribe();
-      
+     this.loginService.Login(username,password).subscribe(
+      res=>{
+        var accessToken=res.access_token;
+        localStorage.setItem('token',accessToken);
+       
+        alert("Uspesno ste se ulogovali");
+        this.router.navigate(['/redVoznje']);
+      },
+        (err) =>{
+            alert("Doslo je do greske pri logovanju. Pokusajte ponovo.")
+        }
+     );
   }
   
 

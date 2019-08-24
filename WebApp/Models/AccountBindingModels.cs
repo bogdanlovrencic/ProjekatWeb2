@@ -41,8 +41,8 @@ namespace JGSPNSWebApp.Models
         public string Lozinka { get; set; }
 
         [Required]
-        [Display(Name ="TipKorisnika")]
-        public string TipKorisnika { get; set; }
+        [Display(Name ="TipPutnika")]
+        public string TipPutnika { get; set; }
     }
 
     public class ChangePasswordBindingModel

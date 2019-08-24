@@ -2,8 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule} from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
-import { HttpClientModule }    from '@angular/common/http';
-
+import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -15,19 +14,27 @@ import { CenovnikComponent } from './cenovnik/cenovnik.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { KupiKartuComponent } from './kupi-kartu/kupi-kartu.component';
 import { MapComponent } from './map/map.component';
+import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
+import { RouterModule } from '@angular/router';
+import { AdminManagementComponent } from './admin-management/admin-management.component';
+import { ProfilKorisnikaComponent } from './profil-korisnika/profil-korisnika.component';
 //import { KupovinaKarteService } from './kupovina-karte.service';
+import { TokenInterceptor } from './token.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
+    NavigationBarComponent,
     LoginComponent,
     RedVoznjeComponent,
     MrezaLinijaComponent,
     TrenutnaLokacijaComponent,
     CenovnikComponent,
     KupiKartuComponent,
-    MapComponent
+    MapComponent,
+    AdminManagementComponent,
+    ProfilKorisnikaComponent
   ],
   imports: [
     BrowserModule,
@@ -35,11 +42,17 @@ import { MapComponent } from './map/map.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'})
   
   ],
   providers: [
-    // KupovinaKarteService
+    { 
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+    
   ],
   bootstrap: [AppComponent]
 })
