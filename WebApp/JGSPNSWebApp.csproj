@@ -252,10 +252,17 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CenovnikController.cs" />
     <Compile Include="Controllers\RedVoznjeController.cs" />
-    <Compile Include="Controllers\RegistracijaController.cs" />
     <Compile Include="Migrations\201908231935014_all.cs" />
     <Compile Include="Migrations\201908231935014_all.Designer.cs">
       <DependentUpon>201908231935014_all.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908241957436_korisnik.cs" />
+    <Compile Include="Migrations\201908241957436_korisnik.Designer.cs">
+      <DependentUpon>201908241957436_korisnik.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908251351310_s.cs" />
+    <Compile Include="Migrations\201908251351310_s.Designer.cs">
+      <DependentUpon>201908251351310_s.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Cenovnik1.cs" />
     <Compile Include="Models\Email.cs" />
@@ -276,6 +283,7 @@
     <Compile Include="Models\EmailService.cs" />
     <Compile Include="Models\Karta.cs" />
     <Compile Include="Models\Koeficijent.cs" />
+    <Compile Include="Models\Korisnik.cs" />
     <Compile Include="Models\Linija.cs" />
     <Compile Include="Models\LinijaStanica.cs" />
     <Compile Include="Models\Lokacija.cs" />
@@ -296,11 +304,11 @@
     <Compile Include="Persistence\Repository\IKartaRepository.cs" />
     <Compile Include="Persistence\Repository\ILinijeRepository.cs" />
     <Compile Include="Persistence\Repository\IRepository.cs" />
-    <Compile Include="Persistence\Repository\IApplicationUserRepository.cs" />
+    <Compile Include="Persistence\Repository\IKorisnikRepository.cs" />
     <Compile Include="Persistence\Repository\KartaRepository.cs" />
     <Compile Include="Persistence\Repository\LinijeRepository.cs" />
     <Compile Include="Persistence\Repository\Repository.cs" />
-    <Compile Include="Persistence\Repository\ApplicationUserRepository.cs" />
+    <Compile Include="Persistence\Repository\KorisnikRepository.cs" />
     <Compile Include="Persistence\UnitOfWork\DemoUnitOfWork.cs" />
     <Compile Include="Persistence\UnitOfWork\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -353,8 +361,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="UserImages\jovazmaj12%40gmail.com.jpg" />
-    <Content Include="UserImages\marinko11%40gmail.com.jpg" />
+    <Content Include="UserImages\loki3uzu%40gmail.com.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -407,6 +414,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201908231935014_all.resx">
       <DependentUpon>201908231935014_all.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908241957436_korisnik.resx">
+      <DependentUpon>201908241957436_korisnik.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908251351310_s.resx">
+      <DependentUpon>201908251351310_s.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

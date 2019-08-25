@@ -13,6 +13,7 @@ namespace JGSPNSWebApp.Models
         {
 
         }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id_polaska { get; set; }

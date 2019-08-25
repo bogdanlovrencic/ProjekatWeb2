@@ -29,6 +29,7 @@ namespace JGSPNSWebApp.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
+     
 
         public AccountController()
         {
@@ -120,16 +121,39 @@ namespace JGSPNSWebApp.Controllers
 
         // POST api/Account/ChangePassword
         [Route("ChangePassword")]
-        public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
+        public async Task<IHttpActionResult> ChangePassword(string id,ChangePasswordBindingModel model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+
             IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
                 model.NewPassword);
-            
+
+            using (ApplicationDbContext dbContext = new ApplicationDbContext())
+            {
+                var user = dbContext.Korisnici.Find(id);
+
+                user.Lozinka = model.NewPassword;
+                dbContext.Entry(user).State = System.Data.Entity.EntityState.Modified;
+
+               
+
+                try
+                {
+                    dbContext.SaveChanges();
+                }
+                catch(Exception e)
+                {
+                    Debug.WriteLine(e.Message);
+                    return new System.Web.Http.Results.InternalServerErrorResult(this);
+                }
+                
+            }
+             
+
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
@@ -342,9 +366,6 @@ namespace JGSPNSWebApp.Controllers
                         // int MaxContentLength = 1024 * 1024 * 1; //Size = 1 MB
                         var postedFile = files[0];
 
-                        var userStore = new UserStore<ApplicationUser>(context);
-                        var userManager = new UserManager<ApplicationUser>(userStore);
-
                         IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".png" };
                         var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
                         var extension = ext.ToLower();
@@ -355,15 +376,16 @@ namespace JGSPNSWebApp.Controllers
                             if (existingRecord != null)
                             {
                                 //user has already uploaded image(s) previously => delete it
-                                var korisnik = await userManager.FindByEmailAsync(email);
+                                var korisnik = await context.Korisnici.FindAsync(email);
                                 var oldPath = HttpContext.Current.Server.MapPath("~/" + korisnik.ImageUrl);
                                 File.Delete(oldPath);
 
 
                                 existingRecord.Status = "Ocekuje se verfikacija";
-                                existingRecord.ImgUrl = "UserImages/" + email + extension;
+                                existingRecord.ImgUrl = "UserImages/" + email + extension; 
                                 korisnik.Status = User.IsInRole("Admin") ? "Potvrdjen" : "Ocekuje se verfikacija";
                                 korisnik.Verifikovan = false;
+                               
 
 
                                 await context.SaveChangesAsync();
@@ -377,7 +399,7 @@ namespace JGSPNSWebApp.Controllers
                                     Status = User.IsInRole("Admin") ? "Potvrdjen" : "Ocekuje se verfikacija",
                                 });
 
-                                var korisnik = await userManager.FindByEmailAsync(email);
+                                var korisnik = await context.Korisnici.FindAsync(email);
                                 korisnik.ImageUrl = "UserImages/" + email + extension;
                                 korisnik.Status = User.IsInRole("Admin") ? "Potvrdjen" : "Ocekuje se verfikacija";
 
@@ -406,21 +428,69 @@ namespace JGSPNSWebApp.Controllers
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(ModelState);
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+
+                var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+                IdentityResult result = await UserManager.CreateAsync(user, model.Lozinka);
+
+           
+
+                if (!result.Succeeded)
+                {
+                    return GetErrorResult(result);
+                }
+
+                using (ApplicationDbContext context = new ApplicationDbContext())
+                {
+                    string uloga;
+
+                    if (User.IsInRole("Admin"))
+                    {
+                        uloga = "Kontrolor";
+                        model.TipPutnika = "Regularni";
+                    }
+
+                    else
+                        uloga = "Putnik";
+
+
+                    Korisnik newUser = new Korisnik()
+                    {
+                        Ime = model.Ime,
+                        Prezime = model.Prezime,
+                        Email = model.Email,
+                        Lozinka = model.Lozinka,
+                        DatumRodjenja = model.DatumRodjenja,
+                        Adresa = model.Adresa,
+                        Verifikovan = model.TipPutnika.Equals("Regularni"),
+                        Uloga = context.Uloge.Find(uloga)
+
+                    };
+
+                    context.Korisnici.Add(newUser);
+
+
+                    //context.Putnici.Add(new Putnici()
+                    //{
+                    //    Korisnik = noviKorisnik,
+                    //    TipPutnika = context.TipoviPutnika.Find(model.TipPutnika),
+                    //});
+
+                    context.SaveChanges();
+                }
+                return Ok();
             }
-
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
-
-            IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-
-            if (!result.Succeeded)
+            catch (Exception ex)
             {
-                return GetErrorResult(result);
+                Debug.WriteLine(ex.Message);
+                return new System.Web.Http.Results.InternalServerErrorResult(this);
             }
-
-            return Ok();
         }
 
         // POST api/Account/RegisterExternal

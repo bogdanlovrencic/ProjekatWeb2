@@ -61,6 +61,7 @@ export class RegistrationComponent implements OnInit {
       korisnik.DatumRodjenja=this.registrationForm.controls.birthDate.value;
       korisnik.Adresa=this.registrationForm.controls.adresa.value;
       korisnik.TipPutnika=this.registrationForm.controls.tipPutnika.value;
+      korisnik.ConfirmPassword=this.registrationForm.controls.confPassword.value;
 
       this.registerService.RegisterUser(korisnik).subscribe(
           (res)=> {     
@@ -70,7 +71,7 @@ export class RegistrationComponent implements OnInit {
                 imageData.append('image',this.selectedFile,this.selectedFile.name);
                 this.registerService.UploadImage(korisnik.Email,imageData)
             }   
-            alert("Uspesno ste se registrovali."); 
+            //alert("Uspesno ste se registrovali."); 
             
             //this.router.navigate(['/login']);
 

@@ -12,7 +12,7 @@ const httpOptions = {
 })
 export class RegistrationService {
 
-  private registerUrl='http://localhost:52295/api/registracija/registrujSe';
+  private registerUrl='http://localhost:52295/api/account/register';
 
   private uploadImageUrl='http://localhost:52295/api/account/UploadImage?email=';
 
@@ -20,7 +20,7 @@ export class RegistrationService {
 
   RegisterUser(korisnik: Korisnik): Observable<any>
   {
-      return this.http.post<Korisnik>(this.registerUrl,korisnik,httpOptions);
+      return this.http.post(this.registerUrl,korisnik);
   }
 
   UploadImage(email:string,data:FormData)

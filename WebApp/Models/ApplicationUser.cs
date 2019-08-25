@@ -16,27 +16,28 @@ namespace JGSPNSWebApp.Models
     public class ApplicationUser : IdentityUser
     {
       
-        public string Ime { get; set; }
+        //public string Ime { get; set; }
 
-        public string Prezime { get; set; }
+        //public string Prezime { get; set; }
 
-       // public string Email { get; set; }
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //public string Email { get; set; }
 
-        public string Lozinka { get; set; }
+        //public string Lozinka { get; set; }
 
-        public string DatumRodjenja { get; set; }
+        //public string DatumRodjenja { get; set; }
 
-        public string Adresa { get; set; }
+        //public string Adresa { get; set; }
 
-        public string TipPutnika { get; set; }
+        //public string TipPutnika { get; set; }
 
-        public string ImageUrl { get; set; }
+        //public string ImageUrl { get; set; }
 
-        public string Status { get; set; }
+        //public string Status { get; set; }
 
-        public bool Verifikovan { get; set; } = false;
+        //public bool Verifikovan { get; set; } = false;
 
-        public Rola Uloga { get; set; }
+        //public Rola Uloga { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {

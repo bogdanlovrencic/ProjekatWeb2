@@ -8,6 +8,9 @@ export class Korisnik{
     DatumRodjenja: string;
     Adresa: string;
     TipPutnika: string;
-    
+    Status:string;
+    ImgUrl:string;
+    ConfirmPassword:string;
+
     constructor(){}
 }

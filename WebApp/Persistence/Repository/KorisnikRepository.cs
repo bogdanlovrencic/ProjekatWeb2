@@ -7,9 +7,9 @@ using JGSPNSWebApp.Models;
 
 namespace JGSPNSWebApp.Persistence.Repository
 {
-    public class ApplicationUserRepository : Repository<ApplicationUser,int>,IApplicationUserRepository 
+    public class KorisnikRepository : Repository<Korisnik,int>,IKorisnikRepository 
     {
-        public ApplicationUserRepository(DbContext context) : base(context)
+        public KorisnikRepository(DbContext context) : base(context)
         {
             
         }

@@ -31,7 +31,7 @@ namespace JGSPNSWebApp.Persistence
         public DbSet<Linija> Linije { get; set; }
         public DbSet<StatusRegistracije> StatusiRegistracije { get; set; }
         public DbSet<Rola> Uloge { get; set; }
-
+        public DbSet<Korisnik> Korisnici { get; set; }
 
     }
 }

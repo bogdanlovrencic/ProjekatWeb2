@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
         var accessToken=res.access_token;
         localStorage.setItem('token',accessToken);
        
-        alert("Uspesno ste se ulogovali");
+       // alert("Uspesno ste se ulogovali");
         this.router.navigate(['/redVoznje']);
       },
         (err) =>{

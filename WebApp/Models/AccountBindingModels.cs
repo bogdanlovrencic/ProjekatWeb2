@@ -13,7 +13,7 @@ namespace JGSPNSWebApp.Models
         public string ExternalAccessToken { get; set; }
     }
 
-    public class KorisnikRegistracijaBindingModel
+    public class KorisnikBindingModel
     {
         [Required]
         [Display(Name = "Ime")]
@@ -25,13 +25,14 @@ namespace JGSPNSWebApp.Models
 
         [Required]
         [Display(Name = "Datum rodjenja")]
-        public string DatumRodjenja { get; set; }
+        public DateTime DatumRodjenja { get; set; }
 
         [Required]
         [Display(Name = "Adresa")]
         public string Adresa { get; set; }
 
         [Required]
+        [Key]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
@@ -43,6 +44,17 @@ namespace JGSPNSWebApp.Models
         [Required]
         [Display(Name ="TipPutnika")]
         public string TipPutnika { get; set; }
+
+        [Required]
+        [Display(Name = "ImgUrl")]
+        public string ImgUrl { get; set; }
+
+        [Required]
+        [Display(Name = "Status")]
+        public string Status { get; set; }
+
+       
+
     }
 
     public class ChangePasswordBindingModel
@@ -73,13 +85,24 @@ namespace JGSPNSWebApp.Models
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
+        [Display(Name = "Lozinka")]
+        public string Lozinka { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Confirm Password")]
+        [Compare("Lozinka", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        public string Ime { get; set; }
+        [Required]
+        public string Prezime { get; set; }
+        [Required]
+        public DateTime DatumRodjenja { get; set; }
+        [Required]
+        public string Adresa { get; set; }
+        [Required]
+        public string TipPutnika { get; set; }
     }
 
     public class RegisterExternalBindingModel

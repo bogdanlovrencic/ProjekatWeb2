@@ -1,3 +1,87 @@
-<p>
-  profil-korisnika works!
-</p>
+<h2>Podaci o korisniku</h2>
+<hr>
+<div class="row">
+  <!-- left column -->
+  <div class="col-md-3">
+    <div class="text-center">
+      <img src="http://localhost:52295/{{user.ImageUrl}}" width="150" height="100" class="avatar img-circle" alt="avatar">
+      <h6>Dodaj novi dokument...</h6>
+      
+      <input type="file" class="form-control" (change)="onFileSelected($event)">
+    </div>
+
+    <div>
+      <br/>
+      Account Status: <br/><span [style.color]="still">{{user.Status}}</span>
+    </div>
+    <hr>
+    
+  </div>
+  
+  <!-- edit form column -->
+  <div class="col-md-9 personal-info">
+    <h3>Podaci korisnika</h3>
+    
+    <form class="form-horizontal" role="form" #f="ngForm" (ngSubmit)="SaveChanges(f)">
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Ime:</label>
+        <div class="col-lg-8">
+          <input class="form-control" type="text" name="Ime" [value]="user.Ime" [(ngModel)]="user.Ime">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Prezime:</label>
+        <div class="col-lg-8">
+          <input class="form-control" name="Prezime" type="text" [value]="user.Prezime" [(ngModel)]="user.Prezime">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Email:</label>
+        <div class="col-lg-8">
+          <input class="form-control" name="Email" type="text" [value]="user.Email" [(ngModel)]="user.Email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Adresa:</label>
+        <div class="col-lg-8">
+          <input class="form-control" name="Adresa" type="text" [value]="user.Adresa" [(ngModel)]="user.Adresa">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Datum Rodjenja:</label>
+        <div class="col-lg-8">
+          <input class="form-control" name="DatumRodjenja" type="date" [value]="user.DatumRodjenja" [(ngModel)]="user.DatumRodjenja">
+        </div>
+      </div>
+      <hr>
+      <div class="form-group">
+          <label class="col-md-3 control-label">Stara lozinka:</label>
+          <div class="col-md-8">
+            <input class="form-control" name="OldPassword" type="password" ngModel #OldPassword="ngModel">
+          </div>
+        </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label">Nova lozinka:</label>
+        <div class="col-md-8">
+          <input class="form-control" name="NewPassword" type="password" ngModel #NewPassword="ngModel">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label">Potvrda lozinke:</label>
+        <div class="col-md-8">
+          <input class="form-control" name="confirmPassword" type="password" ngModel #ConfirmPassword="ngModel">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label"></label>
+        <div class="col-md-8">
+          <input type="submit" class="btn btn-primary" value="Sacuvaj">
+          <span></span>
+          <input type="reset" class="btn btn-default" value="Cancel">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+

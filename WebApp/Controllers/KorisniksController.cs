@@ -14,117 +14,126 @@ using JGSPNSWebApp.Persistence.UnitOfWork;
 
 namespace JGSPNSWebApp.Controllers
 {
-    [RoutePrefix("api/Korisnik")]
+    //[Authorize]
     public class KorisniksController : ApiController
     {
+
+        private ApplicationDbContext db = new ApplicationDbContext();
        
-        //private ApplicationDbContext db = new ApplicationDbContext();
-        //private IUnitOfWork unitOfWork;//
-        
+        public IQueryable<Korisnik> GetKorisniks()
+        {
+            return db.Korisnici;
+        }
 
-        //// GET: api/Korisniks
+        // GET: api/Korisniks/5     
+        [ResponseType(typeof(Korisnik))]       
+        public IHttpActionResult GetKorisnik(string id)
+        {
+            Korisnik korisnik = db.Korisnici.Find(id);
+            if (korisnik == null)
+            {
+                return NotFound();
+            }
 
-        //public KorisniksController (IUnitOfWork unitOfWork)
-        //{
-        //    this.unitOfWork = unitOfWork;
-        //}
-        //public IQueryable<Korisnik> GetKorisniks()
-        //{
-        //    return db.Korisniks;
-        //}
+            return Ok(korisnik);
+        }
 
-        //// GET: api/Korisniks/5
-        //[ResponseType(typeof(Korisnik))]
-        //public IHttpActionResult GetKorisnik(int id)
-        //{
-        //    Korisnik korisnik = db.Korisniks.Find(id);
-        //    if (korisnik == null)
-        //    {
-        //        return NotFound();
-        //    }
+        // PUT: api/Korisniks/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutKorisnik(string id, Korisnik korisnik)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        //    return Ok(korisnik);
-        //}
+            if (id != korisnik.Email)
+            {
+                return BadRequest();
+            }
 
-        //// PUT: api/Korisniks/5
-        //[ResponseType(typeof(void))]
-        //[Route("PutKorisnik")]
-        //public IHttpActionResult PutKorisnik(int id, Korisnik korisnik)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
+            db.Entry(korisnik).State = EntityState.Modified;
+           
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!KorisnikExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
-        //    if (id != korisnik.Id)
-        //    {
-        //        return BadRequest();
-        //    }
+            return StatusCode(HttpStatusCode.NoContent);
+        }
 
-        //    db.Entry(korisnik).State = EntityState.Modified;
+        // POST: api/Korisniks
+        [ResponseType(typeof(Korisnik))]
+        public IHttpActionResult PostKorisnik(Korisnik korisnik)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        //    try
-        //    {
-        //        db.SaveChanges();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!KorisnikExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
+            db.Korisnici.Add(korisnik);
 
-        //    return StatusCode(HttpStatusCode.NoContent);
-        //}
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                if (KorisnikExists(korisnik.Email))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
-        //// POST: api/Korisniks
-        //[ResponseType(typeof(Korisnik))]
-        //public IHttpActionResult PostKorisnik(Korisnik korisnik)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
+            return CreatedAtRoute("DefaultApi", new { id = korisnik.Email }, korisnik);
+        }
 
-        //    db.Korisniks.Add(korisnik);
-        //    db.SaveChanges();
+        // DELETE: api/Korisniks/5
+        [ResponseType(typeof(Korisnik))]
+        public IHttpActionResult DeleteKorisnik(string id)
+        {
+            Korisnik korisnik = db.Korisnici.Find(id);
+            if (korisnik == null)
+            {
+                return NotFound();
+            }
 
-        //    return CreatedAtRoute("DefaultApi", new { id = korisnik.Id }, korisnik);
-        //}
+            //var putnik = db.Putnici.Include(x => x.Korisnik).FirstOrDefault(x => x.Korisnik.Email.Equals(id));
+            //db.Putnici.Remove(putnik);
 
-        //// DELETE: api/Korisniks/5
-        //[ResponseType(typeof(Korisnik))]
-        //public IHttpActionResult DeleteKorisnik(int id)
-        //{
-        //    Korisnik korisnik = db.Korisniks.Find(id);
-        //    if (korisnik == null)
-        //    {
-        //        return NotFound();
-        //    }
+            db.Korisnici.Remove(korisnik);
+            db.SaveChanges();
 
-        //    db.Korisniks.Remove(korisnik);
-        //    db.SaveChanges();
+            return Ok(korisnik);
+        }
 
-        //    return Ok(korisnik);
-        //}
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
-
-        //private bool KorisnikExists(int id)
-        //{
-        //    return db.Korisniks.Count(e => e.Id == id) > 0;
-        //}
+        private bool KorisnikExists(string id)
+        {
+            return db.Korisnici.Count(e => e.Email == id) > 0;
+        }
     }
 }
