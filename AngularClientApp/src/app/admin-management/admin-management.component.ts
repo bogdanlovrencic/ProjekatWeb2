@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-management',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminManagementComponent implements OnInit {
 
-  constructor() { }
+  message="";
+  listPrices:PriceList[];
+  listControllers:BusController[];
+  listTimetables:BusTimetable[];
+
+  constructor(private table:GetTableService, private router:Router) { }
 
   ngOnInit() {
+    this.table.message.subscribe(msg => this.message = msg);
   }
 
 }

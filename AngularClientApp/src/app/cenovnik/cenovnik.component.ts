@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CenovnikService } from '../cenovnik.service';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { Cenovnik } from '../cenovnik';
+import { Cenovnik } from '../Models/cenaStavke';
 
 @Component({
   selector: 'app-cenovnik',
@@ -22,7 +22,7 @@ export class CenovnikComponent implements OnInit {
 
   PrikaziCenovnik():void
   {
-     this.cenovnikService.PrikaziCene().subscribe(Cenovnici=> this.Cenovnici = Cenovnici);
+    // this.cenovnikService.PrikaziCene().subscribe(Cenovnici=> this.Cenovnici = Cenovnici);
   }
     
 }

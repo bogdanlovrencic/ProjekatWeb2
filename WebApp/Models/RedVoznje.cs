@@ -9,14 +9,18 @@ namespace JGSPNSWebApp.Models
 {
     public class RedVoznje
     {
-        public RedVoznje()
-        {
 
-        }
-        [Key]
         public int Id { get; set; }
-        public TipDana DanUNedelji { get; set; }
+
+        public DateTime Polazak { get; set; }
+
+        public Linija IzabranaLinija { get; set; }
+
+        public TipRedaVoznje IzabraniRedaVoznje { get; set; }
+
+        public TipDana IzabranTipDana { get; set; }
 
         public bool Aktivan { get; set; }
+
     }
 }

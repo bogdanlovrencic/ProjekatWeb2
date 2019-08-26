@@ -9,12 +9,7 @@ namespace JGSPNSWebApp.Models
 {
     public class Cenovnik
     {
-        public Cenovnik()
-        {
-
-        }
-
-     
+         
         public int Id { get; set; }
 
         public DateTime VaziOd { get; set; }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JGSPNSWebApp.Persistence.Repository
 {
-    public  interface ICenovnikRepository : IRepository<Cenovnik1,int>
+    public  interface ICenovnikRepository : IRepository<Cenovnik,int>
     {
     }
 }

@@ -7,7 +7,7 @@ using System.Data.Entity;
 
 namespace JGSPNSWebApp.Persistence.Repository
 {
-    public class CenovnikRepository : Repository<Cenovnik1, int>, ICenovnikRepository
+    public class CenovnikRepository : Repository<Cenovnik, int>, ICenovnikRepository
     {
         public CenovnikRepository(DbContext context) : base(context)
         {

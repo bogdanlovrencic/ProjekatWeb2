@@ -8,12 +8,9 @@ namespace JGSPNSWebApp.Models
 {
     public class Stanica
     {
-        public Stanica()
-        {
-            Linije = new HashSet<Linija>();
-        }
+      
+        public int Id { get; set; }
 
-        [Key]
         public string Naziv { get; set; }
 
         public string Adresa { get; set; }
@@ -22,7 +19,7 @@ namespace JGSPNSWebApp.Models
 
         public string KordinataY { get; set; }
 
-        public ICollection<Linija> Linije { get; set; }
+        public List<Linija> Linije { get; set; }
 
     }
 }

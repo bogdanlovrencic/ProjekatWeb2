@@ -27,6 +27,7 @@ namespace JGSPNSWebApp.Models
 
         public DateTime VremeDo { get; set; }  
 
+        public Korisnik Kupac { get; set; }
       
         
     }

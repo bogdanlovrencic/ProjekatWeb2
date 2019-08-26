@@ -30,18 +30,7 @@ namespace JGSPNSWebApp.Controllers
 
         }
 
-        [HttpGet, Route("prikaziCene")]    
-        public IEnumerable<Cenovnik1> PrikaziCenovnik()
-        {
-            List<Cenovnik1> cenovnici = new List<Cenovnik1>();
-
-            foreach(var cenovnik in unitOfWork.Cenovnik.GetAll())
-            {
-                cenovnici.Add(new Cenovnik1() {Id=cenovnik.Id, TipKarte = cenovnik.TipKarte, Cena = cenovnik.Cena });
-            }
-
-            return cenovnici;
-        }
+       
 
 
 
