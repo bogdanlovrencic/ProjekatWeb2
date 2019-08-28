@@ -452,12 +452,12 @@ namespace JGSPNSWebApp.Controllers
 
                     if (User.IsInRole("Admin"))
                     {
-                        uloga = "Kontrolor";
-                        model.TipPutnika = "Regularni";
+                        uloga = UlogaKorisnika.KONTROLOR.ToString();
+                        model.TipPutnika = TipPutnika.REGULARNI.ToString();
                     }
 
                     else
-                        uloga = "Putnik";
+                        uloga = UlogaKorisnika.PUTNIK.ToString();
 
 
                     Korisnik newUser = new Korisnik()
@@ -468,19 +468,19 @@ namespace JGSPNSWebApp.Controllers
                         Lozinka = model.Lozinka,
                         DatumRodjenja = model.DatumRodjenja,
                         Adresa = model.Adresa,
-                        Verifikovan = model.TipPutnika.Equals("Regularni"),
-                        Uloga = context.Uloge.Find(uloga)
+                        Verifikovan = model.TipPutnika.Equals("REGULARNI"),
+                        Uloga = uloga
 
                     };
 
                     context.Korisnici.Add(newUser);
 
 
-                    //context.Putnici.Add(new Putnici()
-                    //{
-                    //    Korisnik = noviKorisnik,
-                    //    TipPutnika = context.TipoviPutnika.Find(model.TipPutnika),
-                    //});
+                    context.Putnici.Add(new Putnik()
+                    {
+                        Korisnik = newUser,
+                        TipPutnika = model.TipPutnika ,
+                    });
 
                     context.SaveChanges();
                 }

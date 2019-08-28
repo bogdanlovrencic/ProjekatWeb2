@@ -27,6 +27,7 @@ ul {
     float: left;
     top:200px;
   }
+
   body .swanky_wrapper label {
     padding: 25px;
     float: left;
@@ -208,5 +209,5 @@ ul {
 
   .admin-table{
     padding-left:225px;
-    height: 100vh;
+    height: 150vh;
   }

@@ -1,6 +1,9 @@
+import { Cenovnik } from './Cenovnik';
+import { Stavka } from './Stavka';
+
 export class CenaStavke{
     Id:number;
-    Stabvka: string;
-    Cenovnik: number;
-    
+    Stavka: Stavka;
+    Cenovnik: Cenovnik;
+    Cena: number;
 }

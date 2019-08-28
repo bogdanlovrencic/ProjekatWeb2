@@ -7,13 +7,13 @@ namespace JGSPNSWebApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class put : IMigrationMetadata
+    public sealed partial class izmena : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(put));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(izmena));
         
         string IMigrationMetadata.Id
         {
-            get { return "201908261445140_put"; }
+            get { return "201908272256313_izmena"; }
         }
         
         string IMigrationMetadata.Source

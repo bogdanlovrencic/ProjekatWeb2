@@ -20,6 +20,11 @@ import { AdminManagementComponent } from './admin-management/admin-management.co
 import { ProfilKorisnikaComponent } from './profil-korisnika/profil-korisnika.component';
 //import { KupovinaKarteService } from './kupovina-karte.service';
 import { TokenInterceptor } from './token.interceptor';
+import { AdminViewComponent } from './admin-view/admin-view.component';
+import { AddCenaStavkeComponent } from './add-cena-stavke/add-cena-stavke.component';
+import { AddKontrolorComponent } from './add-kontrolor/add-kontrolor.component';
+import { AddLinijaComponent } from './add-linija/add-linija.component';
+import { AddRedVoznjeComponent } from './add-red-voznje/add-red-voznje.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,12 @@ import { TokenInterceptor } from './token.interceptor';
     KupiKartuComponent,
     MapComponent,
     AdminManagementComponent,
-    ProfilKorisnikaComponent
+    ProfilKorisnikaComponent,
+    AdminViewComponent,
+    AddCenaStavkeComponent,
+    AddKontrolorComponent,
+    AddLinijaComponent,
+    AddRedVoznjeComponent,
   ],
   imports: [
     BrowserModule,

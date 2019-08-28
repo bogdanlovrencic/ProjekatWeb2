@@ -3,9 +3,10 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import { RegistrationService } from '../registration.service';
-import { Korisnik } from '../Korisnik';
+
 import { RouterLinkActive, Router } from '@angular/router';
 import { DecodeJwtDataService } from '../decode-jwt-data.service';
+import { Korisnik } from '../Models/Korisnik';
 
 @Component({
   selector: 'app-registration',

@@ -252,13 +252,17 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CenovnikController.cs" />
     <Compile Include="Controllers\RedVoznjeController.cs" />
-    <Compile Include="Migrations\201908261437096_all.cs" />
-    <Compile Include="Migrations\201908261437096_all.Designer.cs">
-      <DependentUpon>201908261437096_all.cs</DependentUpon>
+    <Compile Include="Migrations\201908261456233_sve.cs" />
+    <Compile Include="Migrations\201908261456233_sve.Designer.cs">
+      <DependentUpon>201908261456233_sve.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201908261445140_put.cs" />
-    <Compile Include="Migrations\201908261445140_put.Designer.cs">
-      <DependentUpon>201908261445140_put.cs</DependentUpon>
+    <Compile Include="Migrations\201908271308065_izmene.cs" />
+    <Compile Include="Migrations\201908271308065_izmene.Designer.cs">
+      <DependentUpon>201908271308065_izmene.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908272256313_izmena.cs" />
+    <Compile Include="Migrations\201908272256313_izmena.Designer.cs">
+      <DependentUpon>201908272256313_izmena.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Email.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -283,7 +287,6 @@
     <Compile Include="Models\Lokacija.cs" />
     <Compile Include="Models\Putnik.cs" />
     <Compile Include="Models\RedVoznje.cs" />
-    <Compile Include="Models\Rola.cs" />
     <Compile Include="Models\Stanica.cs" />
     <Compile Include="Models\StatusRegistracije.cs" />
     <Compile Include="Models\Stavka.cs" />
@@ -406,11 +409,14 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201908261437096_all.resx">
-      <DependentUpon>201908261437096_all.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201908261456233_sve.resx">
+      <DependentUpon>201908261456233_sve.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908261445140_put.resx">
-      <DependentUpon>201908261445140_put.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201908271308065_izmene.resx">
+      <DependentUpon>201908271308065_izmene.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908272256313_izmena.resx">
+      <DependentUpon>201908272256313_izmena.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,0 +1,25 @@
+<h3>Dodavanje linije</h3>
+<div>
+  <!-- Kreiranje mape -->
+  <agm-map [latitude]="45.256138" [longitude]="19.828751" [zoom]="14" (mapClick)="placeMarker($event)">  
+
+    <agm-polyline strokeColor="blue">
+         <agm-polyline-point *ngFor="let point of polyline.stanice" [latitude]="point.KordinataX" [longitude]="point.KordinantaY">
+         </agm-polyline-point>
+    </agm-polyline>
+
+    <agm-marker *ngFor="let point of polyline.Stanice" [latitude]="point.KordinataX" [longitude]="point.KordinantaY" [iconUrl]="stationIcon" (markerClick)="onStationClicked(point)">
+    </agm-marker>
+
+  </agm-map>
+
+  <div *ngIf="inputName">
+      <input type="text" placeholder="Naziv stanice" [(ngModel)]="selektovanaStanica.Naziv">
+      <input type="text" placeholder="Naziv stanice" [(ngModel)]="selektovanaStanica.Adresa">
+  </div>
+  
+
+  <input type="text" placeholder="Ime linije" [(ngModel)]="imeLinije"><br>
+  <button type="button" (click)="onSaveClicked()">Dodaj</button>
+</div>
+

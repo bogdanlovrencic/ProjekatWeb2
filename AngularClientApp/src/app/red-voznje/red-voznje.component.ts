@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RedVoznjeService } from '../red-voznje.service';
-import { Linija } from '../linija';
+
 import { HttpErrorResponse } from '@angular/common/http';
+import { Linija } from '../Models/linija';
 
 @Component({
   selector: 'app-red-voznje',

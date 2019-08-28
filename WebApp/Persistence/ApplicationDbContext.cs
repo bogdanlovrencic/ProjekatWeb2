@@ -29,7 +29,7 @@ namespace JGSPNSWebApp.Persistence
         public DbSet<Karta> Karte { get; set; }
         public DbSet<Linija> Linije { get; set; }
         public DbSet<StatusRegistracije> StatusiRegistracije { get; set; }
-        public DbSet<Rola> Uloge { get; set; }
+        public DbSet<Putnik> Putnici { get; set; }
         public DbSet<Korisnik> Korisnici { get; set; }
 
     }

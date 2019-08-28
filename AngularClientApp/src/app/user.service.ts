@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Korisnik } from './Korisnik';
+
 import { NgForm } from '@angular/forms';
+import { Korisnik } from './Models/Korisnik';
 
 @Injectable({
   providedIn: 'root'

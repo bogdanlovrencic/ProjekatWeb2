@@ -25,7 +25,7 @@ namespace JGSPNSWebApp.Models
        
        // public List<Karta> KupljenjeKarte { get; set; }
 
-        public Rola Uloga { get; set; }
+        public string Uloga { get; set; }
 
         public string Status { get; set; }
         public string ImageUrl { get; set; }

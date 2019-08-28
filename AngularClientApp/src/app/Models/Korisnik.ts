@@ -12,5 +12,5 @@ export class Korisnik{
     ImgUrl:string;
     ConfirmPassword:string;
 
-    constructor(){}
+   
 }

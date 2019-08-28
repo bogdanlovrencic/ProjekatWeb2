@@ -6,8 +6,7 @@ using System.Web;
 namespace JGSPNSWebApp.Models
 {
     public enum UlogaKorisnika
-    {
-        NEREGISTROVANI_KORISNIK,
+    {      
         PUTNIK,
         KONTROLOR,
         ADMINISTRATOR

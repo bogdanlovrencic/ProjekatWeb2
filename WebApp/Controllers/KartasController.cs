@@ -131,7 +131,7 @@ namespace JGSPNSWebApp.Controllers
                 putnik = TipPutnika.PENZIONER;
 
             else if (tipPutnika == "REGULARNI_PUTNIK")
-                putnik = TipPutnika.REGULARNI_PUTNIK;
+                putnik = TipPutnika.REGULARNI;
 
 
 

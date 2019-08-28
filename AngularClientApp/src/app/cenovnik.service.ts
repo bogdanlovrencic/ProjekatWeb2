@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
-import { Cenovnik } from './cenovnik';
+
 import { catchError } from 'rxjs/operators';
 
 
@@ -19,10 +19,10 @@ export class CenovnikService {
 
   constructor(private http:HttpClient) { }
 
-  PrikaziCene(): Observable<Cenovnik[]>
+  PrikaziCene(): void
   {   
-      return this.http.get<Cenovnik[]>(this.ceneUrl).pipe(
-        catchError(this.handleError<Cenovnik[]>('PrikaziCene', [])));
+      // return this.http.get<Cenovnik[]>(this.ceneUrl).pipe(
+      //   catchError(this.handleError<Cenovnik[]>('PrikaziCene', [])));
 
      
   }

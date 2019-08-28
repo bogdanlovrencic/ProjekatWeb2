@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Korisnik } from '../Korisnik';
+import { Korisnik } from '../Models/Korisnik';
 import { DecodeJwtDataService } from '../decode-jwt-data.service';
 import { decode } from 'punycode';
 import { UserService } from '../user.service';

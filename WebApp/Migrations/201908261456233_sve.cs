@@ -3,7 +3,7 @@ namespace JGSPNSWebApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class all : DbMigration
+    public partial class sve : DbMigration
     {
         public override void Up()
         {
@@ -88,7 +88,7 @@ namespace JGSPNSWebApp.Migrations
                 "dbo.Linijas",
                 c => new
                     {
-                        Id = c.String(nullable: false, maxLength: 128),
+                        Id = c.Int(nullable: false, identity: true),
                         RedniBroj = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
@@ -111,10 +111,10 @@ namespace JGSPNSWebApp.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Polazak = c.DateTime(nullable: false),
-                        IzabraniRedaVoznje = c.Int(nullable: false),
-                        IzabranTipDana = c.Int(nullable: false),
+                        IzabraniRedaVoznje = c.String(nullable: false),
+                        IzabranTipDana = c.String(nullable: false),
                         Aktivan = c.Boolean(nullable: false),
-                        IzabranaLinija_Id = c.String(maxLength: 128),
+                        IzabranaLinija_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Linijas", t => t.IzabranaLinija_Id)
@@ -198,20 +198,22 @@ namespace JGSPNSWebApp.Migrations
                 .PrimaryKey(t => new { t.LoginProvider, t.ProviderKey, t.UserId })
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
-            
+
             CreateTable(
-                "dbo.StanicaLinijas",
+                "dbo.Putniks",
                 c => new
-                    {
-                        Stanica_Id = c.Int(nullable: false),
-                        Linija_Id = c.String(nullable: false, maxLength: 128),
-                    })
-                .PrimaryKey(t => new { t.Stanica_Id, t.Linija_Id })
-                .ForeignKey("dbo.Stanicas", t => t.Stanica_Id, cascadeDelete: true)
-                .ForeignKey("dbo.Linijas", t => t.Linija_Id, cascadeDelete: true)
-                .Index(t => t.Stanica_Id)
-                .Index(t => t.Linija_Id);
-            
+                {
+                    Id = c.Int(nullable: false),
+                    TipPutnika = c.String(nullable: false),
+                    Korisnik_Email=c.String(maxLength:128),
+
+                })
+                .PrimaryKey(t => t.Id)            
+                .ForeignKey("dbo.Korisniks", t => t.Korisnik_Email)
+                .Index(t => t.Id)
+                .Index(t => t.Korisnik_Email);
+
+
         }
         
         public override void Down()

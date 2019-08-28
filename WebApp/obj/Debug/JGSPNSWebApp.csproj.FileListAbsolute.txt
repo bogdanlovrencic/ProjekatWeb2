@@ -893,10 +893,12 @@ C:\Users\Default.DESKTOP-KG2KP0Q\Desktop\Github\WebApp\bin\Microsoft.Owin.Securi
 C:\Users\Default.DESKTOP-KG2KP0Q\Desktop\Github\WebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Default.DESKTOP-KG2KP0Q\Desktop\Github\WebApp\bin\System.Web.Http.Owin.xml
 C:\Users\Default.DESKTOP-KG2KP0Q\Desktop\Github\WebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Default.DESKTOP-KG2KP0Q\Desktop\Github\WebApp\obj\Debug\JGSPNSWebApp.Migrations.sve.resources
+C:\Users\Default.DESKTOP-KG2KP0Q\Desktop\Github\WebApp\obj\Debug\JGSPNSWebApp.Migrations.izmene.resources
+C:\Users\Default.DESKTOP-KG2KP0Q\Desktop\Github\WebApp\obj\Debug\JGSPNSWebApp.csproj.GenerateResource.cache
 C:\Users\Default.DESKTOP-KG2KP0Q\Desktop\Github\WebApp\obj\Debug\JGSPNSWebApp.csproj.CoreCompileInputs.cache
 C:\Users\Default.DESKTOP-KG2KP0Q\Desktop\Github\WebApp\obj\Debug\JGSPNSWebApp.csproj.CopyComplete
 C:\Users\Default.DESKTOP-KG2KP0Q\Desktop\Github\WebApp\obj\Debug\JGSPNSWebApp.dll
 C:\Users\Default.DESKTOP-KG2KP0Q\Desktop\Github\WebApp\obj\Debug\JGSPNSWebApp.pdb
-C:\Users\Default.DESKTOP-KG2KP0Q\Desktop\Github\WebApp\obj\Debug\JGSPNSWebApp.Migrations.all.resources
-C:\Users\Default.DESKTOP-KG2KP0Q\Desktop\Github\WebApp\obj\Debug\JGSPNSWebApp.csproj.GenerateResource.cache
 C:\Users\Default.DESKTOP-KG2KP0Q\Desktop\Github\WebApp\obj\Debug\JGSPNSWebApp.csprojAssemblyReference.cache
+C:\Users\Default.DESKTOP-KG2KP0Q\Desktop\Github\WebApp\obj\Debug\JGSPNSWebApp.Migrations.izmena.resources

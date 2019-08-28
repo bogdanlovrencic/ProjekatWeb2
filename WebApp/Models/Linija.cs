@@ -9,8 +9,8 @@ namespace JGSPNSWebApp.Models
 {
     public class Linija
     {      
-        [Key]     
-        public string Id { get; set; }
+       
+        public int Id { get; set; }
 
         public string RedniBroj { get; set; }
 

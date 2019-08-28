@@ -9,6 +9,6 @@ namespace JGSPNSWebApp.Models
     {
         DJAK,
         PENZIONER,
-        REGULARNI_PUTNIK
+        REGULARNI
     }
 }

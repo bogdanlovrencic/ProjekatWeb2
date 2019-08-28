@@ -6,27 +6,27 @@
 
 <body>
     <div class="swanky_wrapper">
-    <input id='Dashboard' name='radio' type='radio' (click)="getTable('Price')">
+    <input id='Dashboard' name='radio' type='radio' (click)="getTable('Cene')">
     <label for='Dashboard'>
-        <a routerLink="/home"><span><i class="fas fa-wallet"></i></span>Price list</a>  
+        <a routerLink="/home"><span><i class="fas fa-wallet"></i></span>Cenovnik</a>  
       <div class='lil_arrow'></div>
       <div class='bar'></div>
       <div class='swanky_wrapper__content'>
         <ul>
-          <li (click)="onAddClick('Price')">Add</li>
+          <li (click)="onAddClick('Cena')">Dodaj</li>
           <!-- <li>Edit</li>
           <li>Delete</li> -->
         </ul>
       </div>
     </label>
-    <input id='Sales' name='radio' type='radio' (click)="getTable('busLines')">
+    <input id='Sales' name='radio' type='radio' (click)="getTable('Linije')">
     <label for='Sales'>
-      <a routerLink="/home"><span><i class="fas fa-bus"></i></span>Bus lines</a>
+      <a routerLink="/home"><span><i class="fas fa-bus"></i></span>Linije</a>
       <div class='lil_arrow'></div>
       <div class='bar'></div>
       <div class='swanky_wrapper__content'>
         <ul>
-            <li (click)="onAddClick('Lines')">Add</li>
+            <li (click)="onAddClick('Linija')">Dodaj</li>
             <!-- <li>Edit</li>
             <li>Delete</li> -->
         </ul>
@@ -45,14 +45,14 @@
         </ul>
       </div>
     </label> -->
-    <input id='Settings' name='radio' type='radio' (click)="getTable('busTimetable')">
+    <input id='Settings' name='radio' type='radio' (click)="getTable('RedoviVoznje')">
     <label for='Settings'>
-      <a routerLink="/home"><span><i class="fas fa-clock"></i></span>Bus timetables</a>
+      <a routerLink="/home"><span><i class="fas fa-clock"></i></span>Red voznje</a>
       <div class='lil_arrow'></div>
       <div class='bar'></div>
       <div class='swanky_wrapper__content'>
         <ul>
-            <li>Add</li>
+            <li (click)="onAddClick('RedVoznje')">Dodaj</li>
             <!-- <li>Edit</li>
             <li>Delete</li> -->
         </ul>
@@ -60,12 +60,12 @@
     </label>
     <input id='Users' name='radio' type='radio' (click)="getTable('busControllers')">
     <label for='Users'>
-      <a routerLink="/home"><span><i class="fas fa-users"></i></span>Bus controllers</a>
+      <a routerLink="/home"><span><i class="fas fa-users"></i></span>Kontrolor</a>
       <div class='lil_arrow'></div>
       <div class='bar'></div>
       <div class='swanky_wrapper__content'>
         <ul>
-            <li (click)="onAddClick('Kontrolori')">Add</li>
+            <li (click)="onAddClick('Kontrolor')">Dodaj</li>
             <!-- <li>Edit</li>
             <li>Delete</li> -->
         </ul>
@@ -74,7 +74,7 @@
     </div>
 
     <div class="admin-table">
-        <app-admin-table></app-admin-table>
+        <app-admin-view></app-admin-view>
     </div>
 
 

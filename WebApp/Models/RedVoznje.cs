@@ -16,9 +16,9 @@ namespace JGSPNSWebApp.Models
 
         public Linija IzabranaLinija { get; set; }
 
-        public TipRedaVoznje IzabraniRedaVoznje { get; set; }
+        public string IzabraniRedaVoznje { get; set; }
 
-        public TipDana IzabranTipDana { get; set; }
+        public string IzabranTipDana { get; set; }
 
         public bool Aktivan { get; set; }
 

@@ -9,6 +9,10 @@ import { CenovnikComponent } from './cenovnik/cenovnik.component';
 import { KupiKartuComponent } from './kupi-kartu/kupi-kartu.component';
 import { AdminManagementComponent } from './admin-management/admin-management.component';
 import { ProfilKorisnikaComponent } from './profil-korisnika/profil-korisnika.component';
+import { AddCenaStavkeComponent } from './add-cena-stavke/add-cena-stavke.component';
+import { AddKontrolorComponent } from './add-kontrolor/add-kontrolor.component';
+import { AddLinijaComponent } from './add-linija/add-linija.component';
+import { AddRedVoznjeComponent } from './add-red-voznje/add-red-voznje.component';
 
 const routes: Routes = [
   
@@ -61,7 +65,31 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
-  }
+  },
+
+  {
+    path: 'CenaStavke',
+    component:AddCenaStavkeComponent,
+   // canActivate: [AuthGuard]
+  },
+
+  {
+    path:'Kontrolori',
+    component:AddKontrolorComponent,
+    //canActivate: [AuthGuard]
+  },  
+
+  {
+    path:'Linije',
+    component:AddLinijaComponent,
+    //canActivate: [AuthGuard]
+  },
+
+  {
+    path:'RedVoznje',
+    component:AddRedVoznjeComponent,
+    //canActivate: [AuthGuard]
+  },
 ];
 
 @NgModule({
