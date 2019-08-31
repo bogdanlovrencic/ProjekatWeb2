@@ -22,26 +22,14 @@
         <div class="form-group" *ngIf="Linije">
           <label for="linija" class="col-sm-2 control-label" >Linija </label>     
             <select  name="selectLinija">
-              <option *ngFor=" let linija of Linije" value="linija.IdLinije">{{linija.IdLinije}}  {{linija.Relacija}}</option>    
+              <option *ngFor=" let linija of Linije" value="linija.RedniBroj">{{linija.RedniBroj}}</option>    
             </select>       
         </div>
         <div class="form-group"> 
             <input type="submit" (click)="PrikaziRedVoznje()" value="Prikazi"/>
       </div>
    
-      <!-- <table border="1">
-          <tr colspan="2" *ngIf="Linije" >
-            <td>Linija : {{forma.selectLinija.value.option}}</td>
-          </tr>
-          <tr>
-            <td>SMER A: {{linija.Relacija}}</td>
-            <td>SMER B: {{linija.Relacija}}</td>
-          </tr>
-          <tr>
-    
-          </tr>
-        </table>
-  -->
+     
   </form>
 
 

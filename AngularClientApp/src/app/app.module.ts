@@ -21,10 +21,13 @@ import { ProfilKorisnikaComponent } from './profil-korisnika/profil-korisnika.co
 //import { KupovinaKarteService } from './kupovina-karte.service';
 import { TokenInterceptor } from './token.interceptor';
 import { AdminViewComponent } from './admin-view/admin-view.component';
-import { AddCenaStavkeComponent } from './add-cena-stavke/add-cena-stavke.component';
+import { AddCenovnikComponent } from './add-cenovnik/add-cenovnik.component';
 import { AddKontrolorComponent } from './add-kontrolor/add-kontrolor.component';
 import { AddLinijaComponent } from './add-linija/add-linija.component';
 import { AddRedVoznjeComponent } from './add-red-voznje/add-red-voznje.component';
+import { AddStavkaComponent } from './add-stavka/add-stavka.component';
+import { PolazakComponent } from './polazak/polazak.component';
+import { AddPolazakComponent } from './add-polazak/add-polazak.component';
 
 @NgModule({
   declarations: [
@@ -41,10 +44,13 @@ import { AddRedVoznjeComponent } from './add-red-voznje/add-red-voznje.component
     AdminManagementComponent,
     ProfilKorisnikaComponent,
     AdminViewComponent,
-    AddCenaStavkeComponent,
+    AddCenovnikComponent,
     AddKontrolorComponent,
     AddLinijaComponent,
     AddRedVoznjeComponent,
+    AddStavkaComponent,
+    PolazakComponent,
+    AddPolazakComponent,
   ],
   imports: [
     BrowserModule,

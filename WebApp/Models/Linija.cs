@@ -8,12 +8,15 @@ using System.Web;
 namespace JGSPNSWebApp.Models
 {
     public class Linija
-    {      
-       
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public string RedniBroj { get; set; }
 
+        public TipLinije TipLinije { get; set; }
+  
         public List<Stanica> Stanice { get; set; }
 
 

@@ -4,6 +4,9 @@ import { CenaStavke } from '../Models/cenaStavke';
 import { Kontrolor } from '../Models/Kontrolor';
 import { RedVoznje } from '../Models/RedVoznje';
 import { GetDataService } from '../get-data.service';
+import { Stavka } from '../Models/Stavka';
+import { Linija } from '../Models/linija';
+import { Polazak } from '../Models/polazak';
 
 @Component({
   selector: 'app-admin-management',
@@ -16,6 +19,9 @@ export class AdminManagementComponent implements OnInit {
   listaCena:CenaStavke[];
   listaKontrolora:Kontrolor[];
   listaRedovaVoznje:RedVoznje[];
+  listaStavki:Stavka[];
+  listaLinija: Linija[];
+  listaPolazaka:Polazak[];
 
  
   constructor(private tableData:GetDataService, private router:Router) { }
@@ -28,10 +34,21 @@ export class AdminManagementComponent implements OnInit {
   getTable(tableName:string){
     this.tableData.getTableDataService(tableName).subscribe(res =>{ 
       //let info = JSON.parse(JSON.stringify(res));
-      if(tableName==="Cene")
+      if(tableName==="Cenovnici")
       {
         this.listaCena = res;
         this.tableData.izmenaCena(this.listaCena);
+      }
+      else if(tableName=='Stavke')
+      {
+          let info=JSON.parse(JSON.stringify(res));
+          this.listaStavki=info;
+
+      }
+      else if(tableName === "Linije")
+      {
+          let info=JSON.parse(JSON.stringify(res));
+          this.listaLinija=info;
       }
       else if(tableName==="Kontrolori")
       {
@@ -46,6 +63,11 @@ export class AdminManagementComponent implements OnInit {
         this.listaRedovaVoznje = info;
         this.tableData.izmenaRedaVoznje(this.listaRedovaVoznje);
       }
+      else if(tableName === "Polasci")
+      {
+        let info = JSON.parse(JSON.stringify(res));
+        this.listaPolazaka = info;
+      }
     });
     console.log('admin');
     this.tableData.changeMessage(tableName);
@@ -54,9 +76,12 @@ export class AdminManagementComponent implements OnInit {
 
   onAddClick(table){
     switch(table){
-      case 'Cena':
-        this.router.navigate(['/CenaStavke'])
+      case 'Cenovnik':
+        this.router.navigate(['/Cenovnik'])
       break;
+      case 'Stavka':
+        this.router.navigate(['/Stavke'])
+        break;
       case 'Kontrolor':
         this.router.navigate(['/Kontrolori'])
       break;
@@ -65,6 +90,9 @@ export class AdminManagementComponent implements OnInit {
         break;
       case 'RedVoznje':
         this.router.navigate(['/RedVoznje'])
+        break;
+      case 'Polazak':
+        this.router.navigate(['/Polazak'])
         break;
     }
   }

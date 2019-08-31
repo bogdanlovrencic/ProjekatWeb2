@@ -53,24 +53,22 @@
                                   <option value="REGULARNI"  selected="selected">Regularni</option>
                                 </select>
                             </div>
-                        </div>   
-                  
-                  <div>                        
-                      <div *ngIf="TipPutnika!='REGULARNI'">
+                        </div>                                     
+                      <div class="form-group" *ngIf="TipPutnika!='REGULARNI'">
                           <div class="col-sm-9" *ngIf="!isChecked" > 
                               <input type="file"  accept="image/*" name="image" (change)="onFileSelected($event)" >
                           </div>
                           <div class="col-sm-9">
-                                  <input type="checkbox" name="willUploadDocument" [(ngModel)]="isChecked">Prilozi kasnije<br>
+                              <input type="checkbox" name="willUploadDocument" [(ngModel)]="isChecked">Prilozi kasnije<br>
                           </div>
                       </div>                                  
-                  </div>
+                
                   <hr *ngIf="validationMessage !== ''">
                   <h5 class="text-danger" *ngIf="validationMessage !== ''">
                       {{validationMessage}}
                   </h5>
                   <hr>
-                    <button type="submit" [disabled]="!registrationForm.valid"  class="btn btn-primary btn-block" (click)="onSubmit()">Sacuvaj</button>         
+                    <button type="submit"   class="btn btn-primary btn-block" (click)="onSubmit()">Sacuvaj</button>         
           </form> <!-- /form -->
       </div> <!-- ./container -->
 

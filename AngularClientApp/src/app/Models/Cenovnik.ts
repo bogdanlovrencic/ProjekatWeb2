@@ -1,6 +1,8 @@
+import { Stavka } from './Stavka';
+
 export class Cenovnik{
-    public Datum_Pocetka: string;
-    public Datum_Kraj: string;
-    public Id: number;
-    public IsActive: boolean;
+    public VaziOd: Date;
+    public VaziDo: Date;
+    public Aktivan: boolean;
+    public Stavke: number[];
 }

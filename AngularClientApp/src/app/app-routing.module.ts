@@ -9,10 +9,12 @@ import { CenovnikComponent } from './cenovnik/cenovnik.component';
 import { KupiKartuComponent } from './kupi-kartu/kupi-kartu.component';
 import { AdminManagementComponent } from './admin-management/admin-management.component';
 import { ProfilKorisnikaComponent } from './profil-korisnika/profil-korisnika.component';
-import { AddCenaStavkeComponent } from './add-cena-stavke/add-cena-stavke.component';
+import { AddCenovnikComponent } from './add-cenovnik/add-cenovnik.component';
 import { AddKontrolorComponent } from './add-kontrolor/add-kontrolor.component';
 import { AddLinijaComponent } from './add-linija/add-linija.component';
 import { AddRedVoznjeComponent } from './add-red-voznje/add-red-voznje.component';
+import { AddStavkaComponent } from './add-stavka/add-stavka.component';
+import { AddPolazakComponent } from './add-polazak/add-polazak.component';
 
 const routes: Routes = [
   
@@ -68,8 +70,8 @@ const routes: Routes = [
   },
 
   {
-    path: 'CenaStavke',
-    component:AddCenaStavkeComponent,
+    path: 'Cenovnik',
+    component:AddCenovnikComponent,
    // canActivate: [AuthGuard]
   },
 
@@ -90,6 +92,16 @@ const routes: Routes = [
     component:AddRedVoznjeComponent,
     //canActivate: [AuthGuard]
   },
+
+  {
+    path:'Stavke',
+    component:AddStavkaComponent,
+  },
+
+  {
+    path:'Polazak',
+    component:AddPolazakComponent,
+  }
 ];
 
 @NgModule({

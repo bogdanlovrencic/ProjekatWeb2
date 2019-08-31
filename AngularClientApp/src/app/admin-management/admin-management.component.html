@@ -6,16 +6,25 @@
 
 <body>
     <div class="swanky_wrapper">
-    <input id='Dashboard' name='radio' type='radio' (click)="getTable('Cene')">
+    <input id='Dashboard' name='radio' type='radio' (click)="getTable('Cenovnici')">
     <label for='Dashboard'>
-        <a routerLink="/home"><span><i class="fas fa-wallet"></i></span>Cenovnik</a>  
+        <a routerLink="/cenovnik"><span><i class="fas fa-wallet"></i></span>Cenovnik</a>  
       <div class='lil_arrow'></div>
       <div class='bar'></div>
       <div class='swanky_wrapper__content'>
         <ul>
-          <li (click)="onAddClick('Cena')">Dodaj</li>
-          <!-- <li>Edit</li>
-          <li>Delete</li> -->
+          <li (click)="onAddClick('Cenovnik')">Dodaj</li>         
+        </ul>
+      </div>
+    </label>
+    <input id='Item' name='radio' type='radio' (click)="getTable('Stavke')">
+    <label for='Item'>
+        <a routerLink="/cenovnik"><span><i class="fas fa-wallet"></i></span>Stavka</a>  
+      <div class='lil_arrow'></div>
+      <div class='bar'></div>
+      <div class='swanky_wrapper__content'>
+        <ul>
+          <li (click)="onAddClick('Stavka')">Dodaj</li>         
         </ul>
       </div>
     </label>
@@ -45,6 +54,19 @@
         </ul>
       </div>
     </label> -->
+    <input id='Departure' name='radio' type='radio' (click)="getTable('Polasci')">
+    <label for='Departure'>
+      <a routerLink="/home"><span><i class="fas fa-clock"></i></span>Polazak</a>
+      <div class='lil_arrow'></div>
+      <div class='bar'></div>
+      <div class='swanky_wrapper__content'>
+        <ul>
+            <li (click)="onAddClick('Polazak')">Dodaj</li>
+            <!-- <li>Edit</li>
+            <li>Delete</li> -->
+        </ul>
+      </div>
+    </label>
     <input id='Settings' name='radio' type='radio' (click)="getTable('RedoviVoznje')">
     <label for='Settings'>
       <a routerLink="/home"><span><i class="fas fa-clock"></i></span>Red voznje</a>
@@ -58,7 +80,7 @@
         </ul>
       </div>
     </label>
-    <input id='Users' name='radio' type='radio' (click)="getTable('busControllers')">
+    <input id='Users' name='radio' type='radio' (click)="getTable('Kontrolori')">
     <label for='Users'>
       <a routerLink="/home"><span><i class="fas fa-users"></i></span>Kontrolor</a>
       <div class='lil_arrow'></div>
@@ -73,12 +95,10 @@
     </label>
     </div>
 
-    <div class="admin-table">
+    <div class="admin-view">
         <app-admin-view></app-admin-view>
     </div>
 
 
 <script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script><script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script >
-</script>
 </body>

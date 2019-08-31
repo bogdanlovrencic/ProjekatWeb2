@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 
 import { catchError } from 'rxjs/operators';
 import { Linija } from './Models/linija';
+import { RedVoznje } from './Models/RedVoznje';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-type':'application/json' })
@@ -17,14 +18,14 @@ export class RedVoznjeService {
 
   //private redVoznjeUrl='http://localhost:52295/api/RedVoznje/PrikaziRedVoznje';
 
-  private linijeUrl='http://localhost:52295/api/RedVoznje/ucitajLinije';
+  private linijeUrl='http://localhost:52295/api/RedVoznjes/ucitajLinije';
   
   constructor(private http:HttpClient) { }
 
-  PrikaziRedVoznje()
-  {
-      //return this.http.get<Linija[]>().subscribe();
-  }
+  // PrikaziRedVoznje()
+  // {
+  //     return this.http.get<RedVoznje[]>().subscribe();
+  // }
 
   GetLinije():Observable<Linija[]>
   {
@@ -32,6 +33,8 @@ export class RedVoznjeService {
         catchError(this.handleError<Linija[]>('GetLinije', []))
       );
   }
+
+  
  
   
   private handleError<T> (operation = 'operation', result?: T) {

@@ -2,12 +2,12 @@ export class Stanica{
     Id: number;
     Naziv: string;
     Adresa: string;
-    KordinataX: Number;
-    KordinataY: Number;
+    Lat: number;
+    Lon: number;
 
-    constructor(x:number, y:number)
+    constructor(lat:number, lon:number)
     {
-        this.KordinataX = x;
-        this.KordinataY = y;
+        this.Lat = lat;
+        this.Lon = lon;
     }
 }

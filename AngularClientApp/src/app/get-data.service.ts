@@ -6,6 +6,8 @@ import { Linija } from './Models/linija';
 import { RedVoznje } from './Models/RedVoznje';
 import { Kontrolor } from './Models/Kontrolor';
 import { Stanica } from './Models/stanica';
+import { Cenovnik } from './Models/Cenovnik';
+import { Stavka } from './Models/Stavka';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +22,9 @@ export class GetDataService {
   private pricesSource = new BehaviorSubject(null);
   prices = this.pricesSource.asObservable();
 
+  private stavkaSource=new BehaviorSubject(null);
+  stavka=this.messageSource.asObservable();
+
   private controllerSource = new BehaviorSubject(null);
   controller = this.controllerSource.asObservable();
 
@@ -29,6 +34,11 @@ export class GetDataService {
   izmenaCena(cene:CenaStavke[])
   {
     this.pricesSource.next(cene);
+  }
+
+  updateStavka(stavke:Stavka[])
+  {
+    this.stavkaSource.next(stavke);
   }
 
   izmenaKontrolora(kontrolori:Kontrolor[])
@@ -59,21 +69,25 @@ export class GetDataService {
 
   getTableDataService(tableName:string):Observable<any>{
 
-    if(tableName === 'Cena'){
-      return this.http.get<CenaStavke>('http://localhost:52295/api/CenaStavkes')
+    if(tableName === 'Cenovnici'){
+      return this.http.get<Cenovnik>('http://localhost:52295/api/Cenovniks')
     }
-    else if(tableName === 'Linija'){
+    else if( tableName === 'Stavke')
+    {
+      return this.http.get<Stavka>('http://localhost://52295/api/Stavkas')
+    }
+    else if(tableName === 'Linije'){
       return this.http.get<Linija>('http://localhost:52295/api/Linijas')
 
     }
     else if(tableName === 'Stanica'){
       return this.http.get<Stanica>('http://localhost:52295/api/Stanicas')
     }
-    else if(tableName === 'RedVoznje'){
+    else if(tableName === 'RedoviVoznje'){
       return this.http.get<RedVoznje>('http://localhost:52295/RedVoznjes/AllRedoviVoznje')
 
     }
-    else if(tableName === 'Kontrolor'){
+    else if(tableName === 'Kontrolori'){
       return this.http.get<Kontrolor>('http://localhost:52295/api/Korisniks')
 
     }

@@ -9,25 +9,17 @@ namespace JGSPNSWebApp.Models
 {
     public class CenovnikStavka
     {
-        public CenovnikStavka()
-        {
-
-        }
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [ForeignKey("Cenovnik")]
-        public int IdCenovnika { get; set; }
-
+        public int Cenovnik_Id { get; set; }
         public Cenovnik Cenovnik { get; set; }
 
         [ForeignKey("Stavka")]
-        public int IdStavke { get; set; }
-
+        public int Stavka_Id { get; set; }
         public Stavka Stavka { get; set; }
-
-        public double Cena { get; set; }
     }
+    
 }

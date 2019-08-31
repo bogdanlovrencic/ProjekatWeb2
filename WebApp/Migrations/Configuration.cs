@@ -67,6 +67,31 @@ namespace JGSPNSWebApp.Migrations
                 userManager.AddToRole(user.Id, "AppUser");
             }
 
+            //Stavka vremenskaKarta = new Stavka() { Id = 1, Naziv =VrstaKarte.VREMENSKA_KARTA.ToString() };
+            //Stavka dnevnaKarta = new Stavka() { Id = 2, Naziv = VrstaKarte.DNEVNA_KARTA.ToString() };
+            //Stavka mesecnaKarta = new Stavka() { Id = 3, Naziv=VrstaKarte.MESECNA_KARTA.ToString() };
+            //Stavka godisnjaKarta = new Stavka() { Id = 4, Naziv = VrstaKarte.GODISNJA_KARTA.ToString() };
+
+            //Cenovnik jesenjiCenovnik = new Cenovnik { Id = 1, VaziOd= new DateTime(2019, 9, 1), VaziDo = new DateTime(2019, 12, 31), Aktivan = true };
+
+            //context.Stavke.AddOrUpdate(vremenskaKarta);
+            //context.Stavke.AddOrUpdate(dnevnaKarta);
+            //context.Stavke.AddOrUpdate(mesecnaKarta);
+            //context.Stavke.AddOrUpdate(godisnjaKarta);
+            //context.Cenovnici.AddOrUpdate(jesenjiCenovnik);
+
+            //CenovnikStavka vremenskaKartaStv = new CenovnikStavka() { Id = 1, Cenovnik = jesenjiCenovnik, Stavka = vremenskaKarta, Cena = 1.5 };
+            //CenovnikStavka dnevnaKartaStv = new CenovnikStavka() { Id = 2, Cenovnik = jesenjiCenovnik, Stavka = dnevnaKarta, Cena = 3.5 };
+            //CenovnikStavka mesecnaKartaStv = new CenovnikStavka() { Id = 3, Cenovnik = jesenjiCenovnik, Stavka = mesecnaKarta, Cena = 7.5 };
+            //CenovnikStavka godisnjaKartaStv = new CenovnikStavka() { Id = 4, Cenovnik = jesenjiCenovnik, Stavka = godisnjaKarta, Cena = 15.0 };
+
+            //context.CenovnikStavka.AddOrUpdate(vremenskaKartaStv);
+            //context.CenovnikStavka.AddOrUpdate(dnevnaKartaStv);
+            //context.CenovnikStavka.AddOrUpdate(mesecnaKartaStv);
+            //context.CenovnikStavka.AddOrUpdate(godisnjaKartaStv);
+
+            //context.SaveChanges();
+
             //Cenovnik1 vremenska = new Cenovnik1(123, VrstaKarte.VREMENSKA_KARTA.ToString(), 65);
             //context.Cenovnik.Add(vremenska);
             //context.SaveChanges();

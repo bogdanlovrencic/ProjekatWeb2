@@ -21,10 +21,10 @@ export class RedVoznjeComponent implements OnInit {
      this.PrikaziLinije();
   }
 
-  // PrikaziRedVoznje():void
-  // {
+  PrikaziRedVoznje():void
+  {
       
-  // }
+  }
   
   PrikaziLinije():void
   {

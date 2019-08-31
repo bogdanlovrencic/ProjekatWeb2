@@ -5,6 +5,7 @@ export class Linija
     Id: number;   
     RedniBroj: string;
     stanice: Stanica[];
+    TipLinije: LineType;
 
     constructor(broj:string, stanice:Stanica[]){
         this.RedniBroj = broj;
@@ -14,4 +15,9 @@ export class Linija
     addLocation(stan:Stanica){
         this.stanice.push(stan);
     }
+}
+
+export enum LineType{
+    Gradska=0,
+    Prigradska=1,
 }
