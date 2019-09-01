@@ -30,23 +30,26 @@ export class AddPolazakComponent implements OnInit {
     }
     getLineTypeString(lineType: number) {
       switch (lineType) {
-        case  LineType.Gradska : return 'Gradska';
-        case  LineType.Prigradska: return 'Prigradska';
+        case  LineType.Gradski : return 'Gradski';
+        case  LineType.Prigradski: return 'Prigradski';
       }
     }
     onSubmit(){
-  
+      this.validationMessage="";
       if(!this.polazakForm.valid){
-        this.validationMessage = "Morate popuniti sva polja!"
+        this.validationMessage = "Morate popuniti sva polja!";
+        return;
       }
 
       let departure:Polazak = {
         Vreme:this.polazakForm.value.Vreme,
         TipDana:this.polazakForm.value.TipDana,
-        LinijaId:this.polazakForm.value.LinijaId
+        LinijaId:this.polazakForm.value.LinijaId,
       }
     
-      this.adminService.addDeparture(departure);
+      this.adminService.addDeparture(departure).subscribe(res=>{
+            this.router.navigate(['/management']);
+      },error=>{console.log(error)});
     }
   
   }

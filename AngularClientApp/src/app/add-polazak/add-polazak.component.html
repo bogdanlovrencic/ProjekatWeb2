@@ -1,6 +1,6 @@
 <div>
   <h3>Dodavanje polaska</h3>
-  <form [formGroup]="polazakForm">
+  <form [formGroup]="polazakForm"  (submit)="onSubmit()">
     
       <div class="col-sm-5"> 
           <label for="Vreme">Vreme: </label>
@@ -17,14 +17,14 @@
     <div class="col-sm-5">
         <label for="LinijaId">Linija: </label>
         <select formControlName="LinijaId" class="form-control"> 
-           <option *ngFor="let linija of linije" value={{linija.RedniBroj}}>{{linija.RedniBroj}} {{getLineTypeString(linija.TipLinije)}}</option>
+           <option *ngFor="let linija of linije" value={{linija.Id}}>{{linija.RedniBroj}} {{getLineTypeString(linija.TipLinije)}}</option>
          </select>
          <hr>
-         <button type="submit" class="btn btn-primary" (click)="onSubmit()">Dodaj polazak</button>
+         <button type="submit" class="btn btn-primary">Dodaj polazak</button>
     </div>
 
     
-  
+   
   </form>
   <div class="col-sm-5">
       <hr *ngIf="validationMessage !== ''">

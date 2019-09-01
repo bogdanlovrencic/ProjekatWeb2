@@ -5,53 +5,54 @@
               <div class="panel-heading">
                   <div class="row">
                       <div class="col col-xs-6">
-                          <h3 class="panel-title" *ngIf="clicked==='Price'">Upravlajanje cenovnikom</h3>
-                          <h3 class="panel-title" *ngIf="clicked==='BusLines'">Upravljanje linijama</h3>
-                          <h3 class="panel-title" *ngIf="clicked==='BusStation'">Upravljanje stanicama</h3>
-                          <h3 class="panel-title" *ngIf="clicked==='BusTimetables'">Upravljanje redom voznje</h3>
-                          <h3 class="panel-title" *ngIf="clicked==='BusControllers'">Upravlajanje kontrolorima</h3>
+                          <h3 class="panel-title" *ngIf="clicked==='Cenovnici'">Upravljanje cenovnikom</h3>
+                          <h3 class="panel-title" *ngIf="clicked==='Linije'">Upravljanje linijama</h3>
+                          <h3 class="panel-title" *ngIf="clicked==='Stavke'">Upravljanje stavkama</h3>
+                          <h3 class="panel-title" *ngIf="clicked==='RedoviVoznje'">Upravljanje redom voznje</h3>
+                          <h3 class="panel-title" *ngIf="clicked==='Polasci'">Upravljanje polascima</h3>
+                          <h3 class="panel-title" *ngIf="clicked==='Kontrolori'">Upravljanje kontrolorima</h3>
                       </div>
                       
                     </div>
                 </div>
-                <app-mreza-linija *ngIf="clicked==='busLines'"></app-mreza-linija>
+                <app-mreza-linija *ngIf="clicked==='Linije'"></app-mreza-linija>
                 <button type="button" *ngIf="selected" (click)=removeObject()>Delete</button>
                 
                 <div class="panel-body">
-                    <table id="mytable" *ngIf="clicked!=='busLines'" class="table table-striped table-bordered table-list">
+                    <table id="mytable" *ngIf="clicked!=='Linije'" class="table table-striped table-bordered table-list">
                         <thead>
                             <th align="center">
                                 <input type="checkbox" class="checkthis">
                             </th>
                             <th class="col-tools"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
                             </th>
-                            <th class="hidden-xs" *ngIf="clicked!=='busControllers'">ID</th>
-                            <th class="col-text" *ngIf="clicked==='Price'">Cena</th>
-                            <th class="col-text" *ngIf="clicked==='Price'">Cenovnik Id</th>
-                            <th class="col-text" *ngIf="clicked==='Price'">Vazi od</th>
-                            <th class="col-text" *ngIf="clicked==='Price'">Vazi do</th>
-                            <th class="col-text" *ngIf="clicked==='Price'">Aktivan</th>
-                            <th class="col-text" *ngIf="clicked==='Price'">Stavka Id</th>
-                            <th class="col-text" *ngIf="clicked==='Price'">Naziv stavke</th>
+                                               
+                            <th class="col-text" *ngIf="clicked==='Cenovnici'">Cenovnik Id</th>
+                            <th class="col-text" *ngIf="clicked==='Cenovnici'">Vazi od</th>
+                            <th class="col-text" *ngIf="clicked==='Cenovnici'">Vazi do</th>
+                            <th class="col-text" *ngIf="clicked==='Cenovnici'">Aktivan</th>
+                            <th class="col-text" *ngIf="clicked==='Stavke'">Stavka Id</th>
+                            <th class="col-text" *ngIf="clicked==='Stavke'">Naziv stavke</th>
+                            <th class="col-text" *ngIf="clicked==='Stavke'">Cena</th>
                             <!-- <th class="col-text" *ngIf="clicked==='BusLines'">Bus number</th>
                             <th class="col-text" *ngIf="clicked==='BusLines'">Station</th> -->
-                            <th class="col-text" *ngIf="clicked==='BusStation'">Adresa</th>
-                            <th class="col-text" *ngIf="clicked==='BusStation'">Naziv</th>
-                            <th class="col-text" *ngIf="clicked==='BusStation'">Lat</th>
-                            <th class="col-text" *ngIf="clicked==='BusStation'">Lon</th>
+                            <th class="col-text" *ngIf="clicked==='Stanice'">Adresa</th>
+                            <th class="col-text" *ngIf="clicked==='Stanice'">Naziv</th>
+                            <th class="col-text" *ngIf="clicked==='Stanice'">Lat</th>
+                            <th class="col-text" *ngIf="clicked==='Stanice'">Lon</th>
                             <th class="col-text" *ngIf="clicked==='busTimetable'">Polazak</th>
                             <th class="col-text" *ngIf="clicked==='busTimetable'">Linija</th>
                             <th class="col-text" *ngIf="clicked==='busTimetable'">Dan</th>
                             <th class="col-text" *ngIf="clicked==='busTimetable'">Red voznje</th>                          
-                            <th class="col-text" *ngIf="clicked==='busControllers'">Ime</th>
-                            <th class="col-text" *ngIf="clicked==='busControllers'">Prezime</th>
-                            <th class="col-text" *ngIf="clicked==='busControllers'">Email</th>
-                            <th class="col-text" *ngIf="clicked==='busControllers'">Lozinka</th>
-                            <th class="col-text" *ngIf="clicked==='busControllers'">Datum rodjenja</th>
-                            <th class="col-text" *ngIf="clicked==='busControllers'">Adresa</th>
+                            <th class="col-text" *ngIf="clicked==='Kontrolori'">Ime</th>
+                            <th class="col-text" *ngIf="clicked==='Kontrolori'">Prezime</th>
+                            <th class="col-text" *ngIf="clicked==='Kontrolori'">Email</th>
+                            <th class="col-text" *ngIf="clicked==='Kontrolori'">Lozinka</th>
+                            <th class="col-text" *ngIf="clicked==='Kontrolori'">Datum rodjenja</th>
+                            <th class="col-text" *ngIf="clicked==='Kontrolori'">Adresa</th>
                         </thead>
-                        <tbody *ngIf="clicked==='Price'">
-                            <tr *ngFor="let price of listPrices">
+                        <tbody *ngIf="clicked==='Cenovnici'">
+                            <tr *ngFor="let cenovnik of listaCenovnika">
                                 <td align="center"><input type="checkbox" class="checkthis"/></td>
                                 <td align="center">
                                     <a class="btn btn-default"><span class="glyphicon glyphicon-pencil"
@@ -59,14 +60,14 @@
                                     <a class="btn btn-danger" ><span (click)="onPriceDeleteClick(price.Id)" class="glyphicon glyphicon-trash"
                                                                     aria-hidden="true"></span></a>
                                     </td>
-                                <td>{{price.Id}}</td>
-                                <td>{{price.Cena}}</td>
-                                <td>{{price.Cenovnik.Id}}</td>
-                                <td>{{price.Cenovnik.Datum_Pocetak}}</td>
-                                <td>{{price.Cenovnik.Datum_Kraj}}</td>
-                                <td>{{price.Cenovnik.IsActive}}</td>
-                                <td>{{price.Stavka.Id}}</td>
-                                <td>{{price.Stavka.Naziv}}</td>
+                                <!-- <td>{{price.Id}}</td>
+                                <td>{{price.Cena}}</td> -->
+                                <td>{{cenovnik.Id}}</td>
+                                <td>{{cenovnik.VaziOd}}</td>
+                                <td>{{cenovnik.VaziDo}}</td>
+                                <td>{{cenovnik.Aktivan}}</td>
+                                <!-- <td>{{price.Stavka.Id}}</td>
+                                <td>{{price.Stavka.Naziv}}</td> -->
                             </tr>
                         </tbody>
                         <tbody *ngIf="clicked==='busControllers'">
@@ -128,6 +129,7 @@
                                 </ul>
                             </nav>
                         </div>
+
                         <div class="col col-xs-3">
                             <div class="pull-right">
                                 <button type="button" class="btn btn-primary">
@@ -137,6 +139,7 @@
                                 </button>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>

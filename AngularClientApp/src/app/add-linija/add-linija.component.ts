@@ -43,11 +43,11 @@ export class AddLinijaComponent implements OnInit {
     this.polyline.RedniBroj = this.imeLinije;
     switch(this.izabraniTipLinije)
     {
-        case LineType.Gradska: 
+        case LineType.Gradski: 
             this.polyline.TipLinije=this.izabraniTipLinije;
             break;
 
-        case LineType.Prigradska:
+        case LineType.Prigradski:
            this.polyline.TipLinije=this.izabraniTipLinije;
            break;   
     }

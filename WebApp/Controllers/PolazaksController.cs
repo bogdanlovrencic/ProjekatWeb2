@@ -73,17 +73,24 @@ namespace JGSPNSWebApp.Controllers
 
         // POST: api/Polazaks
         //[ResponseType(typeof(Polazak))]
-        public IHttpActionResult PostPolazak(Polazak polazak)
+        public IHttpActionResult PostPolazak(PolazakBindingModel polazak)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Polazaks.Add(polazak);
+            Polazak p = new Polazak();
+
+            p.Vreme = polazak.Vreme;
+            p.TipDana = polazak.TipDana;
+            p.LinijaId = polazak.LinijaId;
+            p.Active = true;
+
+            db.Polazaks.Add(p);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = polazak.Id }, polazak);
+            return CreatedAtRoute("DefaultApi", new { id = p.Id }, p);
         }
 
         // DELETE: api/Polazaks/5
@@ -119,5 +126,8 @@ namespace JGSPNSWebApp.Controllers
 
     public class PolazakBindingModel
     {
+        public string Vreme { get; set; }
+        public string TipDana { get; set; }
+        public int LinijaId { get; set; }
     }
 }

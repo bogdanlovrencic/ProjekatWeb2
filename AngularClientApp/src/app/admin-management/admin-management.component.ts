@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CenaStavke } from '../Models/cenaStavke';
 import { Kontrolor } from '../Models/Kontrolor';
-import { RedVoznje } from '../Models/RedVoznje';
+import { RedVoznjeBindingModel } from '../Models/RedVoznjeBindingModel';
 import { GetDataService } from '../get-data.service';
 import { Stavka } from '../Models/Stavka';
 import { Linija } from '../Models/linija';
 import { Polazak } from '../Models/polazak';
+import { RedVoznje } from '../Models/RedVoznje';
+import { CenovnikPrikaz } from '../Models/Cenovnik';
 
 @Component({
   selector: 'app-admin-management',
@@ -16,7 +18,7 @@ import { Polazak } from '../Models/polazak';
 export class AdminManagementComponent implements OnInit {
 
   message="";
-  listaCena:CenaStavke[];
+  listaCenovnika:CenovnikPrikaz[];
   listaKontrolora:Kontrolor[];
   listaRedovaVoznje:RedVoznje[];
   listaStavki:Stavka[];
@@ -34,15 +36,17 @@ export class AdminManagementComponent implements OnInit {
   getTable(tableName:string){
     this.tableData.getTableDataService(tableName).subscribe(res =>{ 
       //let info = JSON.parse(JSON.stringify(res));
-      if(tableName==="Cenovnici")
+      if(tableName ==="Cenovnici")
       {
-        this.listaCena = res;
-        this.tableData.izmenaCena(this.listaCena);
+        //let info = JSON.parse(JSON.stringify(res));
+        this.listaCenovnika = res;
+      
+       // this.tableData.izmenaCena(this.listaCenovnika);
       }
-      else if(tableName=='Stavke')
+      else if(tableName ==='Stavke')
       {
           let info=JSON.parse(JSON.stringify(res));
-          this.listaStavki=info;
+          this.listaStavki=res;
 
       }
       else if(tableName === "Linije")
@@ -50,14 +54,14 @@ export class AdminManagementComponent implements OnInit {
           let info=JSON.parse(JSON.stringify(res));
           this.listaLinija=info;
       }
-      else if(tableName==="Kontrolori")
+      else if(tableName ==="Kontrolori")
       {
         //console.log(res);
         let info = JSON.parse(JSON.stringify(res));
         this.listaKontrolora = info;
         this.tableData.izmenaKontrolora(this.listaKontrolora);
       }
-      else if(tableName==="RedoviVoznje")
+      else if(tableName ==="RedoviVoznje")
       {
         let info = JSON.parse(JSON.stringify(res));
         this.listaRedovaVoznje = info;

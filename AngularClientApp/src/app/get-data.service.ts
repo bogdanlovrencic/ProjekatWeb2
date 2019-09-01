@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaderResponse } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { CenaStavke } from './Models/cenaStavke';
 import { Linija } from './Models/linija';
-import { RedVoznje } from './Models/RedVoznje';
+import { RedVoznjeBindingModel } from './Models/RedVoznjeBindingModel';
 import { Kontrolor } from './Models/Kontrolor';
 import { Stanica } from './Models/stanica';
-import { Cenovnik } from './Models/Cenovnik';
+import { Cenovnik, CenovnikPrikaz } from './Models/Cenovnik';
 import { Stavka } from './Models/Stavka';
+import { RedVoznje } from './Models/RedVoznje';
+import { Polazak, PolazakModel } from './Models/polazak';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +21,8 @@ export class GetDataService {
   private messageSource = new BehaviorSubject("default");
   message = this.messageSource.asObservable();
 
-  private pricesSource = new BehaviorSubject(null);
-  prices = this.pricesSource.asObservable();
+  private cenovnikSource = new BehaviorSubject(null);
+  cenovnici = this.cenovnikSource.asObservable();
 
   private stavkaSource=new BehaviorSubject(null);
   stavka=this.messageSource.asObservable();
@@ -33,7 +35,7 @@ export class GetDataService {
 
   izmenaCena(cene:CenaStavke[])
   {
-    this.pricesSource.next(cene);
+    // this.cenovnikSource.next(cene);
   }
 
   updateStavka(stavke:Stavka[])
@@ -70,7 +72,7 @@ export class GetDataService {
   getTableDataService(tableName:string):Observable<any>{
 
     if(tableName === 'Cenovnici'){
-      return this.http.get<Cenovnik>('http://localhost:52295/api/Cenovniks')
+      return this.http.get<CenovnikPrikaz>('http://localhost:52295/api/Cenovniks');
     }
     else if( tableName === 'Stavke')
     {
@@ -83,13 +85,18 @@ export class GetDataService {
     else if(tableName === 'Stanica'){
       return this.http.get<Stanica>('http://localhost:52295/api/Stanicas')
     }
+
     else if(tableName === 'RedoviVoznje'){
       return this.http.get<RedVoznje>('http://localhost:52295/RedVoznjes/AllRedoviVoznje')
-
     }
     else if(tableName === 'Kontrolori'){
       return this.http.get<Kontrolor>('http://localhost:52295/api/Korisniks')
 
+    }
+
+    else if(tableName == 'Polasci')
+    {
+      return this.http.get<PolazakModel>('http://localhost:52295/api/Polazaks')
     }
   }
 }

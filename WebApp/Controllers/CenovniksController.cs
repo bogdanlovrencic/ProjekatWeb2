@@ -13,14 +13,41 @@ using JGSPNSWebApp.Persistence;
 
 namespace JGSPNSWebApp.Controllers
 {
+   // [RoutePrefix("api/Cenovniks")]
     public class CenovniksController : ApiController
     {
+        
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/Cenovniks
-        public IQueryable<Cenovnik> GetCenovnici()
+        //GET: api/Cenovniks
+        public IQueryable<Cenovnik>GetCenovnici()
         {
+            
             return db.Cenovnici;
+        }
+
+        [HttpGet]
+        [Route("getCenovnici")]
+        [ResponseType(typeof(List<CenovnikPrikaz>))]
+        public IHttpActionResult Cenovnici()
+        {
+            var cenovnici = db.Cenovnici.Where(x=>x.Aktivan == true);
+
+            CenovnikPrikaz cp;
+            List<CenovnikPrikaz> cenovniciZaPrikaz= new List<CenovnikPrikaz>();
+            foreach(Cenovnik c in cenovnici)
+            {
+                cp = new CenovnikPrikaz()
+                {
+                    Id = c.Id,
+                    VaziOd = c.VaziOd,
+                    VaziDo=c.VaziDo,
+                    Aktivan=c.Aktivan
+
+                };
+                cenovniciZaPrikaz.Add(cp);
+            }
+            return Ok(cenovniciZaPrikaz);
         }
 
         // GET: api/Cenovniks/5
@@ -148,5 +175,14 @@ namespace JGSPNSWebApp.Controllers
         public DateTime VaziDo { get; set; }
         public List<int> Stavke { get; set; }
         public bool Aktivan { get; set; }
+    }
+
+    public class CenovnikPrikaz
+    {
+        public int Id { get; set; }
+        public DateTime VaziOd { get; set; }
+        public DateTime VaziDo { get; set; }
+        public bool Aktivan { get; set; }
+
     }
 }

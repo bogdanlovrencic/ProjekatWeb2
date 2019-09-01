@@ -12,11 +12,11 @@ namespace JGSPNSWebApp.Models
 
         public int Id { get; set; }
 
-        public DateTime Polazak { get; set; }
+        [ForeignKey("Linija")]
+        public int LinijaId { get; set; }
+        public Linija Linija { get; set; }
 
-        public Linija IzabranaLinija { get; set; }
-
-        public string IzabraniRedaVoznje { get; set; }
+        public string IzabraniRedVoznje { get; set; }
 
         public string IzabranTipDana { get; set; }
 

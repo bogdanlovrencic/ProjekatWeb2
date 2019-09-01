@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { GetDataService } from '../get-data.service';
 import { CenaStavke } from '../Models/cenaStavke';
 import { Kontrolor } from '../Models/Kontrolor';
+import { RedVoznjeBindingModel } from '../Models/RedVoznjeBindingModel';
 import { RedVoznje } from '../Models/RedVoznje';
+import { CenovnikPrikaz } from '../Models/Cenovnik';
 
 @Component({
   selector: 'app-admin-view',
@@ -11,9 +13,9 @@ import { RedVoznje } from '../Models/RedVoznje';
 })
 export class AdminViewComponent implements OnInit {
 
-  clicked="Price";
+  clicked="";
   selected = false;
-  listPrices:CenaStavke[];
+  public listaCenovnika:CenovnikPrikaz[];
   listControllers:Kontrolor[];
   listTimetables:RedVoznje[];
 
@@ -21,7 +23,7 @@ export class AdminViewComponent implements OnInit {
 
   ngOnInit() {
     this.dataService.message.subscribe(msg =>{ this.clicked = msg;}); 
-    this.dataService.prices.subscribe(msg =>{ this.listPrices = msg;}); 
+    this.dataService.cenovnici.subscribe(msg =>{ this.listaCenovnika = msg;}); 
     this.dataService.controller.subscribe(msg => {this.listControllers = msg;});
     this.dataService.timetable.subscribe(msg => {this.listTimetables = msg;});
   }

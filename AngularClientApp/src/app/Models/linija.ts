@@ -18,6 +18,6 @@ export class Linija
 }
 
 export enum LineType{
-    Gradska=0,
-    Prigradska=1,
+    Gradski=0,
+    Prigradski=1,
 }

@@ -14,6 +14,7 @@ using JGSPNSWebApp.Persistence.UnitOfWork;
 
 namespace JGSPNSWebApp.Controllers
 {
+    [RoutePrefix("api/RedVoznjes")]
     public class RedVoznjesController : ApiController
     {
         public ApplicationDbContext db = new ApplicationDbContext();
@@ -76,17 +77,33 @@ namespace JGSPNSWebApp.Controllers
 
         // POST: api/RedVoznjes
         [ResponseType(typeof(RedVoznje))]
-        public IHttpActionResult PostRedVoznje(RedVoznje redVoznje)
+        public IHttpActionResult PostRedVoznje(RedVoznjeBindingModel redVoznje)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.RedVoznje.Add(redVoznje);
+            RedVoznje rv = new RedVoznje();
+
+            if (redVoznje.TipRedaVoznje == 0)
+                rv.IzabraniRedVoznje = TipRedaVoznje.Gradski.ToString();
+
+            else
+            {
+                rv.IzabraniRedVoznje = TipRedaVoznje.Prigradski.ToString();
+            }
+
+           
+            rv.IzabranTipDana = redVoznje.TipDana;
+            rv.LinijaId = redVoznje.LinijaId;
+            rv.Aktivan = true;
+
+            
+            db.RedVoznje.Add(rv);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = redVoznje.Id }, redVoznje);
+            return CreatedAtRoute("DefaultApi", new { id = rv.Id }, rv);
         }
 
         // DELETE: api/RedVoznjes/5
@@ -105,20 +122,37 @@ namespace JGSPNSWebApp.Controllers
             return Ok(redVoznje);
         }
 
-        [HttpGet, Route("ucitajLinije")]
-        public IEnumerable<Linija> UcitajLinije()
+        [HttpGet]
+        [Route("getLinije")]
+        public IHttpActionResult GetLinije(int tipLinije)
         {
-            List<Linija> linije = new List<Linija>();
+            var linije = db.Linije.Where(x => x.TipLinije == (TipLinije)tipLinije);
 
-            using (DemoUnitOfWork unitOfWork = new DemoUnitOfWork(db))
+            if(linije!=null)
             {
-                foreach (var linija in unitOfWork.Linije.GetAll())
-                {
-                    linije.Add(linija);
-                }
+                return Ok(linije);
             }
 
-            return linije;
+            return Ok(new List<Linija>(0));
+        }
+
+        [HttpPost]
+        [Route("getPolasci")]
+        public IHttpActionResult GetPolasci(PolazakRequestModel polazak)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var polasci = db.Polazaks.Where(x => x.LinijaId == polazak.LinijaId && x.TipDana == polazak.TipDana);
+
+            if (polasci != null)
+            {
+                return Ok(polasci);
+            }
+
+            return Ok(new List<Polazak>(0));
         }
 
         protected override void Dispose(bool disposing)
@@ -134,5 +168,19 @@ namespace JGSPNSWebApp.Controllers
         {
             return db.RedVoznje.Count(e => e.Id == id) > 0;
         }
+    }
+
+    public class RedVoznjeBindingModel
+    {
+        public int LinijaId { get; set; }
+        public int TipRedaVoznje { get; set; }
+        public string TipDana { get; set; }
+      
+    }
+
+    public class PolazakRequestModel
+    {
+        public string TipDana { get; set; }
+        public int LinijaId { get; set; }
     }
 }

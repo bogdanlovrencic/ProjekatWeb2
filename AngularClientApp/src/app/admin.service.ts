@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { Linija } from './Models/linija';
-import { RedVoznje } from './Models/RedVoznje';
+import { RedVoznjeBindingModel } from './Models/RedVoznjeBindingModel';
 import { Observable } from 'rxjs';
 import { CenaStavke } from './Models/cenaStavke';
 import { Cenovnik } from './Models/Cenovnik';
@@ -38,7 +38,7 @@ export class AdminService {
     return this.http.post(this.linijaUrl, linija);
   }
 
-  addRedVoznje(redVoznje:RedVoznje)
+  addRedVoznje(redVoznje:RedVoznjeBindingModel)
   {
     return this.http.post(this.redVoznjeUrl,redVoznje);
   }

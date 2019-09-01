@@ -7,7 +7,7 @@ namespace JGSPNSWebApp.Models
 {
     public enum TipLinije
     {
-        Gradska,
-        Prigradska
+        Gradski=0,
+        Prigradski=1
     }
 }
