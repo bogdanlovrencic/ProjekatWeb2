@@ -6,7 +6,7 @@ import { RedVoznjeBindingModel } from '../Models/RedVoznjeBindingModel';
 import { GetDataService } from '../get-data.service';
 import { Stavka } from '../Models/Stavka';
 import { Linija } from '../Models/linija';
-import { Polazak } from '../Models/polazak';
+import { Polazak, PolazakModel } from '../Models/polazak';
 import { RedVoznje } from '../Models/RedVoznje';
 import { CenovnikPrikaz } from '../Models/Cenovnik';
 
@@ -20,10 +20,10 @@ export class AdminManagementComponent implements OnInit {
   message="";
   listaCenovnika:CenovnikPrikaz[];
   listaKontrolora:Kontrolor[];
-  listaRedovaVoznje:RedVoznje[];
+  listaRedaVoznji:RedVoznje[];
   listaStavki:Stavka[];
   listaLinija: Linija[];
-  listaPolazaka:Polazak[];
+  listaPolazaka:PolazakModel[];
 
  
   constructor(private tableData:GetDataService, private router:Router) { }
@@ -39,38 +39,39 @@ export class AdminManagementComponent implements OnInit {
       if(tableName ==="Cenovnici")
       {
         //let info = JSON.parse(JSON.stringify(res));
-        this.listaCenovnika = res;
-      
-       // this.tableData.izmenaCena(this.listaCenovnika);
+        this.listaCenovnika = res;   
+        this.tableData.changeCenovnici(this.listaCenovnika);
       }
       else if(tableName ==='Stavke')
       {
-          let info=JSON.parse(JSON.stringify(res));
+          //let info=JSON.parse(JSON.stringify(res));
           this.listaStavki=res;
+          this.tableData.changeStavke(this.listaStavki);
 
       }
       else if(tableName === "Linije")
       {
           let info=JSON.parse(JSON.stringify(res));
           this.listaLinija=info;
+          this.tableData.changeLinije(this.listaLinija);
       }
       else if(tableName ==="Kontrolori")
       {
-        //console.log(res);
-        let info = JSON.parse(JSON.stringify(res));
-        this.listaKontrolora = info;
-        this.tableData.izmenaKontrolora(this.listaKontrolora);
+        //let info = JSON.parse(JSON.stringify(res));
+        this.listaKontrolora = res;
+        this.tableData.changeKontrolori(this.listaKontrolora);
       }
       else if(tableName ==="RedoviVoznje")
       {
         let info = JSON.parse(JSON.stringify(res));
-        this.listaRedovaVoznje = info;
-        this.tableData.izmenaRedaVoznje(this.listaRedovaVoznje);
+        this.listaRedaVoznji = info;
+        this.tableData.changeRedoviVoznje(this.listaRedaVoznji);
       }
       else if(tableName === "Polasci")
       {
         let info = JSON.parse(JSON.stringify(res));
         this.listaPolazaka = info;
+        this.tableData.changePolasci(this.listaPolazaka);
       }
     });
     console.log('admin');

@@ -1,6 +1,8 @@
 <div class="container">
+        <h3>Dodaj stavku</h3>
+        <hr>
     <form class="form-horizontal" role="form" #f="ngForm" (ngSubmit)="onSubmit(f)">
-        <h2>Dodaj stavku</h2>
+      
         <!-- <input type="text" hidden name="Id" ngModel #Id="ngModel"> -->
         <div class="form-group">
               <label for="firstName" class="col-sm-3 control-label" >Naziv:</label>
@@ -14,11 +16,11 @@
                 <input type="number"  class="form-control" name="Cena" ngModel required #Cena="ngModel" autofocus>
             </div>
         </div>
-        <button  type="submit" class="btn btn-primary btn-block">Dodaj</button>
-
+        <button  type="submit" class="btn btn-primary">Dodaj</button>
+     
         <hr *ngIf="validationMessage !== ''">
-        <h6 class="text-danger" *ngIf="validationMessage !== ''">
+        <h4 class="text-danger" *ngIf="validationMessage !== ''">
             {{validationMessage}}
-        </h6>
+        </h4>
     </form> <!-- /form -->
-  </div> <!-- ./container -->
+</div> <!-- ./container -->

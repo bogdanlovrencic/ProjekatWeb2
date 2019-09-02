@@ -1,32 +1,51 @@
-<h3>Dodavanje linije</h3>
-<div>
-  <!-- Kreiramo mapu -->
-  <agm-map [latitude]="45.256138" [longitude]="19.828751" [zoom]="14" (mapClick)="placeMarker($event)">  
-
-    <agm-polyline strokeColor="blue">
-         <agm-polyline-point *ngFor="let point of polyline.stanice" [latitude]="point.Lat" [longitude]="point.Lon">
-         </agm-polyline-point>
-    </agm-polyline>
-
-    <agm-marker *ngFor="let point of polyline.stanice" [latitude]="point.Lat" [longitude]="point.Lon" [iconUrl]="stationIcon" (markerClick)="onStationClicked(point)">
-    </agm-marker>
-
-  </agm-map>
-
-  <div *ngIf="inputName">
-      <input type="text" placeholder="Naziv stanice" [(ngModel)]="selektovanaStanica.Naziv">
-      <input type="text" placeholder="Adresa stanice" [(ngModel)]="selektovanaStanica.Adresa">
-  </div>
-  
-
-  <input type="text" placeholder="Ime linije" [(ngModel)]="imeLinije"><br>
-
-  <label for="Type">Tip linije: </label>
+<div class="container"> 
+  <h3>Dodavanje linije</h3>
+  <br>
   <div>
-    <select [(ngModel)]="izabraniTipLinije">
-      <option value="0" selected="selected">Gradska</option>
-      <option value="1">Prigradska</option>
-    </select>
+    <!-- Kreiramo mapu -->
+    <agm-map [latitude]="45.256138" [longitude]="19.828751" [zoom]="14" (mapClick)="placeMarker($event)">  
+
+      <agm-polyline strokeColor="blue">
+          <agm-polyline-point *ngFor="let point of polyline.stanice" [latitude]="point.Lat" [longitude]="point.Lon">
+          </agm-polyline-point>
+      </agm-polyline>
+
+      <agm-marker *ngFor="let point of polyline.stanice" [latitude]="point.Lat" [longitude]="point.Lon" [iconUrl]="stationIcon" (markerClick)="onStationClicked(point)">
+      </agm-marker>
+
+    </agm-map>
+    <br>
+   <form class="form-horizontal" [formGroup]="addLinijaForm">    
+      <div class="form-group">
+        <label for="NazivLinije" class="col-sm-2">Naziv linije:</label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control" formControlName="nazivLinije" [(ngModel)]="imeLinije" required>
+        </div>
+      </div>  
+      <div class="form-group">
+          <label for="Type" class="col-sm-2">Tip linije:</label>
+        <div class="col-sm-3">
+          <select [(ngModel)]="izabraniTipLinije" formControlName="tipLinije" class="form-control" required>
+            <option value="0" selected="selected">Gradska</option>
+            <option value="1">Prigradska</option>
+          </select>      
+        </div>
+      </div>
+      <div class="form-group">
+          <div *ngIf="inputName" class="col-sm-3">           
+              <input type="text" placeholder="Naziv stanice" class="form-control" [(ngModel)]="selektovanaStanica.Naziv" required>
+            </div>
+            <div *ngIf="inputName" class="col-sm-3">
+                  <input type="text" placeholder="Adresa stanice" class="form-control" [(ngModel)]="selektovanaStanica.Adresa" required>
+            </div>
+      </div>
+      <div class="form-group">
+          <div class="col-sm-3">
+              <button type="button" class="btn btn-primary" (click)="onSaveClicked()">Sacuvaj</button>
+          </div>
+      </div>
+   </form>
+   
   </div>
-  <button type="button" (click)="onSaveClicked()">Save</button>
 </div>
+

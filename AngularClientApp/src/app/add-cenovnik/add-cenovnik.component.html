@@ -1,45 +1,63 @@
-<form [formGroup]="cenovnikForm" (submit)="onSubmit()" class="form-horizontal">
-  <div class="form-group">   
-        <label for="From" class="col-sm-3">Vazi od: </label>
-      <div class="col-sm-3"> 
-        <input type="date" id="VaziOd" formControlName="VaziOd" class="form-control">
-      </div> 
-  </div>
+<div class="container">
+    <h3>Dodavanje cenovnika</h3>
+    <hr>
+  <form [formGroup]="cenovnikForm" (submit)="onSubmit()" class="form-horizontal">
   <div class="form-group">
-    <label for="To" class="col-sm-3">Vazi do: </label>
-    <div class="col-sm-3">
-      <input type="date" id="VaziDo" formControlName="VaziDo" class="form-control">
+      <div class="form-group">   
+            <label for="From" class="col-sm-2">Vazi od: </label>
+          <div class="col-sm-2"> 
+            <input type="date" id="VaziOd" formControlName="VaziOd" class="form-control">
+          </div> 
+      </div>
+      <div class="form-group">
+        <label for="To" class="col-sm-2">Vazi do: </label>
+        <div class="col-sm-2">
+          <input type="date" id="VaziDo" formControlName="VaziDo" class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="HourId" class="col-sm-2">Cene vremenske karte: </label>
+        <div class="col-sm-2">
+            <select  formControlName="HourId" class="form-control" *ngFor="let item of hourItems">
+                <option value={{item.Id}}>{{item.Cena}}</option>
+            </select>
+        </div>   
+      </div>
+      <div class="form-group">
+        <label for="DayId" class="col-sm-2">Cene dnevne karte: </label>
+        <div class="col-sm-2">
+            <select  formControlName="DayId" class="form-control" *ngFor="let item of dayItems">
+                <option value={{item.Id}}>{{item.Cena}}</option>
+              </select>
+        </div>  
+      </div>
+      <div class="form-group">
+        <label for="MonthId" class="col-sm-2">Cene mesecne karte: </label>
+        <div class="col-sm-2">
+            <select  formControlName="MonthId" class="form-control" *ngFor="let item of monthItems">
+                <option value={{item.Id}}>{{item.Cena}}</option>
+              </select>
+        </div>    
+      </div>
+      <div class="form-group">
+        <label for="YearId" class="col-sm-2">Cene godisnje karte: </label>
+        <div class="col-sm-2">
+            <select  formControlName="YearId" class="form-control" *ngFor="let item of yearItems">
+                <option value={{item.Id}}>{{item.Cena}}</option>
+              </select>
+        </div>
+      </div>
+      <br>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="HourId" class="col-sm-3">Cene vremenske karte: </label>
-    <select  formControlName="HourId" class="form-control" *ngFor="let item of hourItems">
-      <option value={{item.Id}}>{{item.Cena}}</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="DayId" class="col-sm-3">Cene dnevne karte: </label>
-    <select  formControlName="DayId" class="form-control" *ngFor="let item of dayItems">
-      <option value={{item.Id}}>{{item.Cena}}</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="MonthId" class="col-sm-3">Cene mesecne karte: </label>
-    <select  formControlName="MonthId" class="form-control" *ngFor="let item of monthItems">
-      <option value={{item.Id}}>{{item.Cena}}</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="YearId" class="col-sm-3">Cene godisnje karte: </label>
-    <select  formControlName="YearId" class="form-control" *ngFor="let item of yearItems">
-      <option value={{item.Id}}>{{item.Cena}}</option>
-    </select>
-  </div>
+      <div class="col-sm-3">
+          <button type="submit" class="btn btn-primary">Dodaj cenovnik</button>
+      </div>
+    
+  </form>
+  <br>
+  <hr *ngIf="validationMessage !== ''">
+  <h4 class="text-danger" *ngIf="validationMessage !== ''">
+    {{validationMessage}}
+  </h4>
   <hr>
-  <button type="submit">Dodaj cenovnik</button>
-</form>
-<hr *ngIf="validationMessage !== ''">
-<h4 class="text-danger" *ngIf="validationMessage !== ''">
-  {{validationMessage}}
-</h4>
-<hr>
+</div>

@@ -25,6 +25,12 @@ export class AddStavkaComponent implements OnInit {
         return;
     }
 
+    if(f.value.Cena <= 0)
+    {
+        this.validationMessage="Cena ne sme biti manja ili jednaka 0!";
+        return;
+    }
+
     this.adminService.addStavka(f).subscribe(res=>{
       this.router.navigate(['/management']);
     },

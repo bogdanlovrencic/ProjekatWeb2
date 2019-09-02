@@ -101,7 +101,7 @@ namespace JGSPNSWebApp.Models
         public DateTime DatumRodjenja { get; set; }
         [Required]
         public string Adresa { get; set; }
-        [Required]
+     
         public string TipPutnika { get; set; }
     }
 

@@ -54,7 +54,7 @@ export class AddCenovnikComponent implements OnInit {
 
     if(this.cenovnikForm.value.VaziDo < this.cenovnikForm.value.VaziOd)
     {
-      this.validationMessage="Datum pocetka vazenja cenovnika mora biti veci od datuma kraja vazenja!";
+      this.validationMessage="Datum pocetka vazenja cenovnika mora biti manji od datuma kraja vazenja!";
       return;
     }
     let cenovnik:Cenovnik ={

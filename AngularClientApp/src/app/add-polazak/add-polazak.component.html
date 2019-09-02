@@ -1,37 +1,39 @@
-<div>
+<div class="container">
   <h3>Dodavanje polaska</h3>
-  <form [formGroup]="polazakForm"  (submit)="onSubmit()">
-    
-      <div class="col-sm-5"> 
-          <label for="Vreme">Vreme: </label>
-          <input type="text" id="Vreme" formControlName="Vreme" class="form-control">
-      </div>
-      <div class="col-sm-5">
-          <label for="TipDana">Dan: </label>
+  <hr>
+  <form [formGroup]="polazakForm"  (submit)="onSubmit()" class="form-horizontal">
+    <div class="form-group">
+        <label for="Vreme" class="col-sm-2">Vreme: </label>
+        <div class="col-sm-3">         
+            <input type="text" id="Vreme" formControlName="Vreme" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="TipDana" class="col-sm-2">Dan: </label>
+        <div class="col-sm-3">
           <select  formControlName="TipDana" class="form-control">
             <option value="Radni_dan">Radni dan</option>
             <option value="Subota">Subota</option>
             <option value="Nedelja">Nedelja</option>
           </select> 
-      </div>
-    <div class="col-sm-5">
-        <label for="LinijaId">Linija: </label>
-        <select formControlName="LinijaId" class="form-control"> 
-           <option *ngFor="let linija of linije" value={{linija.Id}}>{{linija.RedniBroj}} {{getLineTypeString(linija.TipLinije)}}</option>
-         </select>
-         <hr>
-         <button type="submit" class="btn btn-primary">Dodaj polazak</button>
+         </div>
     </div>
-
-    
-   
+    <div class="form-group">     
+        <label for="LinijaId" class="col-sm-2">Linija: </label>
+          <div class="col-sm-3">
+            <select formControlName="LinijaId" class="form-control"> 
+               <option *ngFor="let linija of linije" value={{linija.Id}}>{{linija.RedniBroj}} {{getLineTypeString(linija.TipLinije)}}</option>
+             </select>         
+           </div>
+    </div>
+         
+    <br>
+    <button type="submit" class="btn btn-primary">Dodaj polazak</button>
   </form>
-  <div class="col-sm-5">
       <hr *ngIf="validationMessage !== ''">
       <h4 class="text-danger" *ngIf="validationMessage !== ''">
         {{validationMessage}}
       </h4>
       <hr>
   </div>
-  
-</div>
+

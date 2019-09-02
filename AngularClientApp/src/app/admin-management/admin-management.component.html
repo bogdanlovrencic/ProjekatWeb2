@@ -8,88 +8,70 @@
     <div class="swanky_wrapper">
       <input id='Dashboard' name='radio' type='radio' (click)="getTable('Cenovnici')">
       <label for='Dashboard'>
-          <a routerLink="/cenovnik"><span><i class="fas fa-wallet"></i></span>Cenovnik</a>  
+          <a ><span><i class="fas fa-wallet"></i></span>Cenovnik</a>  
         <div class='lil_arrow'></div>
         <div class='bar'></div>
         <div class='swanky_wrapper__content'>
           <ul>
-            <li (click)="onAddClick('Cenovnik')">Dodaj</li>         
+            <li (click)="onAddClick('Cenovnik')">Dodaj novi</li>         
           </ul>
         </div>
       </label>
       <input id='Item' name='radio' type='radio' (click)="getTable('Stavke')">
       <label for='Item'>
-          <a routerLink="/cenovnik"><span><i class="fas fa-wallet"></i></span>Stavka</a>  
+          <a ><span><i class="fas fa-wallet"></i></span>Stavka</a>  
         <div class='lil_arrow'></div>
         <div class='bar'></div>
         <div class='swanky_wrapper__content'>
           <ul>
-            <li (click)="onAddClick('Stavka')">Dodaj</li>         
+            <li (click)="onAddClick('Stavka')">Dodaj novi</li>         
           </ul>
         </div>
       </label>
       <input id='Sales' name='radio' type='radio' (click)="getTable('Linije')">
       <label for='Sales'>
-        <a routerLink="/home"><span><i class="fas fa-bus"></i></span>Linije</a>
+        <a ><span><i class="fas fa-bus"></i></span>Linije</a>
         <div class='lil_arrow'></div>
         <div class='bar'></div>
         <div class='swanky_wrapper__content'>
           <ul>
-              <li (click)="onAddClick('Linija')">Dodaj</li>
-              <!-- <li>Edit</li>
-              <li>Delete</li> -->
+              <li (click)="onAddClick('Linija')">Dodaj novi</li>
+           
           </ul>
         </div>
       </label>
-      <!-- <input id='Messages' name='radio' type='radio' (click)="getTable('busStation')">
-      <label for='Messages'>
-        <a routerLink="/home"><span><i class="fas fa-map-marker-alt"></i></span>Bus station</a>
-        <div class='lil_arrow'></div>
-        <div class='bar'></div>
-        <div class='swanky_wrapper__content'>
-          <ul>
-              <li>Add</li>
-              <li>Edit</li>
-              <li>Delete</li>
-          </ul>
-        </div>
-      </label> -->
       <input id='Departure' name='radio' type='radio' (click)="getTable('Polasci')">
       <label for='Departure'>
-        <a routerLink="/home"><span><i class="fas fa-clock"></i></span>Polazak</a>
+        <a><span><i class="fas fa-clock"></i></span>Polazak</a>
         <div class='lil_arrow'></div>
         <div class='bar'></div>
         <div class='swanky_wrapper__content'>
           <ul>
-              <li (click)="onAddClick('Polazak')">Dodaj</li>
-              <!-- <li>Edit</li>
-              <li>Delete</li> -->
+              <li (click)="onAddClick('Polazak')">Dodaj novi</li>
+         
           </ul>
         </div>
       </label>
       <input id='Settings' name='radio' type='radio' (click)="getTable('RedoviVoznje')">
       <label for='Settings'>
-        <a routerLink="/home"><span><i class="fas fa-clock"></i></span>Red voznje</a>
+        <a><span><i class="fas fa-clock"></i></span>Red voznje</a>
         <div class='lil_arrow'></div>
         <div class='bar'></div>
         <div class='swanky_wrapper__content'>
           <ul>
-              <li (click)="onAddClick('RedVoznje')">Dodaj</li>
-              <!-- <li>Edit</li>
-              <li>Delete</li> -->
+              <li (click)="onAddClick('RedVoznje')">Dodaj novi</li>
           </ul>
         </div>
       </label>
       <input id='Users' name='radio' type='radio' (click)="getTable('Kontrolori')">
       <label for='Users'>
-        <a routerLink="/home"><span><i class="fas fa-users"></i></span>Kontrolor</a>
+        <a ><span><i class="fas fa-users"></i></span>Kontrolor</a>
         <div class='lil_arrow'></div>
         <div class='bar'></div>
         <div class='swanky_wrapper__content'>
           <ul>
-              <li (click)="onAddClick('Kontrolor')">Dodaj</li>
-              <!-- <li>Edit</li>
-              <li>Delete</li> -->
+              <li (click)="onAddClick('Kontrolor')">Dodaj novi</li>
+      
           </ul>
         </div>
       </label>

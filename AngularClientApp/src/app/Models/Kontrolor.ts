@@ -4,8 +4,12 @@ export class Kontrolor{
     public Ime: string;
     public Prezime: string;
     public Email: string;
-    public DatumRodjenja: string;
+    public DatumRodjenja: Date;
     public Adresa: string;
     public Lozinka: string;
+    public ImageUrl: string;
+    public Verifikovan: boolean;
+    public Status: string;
+    public Uloga: string;
     
 }

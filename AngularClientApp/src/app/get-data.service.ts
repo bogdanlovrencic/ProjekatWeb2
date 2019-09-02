@@ -15,6 +15,14 @@ import { Polazak, PolazakModel } from './Models/polazak';
   providedIn: 'root'
 })
 export class GetDataService {
+  changeLinije(listaLinija: Linija[]) {
+    throw new Error("Method not implemented.");
+  }
+ 
+ 
+ 
+ 
+ 
 
   constructor(private http:HttpClient) { }
 
@@ -25,30 +33,38 @@ export class GetDataService {
   cenovnici = this.cenovnikSource.asObservable();
 
   private stavkaSource=new BehaviorSubject(null);
-  stavka=this.messageSource.asObservable();
+  stavke=this.stavkaSource.asObservable();
 
-  private controllerSource = new BehaviorSubject(null);
-  controller = this.controllerSource.asObservable();
+  private kontrolorSource = new BehaviorSubject(null);
+  kontrolori = this.kontrolorSource.asObservable();
 
   private timetableSource = new BehaviorSubject(null);
   timetable = this.timetableSource.asObservable();
 
-  izmenaCena(cene:CenaStavke[])
+  private polazakSource = new BehaviorSubject(null);
+  polasci = this.polazakSource.asObservable();
+
+  changeCenovnici(cenovnici:CenovnikPrikaz[])
   {
-    // this.cenovnikSource.next(cene);
+     this.cenovnikSource.next(cenovnici);
   }
 
-  updateStavka(stavke:Stavka[])
+  changeStavke(stavke: Stavka[])
   {
     this.stavkaSource.next(stavke);
   }
 
-  izmenaKontrolora(kontrolori:Kontrolor[])
+  changeKontrolori(kontrolori:Kontrolor[])
   {
-    this.controllerSource.next(kontrolori);
+    this.kontrolorSource.next(kontrolori);
   }
 
-  izmenaRedaVoznje(redoviVoznje:RedVoznje[])
+  changePolasci(polasci:PolazakModel[])
+  {
+    this.polazakSource.next(polasci);
+  }
+
+  changeRedoviVoznje(redoviVoznje:RedVoznje[])
   {
     this.timetableSource.next(redoviVoznje);
   }
@@ -57,17 +73,56 @@ export class GetDataService {
     this.messageSource.next(msg);
   }
 
-  obrisiCenu(id){
-    return this.http.delete('http://localhost:52295/api/CenaStavkes?id='+id);
+  //IZMENA
+
+  izmeniCenovnik(cenovnik: CenovnikPrikaz)
+  {
+      return this.http.put('http://localhost:52295/api/Cenovniks?id='+cenovnik.Id,cenovnik);
   }
 
-  obrisiKontrolora(email){
+  izmeniStavku(stavka:Stavka)
+  {
+      return this.http.put('http://localhost:52295/api/Stavkas?id='+stavka.Id,stavka);
+  }
+
+  izmeniKontrolora(kontrolor: Kontrolor) 
+  {
+      return this.http.put('http://localhost:52295/api/Korisniks?id='+kontrolor.Email,kontrolor);  
+  }
+
+  izmeniPolazak(polazak: PolazakModel)
+  {
+      return this.http.put('http://localhost:52295/api/Polazaks?id='+polazak.Id,polazak);  
+  }
+
+  izmeniRedVoznje(redVoznje: RedVoznje)
+  {
+     return this.http.put('http://localhost:52295/api/RedVoznjes?id='+redVoznje.Id,redVoznje);
+  }
+
+  //BRISANJE
+
+  obrisiCenovnik(id:number){
+    return this.http.delete('http://localhost:52295/api/Cenovniks?id='+id);
+  }
+
+  obrisiStavku(id: number) {
+    return this.http.delete('http://localhost:52295/api/Stavkas?id='+id);
+  }
+
+  obrisiKontrolora(email:string){
     return this.http.delete('http://localhost:52295/api/Korisniks?id='+email);
   }
 
-  obrisiRedVoznje(id){
+  obrisiPolazak(id: number) {
+    return this.http.delete('http://localhost:52295/api/Polazaks?id='+id);
+  }
+
+  obrisiRedVoznje(id:number){
     return this.http.delete('http://localhost:52295/api/RedVoznjes?id='+id);
   }
+//
+
 
   getTableDataService(tableName:string):Observable<any>{
 
@@ -76,27 +131,26 @@ export class GetDataService {
     }
     else if( tableName === 'Stavke')
     {
-      return this.http.get<Stavka>('http://localhost://52295/api/Stavkas')
+      return this.http.get<Stavka>('http://localhost:52295/api/Stavkas');
     }
     else if(tableName === 'Linije'){
-      return this.http.get<Linija>('http://localhost:52295/api/Linijas')
+      return this.http.get<Linija>('http://localhost:52295/api/Linijas');
 
     }
     else if(tableName === 'Stanica'){
-      return this.http.get<Stanica>('http://localhost:52295/api/Stanicas')
+      return this.http.get<Stanica>('http://localhost:52295/api/Stanicas');
     }
 
     else if(tableName === 'RedoviVoznje'){
-      return this.http.get<RedVoznje>('http://localhost:52295/RedVoznjes/AllRedoviVoznje')
+      return this.http.get<RedVoznje>('http://localhost:52295/api/RedVoznjes');
     }
     else if(tableName === 'Kontrolori'){
-      return this.http.get<Kontrolor>('http://localhost:52295/api/Korisniks')
-
+      return this.http.get<Kontrolor>('http://localhost:52295/api/Korisniks');
     }
 
     else if(tableName == 'Polasci')
     {
-      return this.http.get<PolazakModel>('http://localhost:52295/api/Polazaks')
+      return this.http.get<PolazakModel>('http://localhost:52295/api/Polazaks');
     }
   }
 }

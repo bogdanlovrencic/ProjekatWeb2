@@ -14,16 +14,18 @@ using JGSPNSWebApp.Persistence.UnitOfWork;
 
 namespace JGSPNSWebApp.Controllers
 {
-    //[Authorize]
+    
     public class KorisniksController : ApiController
     {
 
         private ApplicationDbContext db = new ApplicationDbContext();
        
+        // GET: api/Korisniks
         public IQueryable<Korisnik> GetKorisniks()
         {
-            return db.Korisnici;
+            return db.Korisnici.Where(kor=>kor.Uloga == UlogaKorisnika.KONTROLOR.ToString());
         }
+
 
         // GET: api/Korisniks/5     
         [ResponseType(typeof(Korisnik))]       
@@ -113,8 +115,8 @@ namespace JGSPNSWebApp.Controllers
                 return NotFound();
             }
 
-            //var putnik = db.Putnici.Include(x => x.Korisnik).FirstOrDefault(x => x.Korisnik.Email.Equals(id));
-            //db.Putnici.Remove(putnik);
+            var putnik = db.Putnici.Include(x => x.Korisnik).FirstOrDefault(x => x.Korisnik.Email.Equals(id));
+            db.Putnici.Remove(putnik);
 
             db.Korisnici.Remove(korisnik);
             db.SaveChanges();
