@@ -7,6 +7,7 @@ import { Polyline } from '../Models/polyline';
 import { GeoLocation } from '../map/model/geolocation';
 import { MarkerInfo } from '../map/model/marker-info.model';
 import { Linija, LineType } from '../Models/linija';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-linija',
@@ -22,6 +23,8 @@ export class AddLinijaComponent implements OnInit {
   imeLinije:string;
   selektovanaStanica:Stanica;
   izabraniTipLinije:LineType;
+  public addLinijaForm:FormGroup
+  private validationMessage='';
 
   constructor(private adminSrv:AdminService, private router:Router) { }
   inputName= false;
@@ -31,6 +34,12 @@ export class AddLinijaComponent implements OnInit {
       this.polyline = new Linija(this.imeLinije, []);
       this.stationIcon = { url:"assets/busicon.png", scaledSize: {width: 50, height: 50}};
       console.log(this.rola)
+
+      this.addLinijaForm = new FormGroup({
+        imeLinije:new FormControl(null,[Validators.required]),
+        izabraniTipLinije: new FormControl(null,[Validators.required]),    
+      
+      })
   }
 
   placeMarker($event){
@@ -40,15 +49,24 @@ export class AddLinijaComponent implements OnInit {
   }
 
   onSaveClicked(){
-    this.polyline.RedniBroj = this.imeLinije;
-    switch(this.izabraniTipLinije)
+
+    if(!this.addLinijaForm.valid)
+    {
+      this.validationMessage="Sva polja moraju biti popunjena!";
+      return;
+    }
+
+    this.polyline.RedniBroj = this.addLinijaForm.value.imeLinije;
+   
+
+    switch(this.addLinijaForm.value.izabraniTipLinije)
     {
         case LineType.Gradski: 
-            this.polyline.TipLinije=this.izabraniTipLinije;
+            this.polyline.TipLinije=LineType.Gradski;
             break;
 
         case LineType.Prigradski:
-           this.polyline.TipLinije=this.izabraniTipLinije;
+           this.polyline.TipLinije=LineType.Prigradski;
            break;   
     }
    
@@ -60,6 +78,7 @@ export class AddLinijaComponent implements OnInit {
   onStationClicked(stanica){
     this.inputName = true;
     this.selektovanaStanica=stanica;
+  
   }
 
   

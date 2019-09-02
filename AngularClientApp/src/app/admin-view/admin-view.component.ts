@@ -36,6 +36,8 @@ export class AdminViewComponent implements OnInit {
     this.dataService.timetable.subscribe(msg => { this.listaRedaVoznji = msg;});
   }
 
+  
+
   onCenovnikUpdateClick(cenovnik:CenovnikPrikaz)
   {
     this.dataService.izmeniCenovnik(cenovnik).subscribe(
@@ -76,6 +78,7 @@ export class AdminViewComponent implements OnInit {
 
   onCenovnikDeleteClick(id:number){
     this.dataService.obrisiCenovnik(id).subscribe(res =>{
+         // this.dataService.refreshCenovnikList()
     }, error=>{console.log(error)});
   }
 

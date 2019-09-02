@@ -20,7 +20,7 @@ namespace JGSPNSWebApp.Controllers
         // GET: api/Polazaks
         public IQueryable<Polazak> GetPolazaks()
         {
-            return db.Polazaks;
+            return db.Polazaks.Where(polazak=>polazak.Active);
         }
 
         // GET: api/Polazaks/5
@@ -107,6 +107,23 @@ namespace JGSPNSWebApp.Controllers
             db.SaveChanges();
 
             return Ok(polazak);
+        }
+
+        [HttpGet]
+        [Route("ObrisiPolazak")]
+        public IHttpActionResult ObrisiPolazak(int id)
+        {
+            var polazak = db.Polazaks.Find(id);
+
+            if (polazak == null)
+                return BadRequest("Polazak sa prosledjenim id ne postoji!");
+
+            polazak.Active = false;
+
+            db.Entry(polazak).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)

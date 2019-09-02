@@ -283,6 +283,14 @@
     <Compile Include="Migrations\201908311938491_redVoznje_izmena1.Designer.cs">
       <DependentUpon>201908311938491_redVoznje_izmena1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909021119289_izmena_modela.cs" />
+    <Compile Include="Migrations\201909021119289_izmena_modela.Designer.cs">
+      <DependentUpon>201909021119289_izmena_modela.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909021130105_korisnik_izmena.cs" />
+    <Compile Include="Migrations\201909021130105_korisnik_izmena.Designer.cs">
+      <DependentUpon>201909021130105_korisnik_izmena.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\CenovnikStavka.cs" />
     <Compile Include="Models\Email.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -450,6 +458,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908311938491_redVoznje_izmena1.resx">
       <DependentUpon>201908311938491_redVoznje_izmena1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909021119289_izmena_modela.resx">
+      <DependentUpon>201909021119289_izmena_modela.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909021130105_korisnik_izmena.resx">
+      <DependentUpon>201909021130105_korisnik_izmena.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

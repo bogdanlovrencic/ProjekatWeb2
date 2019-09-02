@@ -17,5 +17,7 @@ namespace JGSPNSWebApp.Models
 
         public double Cena { get; set; }
 
+        public bool Aktivna { get; set; }
+
     }
 }

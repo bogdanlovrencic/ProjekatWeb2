@@ -9,5 +9,6 @@ export class Stanica{
     {
         this.Lat = lat;
         this.Lon = lon;
+      
     }
 }

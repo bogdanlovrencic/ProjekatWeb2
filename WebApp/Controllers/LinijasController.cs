@@ -20,7 +20,7 @@ namespace JGSPNSWebApp.Controllers
         // GET: api/Linijas
         public IQueryable<Linija> GetLinije()
         {
-            return db.Linije;
+            return db.Linije.Where(linija=>linija.Aktivna);
         }
 
         // GET: api/Linijas/5
@@ -80,6 +80,8 @@ namespace JGSPNSWebApp.Controllers
                 return BadRequest(ModelState);
             }
 
+            linija.Aktivna = true;
+
             db.Linije.Add(linija);
             db.SaveChanges();
 
@@ -100,6 +102,23 @@ namespace JGSPNSWebApp.Controllers
             db.SaveChanges();
 
             return Ok(linija);
+        }
+
+        [HttpGet]
+        [Route("ObrisiLiniju")]
+        public IHttpActionResult ObrisiLiniju(int id)
+        {
+            var linija = db.Linije.Find(id);
+
+            if (linija == null)
+                return BadRequest("Stavka sa prosledjenim id ne postoji!");
+
+            linija.Aktivna = false;
+
+            db.Entry(linija).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)

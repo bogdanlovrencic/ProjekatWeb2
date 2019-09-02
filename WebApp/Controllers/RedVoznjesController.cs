@@ -126,7 +126,7 @@ namespace JGSPNSWebApp.Controllers
         [Route("getLinije")]
         public IHttpActionResult GetLinije(int tipLinije)
         {
-            var linije = db.Linije.Where(x => x.TipLinije == (TipLinije)tipLinije);
+            var linije = db.Linije.Where(x => x.TipLinije == (TipLinije)tipLinije && x.Aktivna);
 
             if(linije!=null)
             {
@@ -145,7 +145,7 @@ namespace JGSPNSWebApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            var polasci = db.Polazaks.Where(x => x.LinijaId == polazak.LinijaId && x.TipDana == polazak.TipDana);
+            var polasci = db.Polazaks.Where(x => x.LinijaId == polazak.LinijaId && x.TipDana == polazak.TipDana && x.Active);
 
             if (polasci != null)
             {
@@ -153,6 +153,23 @@ namespace JGSPNSWebApp.Controllers
             }
 
             return Ok(new List<Polazak>(0));
+        }
+
+        [HttpGet]
+        [Route("ObrisiRedVoznje")]
+        public IHttpActionResult ObrisiRedVoznje(int id)
+        {
+            var redVoznje = db.RedVoznje.Find(id);
+
+            if (redVoznje == null)
+                return BadRequest("Red voznje sa prosledjenim id ne postoji!");
+
+            redVoznje.Aktivan = false;
+
+            db.Entry(redVoznje).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)

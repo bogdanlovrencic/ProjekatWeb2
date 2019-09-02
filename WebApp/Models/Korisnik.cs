@@ -30,6 +30,8 @@ namespace JGSPNSWebApp.Models
         public string Status { get; set; }
         public string ImageUrl { get; set; }
 
+        public bool Aktivan { get; set; }
+
         
     }
 }

@@ -24,5 +24,7 @@ namespace JGSPNSWebApp.Models
     
         public List<Linija> Linije { get; set; }
 
+        public bool Aktivna { get; set; }
+
     }
 }

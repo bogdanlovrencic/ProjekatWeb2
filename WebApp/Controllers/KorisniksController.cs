@@ -23,7 +23,7 @@ namespace JGSPNSWebApp.Controllers
         // GET: api/Korisniks
         public IQueryable<Korisnik> GetKorisniks()
         {
-            return db.Korisnici.Where(kor=>kor.Uloga == UlogaKorisnika.KONTROLOR.ToString());
+            return db.Korisnici.Where(kor=>kor.Uloga == UlogaKorisnika.KONTROLOR.ToString() && kor.Aktivan==true);
         }
 
 
@@ -122,6 +122,23 @@ namespace JGSPNSWebApp.Controllers
             db.SaveChanges();
 
             return Ok(korisnik);
+        }
+
+        [HttpGet]
+        [Route("ObrisiKontrolora")]
+        public IHttpActionResult ObrisiKontrolora(string id)
+        {
+            var kontrolor = db.Korisnici.Find(id);
+
+            if (kontrolor == null)
+                return BadRequest("Kontrolor sa prosledjenim id ne postoji!");
+
+           // kontrolor.Aktivan = false;
+
+            db.Entry(kontrolor).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)

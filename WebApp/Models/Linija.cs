@@ -19,6 +19,8 @@ namespace JGSPNSWebApp.Models
   
         public List<Stanica> Stanice { get; set; }
 
+        public bool Aktivna { get; set; }
+
 
 
     }

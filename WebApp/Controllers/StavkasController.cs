@@ -21,7 +21,7 @@ namespace JGSPNSWebApp.Controllers
         // GET: api/Stavkas
         public IQueryable<Stavka> GetStavke()
         {
-            return db.Stavke;
+            return db.Stavke.Where(s=>s.Aktivna);
         }
 
         [Route("Stavke")]
@@ -93,6 +93,7 @@ namespace JGSPNSWebApp.Controllers
 
             s.Naziv = stavka.Naziv;
             s.Cena = stavka.Cena;
+            s.Aktivna = true;
 
             db.Stavke.Add(s);
             db.SaveChanges();
@@ -114,6 +115,23 @@ namespace JGSPNSWebApp.Controllers
             db.SaveChanges();
 
             return Ok(stavka);
+        }
+
+        [HttpGet]
+        [Route("ObrisiStavku")]
+        public IHttpActionResult ObrisiStavku(int id)
+        {
+            var stavka = db.Stavke.Find(id);
+
+            if (stavka == null)
+                return BadRequest("Stavka sa prosledjenim id ne postoji!");
+
+            stavka.Aktivna = false;
+
+            db.Entry(stavka).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)

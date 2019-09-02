@@ -18,32 +18,32 @@
       <div class="form-group">
         <label for="HourId" class="col-sm-2">Cene vremenske karte: </label>
         <div class="col-sm-2">
-            <select  formControlName="HourId" class="form-control" *ngFor="let item of hourItems">
-                <option value={{item.Id}}>{{item.Cena}}</option>
+            <select  formControlName="HourId" class="form-control" >
+                <option *ngFor="let item of hourItems" value={{item.Id}}>{{item.Cena}}</option>
             </select>
         </div>   
       </div>
       <div class="form-group">
         <label for="DayId" class="col-sm-2">Cene dnevne karte: </label>
         <div class="col-sm-2">
-            <select  formControlName="DayId" class="form-control" *ngFor="let item of dayItems">
-                <option value={{item.Id}}>{{item.Cena}}</option>
+            <select  formControlName="DayId" class="form-control" >
+                <option  *ngFor="let item of dayItems" value={{item.Id}}>{{item.Cena}}</option>
               </select>
         </div>  
       </div>
       <div class="form-group">
         <label for="MonthId" class="col-sm-2">Cene mesecne karte: </label>
         <div class="col-sm-2">
-            <select  formControlName="MonthId" class="form-control" *ngFor="let item of monthItems">
-                <option value={{item.Id}}>{{item.Cena}}</option>
+            <select  formControlName="MonthId" class="form-control" >
+                <option *ngFor="let item of monthItems" value={{item.Id}}>{{item.Cena}}</option>
               </select>
         </div>    
       </div>
       <div class="form-group">
         <label for="YearId" class="col-sm-2">Cene godisnje karte: </label>
         <div class="col-sm-2">
-            <select  formControlName="YearId" class="form-control" *ngFor="let item of yearItems">
-                <option value={{item.Id}}>{{item.Cena}}</option>
+            <select  formControlName="YearId" class="form-control">
+                <option  *ngFor="let item of yearItems" value={{item.Id}}>{{item.Cena}}</option>
               </select>
         </div>
       </div>

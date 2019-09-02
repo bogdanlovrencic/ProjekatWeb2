@@ -469,7 +469,9 @@ namespace JGSPNSWebApp.Controllers
                         DatumRodjenja = model.DatumRodjenja,
                         Adresa = model.Adresa,
                         Verifikovan = model.TipPutnika.Equals("REGULARNI"),
-                        Uloga = uloga
+                        Uloga = uloga,
+                        Aktivan = true
+                        
 
                     };
 

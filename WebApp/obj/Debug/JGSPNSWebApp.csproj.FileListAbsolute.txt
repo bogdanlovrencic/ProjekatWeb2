@@ -905,4 +905,5 @@ C:\Users\Default.DESKTOP-KG2KP0Q\Desktop\Github\WebApp\obj\Debug\JGSPNSWebApp.cs
 C:\Users\Default.DESKTOP-KG2KP0Q\Desktop\Github\WebApp\obj\Debug\JGSPNSWebApp.csproj.CopyComplete
 C:\Users\Default.DESKTOP-KG2KP0Q\Desktop\Github\WebApp\obj\Debug\JGSPNSWebApp.dll
 C:\Users\Default.DESKTOP-KG2KP0Q\Desktop\Github\WebApp\obj\Debug\JGSPNSWebApp.pdb
-C:\Users\Default.DESKTOP-KG2KP0Q\Desktop\Github\WebApp\obj\Debug\JGSPNSWebApp.csprojAssemblyReference.cache
+C:\Users\Default.DESKTOP-KG2KP0Q\Desktop\Github\WebApp\obj\Debug\JGSPNSWebApp.Migrations.izmena_modela.resources
+C:\Users\Default.DESKTOP-KG2KP0Q\Desktop\Github\WebApp\obj\Debug\JGSPNSWebApp.Migrations.korisnik_izmena.resources

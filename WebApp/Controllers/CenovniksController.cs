@@ -13,7 +13,7 @@ using JGSPNSWebApp.Persistence;
 
 namespace JGSPNSWebApp.Controllers
 {
-   // [RoutePrefix("api/Cenovniks")]
+    [RoutePrefix("api/Cenovniks")]
     public class CenovniksController : ApiController
     {
         
@@ -22,7 +22,7 @@ namespace JGSPNSWebApp.Controllers
         // GET: api/Cenovniks
         public IQueryable<Cenovnik> GetCenovnici()
         {
-            return db.Cenovnici;
+            return db.Cenovnici.Where(cen=>cen.Aktivan);
         }
       
 
@@ -128,6 +128,23 @@ namespace JGSPNSWebApp.Controllers
             db.SaveChanges();
 
             return Ok(cenovnik);
+        }
+
+        [HttpGet]
+        [Route("ObrisiCenovnik")]
+        public IHttpActionResult ObrisiCenovnik(int id)
+        {
+            var cenovnik = db.Cenovnici.Find(id);
+
+            if (cenovnik == null)
+                return BadRequest("Cenovnik sa prosledjenim id ne postoji!");
+
+            cenovnik.Aktivan = false;
+
+            db.Entry(cenovnik).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)

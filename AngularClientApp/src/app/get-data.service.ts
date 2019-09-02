@@ -16,12 +16,8 @@ import { Polazak, PolazakModel } from './Models/polazak';
 })
 export class GetDataService {
   changeLinije(listaLinija: Linija[]) {
-    throw new Error("Method not implemented.");
+    return;
   }
- 
- 
- 
- 
  
 
   constructor(private http:HttpClient) { }
@@ -103,23 +99,23 @@ export class GetDataService {
   //BRISANJE
 
   obrisiCenovnik(id:number){
-    return this.http.delete('http://localhost:52295/api/Cenovniks?id='+id);
+    return this.http.get<any>('http://localhost:52295/api/Cenovniks/ObrisiCenovnik?id='+id);
   }
 
   obrisiStavku(id: number) {
-    return this.http.delete('http://localhost:52295/api/Stavkas?id='+id);
+    return this.http.get<any>('http://localhost:52295/api/Stavkas/ObrisiStavku?id='+id);
   }
 
   obrisiKontrolora(email:string){
-    return this.http.delete('http://localhost:52295/api/Korisniks?id='+email);
+    return this.http.get<any>('http://localhost:52295/api/Korisniks/ObrisiKontrolora?id='+email);
   }
 
   obrisiPolazak(id: number) {
-    return this.http.delete('http://localhost:52295/api/Polazaks?id='+id);
+    return this.http.get<any>('http://localhost:52295/api/Polazaks/ObrisiPolazak?id='+id);
   }
 
   obrisiRedVoznje(id:number){
-    return this.http.delete('http://localhost:52295/api/RedVoznjes?id='+id);
+    return this.http.get<any>('http://localhost:52295/api/RedVoznjes/ObrisiRedVoznje?id='+id);
   }
 //
 
@@ -153,4 +149,10 @@ export class GetDataService {
       return this.http.get<PolazakModel>('http://localhost:52295/api/Polazaks');
     }
   }
+
+  // refreshCenovnikList(){
+  //   this.http.get('http://localhost:52295/api/Cenovniks').subscribe(
+  //     (data: CenovnikPrikaz[])=> { this.priceListChanged.next(data);}
+  //   )
+  // }
 }
