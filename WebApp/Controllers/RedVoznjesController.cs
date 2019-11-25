@@ -24,7 +24,7 @@ namespace JGSPNSWebApp.Controllers
         // GET: api/RedVoznjes
         public IQueryable<RedVoznje> GetRedVoznje()
         {
-            return db.RedVoznje;
+            return db.RedVoznje.Where(redVoznje=>redVoznje.Aktivan);
         }
         
         // GET: api/RedVoznjes/5
@@ -145,7 +145,7 @@ namespace JGSPNSWebApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            var polasci = db.Polazaks.Where(x => x.LinijaId == polazak.LinijaId && x.TipDana == polazak.TipDana && x.Active);
+            var polasci = db.Polasci.Where(x => x.LinijaId == polazak.LinijaId && x.TipDana == polazak.TipDana && x.Active);
 
             if (polasci != null)
             {

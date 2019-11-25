@@ -7,12 +7,13 @@ import { Observable } from 'rxjs';
 import { CenaStavke } from './Models/cenaStavke';
 import { Cenovnik } from './Models/Cenovnik';
 import { Polazak } from './Models/polazak';
+import { Stanica } from './Models/stanica';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
-
+ 
 
   public cenovnikUrl='http://localhost:52295/api/Cenovniks';
   public linijaUrl='http://localhost:52295/api/Linijas';
@@ -46,5 +47,13 @@ export class AdminService {
   addDeparture(polazak: Polazak) {
       return this.http.post(this.polazakUrl,polazak)
   }
+
+  removeLinija(linija: Linija) {
+    return this.http.get('http://localhost:52295/api/Linijas/ObrisiLiniju?id='+linija.Id);
+  }
+  removeStanica(stanica: Stanica) {
+    return this.http.get('http://localhost:52295/api/Stanicas/ObrisiStanicu?id='+ stanica.Id);
+  }
+
 
 }

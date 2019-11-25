@@ -3,17 +3,18 @@ import { Stanica } from './stanica';
 export class Linija 
 {
     Id: number;   
-    RedniBroj: string;
-    stanice: Stanica[];
+    Naziv: string;
+    Stanice: Stanica[];
     TipLinije: LineType;
+    Aktivna: boolean;
 
-    constructor(broj:string, stanice:Stanica[]){
-        this.RedniBroj = broj;
-        this.stanice = stanice;
+    constructor(naziv:string, stanice:Stanica[]){
+        this.Naziv = naziv;
+        this.Stanice = stanice;
     }
 
     addLocation(stan:Stanica){
-        this.stanice.push(stan);
+        this.Stanice.push(stan);
     }
 }
 

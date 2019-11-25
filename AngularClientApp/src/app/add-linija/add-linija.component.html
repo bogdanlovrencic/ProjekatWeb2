@@ -4,7 +4,6 @@
   <div>
     <!-- Kreiramo mapu -->
     <agm-map [latitude]="45.256138" [longitude]="19.828751" [zoom]="14" (mapClick)="placeMarker($event)">  
-
       <agm-polyline strokeColor="blue">
           <agm-polyline-point *ngFor="let point of polyline.stanice" [latitude]="point.Lat" [longitude]="point.Lon">
           </agm-polyline-point>
@@ -36,7 +35,7 @@
           <label for="Type" class="col-sm-2">Tip linije:</label>
         <div class="col-sm-3">
           <select formControlName="izabraniTipLinije"  class="form-control" required>
-            <option value="0" selected="selected">Gradski</option>
+            <option value="0">Gradski</option>
             <option value="1">Prigradski</option>
           </select>      
         </div>

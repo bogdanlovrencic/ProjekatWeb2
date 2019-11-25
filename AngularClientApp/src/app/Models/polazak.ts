@@ -16,5 +16,5 @@ export class PolazakModel{
     public Vreme:string;
     public TipDana:string;
     public LinijaId:number;
-    public Aktivan:boolean;
+    public Active:boolean;
 }

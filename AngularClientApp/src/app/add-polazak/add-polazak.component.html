@@ -22,7 +22,7 @@
         <label for="LinijaId" class="col-sm-2">Linija: </label>
           <div class="col-sm-3">
             <select formControlName="LinijaId" class="form-control"> 
-               <option *ngFor="let linija of linije" value={{linija.Id}}>{{linija.RedniBroj}} {{getLineTypeString(linija.TipLinije)}}</option>
+               <option *ngFor="let linija of linije" value={{linija.Id}}>{{linija.Naziv}} {{getLineTypeString(linija.TipLinije)}}</option>
              </select>         
            </div>
     </div>

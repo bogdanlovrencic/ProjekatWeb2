@@ -5,8 +5,8 @@
                 <div class="form-group" >
                         <label  class="col-sm-3 control-label">Red voznje: </label>
                     <div class="col-sm-3 ">
-                        <select for="TipRedaVoznje" class="form-control"  formControlName="tipRedaVoznje"  [(ngModel)]="TipRedaVoznje" required>
-                          <option value="0" selected="selected">Gradski</option>
+                        <select for="TipRedaVoznje" class="form-control"  formControlName="tipRedaVoznje">
+                          <option value="0" selected>Gradski</option>
                           <option value="1" >Prigradski</option>                         
                         </select>
                         <button (click)="onSelect()">Select</button>
@@ -15,8 +15,8 @@
                 <div class="form-group">
                         <label  class="col-sm-3 control-label">Dan: </label>
                     <div class="col-sm-3 ">
-                        <select for="TipDana" class="form-control"  formControlName="tipDana"  [(ngModel)]="TipDana" required>
-                          <option value="Radni_dan" selected="selected">Radni dan</option>
+                        <select for="TipDana" class="form-control"  formControlName="tipDana">
+                          <option value="Radni_dan" selected>Radni dan</option>
                           <option value="Subota">Subota</option>   
                           <option value="Nedelja">Nedelja</option>                         
                         </select>
@@ -26,7 +26,7 @@
                     <label for="linija" class="col-sm-3 control-label">Linija:</label>
                   <div class="col-sm-3">                          
                           <select  name="selectLinija" class="form-control" formControlName="izabranaLinija" required>
-                            <option *ngFor=" let linija of Linije" value="{{linija.Id}}">{{linija.RedniBroj}}</option>    
+                            <option *ngFor=" let linija of Linije" value="{{linija.Id}}">{{linija.Naziv}}</option>    
                           </select> 
                           <button (click)="onSelectClicked()">Select</button>
                   </div>                           

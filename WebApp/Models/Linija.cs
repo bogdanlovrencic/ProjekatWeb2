@@ -13,7 +13,7 @@ namespace JGSPNSWebApp.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public string RedniBroj { get; set; }
+        public string Naziv { get; set; }
 
         public TipLinije TipLinije { get; set; }
   

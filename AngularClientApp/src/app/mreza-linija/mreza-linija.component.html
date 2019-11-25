@@ -1,13 +1,28 @@
 <div class="container mrezaLinija-container">
       <h2> Mreza linija gradska i prigradska </h2>
-</div>
 
-<p>
-   
-</p>
-
-   <div style="width:60%; margin: 0 auto ">
-      <app-map></app-map>
+      <agm-map [latitude]="45.256138" [longitude]="19.828751" [zoom]="14" (mapClick)="onMapClick()">      
+            <agm-marker *ngFor="let stanica of linija.Stanice" [latitude]="stanica.Lat" [longitude]="stanica.Lon"
+             title="naslov neki" [iconUrl]="stationIcon" (markerClick)="onStationClicked(stanica)">
+              <agm-info-window [latitude]="stanica.Lat" [longitude]="stanica.Lon" >
+                <span style="font-size: 16px;font-family:'Times New Roman'">{{stanica.Naziv}}</span>
+                <br/>
+                <span style="font-family:'Times New Roman'; color:gray;">{{stanica.Adresa}}</span>
+              </agm-info-window>
+            </agm-marker>
       
-  </div>
-
+            <agm-polyline strokeColor="blue" (lineClick)="onLineClick(linija)">
+              <agm-polyline-point *ngFor="let stanica of linija.Stanice"  [latitude]="stanica.Lat" [longitude]="stanica.Lon" >
+              </agm-polyline-point>
+            </agm-polyline>  
+     </agm-map>
+     <br/>
+        <select class="form-control" name="Linije" [(ngModel)]="linSelected">
+            <option *ngFor="let lin of sveLinije" [value]="lin.Naziv">{{lin.Naziv}}</option>
+        </select> 
+        <br/>  
+     
+        <button type="button" (click)="onClickPrikazi(linSelected)">Prikazi</button>
+        <button type="button" (click)="OnDeleteClicked()" *ngIf="rola==='Admin'">Obrisi</button>
+   
+</div>

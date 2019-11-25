@@ -7,6 +7,7 @@ import { RedVoznje } from '../Models/RedVoznje';
 import { CenovnikPrikaz, Cenovnik } from '../Models/Cenovnik';
 import { Stavka } from '../Models/Stavka';
 import { Polazak, PolazakModel } from '../Models/polazak';
+import { CenovnikStavka } from '../Models/CenovnikStavka';
 
 @Component({
   selector: 'app-admin-view',
@@ -20,6 +21,7 @@ export class AdminViewComponent implements OnInit {
   clicked="Cenovnici";
   selected = false;
   listaCenovnika:CenovnikPrikaz[];
+  listaCenovnikStavka:CenovnikStavka[];
   listaKontrolora:Kontrolor[];
   listaPolazaka:PolazakModel[];
   listaRedaVoznji:RedVoznje[];

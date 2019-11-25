@@ -13,6 +13,7 @@ using JGSPNSWebApp.Persistence;
 
 namespace JGSPNSWebApp.Controllers
 {
+    [RoutePrefix("api/Linijas")]
     public class LinijasController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -25,13 +26,15 @@ namespace JGSPNSWebApp.Controllers
 
         // GET: api/Linijas/5
         [ResponseType(typeof(Linija))]
-        public IHttpActionResult GetLinija(int id)
+        public IHttpActionResult GetLinija(string naziv)
         {
-            Linija linija = db.Linije.Find(id);
+            Linija linija = db.Linije.Include(x => x.Stanice).FirstOrDefault(x => x.Naziv.ToLower().Equals(naziv.ToLower()));
+           
             if (linija == null)
             {
                 return NotFound();
             }
+            
 
             return Ok(linija);
         }
@@ -80,12 +83,23 @@ namespace JGSPNSWebApp.Controllers
                 return BadRequest(ModelState);
             }
 
+            var line = db.Linije.Any(lin => lin.Aktivna && lin.Naziv == linija.Naziv);
+
+            if (line == true)
+                return BadRequest(ModelState);
+           
+
             linija.Aktivna = true;
+            foreach(var stanica in linija.Stanice)
+            {
+                stanica.Aktivna = true;
+            }
 
             db.Linije.Add(linija);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = linija.Id }, linija);
+           
         }
 
         // DELETE: api/Linijas/5
@@ -111,7 +125,7 @@ namespace JGSPNSWebApp.Controllers
             var linija = db.Linije.Find(id);
 
             if (linija == null)
-                return BadRequest("Stavka sa prosledjenim id ne postoji!");
+                return BadRequest("Linija sa prosledjenim id ne postoji!");
 
             linija.Aktivna = false;
 

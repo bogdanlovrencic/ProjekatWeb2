@@ -49,30 +49,19 @@ export class AddLinijaComponent implements OnInit {
   }
 
   onSaveClicked(){
-
     if(!this.addLinijaForm.valid)
     {
       this.validationMessage="Sva polja moraju biti popunjena!";
       return;
     }
 
-    this.polyline.RedniBroj = this.addLinijaForm.value.imeLinije;
-   
+    this.polyline.Naziv = this.addLinijaForm.value.imeLinije;
+    this.polyline.TipLinije=this.addLinijaForm.value.izabraniTipLinije;
 
-    switch(this.addLinijaForm.value.izabraniTipLinije)
-    {
-        case LineType.Gradski: 
-            this.polyline.TipLinije=LineType.Gradski;
-            break;
-
-        case LineType.Prigradski:
-           this.polyline.TipLinije=LineType.Prigradski;
-           break;   
-    }
-   
     this.adminSrv.addLinija(this.polyline).subscribe(res=>{
-      this.router.navigate(['/management'])
-    },error=>{console.log(error)})
+      this.router.navigate(['/management']);
+    },(error)=>{ alert("Linija vec postoji!")})
+
   }
 
   onStationClicked(stanica){

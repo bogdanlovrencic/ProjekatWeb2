@@ -17,6 +17,7 @@ const httpOptions = {
 })
 export class RedVoznjeService {
  
+ 
 
   //private redVoznjeUrl='http://localhost:52295/api/RedVoznje/PrikaziRedVoznje';
 
@@ -31,6 +32,7 @@ export class RedVoznjeService {
   //     return this.http.get<RedVoznje[]>().subscribe();
   // }
 
+ 
   GetLinije():Observable<Linija[]>
   {
       return this.http.get<Linija[]>(this.linijeUrl) .pipe(
@@ -49,7 +51,7 @@ export class RedVoznjeService {
 
   getPolasci(polazakRequest: PolazakRequest) {
     this.http.post('http://localhost:52295/api/RedVoznjes/getPolasci',polazakRequest).subscribe(
-      ok => this.polasci.next(<Polazak[]>ok), //napraviti klasu polazak sa id
+      ok => this.polasci.next(<Polazak[]>ok),
       error => console.log(error));
 
       return this.polasci;

@@ -13,6 +13,7 @@ using JGSPNSWebApp.Persistence;
 
 namespace JGSPNSWebApp.Controllers
 {
+    [RoutePrefix("api/Polazaks")]
     public class PolazaksController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -20,14 +21,14 @@ namespace JGSPNSWebApp.Controllers
         // GET: api/Polazaks
         public IQueryable<Polazak> GetPolazaks()
         {
-            return db.Polazaks.Where(polazak=>polazak.Active);
+            return db.Polasci.Where(polazak=>polazak.Active);
         }
 
         // GET: api/Polazaks/5
         [ResponseType(typeof(Polazak))]
         public IHttpActionResult GetPolazak(int id)
         {
-            Polazak polazak = db.Polazaks.Find(id);
+            Polazak polazak = db.Polasci.Find(id);
             if (polazak == null)
             {
                 return NotFound();
@@ -87,7 +88,7 @@ namespace JGSPNSWebApp.Controllers
             p.LinijaId = polazak.LinijaId;
             p.Active = true;
 
-            db.Polazaks.Add(p);
+            db.Polasci.Add(p);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = p.Id }, p);
@@ -97,13 +98,13 @@ namespace JGSPNSWebApp.Controllers
         [ResponseType(typeof(Polazak))]
         public IHttpActionResult DeletePolazak(int id)
         {
-            Polazak polazak = db.Polazaks.Find(id);
+            Polazak polazak = db.Polasci.Find(id);
             if (polazak == null)
             {
                 return NotFound();
             }
 
-            db.Polazaks.Remove(polazak);
+            db.Polasci.Remove(polazak);
             db.SaveChanges();
 
             return Ok(polazak);
@@ -113,7 +114,7 @@ namespace JGSPNSWebApp.Controllers
         [Route("ObrisiPolazak")]
         public IHttpActionResult ObrisiPolazak(int id)
         {
-            var polazak = db.Polazaks.Find(id);
+            var polazak = db.Polasci.Find(id);
 
             if (polazak == null)
                 return BadRequest("Polazak sa prosledjenim id ne postoji!");
@@ -137,7 +138,7 @@ namespace JGSPNSWebApp.Controllers
 
         private bool PolazakExists(int id)
         {
-            return db.Polazaks.Count(e => e.Id == id) > 0;
+            return db.Polasci.Count(e => e.Id == id) > 0;
         }
     }
 

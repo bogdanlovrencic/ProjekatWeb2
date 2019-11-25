@@ -12,5 +12,5 @@ export class CenovnikPrikaz{
     public VaziOd: Date;
     public VaziDo: Date;
     public Aktivan: boolean;
-   // public Stavke: Stavka[];
+  
 }
