@@ -5,11 +5,11 @@
     <!-- Kreiramo mapu -->
     <agm-map [latitude]="45.256138" [longitude]="19.828751" [zoom]="14" (mapClick)="placeMarker($event)">  
       <agm-polyline strokeColor="blue">
-          <agm-polyline-point *ngFor="let point of polyline.stanice" [latitude]="point.Lat" [longitude]="point.Lon">
+          <agm-polyline-point *ngFor="let point of polyline.Stanice" [latitude]="point.Lat" [longitude]="point.Lon">
           </agm-polyline-point>
       </agm-polyline>
 
-      <agm-marker *ngFor="let point of polyline.stanice" [latitude]="point.Lat" [longitude]="point.Lon" [iconUrl]="stationIcon" (markerClick)="onStationClicked(point)">
+      <agm-marker *ngFor="let point of polyline.Stanice" [latitude]="point.Lat" [longitude]="point.Lon" [iconUrl]="stationIcon" (markerClick)="onStationClicked(point)">
       </agm-marker>
 
     </agm-map>
@@ -28,13 +28,13 @@
       <div class="form-group">
         <label for="NazivLinije" class="col-sm-2">Naziv linije:</label>
         <div class="col-sm-3">
-            <input type="text" class="form-control"  formControlName="imeLinije" required>
+            <input type="text" class="form-control"  formControlName="imeLinije">
         </div>
       </div>  
       <div class="form-group">
           <label for="Type" class="col-sm-2">Tip linije:</label>
         <div class="col-sm-3">
-          <select formControlName="izabraniTipLinije"  class="form-control" required>
+          <select formControlName="izabraniTipLinije"  class="form-control" >
             <option value="0">Gradski</option>
             <option value="1">Prigradski</option>
           </select>      

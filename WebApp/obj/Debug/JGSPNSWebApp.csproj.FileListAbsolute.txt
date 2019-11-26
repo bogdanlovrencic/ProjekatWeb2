@@ -1049,6 +1049,7 @@ D:\GitHub\ProjekatWeb2\WebApp\bin\Microsoft.Owin.Security.Twitter.xml
 D:\GitHub\ProjekatWeb2\WebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\GitHub\ProjekatWeb2\WebApp\bin\System.Web.Http.Owin.xml
 D:\GitHub\ProjekatWeb2\WebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.csprojAssemblyReference.cache
 D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.Migrations.all.resources
 D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.Migrations.polazak.resources
 D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.Migrations.stanica_izmena.resources

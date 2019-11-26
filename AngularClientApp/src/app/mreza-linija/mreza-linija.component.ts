@@ -5,6 +5,8 @@ import { DecodeJwtDataService } from '../decode-jwt-data.service';
 import { AdminService } from '../admin.service';
 import { RedVoznjeService } from '../red-voznje.service';
 import { LinijeService } from '../linije.service';
+import { Router } from '@angular/router';
+import { componentRefresh, refreshDescendantViews } from '@angular/core/src/render3/instructions';
 
 @Component({
   selector: 'app-mreza-linija',
@@ -13,10 +15,10 @@ import { LinijeService } from '../linije.service';
 })
 export class MrezaLinijaComponent implements OnInit {
 
-  constructor(private linijeService: LinijeService,  private jwt:DecodeJwtDataService, private adminSrv: AdminService) { }
+  constructor(private linijeService: LinijeService,  private jwt:DecodeJwtDataService, private adminSrv: AdminService,private router:Router) { }
   linija:Linija;
   stationIcon:any;
-  linSelected:string;
+  linSelected:number;
   rola = "";
   selektovanaStanica : Stanica;
   selektovanaLinija:Linija;
@@ -45,12 +47,12 @@ export class MrezaLinijaComponent implements OnInit {
 
   OnDeleteClicked(){
     if(this.selektovanaStanica != null){
-      this.adminSrv.removeStanica(this.selektovanaStanica).subscribe(res => {},(error)=>{ alert("Stanica ne postoji!")});
+      this.adminSrv.removeStanica(this.selektovanaStanica).subscribe(res => {this.router.navigate(['/management'])},(error)=>{ alert("Stanica ne postoji!")});
     }
       
 
     if(this.selektovanaLinija != null){
-      this.adminSrv.removeLinija(this.selektovanaLinija).subscribe(res=>{});
+      this.adminSrv.removeLinija(this.selektovanaLinija).subscribe(res=>{ this.router.navigate(['/management'])});
     }
       
   }

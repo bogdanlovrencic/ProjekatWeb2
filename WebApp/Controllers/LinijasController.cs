@@ -28,8 +28,10 @@ namespace JGSPNSWebApp.Controllers
         [ResponseType(typeof(Linija))]
         public IHttpActionResult GetLinija(string naziv)
         {
-            Linija linija = db.Linije.Include(x => x.Stanice).FirstOrDefault(x => x.Naziv.ToLower().Equals(naziv.ToLower()));
-           
+            Linija linija= db.Linije.Include(x => x.Stanice).FirstOrDefault(x => x.Naziv.ToLower().Equals(naziv.ToLower()));
+            var staniceAktivne = linija.Stanice.FindAll(s => s.Aktivna);
+            linija.Stanice = staniceAktivne;
+
             if (linija == null)
             {
                 return NotFound();
@@ -120,9 +122,9 @@ namespace JGSPNSWebApp.Controllers
 
         [HttpGet]
         [Route("ObrisiLiniju")]
-        public IHttpActionResult ObrisiLiniju(int id)
+        public IHttpActionResult ObrisiLiniju(string naziv)
         {
-            var linija = db.Linije.Find(id);
+            Linija linija = db.Linije.FirstOrDefault(l=>l.Naziv == naziv);
 
             if (linija == null)
                 return BadRequest("Linija sa prosledjenim id ne postoji!");

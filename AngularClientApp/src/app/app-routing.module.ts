@@ -15,6 +15,7 @@ import { AddLinijaComponent } from './add-linija/add-linija.component';
 import { AddRedVoznjeComponent } from './add-red-voznje/add-red-voznje.component';
 import { AddStavkaComponent } from './add-stavka/add-stavka.component';
 import { AddPolazakComponent } from './add-polazak/add-polazak.component';
+import { AdminViewComponent } from './admin-view/admin-view.component';
 
 const routes: Routes = [
   
@@ -101,6 +102,11 @@ const routes: Routes = [
   {
     path:'Polazak',
     component:AddPolazakComponent,
+  },
+
+  {
+    path:'AdminView',
+    component:AdminViewComponent,
   }
 ];
 

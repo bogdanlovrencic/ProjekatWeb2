@@ -49,7 +49,7 @@ export class AdminService {
   }
 
   removeLinija(linija: Linija) {
-    return this.http.get('http://localhost:52295/api/Linijas/ObrisiLiniju?id='+linija.Id);
+    return this.http.get('http://localhost:52295/api/Linijas/ObrisiLiniju?naziv='+linija.Naziv);
   }
   removeStanica(stanica: Stanica) {
     return this.http.get('http://localhost:52295/api/Stanicas/ObrisiStanicu?id='+ stanica.Id);
