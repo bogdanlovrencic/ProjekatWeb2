@@ -10,6 +10,7 @@ import { Cenovnik, CenovnikPrikaz } from './Models/Cenovnik';
 import { Stavka } from './Models/Stavka';
 import { RedVoznje } from './Models/RedVoznje';
 import { Polazak, PolazakModel } from './Models/polazak';
+import { CenovnikStavka } from './Models/CenovnikStavka';
 
 @Injectable({
   providedIn: 'root'
@@ -123,7 +124,7 @@ export class GetDataService {
   getTableDataService(tableName:string):Observable<any>{
 
     if(tableName === 'Cenovnici'){
-      return this.http.get<CenovnikPrikaz>('http://localhost:52295/api/Cenovniks');
+      return this.http.get<CenovnikPrikaz>('http://localhost:52295/api/Cenovniks/Cenovnici');
     }
     else if( tableName === 'Stavke')
     {

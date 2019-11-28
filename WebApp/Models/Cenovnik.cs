@@ -9,8 +9,7 @@ namespace JGSPNSWebApp.Models
 {
     public class Cenovnik
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+     
         public int Id { get; set; }
 
         public DateTime VaziOd { get; set; }
@@ -19,8 +18,8 @@ namespace JGSPNSWebApp.Models
 
         public bool  Aktivan { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public List<Stavka> Stavke { get; set;}
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //public List<Stavka> Stavke { get; set;}
 
 
     }

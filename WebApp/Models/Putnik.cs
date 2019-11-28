@@ -9,8 +9,7 @@ namespace JGSPNSWebApp.Models
 {
     public class Putnik
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    
         public int Id { get; set; }
 
         public string TipPutnika { get; set; }

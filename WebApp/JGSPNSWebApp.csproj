@@ -251,50 +251,15 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CenovniksController.cs" />
+    <Compile Include="Controllers\CenovnikStavkasController.cs" />
     <Compile Include="Controllers\LinijasController.cs" />
     <Compile Include="Controllers\PolazaksController.cs" />
     <Compile Include="Controllers\RedVoznjesController.cs" />
     <Compile Include="Controllers\StanicasController.cs" />
     <Compile Include="Controllers\StavkasController.cs" />
-    <Compile Include="Migrations\201908301138488_all.cs" />
-    <Compile Include="Migrations\201908301138488_all.Designer.cs">
-      <DependentUpon>201908301138488_all.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908301701590_polazak.cs" />
-    <Compile Include="Migrations\201908301701590_polazak.Designer.cs">
-      <DependentUpon>201908301701590_polazak.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908301918489_stanica_izmena.cs" />
-    <Compile Include="Migrations\201908301918489_stanica_izmena.Designer.cs">
-      <DependentUpon>201908301918489_stanica_izmena.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908302330224_linija_izmena.cs" />
-    <Compile Include="Migrations\201908302330224_linija_izmena.Designer.cs">
-      <DependentUpon>201908302330224_linija_izmena.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908311506281_polazak1.cs" />
-    <Compile Include="Migrations\201908311506281_polazak1.Designer.cs">
-      <DependentUpon>201908311506281_polazak1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908311927045_redVoznje_izmena.cs" />
-    <Compile Include="Migrations\201908311927045_redVoznje_izmena.Designer.cs">
-      <DependentUpon>201908311927045_redVoznje_izmena.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908311938491_redVoznje_izmena1.cs" />
-    <Compile Include="Migrations\201908311938491_redVoznje_izmena1.Designer.cs">
-      <DependentUpon>201908311938491_redVoznje_izmena1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909021119289_izmena_modela.cs" />
-    <Compile Include="Migrations\201909021119289_izmena_modela.Designer.cs">
-      <DependentUpon>201909021119289_izmena_modela.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909021130105_korisnik_izmena.cs" />
-    <Compile Include="Migrations\201909021130105_korisnik_izmena.Designer.cs">
-      <DependentUpon>201909021130105_korisnik_izmena.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911221945578_linija_izmena1.cs" />
-    <Compile Include="Migrations\201911221945578_linija_izmena1.Designer.cs">
-      <DependentUpon>201911221945578_linija_izmena1.cs</DependentUpon>
+    <Compile Include="Migrations\201911270102262_all.cs" />
+    <Compile Include="Migrations\201911270102262_all.Designer.cs">
+      <DependentUpon>201911270102262_all.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\CenovnikStavka.cs" />
     <Compile Include="Models\Email.cs" />
@@ -442,35 +407,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201908301138488_all.resx">
-      <DependentUpon>201908301138488_all.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908301701590_polazak.resx">
-      <DependentUpon>201908301701590_polazak.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908301918489_stanica_izmena.resx">
-      <DependentUpon>201908301918489_stanica_izmena.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908302330224_linija_izmena.resx">
-      <DependentUpon>201908302330224_linija_izmena.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908311506281_polazak1.resx">
-      <DependentUpon>201908311506281_polazak1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908311927045_redVoznje_izmena.resx">
-      <DependentUpon>201908311927045_redVoznje_izmena.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908311938491_redVoznje_izmena1.resx">
-      <DependentUpon>201908311938491_redVoznje_izmena1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909021119289_izmena_modela.resx">
-      <DependentUpon>201909021119289_izmena_modela.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909021130105_korisnik_izmena.resx">
-      <DependentUpon>201909021130105_korisnik_izmena.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911221945578_linija_izmena1.resx">
-      <DependentUpon>201911221945578_linija_izmena1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911270102262_all.resx">
+      <DependentUpon>201911270102262_all.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

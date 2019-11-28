@@ -65,8 +65,19 @@
                                 <td>{{cenovnik.VaziOd}}</td>
                                 <td>{{cenovnik.VaziDo}}</td>
                                 <td>{{cenovnik.Aktivan}}</td>
-                                <td>{{cenovnik.Aktivan}}</td>
-                                <td>{{cenovnik.Aktivan}}</td>
+                                <td>                                       
+                                      <ul *ngFor="let stavka of cenovnik.Stavke">
+                                            <li >  {{stavka.Naziv}}</li>
+                                      </ul>   
+                                  
+                                       
+                                </td>
+                                <td>
+                                        <ul *ngFor="let stavka of cenovnik.Stavke">
+                                                <li>  {{stavka.Cena}} Din.</li>
+                                          </ul>   
+                                       
+                                </td>
                             </tr>
                         </tbody>
                         <tbody *ngIf="clicked==='Stavke'">

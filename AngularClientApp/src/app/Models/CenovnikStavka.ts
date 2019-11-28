@@ -1,6 +1,9 @@
+import { Cenovnik } from './Cenovnik'
+import { Stavka } from './Stavka'
 
 export class CenovnikStavka{
-    public Cenovnik_Id: number
-    public Stavka_Id: number
+    public Id:number
+    public Cenovnik: Cenovnik
+    public Stavka: Stavka
 
 }

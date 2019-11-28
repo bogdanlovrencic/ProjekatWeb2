@@ -9,8 +9,7 @@ namespace JGSPNSWebApp.Models
 {
     public class Stanica
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+     
         public int Id { get; set; }
 
         public string Naziv { get; set; }

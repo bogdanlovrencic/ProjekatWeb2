@@ -19,19 +19,6 @@ namespace JGSPNSWebApp.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Stavkas",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Naziv = c.String(),
-                        Cena = c.Double(nullable: false),
-                        Cenovnik_Id = c.Int(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Cenovniks", t => t.Cenovnik_Id)
-                .Index(t => t.Cenovnik_Id);
-            
-            CreateTable(
                 "dbo.CenovnikStavkas",
                 c => new
                     {
@@ -44,6 +31,17 @@ namespace JGSPNSWebApp.Migrations
                 .ForeignKey("dbo.Stavkas", t => t.Stavka_Id, cascadeDelete: true)
                 .Index(t => t.Cenovnik_Id)
                 .Index(t => t.Stavka_Id);
+            
+            CreateTable(
+                "dbo.Stavkas",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Naziv = c.String(),
+                        Cena = c.Double(nullable: false),
+                        Aktivna = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Kartas",
@@ -72,6 +70,7 @@ namespace JGSPNSWebApp.Migrations
                         Uloga = c.String(),
                         Status = c.String(),
                         ImageUrl = c.String(),
+                        Aktivan = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Email);
             
@@ -80,7 +79,9 @@ namespace JGSPNSWebApp.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        RedniBroj = c.String(),
+                        Naziv = c.String(),
+                        TipLinije = c.Int(nullable: false),
+                        Aktivna = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -91,10 +92,25 @@ namespace JGSPNSWebApp.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Naziv = c.String(),
                         Adresa = c.String(),
-                        KordinataX = c.String(),
-                        KordinataY = c.String(),
+                        Lat = c.Double(nullable: false),
+                        Lon = c.Double(nullable: false),
+                        Aktivna = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Polazaks",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Vreme = c.String(),
+                        TipDana = c.String(),
+                        LinijaId = c.Int(nullable: false),
+                        Active = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Linijas", t => t.LinijaId, cascadeDelete: true)
+                .Index(t => t.LinijaId);
             
             CreateTable(
                 "dbo.Putniks",
@@ -113,15 +129,14 @@ namespace JGSPNSWebApp.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Polazak = c.DateTime(nullable: false),
-                        IzabraniRedaVoznje = c.String(),
+                        LinijaId = c.Int(nullable: false),
+                        IzabraniRedVoznje = c.String(),
                         IzabranTipDana = c.String(),
                         Aktivan = c.Boolean(nullable: false),
-                        IzabranaLinija_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Linijas", t => t.IzabranaLinija_Id)
-                .Index(t => t.IzabranaLinija_Id);
+                .ForeignKey("dbo.Linijas", t => t.LinijaId, cascadeDelete: true)
+                .Index(t => t.LinijaId);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -223,14 +238,14 @@ namespace JGSPNSWebApp.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.RedVoznjes", "IzabranaLinija_Id", "dbo.Linijas");
+            DropForeignKey("dbo.RedVoznjes", "LinijaId", "dbo.Linijas");
             DropForeignKey("dbo.Putniks", "Korisnik_Email", "dbo.Korisniks");
+            DropForeignKey("dbo.Polazaks", "LinijaId", "dbo.Linijas");
             DropForeignKey("dbo.StanicaLinijas", "Linija_Id", "dbo.Linijas");
             DropForeignKey("dbo.StanicaLinijas", "Stanica_Id", "dbo.Stanicas");
             DropForeignKey("dbo.Kartas", "Kupac_Email", "dbo.Korisniks");
             DropForeignKey("dbo.CenovnikStavkas", "Stavka_Id", "dbo.Stavkas");
             DropForeignKey("dbo.CenovnikStavkas", "Cenovnik_Id", "dbo.Cenovniks");
-            DropForeignKey("dbo.Stavkas", "Cenovnik_Id", "dbo.Cenovniks");
             DropIndex("dbo.StanicaLinijas", new[] { "Linija_Id" });
             DropIndex("dbo.StanicaLinijas", new[] { "Stanica_Id" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
@@ -239,12 +254,12 @@ namespace JGSPNSWebApp.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropIndex("dbo.RedVoznjes", new[] { "IzabranaLinija_Id" });
+            DropIndex("dbo.RedVoznjes", new[] { "LinijaId" });
             DropIndex("dbo.Putniks", new[] { "Korisnik_Email" });
+            DropIndex("dbo.Polazaks", new[] { "LinijaId" });
             DropIndex("dbo.Kartas", new[] { "Kupac_Email" });
             DropIndex("dbo.CenovnikStavkas", new[] { "Stavka_Id" });
             DropIndex("dbo.CenovnikStavkas", new[] { "Cenovnik_Id" });
-            DropIndex("dbo.Stavkas", new[] { "Cenovnik_Id" });
             DropTable("dbo.StanicaLinijas");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
@@ -254,12 +269,13 @@ namespace JGSPNSWebApp.Migrations
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.RedVoznjes");
             DropTable("dbo.Putniks");
+            DropTable("dbo.Polazaks");
             DropTable("dbo.Stanicas");
             DropTable("dbo.Linijas");
             DropTable("dbo.Korisniks");
             DropTable("dbo.Kartas");
-            DropTable("dbo.CenovnikStavkas");
             DropTable("dbo.Stavkas");
+            DropTable("dbo.CenovnikStavkas");
             DropTable("dbo.Cenovniks");
         }
     }

@@ -9,8 +9,7 @@ namespace JGSPNSWebApp.Models
 {
     public class Polazak
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+     
         public int Id { get; set; }
 
         public string Vreme { get; set; }

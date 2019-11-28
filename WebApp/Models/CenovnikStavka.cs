@@ -9,8 +9,7 @@ namespace JGSPNSWebApp.Models
 {
     public class CenovnikStavka
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+     
         public int Id { get; set; }
 
         [ForeignKey("Cenovnik")]

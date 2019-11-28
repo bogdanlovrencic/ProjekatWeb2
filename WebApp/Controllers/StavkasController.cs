@@ -29,8 +29,8 @@ namespace JGSPNSWebApp.Controllers
         [ResponseType(typeof(Stavka))]
         public IHttpActionResult GetAllForType(string naziv)
         {
-          
-            return Ok(db.Stavke.Where(x=>x.Naziv == naziv).ToList());
+      
+            return Ok(db.Stavke.Where(x=>x.Naziv == naziv && x.Aktivna).ToList());
         }
 
         // GET: api/Stavkas/5

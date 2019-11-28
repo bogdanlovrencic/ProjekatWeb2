@@ -22,9 +22,53 @@ namespace JGSPNSWebApp.Controllers
         // GET: api/Cenovniks
         public IQueryable<Cenovnik> GetCenovnici()
         {
-            return db.Cenovnici.Where(cen=>cen.Aktivan);
+            return db.Cenovnici.Where(cen => cen.Aktivan);
         }
-      
+
+        [Route("Cenovnici")]
+        [HttpGet]
+        [ResponseType(typeof(CenovnikPrikaz))]
+        public IHttpActionResult  GetAllCenovnici()
+        {
+            List<CenovnikStavka> cs = db.CenovnikStavke.Where(x=>x.Cenovnik.Aktivan).ToList();
+
+            List<Cenovnik> cenovnici = db.Cenovnici.Where(cen => cen.Aktivan).ToList();
+
+            List<Stavka> stavke = db.Stavke.Where(s => s.Aktivna).ToList();
+
+            List<CenovnikPrikaz> cenovniciZaprikaz = new List<CenovnikPrikaz>();
+            CenovnikPrikaz cp = new CenovnikPrikaz();
+            cp.Stavke = new List<Stavka>();
+
+
+            foreach (var c in cenovnici)
+            {         
+                foreach (var s in stavke)
+                {
+                    foreach (var cst in cs)
+                    {
+                        if (cst.Cenovnik_Id == c.Id && cst.Stavka_Id == s.Id)
+                        {                     
+                            cp.Stavke.Add(s);
+                            break;                         
+                        }
+
+                    }
+
+                }
+
+                cp.Id = c.Id;
+                cp.VaziOd = c.VaziOd;
+                cp.VaziDo = c.VaziDo;
+                cp.Aktivan = c.Aktivan;
+                cenovniciZaprikaz.Add(cp);
+                cp = new CenovnikPrikaz();
+                cp.Stavke = new List<Stavka>();
+            }
+
+
+            return Ok(cenovniciZaprikaz);
+        }
 
         // GET: api/Cenovniks/5
         [ResponseType(typeof(Cenovnik))]
@@ -41,7 +85,7 @@ namespace JGSPNSWebApp.Controllers
 
         // PUT: api/Cenovniks/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutCenovnik(int id, Cenovnik cenovnik)
+        public IHttpActionResult PutCenovnik(int id, CenovnikPrikaz cenovnik)
         {
             if (!ModelState.IsValid)
             {
@@ -53,7 +97,37 @@ namespace JGSPNSWebApp.Controllers
                 return BadRequest();
             }
 
-            db.Entry(cenovnik).State = EntityState.Modified;
+            var stariCenovnik = db.Cenovnici.Find(id);
+            var stariCenStavki = db.CenovnikStavke.Where(x=>x.Cenovnik_Id == id).ToList();
+
+            Cenovnik noviCenovnik = new Cenovnik();
+            noviCenovnik.Id = cenovnik.Id;
+            noviCenovnik.VaziOd = cenovnik.VaziOd;
+            noviCenovnik.VaziDo = cenovnik.VaziDo;
+            noviCenovnik.Aktivan = cenovnik.Aktivan;
+
+            CenovnikStavka noviCenStavki = new CenovnikStavka();
+
+          
+            foreach(var s in cenovnik.Stavke)
+            {
+                foreach (var cs in stariCenStavki)
+                {
+                    if (cs.Cenovnik_Id == stariCenovnik.Id && cs.Stavka_Id == s.Id)
+                    {
+                        noviCenStavki.Id = cs.Id;
+                        noviCenStavki.Cenovnik_Id = noviCenovnik.Id;
+                        noviCenStavki.Stavka_Id = s.Id;
+
+                        db.Entry(noviCenStavki).State = EntityState.Modified;
+                        db.SaveChanges();
+                        break;
+                    }
+                }
+            }
+
+
+            db.Entry(noviCenovnik).State = EntityState.Modified;
 
             try
             {
@@ -87,13 +161,13 @@ namespace JGSPNSWebApp.Controllers
             noviCenovnik.VaziOd = cenovnik.VaziOd;
             noviCenovnik.VaziDo = cenovnik.VaziDo;
             noviCenovnik.Aktivan = cenovnik.Aktivan;
-            noviCenovnik.Stavke = new List<Stavka>();
+            //noviCenovnik.Stavke = new List<Stavka>();
 
           
-            foreach(int s in cenovnik.Stavke)
-            {
-                noviCenovnik.Stavke.Add(db.Stavke.Find(s));
-            }
+            //foreach(int s in cenovnik.Stavke)
+            //{
+            //    noviCenovnik.Stavke.Add(db.Stavke.Find(s));
+            //}
 
             db.Cenovnici.Add(noviCenovnik);
 
@@ -104,9 +178,9 @@ namespace JGSPNSWebApp.Controllers
             cs.Cenovnik_Id = noviCenovnik.Id;
 
 
-            foreach (var stavka in noviCenovnik.Stavke)
+            foreach (var id in cenovnik.Stavke)
             {
-                cs.Stavka_Id = stavka.Id;
+                cs.Stavka_Id = id;
                 db.CenovnikStavke.Add(cs);
                 db.SaveChanges();
             }
@@ -176,6 +250,8 @@ namespace JGSPNSWebApp.Controllers
         public DateTime VaziOd { get; set; }
         public DateTime VaziDo { get; set; }
         public bool Aktivan { get; set; }
+
+        public List<Stavka> Stavke { get; set; }
 
     }
 }

@@ -8,7 +8,9 @@ import { Stavka } from '../Models/Stavka';
 import { Linija } from '../Models/linija';
 import { Polazak, PolazakModel } from '../Models/polazak';
 import { RedVoznje } from '../Models/RedVoznje';
-import { CenovnikPrikaz } from '../Models/Cenovnik';
+import { CenovnikPrikaz, Cenovnik } from '../Models/Cenovnik';
+import { CenovnikStavka } from '../Models/CenovnikStavka';
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
 @Component({
   selector: 'app-admin-management',
@@ -24,7 +26,7 @@ export class AdminManagementComponent implements OnInit {
   listaStavki:Stavka[];
   listaLinija: Linija[];
   listaPolazaka:PolazakModel[];
-
+  listaStavkeCenovnika:Stavka[];
  
   constructor(private tableData:GetDataService, private router:Router) { }
 
@@ -32,14 +34,13 @@ export class AdminManagementComponent implements OnInit {
     this.tableData.message.subscribe(msg => this.message = msg);
   }
 
-
   getTable(tableName:string){
     this.tableData.getTableDataService(tableName).subscribe(res =>{ 
       //let info = JSON.parse(JSON.stringify(res));
       if(tableName ==="Cenovnici")
       {
         //let info = JSON.parse(JSON.stringify(res));
-        this.listaCenovnika = res;   
+        this.listaCenovnika = res;          
         this.tableData.changeCenovnici(this.listaCenovnika);
       }
       else if(tableName ==='Stavke')
@@ -47,7 +48,6 @@ export class AdminManagementComponent implements OnInit {
           //let info=JSON.parse(JSON.stringify(res));
           this.listaStavki=res;
           this.tableData.changeStavke(this.listaStavki);
-
       }
       else if(tableName === "Linije")
       {

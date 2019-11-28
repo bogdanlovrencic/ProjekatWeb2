@@ -7,7 +7,12 @@
         <div class="form-group">
               <label for="firstName" class="col-sm-3 control-label" >Naziv:</label>
             <div class="col-sm-5">
-                <input type="text"  class="form-control" name="Naziv" ngModel required #Naziv="ngModel" autofocus>
+                <select class="form-control" ngModel  #Naziv="ngModel" name="Naziv">
+                    <option value="Vremenska karta">Vremenska karta</option>
+                    <option value="Dnevna karta">Dnevna karta</option>
+                    <option value="Mesecna karta">Mesecna karta</option>
+                    <option value="Godisnja karta">Godisnja karta</option>
+                </select>
             </div>
         </div>
         <div class="form-group">

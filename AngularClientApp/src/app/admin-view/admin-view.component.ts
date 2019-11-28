@@ -8,6 +8,8 @@ import { CenovnikPrikaz, Cenovnik } from '../Models/Cenovnik';
 import { Stavka } from '../Models/Stavka';
 import { Polazak, PolazakModel } from '../Models/polazak';
 import { CenovnikStavka } from '../Models/CenovnikStavka';
+import { forEach } from '@angular/router/src/utils/collection';
+import { componentRefresh } from '@angular/core/src/render3/instructions';
 
 @Component({
   selector: 'app-admin-view',
@@ -21,11 +23,12 @@ export class AdminViewComponent implements OnInit {
   clicked="Cenovnici";
   selected = false;
   listaCenovnika:CenovnikPrikaz[];
-  listaCenovnikStavka:CenovnikStavka[];
+  //listaCenovnikStavka:CenovnikStavka[];
   listaKontrolora:Kontrolor[];
   listaPolazaka:PolazakModel[];
   listaRedaVoznji:RedVoznje[];
   listaStavki:Stavka[];
+  listaStavkeCenovnika:Stavka[];
 
   
 
@@ -36,6 +39,8 @@ export class AdminViewComponent implements OnInit {
     this.dataService.kontrolori.subscribe(msg => { this.listaKontrolora = msg;});
     this.dataService.polasci.subscribe(msg=>{ this.listaPolazaka=msg});
     this.dataService.timetable.subscribe(msg => { this.listaRedaVoznji = msg;});
+  
+    
   }
 
   
