@@ -10,6 +10,8 @@ import { Polazak, PolazakModel } from '../Models/polazak';
 import { CenovnikStavka } from '../Models/CenovnikStavka';
 import { forEach } from '@angular/router/src/utils/collection';
 import { componentRefresh } from '@angular/core/src/render3/instructions';
+import { Router, NavigationExtras } from '@angular/router';
+import { AdminService } from '../admin.service';
 
 @Component({
   selector: 'app-admin-view',
@@ -18,7 +20,7 @@ import { componentRefresh } from '@angular/core/src/render3/instructions';
 })
 export class AdminViewComponent implements OnInit {
 
-  constructor(private dataService:GetDataService) { }
+  constructor(private dataService:GetDataService,private router:Router,private adminService: AdminService) { }
 
   clicked="Cenovnici";
   selected = false;
@@ -39,47 +41,70 @@ export class AdminViewComponent implements OnInit {
     this.dataService.kontrolori.subscribe(msg => { this.listaKontrolora = msg;});
     this.dataService.polasci.subscribe(msg=>{ this.listaPolazaka=msg});
     this.dataService.timetable.subscribe(msg => { this.listaRedaVoznji = msg;});
-  
     
   }
 
-  
 
   onCenovnikUpdateClick(cenovnik:CenovnikPrikaz)
   {
-    this.dataService.izmeniCenovnik(cenovnik).subscribe(
-      res=>{
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+          "cenovnik": JSON.stringify(cenovnik)
+      }
+    };
 
-      },error=>{console.log(error)});
+    this.router.navigate(['CenovnikIzmena/cenovnik'],navigationExtras)
+  
   }
 
   onStavkaUpdateClick(stavka:Stavka)
   {
-      this.dataService.izmeniStavku(stavka).subscribe(
-        res=>{
+    let navigationExtras:NavigationExtras={
+      queryParams:{
+        "stavka": JSON.stringify(stavka)
+      }
+    }
 
-        },error=>{console.log(error)});
+    this.router.navigate(['StavkaIzmena/stavka'],navigationExtras)
+
   }
 
   onKontrolorUpdateClick(kontrolor:Kontrolor)
   {
-      this.dataService.izmeniKontrolora(kontrolor).subscribe(res=>{
+      let navigationExtras:NavigationExtras={
+        queryParams:{
+          "kontrolor": JSON.stringify(kontrolor)
+        }
+      }
 
-      },error=>{console.log(error)});
+      this.router.navigate(['KontrolorIzmena/kontrolor'],navigationExtras)
+     
   }
 
   onPolazakUpdateClick(polazak:PolazakModel)
   {
-    this.dataService.izmeniPolazak(polazak).subscribe(res=>{
 
-    },error=>{console.log(error)});
+    let navigationExtras:NavigationExtras={
+      queryParams:{
+        "polazak": JSON.stringify(polazak)
+      }
+    }
+
+    this.router.navigate(['PolazakIzmena/polazak'],navigationExtras)
+   
   }
 
   onRedVoznjeUpdateClick(redVoznje:RedVoznje)
   {
-    this.dataService.izmeniRedVoznje(redVoznje).subscribe(res=>{
+    let navigationExtras:NavigationExtras={
+      queryParams:{
+        "redVoznje": JSON.stringify(redVoznje)
+      }
+    }
 
-    },error=>{console.log(error)});
+    this.router.navigate(['RedVoznjeIzmena/redVoznje'],navigationExtras)
+    
+  
   }
 
 

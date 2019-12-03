@@ -31,6 +31,7 @@ export class AddStavkaComponent implements OnInit {
         return;
     }
 
+    f.value.Aktivna=true
     this.adminService.addStavka(f).subscribe(res=>{
       this.router.navigate(['/management']);
     },

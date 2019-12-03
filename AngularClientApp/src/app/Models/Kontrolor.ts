@@ -11,5 +11,6 @@ export class Kontrolor{
     public Verifikovan: boolean;
     public Status: string;
     public Uloga: string;
+    public Aktivan:boolean;
     
 }

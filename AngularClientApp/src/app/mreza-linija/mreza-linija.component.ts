@@ -5,7 +5,7 @@ import { DecodeJwtDataService } from '../decode-jwt-data.service';
 import { AdminService } from '../admin.service';
 import { RedVoznjeService } from '../red-voznje.service';
 import { LinijeService } from '../linije.service';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { componentRefresh, refreshDescendantViews } from '@angular/core/src/render3/instructions';
 
 @Component({
@@ -23,6 +23,8 @@ export class MrezaLinijaComponent implements OnInit {
   selektovanaStanica : Stanica;
   selektovanaLinija:Linija;
   sveLinije: Linija[];
+  buttonDisabled: boolean
+  buttonPrikaziDisabled:boolean
 
 
   ngOnInit() {
@@ -32,10 +34,12 @@ export class MrezaLinijaComponent implements OnInit {
       this.sveLinije = res;    
     }); 
     this.rola = this.jwt.getRoleFromToken();
+  
   }  
 
-  onClickPrikazi(naziv)
+  onClickPrikazi(naziv:string)
   {
+  
     this.linijeService.getLinija(naziv).subscribe(res => {
         console.log(res);
         this.linija = new Linija(res.Naziv, res.Stanice);
@@ -43,6 +47,24 @@ export class MrezaLinijaComponent implements OnInit {
     },
     error=>{console.log(error)}
     )
+  }
+
+  onUpdateLinijaClicked(naziv)
+  {
+
+    this.linijeService.getLinija(naziv).subscribe(res => {
+      console.log(res);
+      this.linija = res; 
+
+      let navigationExtras:NavigationExtras={
+        queryParams:{
+          "linija": JSON.stringify(this.linija)
+        }
+      }
+
+      this.router.navigate(['LinijaIzmena/linija'],navigationExtras)
+    },
+      error=>{console.log(error)})    
   }
 
   OnDeleteClicked(){
@@ -64,6 +86,11 @@ export class MrezaLinijaComponent implements OnInit {
   onLineClick(linija){
     this.selektovanaLinija = linija;
     console.log(this.selektovanaLinija);
+  }
+
+  onChange(event){
+    this.buttonDisabled = true
+    this.buttonPrikaziDisabled=true
   }
 
 }

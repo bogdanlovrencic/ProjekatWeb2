@@ -472,6 +472,7 @@ namespace JGSPNSWebApp.Controllers
                         Uloga = uloga,
                         Aktivan = true
                         
+                        
 
                     };
 

@@ -1054,3 +1054,4 @@ D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.dll
 D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.pdb
 D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.Migrations.all.resources
 D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.csproj.GenerateResource.cache
+D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.csprojAssemblyReference.cache

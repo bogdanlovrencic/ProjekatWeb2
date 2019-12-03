@@ -5,9 +5,12 @@ import { Linija } from './Models/linija';
 import { RedVoznjeBindingModel } from './Models/RedVoznjeBindingModel';
 import { Observable } from 'rxjs';
 import { CenaStavke } from './Models/cenaStavke';
-import { Cenovnik } from './Models/Cenovnik';
-import { Polazak } from './Models/polazak';
+import { Cenovnik, CenovnikPrikaz } from './Models/Cenovnik';
+import { Polazak, PolazakModel } from './Models/polazak';
 import { Stanica } from './Models/stanica';
+import { Stavka } from './Models/Stavka';
+import { Kontrolor } from './Models/Kontrolor';
+import { RedVoznje } from './Models/RedVoznje';
 
 @Injectable({
   providedIn: 'root'
@@ -44,8 +47,38 @@ export class AdminService {
     return this.http.post(this.redVoznjeUrl,redVoznje);
   }
 
-  addDeparture(polazak: Polazak) {
+  addPolazak(polazak: Polazak) {
       return this.http.post(this.polazakUrl,polazak)
+  }
+
+  izmeniCenovnik(cenovnik: CenovnikPrikaz)
+  {
+      return this.http.put('http://localhost:52295/api/Cenovniks?id='+cenovnik.Id,cenovnik);
+  }
+
+  izmeniStavku(stavka:Stavka)
+  {
+      return this.http.put('http://localhost:52295/api/Stavkas?id='+stavka.Id,stavka);
+  }
+
+  izmeniKontrolora(kontrolor: Kontrolor) 
+  {
+      return this.http.put('http://localhost:52295/api/Korisniks?id='+kontrolor.Email,kontrolor);  
+  }
+
+  izmeniPolazak(polazak: PolazakModel)
+  {
+      return this.http.put('http://localhost:52295/api/Polazaks?id='+polazak.Id,polazak);  
+  }
+
+  izmeniRedVoznje(redVoznje: RedVoznje)
+  {
+     return this.http.put('http://localhost:52295/api/RedVoznjes?id='+redVoznje.Id,redVoznje);
+  }
+
+  izmeniLiniju(linija:Linija)
+  {
+     return this.http.put('http://localhost:52295/api/Linijas?id='+linija.Id,linija)
   }
 
   removeLinija(linija: Linija) {

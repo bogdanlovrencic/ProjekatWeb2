@@ -60,6 +60,7 @@ export class AddKontrolorComponent implements OnInit {
       korisnik.Adresa=this.registrationForm.controls.adresa.value;
       korisnik.TipPutnika=this.registrationForm.controls.tipPutnika.value;
       korisnik.ConfirmPassword=this.registrationForm.controls.confPassword.value;
+      
 
       this.registerService.RegisterUser(korisnik).subscribe(
           (res)=> {     

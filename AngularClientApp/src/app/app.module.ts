@@ -28,6 +28,12 @@ import { AddRedVoznjeComponent } from './add-red-voznje/add-red-voznje.component
 import { AddStavkaComponent } from './add-stavka/add-stavka.component';
 import { PolazakComponent } from './polazak/polazak.component';
 import { AddPolazakComponent } from './add-polazak/add-polazak.component';
+import { UpdateCenovnikComponent } from './update-cenovnik/update-cenovnik.component';
+import { UpdateStavkaComponent } from './update-stavka/update-stavka.component';
+import { UpdateKontrolorComponent } from './update-kontrolor/update-kontrolor.component';
+import { UpdateLinijaComponent } from './update-linija/update-linija.component';
+import { UpdatePolazakComponent } from './update-polazak/update-polazak.component';
+import { UpdateRedVoznjeComponent } from './update-red-voznje/update-red-voznje.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +57,12 @@ import { AddPolazakComponent } from './add-polazak/add-polazak.component';
     AddStavkaComponent,
     PolazakComponent,
     AddPolazakComponent,
+    UpdateCenovnikComponent,
+    UpdateStavkaComponent,
+    UpdateKontrolorComponent,
+    UpdateLinijaComponent,
+    UpdatePolazakComponent,
+    UpdateRedVoznjeComponent,
   ],
   imports: [
     BrowserModule,

@@ -55,6 +55,27 @@ namespace JGSPNSWebApp.Controllers
                 return BadRequest();
             }
 
+   
+           
+            foreach(Stanica s in linija.Stanice)
+            {
+                if(!s.Aktivna)
+                {
+                    s.Aktivna = true;
+                    s.Linije = new List<Linija>();    
+                    db.Entry(s).State = EntityState.Added;
+                    db.SaveChanges();
+
+                }
+                else
+                {
+                    db.Entry(s).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+
+           
+   
             db.Entry(linija).State = EntityState.Modified;
 
             try
@@ -149,6 +170,18 @@ namespace JGSPNSWebApp.Controllers
         private bool LinijaExists(int id)
         {
             return db.Linije.Count(e => e.Id == id) > 0;
+        }
+    }
+
+    public class StanicaLinija
+    {
+        public int Stanica_Id;
+        public int Linija_Id;
+
+        public StanicaLinija(int stanicaId,int linijaId)
+        {
+            Stanica_Id = stanicaId;
+            Linija_Id = linijaId;
         }
     }
 }

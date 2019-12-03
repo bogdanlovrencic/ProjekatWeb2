@@ -17,9 +17,6 @@ const httpOptions = {
 })
 export class RedVoznjeService {
  
- 
-
-  //private redVoznjeUrl='http://localhost:52295/api/RedVoznje/PrikaziRedVoznje';
 
   private linijeUrl='http://localhost:52295/api/RedVoznjes/ucitajLinije';
   public polasci = new  Subject<Polazak[]>()

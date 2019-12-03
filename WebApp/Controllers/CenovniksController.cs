@@ -38,6 +38,8 @@ namespace JGSPNSWebApp.Controllers
 
             List<CenovnikPrikaz> cenovniciZaprikaz = new List<CenovnikPrikaz>();
             CenovnikPrikaz cp = new CenovnikPrikaz();
+            List<Stavka> sortiraneStavke = new List<Stavka>();
+
             cp.Stavke = new List<Stavka>();
 
 
@@ -61,7 +63,10 @@ namespace JGSPNSWebApp.Controllers
                 cp.VaziOd = c.VaziOd;
                 cp.VaziDo = c.VaziDo;
                 cp.Aktivan = c.Aktivan;
+                sortiraneStavke = cp.Stavke.OrderBy(x => x.Cena).ToList();
+                cp.Stavke = sortiraneStavke;
                 cenovniciZaprikaz.Add(cp);
+                
                 cp = new CenovnikPrikaz();
                 cp.Stavke = new List<Stavka>();
             }
@@ -85,7 +90,7 @@ namespace JGSPNSWebApp.Controllers
 
         // PUT: api/Cenovniks/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutCenovnik(int id, CenovnikPrikaz cenovnik)
+        public IHttpActionResult PutCenovnik(int id, Cenovniks cenovnik)
         {
             if (!ModelState.IsValid)
             {
@@ -109,17 +114,25 @@ namespace JGSPNSWebApp.Controllers
             CenovnikStavka noviCenStavki = new CenovnikStavka();
 
           
-            foreach(var s in cenovnik.Stavke)
+            foreach(var IDstavke in cenovnik.Stavke)
             {
                 foreach (var cs in stariCenStavki)
                 {
-                    if (cs.Cenovnik_Id == stariCenovnik.Id && cs.Stavka_Id == s.Id)
+                    if (cs.Cenovnik_Id == stariCenovnik.Id && cs.Stavka_Id != IDstavke)
                     {
-                        noviCenStavki.Id = cs.Id;
-                        noviCenStavki.Cenovnik_Id = noviCenovnik.Id;
-                        noviCenStavki.Stavka_Id = s.Id;
 
+                        db.Entry(stariCenovnik).State = EntityState.Detached;
+                        db.SaveChanges();
+
+                        noviCenStavki.Id = cs.Id;
+                        noviCenStavki.Cenovnik=noviCenovnik;
+                        noviCenStavki.Stavka=db.Stavke.Find(IDstavke);
+                        noviCenStavki.Cenovnik_Id = noviCenovnik.Id;
+                        noviCenStavki.Stavka_Id = IDstavke;
+
+                   
                         db.Entry(noviCenStavki).State = EntityState.Modified;
+                       
                         db.SaveChanges();
                         break;
                     }
@@ -252,6 +265,17 @@ namespace JGSPNSWebApp.Controllers
         public bool Aktivan { get; set; }
 
         public List<Stavka> Stavke { get; set; }
+
+    }
+
+    public class Cenovniks
+    {
+        public int Id { get; set; }
+        public DateTime VaziOd { get; set; }
+        public DateTime VaziDo { get; set; }
+        public bool Aktivan { get; set; }
+
+        public List<int> Stavke { get; set; }
 
     }
 }

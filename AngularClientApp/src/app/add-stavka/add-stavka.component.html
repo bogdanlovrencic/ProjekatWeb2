@@ -21,6 +21,8 @@
                 <input type="number"  class="form-control" name="Cena" ngModel required #Cena="ngModel" autofocus>
             </div>
         </div>
+
+        <input type="checkbox" hidden name="Aktivna" ngModel #Aktivna="ngModel">
         <button  type="submit" class="btn btn-primary">Dodaj</button>
      
         <hr *ngIf="validationMessage !== ''">

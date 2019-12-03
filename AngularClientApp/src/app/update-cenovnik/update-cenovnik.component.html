@@ -1,0 +1,63 @@
+<div class="container">
+  <h3>Izmena cenovnika</h3>
+  <hr>
+<form [formGroup]="cenovnikForm" (submit)="onSubmit()" class="form-horizontal">
+<div class="form-group">
+    <div class="form-group">   
+          <label for="From" class="col-sm-2">Vazi od: </label>
+        <div class="col-sm-2"> 
+          <input type="date" id="VaziOd" formControlName="VaziOd" class="form-control">
+        </div> 
+    </div>
+    <div class="form-group">
+      <label for="To" class="col-sm-2">Vazi do: </label>
+      <div class="col-sm-2">
+        <input type="date" id="VaziDo" formControlName="VaziDo" class="form-control">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="HourId" class="col-sm-2">Cena vremenske karte: </label>
+      <div class="col-sm-2">
+          <select  formControlName="HourId" class="form-control" >
+              <option *ngFor="let item of hourItems" value={{item.Id}}>{{item.Cena}}</option>
+          </select>
+      </div>   
+    </div>
+    <div class="form-group">
+      <label for="DayId" class="col-sm-2">Cena dnevne karte: </label>
+      <div class="col-sm-2">
+          <select  formControlName="DayId" class="form-control" >
+              <option  *ngFor="let item of dayItems" value={{item.Id}}>{{item.Cena}}</option>
+            </select>
+      </div>  
+    </div>
+    <div class="form-group">
+      <label for="MonthId" class="col-sm-2">Cena mesecne karte: </label>
+      <div class="col-sm-2">
+          <select  formControlName="MonthId" class="form-control" >
+              <option *ngFor="let item of monthItems" value={{item.Id}}>{{item.Cena}}</option>
+            </select>
+      </div>    
+    </div>
+    <div class="form-group">
+      <label for="YearId" class="col-sm-2">Cena godisnje karte: </label>
+      <div class="col-sm-2">
+          <select  formControlName="YearId" class="form-control">
+              <option  *ngFor="let item of yearItems" value={{item.Id}}>{{item.Cena}}</option>
+            </select>
+      </div>
+    </div>
+    <br>
+  </div>
+    <div class="col-sm-3">
+        <button type="submit" class="btn btn-primary">Sacuvaj</button>
+    </div>
+  
+</form>
+<br>
+<hr *ngIf="validationMessage !== ''">
+<h4 class="text-danger" *ngIf="validationMessage !== ''">
+  {{validationMessage}}
+</h4>
+<hr>
+</div>

@@ -1,22 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { RedVoznjeService } from '../red-voznje.service';
 import { Linija } from '../Models/linija';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-
-import { error } from 'util';
-import { AdminService } from '../admin.service';
-import { LineService } from '../line.service';
 import { Polazak, PolazakRequest } from '../Models/polazak';
-import { RedVoznje } from '../Models/RedVoznje';
+import { AdminService } from '../admin.service';
+import { Router } from '@angular/router';
+import { LineService } from '../line.service';
+import { RedVoznjeService } from '../red-voznje.service';
 import { RedVoznjeBindingModel } from '../Models/RedVoznjeBindingModel';
 
 @Component({
-  selector: 'app-add-red-voznje',
-  templateUrl: './add-red-voznje.component.html',
-  styleUrls: ['./add-red-voznje.component.css']
+  selector: 'app-update-red-voznje',
+  templateUrl: './update-red-voznje.component.html',
+  styleUrls: ['./update-red-voznje.component.css']
 })
-export class AddRedVoznjeComponent implements OnInit {
+export class UpdateRedVoznjeComponent implements OnInit {
 
   Linije: Linija[];
   private addRedVoznjeForm : FormGroup;
@@ -56,6 +53,9 @@ export class AddRedVoznjeComponent implements OnInit {
     redVoznje.LinijaId=this.addRedVoznjeForm.controls.izabranaLinija.value;
     // redVoznje.Polasci= this.polasci;
 
+    // this.adminService.izmeniRedVoznje(redVoznje).subscribe(res=>{
+
+    // },error=>{console.log(error)});
 
     this.adminService.addRedVoznje(redVoznje).subscribe(res=>{
           this.addRedVoznjeForm.reset();

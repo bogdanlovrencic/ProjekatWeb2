@@ -82,20 +82,15 @@ namespace JGSPNSWebApp.Controllers
         }
 
         // POST: api/Stavkas
-        public IHttpActionResult PostStavka(StavkaBindingModel stavka)
+        public IHttpActionResult PostStavka(Stavka stavka)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            Stavka s = new Stavka();
-
-            s.Naziv = stavka.Naziv;
-            s.Cena = stavka.Cena;
-            s.Aktivna = true;
-
-            db.Stavke.Add(s);
+         
+            db.Stavke.Add(stavka);
             db.SaveChanges();
 
             return Ok();
@@ -153,5 +148,7 @@ namespace JGSPNSWebApp.Controllers
     {
         public string Naziv { get; set; }
         public double Cena { get; set; }
+
+        public bool Aktivna { get; set; }
     }
 }

@@ -1,52 +1,52 @@
 <body>       
   <div class="container">
-        <h3>Dodavanje kontrolora</h3>
+        <h3>Izmena kontrolora</h3>
         <hr>
-          <form class="form-horizontal" role="form" [formGroup]="registrationForm" >
+          <form class="form-horizontal" role="form" [formGroup]="editForm" >
 
               <div class="form-group">
                       <label for="firstName" class="col-sm-3 control-label" >Ime</label>
                       <div class="col-sm-3">
-                          <input type="text" id="firstName" placeholder="Ime" class="form-control" formControlName="firstName" required>
+                          <input type="text" id="firstName"  class="form-control" formControlName="Ime" required>
                       </div>
                   </div>
                   <div class="form-group">
                       <label for="lastName" class="col-sm-3 control-label">Prezime</label>
                       <div class="col-sm-3">
-                          <input type="text" id="lastName" placeholder="Prezime" class="form-control" formControlName="lastName" autofocus>
+                          <input type="text" id="lastName"  class="form-control" formControlName="Prezime" autofocus>
                       </div>
                   </div>
                   <div class="form-group" >
                       <label for="email" class="col-sm-3 control-label">Email </label>
                       <div class="col-sm-3">
-                          <input type="email" id="email" placeholder="Email" class="form-control"  formControlName="email" required >
+                          <input type="email" id="email"  class="form-control"  formControlName="Email" disabled>
                       </div>
                   </div>
                   <div class="form-group">
                       <label for="password" class="col-sm-3 control-label">Lozinka</label>
                       <div class="col-sm-3">
-                          <input type="password" id="password" placeholder="Lozinka" class="form-control" formControlName="password">
+                          <input type="password" id="password"  class="form-control" formControlName="Lozinka">
                       </div>
                   </div>
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                       <label for="confPassword" class="col-sm-3 control-label">Potvrdi lozinku</label>
                       <div class="col-sm-3">
-                          <input type="password" id="confPassword" placeholder="Potvrdi lozinku" class="form-control" formControlName="confPassword">
+                          <input type="password" id="confPassword"  class="form-control" formControlName="confPassword">
                       </div>
-                  </div>
+                  </div> -->
                   <div class="form-group">
                       <label for="birthDate" class="col-sm-3 control-label">Datum rodjenja</label>
                       <div class="col-sm-3">
-                          <input type="date" id="birthDate" class="form-control" formControlName="birthDate">
+                          <input type="date" id="birthDate" class="form-control" formControlName="DatumRodjenja">
                       </div>
                   </div>                       
                            <div class="form-group">                
                                   <label for="adresa" class="col-sm-3 control-label">Adresa</label>
                               <div class="col-sm-3">
-                                      <input type="text" id="address" placeholder="Adresa" class="form-control" formControlName="adresa">
+                                      <input type="text"   class="form-control" formControlName="Adresa">
                               </div>
                            </div>                        
-                        <div class="form-group" *ngIf="rola!=='Admin'">
+                        <!-- <div class="form-group" *ngIf="rola!=='Admin'">
                                 <label  class="col-sm-3 control-label">Tip putnika </label>
                             <div class="col-sm-3 ">
                                 <select for="TipPutnika" class="form-control"  formControlName="tipPutnika"  [(ngModel)]="TipPutnika">
@@ -55,15 +55,15 @@
                                   <option value="REGULARNI"  selected="selected">Regularni</option>
                                 </select>
                             </div>
-                        </div>                                     
-                      <div class="form-group" *ngIf="TipPutnika!='REGULARNI'">
+                        </div>                                      -->
+                      <!-- <div class="form-group" >
                           <div class="col-sm-9" *ngIf="!isChecked" > 
-                              <input type="file"  accept="image/*" name="image" (change)="onFileSelected($event)" >
+                              <input type="file"  accept="image/*" name="image" (change)="onFileSelected($event)">
                           </div>
                           <div class="col-sm-9">
-                              <input type="checkbox" name="willUploadDocument"  [(ngModel)]="isChecked">Prilozi kasnije<br>
+                              <input type="checkbox" name="willUploadDocument" [(ngModel)]="isChecked">Prilozi kasnije<br>
                           </div>
-                      </div>                                  
+                      </div>                                   -->
                 
                   <hr *ngIf="validationMessage !== ''">
                   <h5 class="text-danger" *ngIf="validationMessage !== ''">

@@ -72,30 +72,7 @@ export class GetDataService {
 
   //IZMENA
 
-  izmeniCenovnik(cenovnik: CenovnikPrikaz)
-  {
-      return this.http.put('http://localhost:52295/api/Cenovniks?id='+cenovnik.Id,cenovnik);
-  }
-
-  izmeniStavku(stavka:Stavka)
-  {
-      return this.http.put('http://localhost:52295/api/Stavkas?id='+stavka.Id,stavka);
-  }
-
-  izmeniKontrolora(kontrolor: Kontrolor) 
-  {
-      return this.http.put('http://localhost:52295/api/Korisniks?id='+kontrolor.Email,kontrolor);  
-  }
-
-  izmeniPolazak(polazak: PolazakModel)
-  {
-      return this.http.put('http://localhost:52295/api/Polazaks?id='+polazak.Id,polazak);  
-  }
-
-  izmeniRedVoznje(redVoznje: RedVoznje)
-  {
-     return this.http.put('http://localhost:52295/api/RedVoznjes?id='+redVoznje.Id,redVoznje);
-  }
+  
 
   //BRISANJE
 
