@@ -7,5 +7,6 @@ export class RedVoznjeBindingModel{
     public LinijaId: number;
     public TipDana: string;
     public TipRedaVoznje: number;
+    public
     
 }

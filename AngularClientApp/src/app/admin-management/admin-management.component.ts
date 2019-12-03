@@ -67,12 +67,12 @@ export class AdminManagementComponent implements OnInit {
         this.listaRedaVoznji = info;
         this.tableData.changeRedoviVoznje(this.listaRedaVoznji);
       }
-      else if(tableName === "Polasci")
-      {
-        let info = JSON.parse(JSON.stringify(res));
-        this.listaPolazaka = info;
-        this.tableData.changePolasci(this.listaPolazaka);
-      }
+      // else if(tableName === "Polasci")
+      // {
+      //   let info = JSON.parse(JSON.stringify(res));
+      //   this.listaPolazaka = info;
+      //   this.tableData.changePolasci(this.listaPolazaka);
+      // }
     });
     console.log('admin');
     this.tableData.changeMessage(tableName);

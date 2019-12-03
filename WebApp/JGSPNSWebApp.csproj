@@ -253,13 +253,20 @@
     <Compile Include="Controllers\CenovniksController.cs" />
     <Compile Include="Controllers\CenovnikStavkasController.cs" />
     <Compile Include="Controllers\LinijasController.cs" />
-    <Compile Include="Controllers\PolazaksController.cs" />
     <Compile Include="Controllers\RedVoznjesController.cs" />
     <Compile Include="Controllers\StanicasController.cs" />
     <Compile Include="Controllers\StavkasController.cs" />
     <Compile Include="Migrations\201911270102262_all.cs" />
     <Compile Include="Migrations\201911270102262_all.Designer.cs">
       <DependentUpon>201911270102262_all.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912031900278_redVoznje_izmena.cs" />
+    <Compile Include="Migrations\201912031900278_redVoznje_izmena.Designer.cs">
+      <DependentUpon>201912031900278_redVoznje_izmena.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912032201455_obrisan_polazakModel.cs" />
+    <Compile Include="Migrations\201912032201455_obrisan_polazakModel.Designer.cs">
+      <DependentUpon>201912032201455_obrisan_polazakModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\CenovnikStavka.cs" />
     <Compile Include="Models\Email.cs" />
@@ -281,7 +288,6 @@
     <Compile Include="Models\Korisnik.cs" />
     <Compile Include="Models\Linija.cs" />
     <Compile Include="Models\Lokacija.cs" />
-    <Compile Include="Models\Polazak.cs" />
     <Compile Include="Models\Putnik.cs" />
     <Compile Include="Models\RedVoznje.cs" />
     <Compile Include="Models\Stanica.cs" />
@@ -409,6 +415,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201911270102262_all.resx">
       <DependentUpon>201911270102262_all.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912031900278_redVoznje_izmena.resx">
+      <DependentUpon>201912031900278_redVoznje_izmena.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912032201455_obrisan_polazakModel.resx">
+      <DependentUpon>201912032201455_obrisan_polazakModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -42,14 +42,14 @@ export class AdminService {
     return this.http.post(this.linijaUrl, linija);
   }
 
-  addRedVoznje(redVoznje:RedVoznjeBindingModel)
+  addRedVoznje(redVoznje:RedVoznje)
   {
     return this.http.post(this.redVoznjeUrl,redVoznje);
   }
 
-  addPolazak(polazak: Polazak) {
-      return this.http.post(this.polazakUrl,polazak)
-  }
+  // addPolazak(polazak: Polazak) {
+  //     return this.http.post(this.polazakUrl,polazak)
+  // }
 
   izmeniCenovnik(cenovnik: CenovnikPrikaz)
   {
@@ -66,10 +66,10 @@ export class AdminService {
       return this.http.put('http://localhost:52295/api/Korisniks?id='+kontrolor.Email,kontrolor);  
   }
 
-  izmeniPolazak(polazak: PolazakModel)
-  {
-      return this.http.put('http://localhost:52295/api/Polazaks?id='+polazak.Id,polazak);  
-  }
+  // izmeniPolazak(polazak: PolazakModel)
+  // {
+  //     return this.http.put('http://localhost:52295/api/Polazaks?id='+polazak.Id,polazak);  
+  // }
 
   izmeniRedVoznje(redVoznje: RedVoznje)
   {

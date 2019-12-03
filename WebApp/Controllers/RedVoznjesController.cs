@@ -77,33 +77,20 @@ namespace JGSPNSWebApp.Controllers
 
         // POST: api/RedVoznjes
         [ResponseType(typeof(RedVoznje))]
-        public IHttpActionResult PostRedVoznje(RedVoznjeBindingModel redVoznje)
+        public IHttpActionResult PostRedVoznje(RedVoznje redVoznje)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            RedVoznje rv = new RedVoznje();
-
-            if (redVoznje.TipRedaVoznje == 0)
-                rv.IzabraniRedVoznje = TipRedaVoznje.Gradski.ToString();
-
-            else
-            {
-                rv.IzabraniRedVoznje = TipRedaVoznje.Prigradski.ToString();
-            }
-
-           
-            rv.IzabranTipDana = redVoznje.TipDana;
-            rv.LinijaId = redVoznje.LinijaId;
-            rv.Aktivan = true;
+            redVoznje.Aktivan = true;
 
             
-            db.RedVoznje.Add(rv);
+            db.RedVoznje.Add(redVoznje);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = rv.Id }, rv);
+            return CreatedAtRoute("DefaultApi", new { id = redVoznje.Id }, redVoznje);
         }
 
         // DELETE: api/RedVoznjes/5
@@ -136,24 +123,7 @@ namespace JGSPNSWebApp.Controllers
             return Ok(new List<Linija>(0));
         }
 
-        [HttpPost]
-        [Route("getPolasci")]
-        public IHttpActionResult GetPolasci(PolazakRequestModel polazak)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var polasci = db.Polasci.Where(x => x.LinijaId == polazak.LinijaId && x.TipDana == polazak.TipDana && x.Active);
-
-            if (polasci != null)
-            {
-                return Ok(polasci);
-            }
-
-            return Ok(new List<Polazak>(0));
-        }
+      
 
         [HttpGet]
         [Route("ObrisiRedVoznje")]

@@ -17,13 +17,13 @@
             </agm-polyline>  
      </agm-map>
      <br/>
-        <select class="form-control" name="Linije" [(ngModel)]="linSelected" (ngModelChange)="onChange($event)">
-            <option *ngFor="let lin of sveLinije" [value]="lin.Naziv">{{lin.Naziv}}</option>
-        </select> 
-        <br/>  
-     
+     <div class="col-sm-3">
+      <select class="form-control" name="Linije" [(ngModel)]="linSelected" (ngModelChange)="onChange($event)">
+        <option *ngFor="let lin of sveLinije" [value]="lin.Naziv">{{lin.Naziv}}</option>
+      </select> 
+       <br/>     
         <button type="button" (click)="onClickPrikazi(linSelected)" [disabled]="!buttonPrikaziDisabled">Prikazi</button>
         <button type="button" (click)="OnDeleteClicked()" *ngIf="rola==='Admin'">Obrisi</button>
         <button type="button" (click)="onUpdateLinijaClicked(linSelected)" *ngIf="rola==='Admin'" [disabled]="!buttonDisabled">Izmeni</button>
-   
+      </div>
 </div>

@@ -20,6 +20,8 @@ namespace JGSPNSWebApp.Models
 
         public string IzabranTipDana { get; set; }
 
+        public string Polasci { get; set; }
+
         public bool Aktivan { get; set; }
 
     }

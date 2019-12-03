@@ -96,7 +96,7 @@
                             </tr>
                         </tbody>
                       
-                        <tbody *ngIf="clicked==='Polasci'">
+                        <!-- <tbody *ngIf="clicked==='Polasci'">
                             <tr *ngFor="let polazak of listaPolazaka"> 
                                     <td></td>
                                     <td align="center">
@@ -110,7 +110,7 @@
                                 <td>{{polazak.TipDana}}</td>
                                 <td>{{polazak.Vreme}}</td>                                            
                             </tr>
-                        </tbody>
+                        </tbody> -->
                         <tbody *ngIf="clicked==='RedoviVoznje'">
                             <tr *ngFor="let redVoznje of listaRedaVoznji"> 
                                     <td></td>
@@ -125,9 +125,7 @@
                                 <td>{{redVoznje.IzabranTipDana}}</td>
                                 <td>{{redVoznje.IzabraniRedVoznje}}</td>
                                 <td>
-                                    <ul *ngFor="let polazak of listaPolazaka">
-                                        <li *ngIf="redVoznje.LinijaId === polazak.LinijaId">{{polazak.Vreme}}</li>
-                                    </ul>
+                                    {{redVoznje.Polasci}}
                                 </td>
                                 <td>{{redVoznje.Aktivan}}</td>                                                              
                             </tr>

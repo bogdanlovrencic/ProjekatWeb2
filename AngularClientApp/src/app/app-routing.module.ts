@@ -14,12 +14,10 @@ import { AddKontrolorComponent } from './add-kontrolor/add-kontrolor.component';
 import { AddLinijaComponent } from './add-linija/add-linija.component';
 import { AddRedVoznjeComponent } from './add-red-voznje/add-red-voznje.component';
 import { AddStavkaComponent } from './add-stavka/add-stavka.component';
-import { AddPolazakComponent } from './add-polazak/add-polazak.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
 import { UpdateCenovnikComponent } from './update-cenovnik/update-cenovnik.component';
 import { UpdateStavkaComponent } from './update-stavka/update-stavka.component';
 import { UpdateKontrolorComponent } from './update-kontrolor/update-kontrolor.component';
-import { UpdatePolazakComponent } from './update-polazak/update-polazak.component';
 import { UpdateRedVoznjeComponent } from './update-red-voznje/update-red-voznje.component';
 import { UpdateLinijaComponent } from './update-linija/update-linija.component';
 
@@ -105,10 +103,10 @@ const routes: Routes = [
     component:AddStavkaComponent,
   },
 
-  {
-    path:'Polazak',
-    component:AddPolazakComponent,
-  },
+  // {
+  //   path:'Polazak',
+  //   component:AddPolazakComponent,
+  // },
 
   {
     path:'AdminView',
@@ -130,10 +128,10 @@ const routes: Routes = [
     component:UpdateKontrolorComponent,
   },
 
-  {
-    path:'PolazakIzmena/polazak',
-    component:UpdatePolazakComponent,
-  },
+  // {
+  //   path:'PolazakIzmena/polazak',
+  //   component:UpdatePolazakComponent,
+  // },
 
   {
     path:'RedVoznjeIzmena/redVoznje',

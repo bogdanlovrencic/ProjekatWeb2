@@ -26,10 +26,9 @@ export class UpdateKontrolorComponent implements OnInit {
       Prezime: ['',Validators.required],
       Email: [''],
       Lozinka:['',Validators.required],
-     // confPassword:['',Validators.required],
       DatumRodjenja:['',Validators.required],
       Adresa : ['',Validators.required],
-     // tipPutnika: []   
+    
       
     });
    }

@@ -4,5 +4,6 @@ export class RedVoznje{
     public LinijaId: number;
     public IzabranTipDana: string;
     public IzabraniRedVoznje: string;
+    public Polasci:string
     public Aktivan:boolean;
 }

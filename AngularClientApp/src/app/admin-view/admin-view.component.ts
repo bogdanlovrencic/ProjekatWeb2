@@ -25,9 +25,8 @@ export class AdminViewComponent implements OnInit {
   clicked="Cenovnici";
   selected = false;
   listaCenovnika:CenovnikPrikaz[];
-  //listaCenovnikStavka:CenovnikStavka[];
   listaKontrolora:Kontrolor[];
-  listaPolazaka:PolazakModel[];
+  //listaPolazaka:PolazakModel[];
   listaRedaVoznji:RedVoznje[];
   listaStavki:Stavka[];
   listaStavkeCenovnika:Stavka[];
@@ -39,7 +38,7 @@ export class AdminViewComponent implements OnInit {
     this.dataService.cenovnici.subscribe(msg =>{ this.listaCenovnika = msg;}); 
     this.dataService.stavke.subscribe(msg=>{ this.listaStavki = msg;});
     this.dataService.kontrolori.subscribe(msg => { this.listaKontrolora = msg;});
-    this.dataService.polasci.subscribe(msg=>{ this.listaPolazaka=msg});
+   // this.dataService.polasci.subscribe(msg=>{ this.listaPolazaka=msg});
     this.dataService.timetable.subscribe(msg => { this.listaRedaVoznji = msg;});
     
   }
@@ -81,18 +80,18 @@ export class AdminViewComponent implements OnInit {
      
   }
 
-  onPolazakUpdateClick(polazak:PolazakModel)
-  {
+  // onPolazakUpdateClick(polazak:PolazakModel)
+  // {
 
-    let navigationExtras:NavigationExtras={
-      queryParams:{
-        "polazak": JSON.stringify(polazak)
-      }
-    }
+  //   let navigationExtras:NavigationExtras={
+  //     queryParams:{
+  //       "polazak": JSON.stringify(polazak)
+  //     }
+  //   }
 
-    this.router.navigate(['PolazakIzmena/polazak'],navigationExtras)
+  //   this.router.navigate(['PolazakIzmena/polazak'],navigationExtras)
    
-  }
+  // }
 
   onRedVoznjeUpdateClick(redVoznje:RedVoznje)
   {
@@ -121,11 +120,11 @@ export class AdminViewComponent implements OnInit {
       },error=>{console.log(error)});
   }
 
-  onPolazakDeleteClick(id:number){
-      this.dataService.obrisiPolazak(id).subscribe(res=>{
+  // onPolazakDeleteClick(id:number){
+  //     this.dataService.obrisiPolazak(id).subscribe(res=>{
 
-      },error=> {console.log(error)});
-  }
+  //     },error=> {console.log(error)});
+  // }
 
   onKontrolorDeleteClick(email:string){
     this.dataService.obrisiKontrolora(email).subscribe(res =>{

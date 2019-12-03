@@ -3,10 +3,11 @@ import { Linija } from '../Models/linija';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Polazak, PolazakRequest } from '../Models/polazak';
 import { AdminService } from '../admin.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { LineService } from '../line.service';
 import { RedVoznjeService } from '../red-voznje.service';
 import { RedVoznjeBindingModel } from '../Models/RedVoznjeBindingModel';
+import { RedVoznje } from '../Models/RedVoznje';
 
 @Component({
   selector: 'app-update-red-voznje',
@@ -16,76 +17,112 @@ import { RedVoznjeBindingModel } from '../Models/RedVoznjeBindingModel';
 export class UpdateRedVoznjeComponent implements OnInit {
 
   Linije: Linija[];
-  private addRedVoznjeForm : FormGroup;
+  private editRedVoznjeForm : FormGroup;
   public validationMessage = ''
   public selected=false;
-  polasci:Polazak[];
+  public RedVoznje:RedVoznje
+  public selectedRedVoznje:string
 
 
-  constructor(private adminService: AdminService,private fb: FormBuilder, private router: Router,private lineService:LineService,private redVoznjeService:RedVoznjeService) { 
-      this.addRedVoznjeForm= this.fb.group({
+  constructor(private adminService: AdminService,private fb: FormBuilder, private router: Router,private lineService:LineService,private redVoznjeService:RedVoznjeService,private route:ActivatedRoute) { 
+      this.editRedVoznjeForm= this.fb.group({
          tipRedaVoznje:[Validators.required],
          tipDana:[Validators.required],
          izabranaLinija:[Validators.required],
-         polazak:[]
+         polasci:[]
       })
 
   }
 
   ngOnInit() {
-   
+    this.route.queryParams.subscribe((params)=>{
+       this.RedVoznje=JSON.parse(params["redVoznje"])
+
+     
+       this.editRedVoznjeForm.patchValue({
+         tipRedaVoznje:this.RedVoznje.IzabraniRedVoznje,
+         tipDana:this.RedVoznje.IzabranTipDana,
+         izabranaLinija:this.RedVoznje.LinijaId,
+         polasci:this.RedVoznje.Polasci
+       })
+    })
+
+    let redVoznjeTip;
+    if(this.editRedVoznjeForm.value.tipRedaVoznje == 'Gradski')
+    {
+        redVoznjeTip=0
+    }
+    else
+    {
+        redVoznjeTip=1
+    }
+    this.redVoznjeService.getAllLinesForRedVoznje(redVoznjeTip).subscribe((data:Linija[])=>{
+      this.Linije = data
+    })
+    this.selected = false
+
   }
 
   onSubmit()
   {
     this.validationMessage='';
 
-    if(!this.addRedVoznjeForm.valid)
+    if(!this.editRedVoznjeForm.valid)
     {
         this.validationMessage="Sva polja moraju biti popunjena!";
         return;
     }
 
-    let redVoznje=new RedVoznjeBindingModel();
+    let redVoznje=new RedVoznje();
 
-    redVoznje.TipRedaVoznje=this.addRedVoznjeForm.controls.tipRedaVoznje.value;
-    redVoznje.TipDana=this.addRedVoznjeForm.controls.tipDana.value;
-    redVoznje.LinijaId=this.addRedVoznjeForm.controls.izabranaLinija.value;
-    // redVoznje.Polasci= this.polasci;
-
-    // this.adminService.izmeniRedVoznje(redVoznje).subscribe(res=>{
-
-    // },error=>{console.log(error)});
-
-    this.adminService.addRedVoznje(redVoznje).subscribe(res=>{
-          this.addRedVoznjeForm.reset();
+    redVoznje.Id=this.RedVoznje.Id;
+    redVoznje.IzabraniRedVoznje=this.editRedVoznjeForm.controls.tipRedaVoznje.value;
+    redVoznje.IzabranTipDana=this.editRedVoznjeForm.controls.tipDana.value;
+    redVoznje.LinijaId=this.editRedVoznjeForm.controls.izabranaLinija.value;
+    redVoznje.Polasci= this.editRedVoznjeForm.controls.polasci.value;
+    redVoznje.Aktivan=this.RedVoznje.Aktivan
+  
+    this.adminService.izmeniRedVoznje(redVoznje).subscribe(res=>{
           this.router.navigate(['/management'])
 
        }),error=>{console.log(error);}
     
   }
 
-  onSelect()
+  // onSelect()
+  // {
+  //   let redVoznjeTip;
+  //   if(this.editRedVoznjeForm.value.tipRedaVoznje == 'Gradski')
+  //   {
+  //       redVoznjeTip=0
+  //   }
+  //   else
+  //   {
+  //       redVoznjeTip=1
+  //   }
+  //   this.redVoznjeService.getAllLinesForRedVoznje(redVoznjeTip).subscribe((data:Linija[])=>{
+  //     this.Linije = data
+  //   })
+  //   this.selected = false
+  // }
+
+  onChange(event)
   {
-    let redVoznjeTip = this.addRedVoznjeForm.value.tipRedaVoznje
+    let redVoznjeTip:number;
+     
+    this.selectedRedVoznje=event.target.value
+   
+    if(this.selectedRedVoznje == 'Gradski')
+       redVoznjeTip=0
+    
+    else
+      redVoznjeTip=1
+
     this.redVoznjeService.getAllLinesForRedVoznje(redVoznjeTip).subscribe((data:Linija[])=>{
       this.Linije = data
-    })
-    this.selected = false
+   })
   }
 
-  onSelectClicked()
-  {
-      let polazakRequest: PolazakRequest={
-        TipDana:this.addRedVoznjeForm.value.tipDana,
-        LinijaId: this.addRedVoznjeForm.value.izabranaLinija
-      }
 
-      this.redVoznjeService.getPolasci(polazakRequest).subscribe((data:Polazak[])=>{
-        this.polasci = data
-      })
-    //  this.selected = true
-      
-  }
 
 }

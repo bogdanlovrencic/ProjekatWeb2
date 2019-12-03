@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="HourId" class="col-sm-2">Cene vremenske karte: </label>
+        <label for="HourId" class="col-sm-2">Cena vremenske karte: </label>
         <div class="col-sm-2">
             <select  formControlName="HourId" class="form-control" >
                 <option *ngFor="let item of hourItems" value={{item.Id}}>{{item.Cena}}</option>
@@ -24,7 +24,7 @@
         </div>   
       </div>
       <div class="form-group">
-        <label for="DayId" class="col-sm-2">Cene dnevne karte: </label>
+        <label for="DayId" class="col-sm-2">Cena dnevne karte: </label>
         <div class="col-sm-2">
             <select  formControlName="DayId" class="form-control" >
                 <option  *ngFor="let item of dayItems" value={{item.Id}}>{{item.Cena}}</option>
@@ -32,7 +32,7 @@
         </div>  
       </div>
       <div class="form-group">
-        <label for="MonthId" class="col-sm-2">Cene mesecne karte: </label>
+        <label for="MonthId" class="col-sm-2">Cena mesecne karte: </label>
         <div class="col-sm-2">
             <select  formControlName="MonthId" class="form-control" >
                 <option *ngFor="let item of monthItems" value={{item.Id}}>{{item.Cena}}</option>
@@ -40,7 +40,7 @@
         </div>    
       </div>
       <div class="form-group">
-        <label for="YearId" class="col-sm-2">Cene godisnje karte: </label>
+        <label for="YearId" class="col-sm-2">Cena godisnje karte: </label>
         <div class="col-sm-2">
             <select  formControlName="YearId" class="form-control">
                 <option  *ngFor="let item of yearItems" value={{item.Id}}>{{item.Cena}}</option>
