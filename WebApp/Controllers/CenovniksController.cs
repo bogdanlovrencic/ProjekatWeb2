@@ -34,15 +34,16 @@ namespace JGSPNSWebApp.Controllers
 
             List<Cenovnik> cenovnici = db.Cenovnici.Where(cen => cen.Aktivan).ToList();
 
-            List<Stavka> stavke = db.Stavke.Where(s => s.Aktivna).ToList();
-
+            List<Stavka> stavke = db.Stavke.ToList();
+            List<StavkaP> stavkee = new List<StavkaP>();
+            
             List<CenovnikPrikaz> cenovniciZaprikaz = new List<CenovnikPrikaz>();
             CenovnikPrikaz cp = new CenovnikPrikaz();
-            List<Stavka> sortiraneStavke = new List<Stavka>();
+            List<StavkaP> sortiraneStavke = new List<StavkaP>();
 
-            cp.Stavke = new List<Stavka>();
+            cp.Stavke = new List<StavkaP>();
 
-
+           
             foreach (var c in cenovnici)
             {         
                 foreach (var s in stavke)
@@ -50,8 +51,15 @@ namespace JGSPNSWebApp.Controllers
                     foreach (var cst in cs)
                     {
                         if (cst.Cenovnik_Id == c.Id && cst.Stavka_Id == s.Id)
-                        {                     
-                            cp.Stavke.Add(s);
+                        {
+                            StavkaP sp = new StavkaP()
+                            {
+                                Id = s.Id,
+                                Naziv = s.Naziv,
+                                Cena =cst.Cena
+                            };
+                            cp.Stavke.Add(sp);
+                            
                             break;                         
                         }
 
@@ -68,7 +76,7 @@ namespace JGSPNSWebApp.Controllers
                 cenovniciZaprikaz.Add(cp);
                 
                 cp = new CenovnikPrikaz();
-                cp.Stavke = new List<Stavka>();
+                cp.Stavke = new List<StavkaP>();
             }
 
 
@@ -103,7 +111,7 @@ namespace JGSPNSWebApp.Controllers
             }
 
             var stariCenovnik = db.Cenovnici.Find(id);
-            var stariCenStavki = db.CenovnikStavke.Where(x=>x.Cenovnik_Id == id).ToList();
+            var stariCenStavki = db.CenovnikStavke.Include(x=>x.Cenovnik).Where(x=>x.Cenovnik_Id == id).Include(x=>x.Stavka).ToList();
 
             Cenovnik noviCenovnik = new Cenovnik();
             noviCenovnik.Id = cenovnik.Id;
@@ -162,43 +170,125 @@ namespace JGSPNSWebApp.Controllers
         }
 
         // POST: api/Cenovniks
-        public IHttpActionResult PostCenovnik(CenovnikBindingModel cenovnik)
+        public IHttpActionResult PostCenovnik(Cenovnik cenovnik)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            db.Cenovnici.Add(cenovnik);
+            db.SaveChanges();
+
+            return Ok();
+        }
+
+        // POST: api/Cenovniks
+        [Route("DodajCenovnik")]
+        [ResponseType(typeof(Cenovnik))]
+        public IHttpActionResult DodajCenovnik(DateTime VaziOd, DateTime VaziDo, bool aktivan, double cenaVremenske, double cenaDnevne, double cenaMesecne, double cenaGodisnje)
+        {
             Cenovnik noviCenovnik = new Cenovnik();
 
-            noviCenovnik.VaziOd = cenovnik.VaziOd;
-            noviCenovnik.VaziDo = cenovnik.VaziDo;
-            noviCenovnik.Aktivan = cenovnik.Aktivan;
-            //noviCenovnik.Stavke = new List<Stavka>();
-
-          
-            //foreach(int s in cenovnik.Stavke)
-            //{
-            //    noviCenovnik.Stavke.Add(db.Stavke.Find(s));
-            //}
+            noviCenovnik.VaziOd = VaziOd;
+            noviCenovnik.VaziDo = VaziDo;
+            noviCenovnik.Aktivan = aktivan;
 
             db.Cenovnici.Add(noviCenovnik);
-
             db.SaveChanges();
+
+            Stavka vremenskaKarta = new Stavka()
+            {
+                Naziv = "Vremenska karta"
+            };
+
+            db.Stavke.Add(vremenskaKarta);
+            db.SaveChanges();
+
+            Stavka dnevnaKarta = new Stavka()
+            {
+                Naziv = "Dnevna karta"
+            };
+
+            db.Stavke.Add(dnevnaKarta);
+            db.SaveChanges();
+
+            Stavka mesecnaKarta = new Stavka()
+            {
+                Naziv = "Mesecna karta"
+            };
+
+            db.Stavke.Add(mesecnaKarta);
+            db.SaveChanges();
+
+            Stavka godisnjaKarta = new Stavka()
+            {
+                Naziv = "Godisnja karta"
+            };
+
+            db.Stavke.Add(godisnjaKarta);
+            db.SaveChanges();
+
+
+            var cenovnik = db.Cenovnici.Where(x => x.Aktivan).First();
+
 
             CenovnikStavka cs = new CenovnikStavka();
 
-            cs.Cenovnik_Id = noviCenovnik.Id;
-
-
-            foreach (var id in cenovnik.Stavke)
+            foreach (var stavka in db.Stavke.ToList())
             {
-                cs.Stavka_Id = id;
-                db.CenovnikStavke.Add(cs);
-                db.SaveChanges();
+                if (stavka.Naziv == "Vremenska karta")
+                {
+                    cs = new CenovnikStavka()
+                    {
+                        Cenovnik_Id = cenovnik.Id,
+                        Stavka_Id = stavka.Id,
+                        Cena = cenaVremenske
+                    };
+
+                    db.CenovnikStavke.Add(cs);
+                    db.SaveChanges();
+                }
+                else if (stavka.Naziv == "Dnevna karta")
+                {
+                    cs = new CenovnikStavka()
+                    {
+                        Cenovnik_Id = cenovnik.Id,
+                        Stavka_Id = stavka.Id,
+                        Cena = cenaDnevne
+                    };
+
+                    db.CenovnikStavke.Add(cs);
+                    db.SaveChanges();
+                }
+                else if (stavka.Naziv == "Mesecna karta")
+                {
+                    cs = new CenovnikStavka()
+                    {
+                        Cenovnik_Id = cenovnik.Id,
+                        Stavka_Id = stavka.Id,
+                        Cena = cenaMesecne
+                    };
+
+                    db.CenovnikStavke.Add(cs);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    cs = new CenovnikStavka()
+                    {
+                        Cenovnik_Id = cenovnik.Id,
+                        Stavka_Id = stavka.Id,
+                        Cena = cenaGodisnje
+                    };
+
+                    db.CenovnikStavke.Add(cs);
+                    db.SaveChanges();
+                }
+
             }
 
-            return Ok();
+            return Ok(0);
         }
 
         // DELETE: api/Cenovniks/5
@@ -249,11 +339,21 @@ namespace JGSPNSWebApp.Controllers
         }
     }
 
+    
+    public class StavkaP
+    {
+        public int Id { get; set; }
+        public string Naziv { get; set; }
+
+        public double Cena { get; set; }
+
+    }
+
     public class CenovnikBindingModel
     {
         public DateTime VaziOd { get; set; }
         public DateTime VaziDo { get; set; }
-        public List<int> Stavke { get; set; }
+        //public List<int> Stavke { get; set; }
         public bool Aktivan { get; set; }
     }
 
@@ -264,7 +364,7 @@ namespace JGSPNSWebApp.Controllers
         public DateTime VaziDo { get; set; }
         public bool Aktivan { get; set; }
 
-        public List<Stavka> Stavke { get; set; }
+        public List<StavkaP> Stavke { get; set; }
 
     }
 

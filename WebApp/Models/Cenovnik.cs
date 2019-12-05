@@ -18,8 +18,7 @@ namespace JGSPNSWebApp.Models
 
         public bool  Aktivan { get; set; }
 
-        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
-        //public List<Stavka> Stavke { get; set;}
+        
 
 
     }

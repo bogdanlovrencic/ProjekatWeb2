@@ -15,10 +15,10 @@ import { Cenovnik } from '../Models/Cenovnik';
 export class AddCenovnikComponent implements OnInit {
 
   private validationMessage='';
-  public hourItems :Stavka[]
-  public dayItems :Stavka[]
-  public monthItems :Stavka[]
-  public yearItems :Stavka[]
+  // public hourItems :Stavka[]
+  // public dayItems :Stavka[]
+  // public monthItems :Stavka[]
+  // public yearItems :Stavka[]
   public cenovnikForm:FormGroup
   constructor(private adminService: AdminService,private router: Router,private priceListItemService:StavkaService) { }
 
@@ -26,22 +26,22 @@ export class AddCenovnikComponent implements OnInit {
     this.cenovnikForm = new FormGroup({
       VaziOd:new FormControl(null,[Validators.required]),
       VaziDo: new FormControl(null,[Validators.required]),
-      HourId: new FormControl(null,[Validators.required]),
-      DayId:new FormControl(null,[Validators.required]),
-      MonthId: new FormControl(null,[Validators.required]),
-      YearId: new FormControl(null,[Validators.required])
+      HourTicket: new FormControl(null,[Validators.required]),
+      DayTicket:new FormControl(null,[Validators.required]),
+      MonthTicket: new FormControl(null,[Validators.required]),
+      YearTicket: new FormControl(null,[Validators.required])
     })
     
-    this.priceListItemService.subscribeToHourItemsChanged().subscribe((data:Stavka[])=>{
-      this.hourItems = data
-    })
-   this.priceListItemService.subscribeToDayItemsChanged().subscribe((data:Stavka[])=>
-    {this.dayItems = data})
-   this.priceListItemService.subscribeToMonthItemsChanged().subscribe((data:Stavka[])=>{
-     this.monthItems = data
-   })
-   this.priceListItemService.subscribeToYeartemsChanged().subscribe((data:Stavka[])=>
-   { this.yearItems = data})
+  //   this.priceListItemService.subscribeToHourItemsChanged().subscribe((data:Stavka[])=>{
+  //     this.hourItems = data
+  //   })
+  //  this.priceListItemService.subscribeToDayItemsChanged().subscribe((data:Stavka[])=>
+  //   {this.dayItems = data})
+  //  this.priceListItemService.subscribeToMonthItemsChanged().subscribe((data:Stavka[])=>{
+  //    this.monthItems = data
+  //  })
+  //  this.priceListItemService.subscribeToYeartemsChanged().subscribe((data:Stavka[])=>
+  //  { this.yearItems = data})
   }
 
   onSubmit()
@@ -60,10 +60,16 @@ export class AddCenovnikComponent implements OnInit {
     let cenovnik:Cenovnik ={
       VaziOd: this.cenovnikForm.value.VaziOd,
       VaziDo:this.cenovnikForm.value.VaziDo,
-      Aktivan:true,
-      Stavke:[this.cenovnikForm.value.HourId,this.cenovnikForm.value.DayId,this.cenovnikForm.value.MonthId,this.cenovnikForm.value.YearId],
+      Aktivan:true
     };
-      this.adminService.addCenovnik(cenovnik).subscribe(res=>{
+
+    let vremenska=this.cenovnikForm.value.HourTicket
+    let dnevna=this.cenovnikForm.value.DayTicket
+    let mesecna=this.cenovnikForm.value.MonthTicket 
+    let godisnja=this.cenovnikForm.value.YearTicket 
+
+  
+      this.adminService.addCenovnik(cenovnik,vremenska,dnevna,mesecna,godisnja).subscribe(res=>{
         this.router.navigate(['/management']);
       },
       error=>{

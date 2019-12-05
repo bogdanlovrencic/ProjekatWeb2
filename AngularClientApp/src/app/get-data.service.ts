@@ -103,10 +103,10 @@ export class GetDataService {
     if(tableName === 'Cenovnici'){
       return this.http.get<CenovnikPrikaz>('http://localhost:52295/api/Cenovniks/Cenovnici');
     }
-    else if( tableName === 'Stavke')
-    {
-      return this.http.get<Stavka>('http://localhost:52295/api/Stavkas');
-    }
+    // else if( tableName === 'Stavke')
+    // {
+    //   return this.http.get<Stavka>('http://localhost:52295/api/Stavkas');
+    // }
     else if(tableName === 'Linije'){
       return this.http.get<Linija>('http://localhost:52295/api/Linijas');
 

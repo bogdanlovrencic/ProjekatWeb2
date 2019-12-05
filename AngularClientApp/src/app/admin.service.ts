@@ -18,7 +18,6 @@ import { RedVoznje } from './Models/RedVoznje';
 export class AdminService {
  
 
-  public cenovnikUrl='http://localhost:52295/api/Cenovniks';
   public linijaUrl='http://localhost:52295/api/Linijas';
   public redVoznjeUrl='http://localhost:52295/api/RedVoznjes';
   public stavkaUrl= 'http://localhost:52295/api/Stavkas';
@@ -27,15 +26,16 @@ export class AdminService {
   constructor(private http:HttpClient) { }
 
 
-  addCenovnik(cenovnik:Cenovnik)
+  addCenovnik(cenovnik:Cenovnik,cenaVremenske:any,cenaDnevne:any,cenaMesecne:any,cenaGodisnje:any)
   {
-     return this.http.post(this.cenovnikUrl,cenovnik);
+     return this.http.post<any[]>(`http://localhost:52295/api/Cenovniks/DodajCenovnik?VaziOd=${cenovnik.VaziOd}&VaziDo=${cenovnik.VaziDo}&aktivan=${cenovnik.Aktivan}&cenaVremenske=${cenaVremenske}&cenaDnevne=${cenaDnevne}&cenaMesecne=${cenaMesecne}&cenaGodisnje=${cenaGodisnje}`,
+      [cenovnik.VaziOd,cenovnik.VaziDo,cenovnik.Aktivan,cenaVremenske,cenaDnevne,cenaMesecne,cenaGodisnje]);
   }
 
-  addStavka(data:NgForm)
-  {  
-    return this.http.post(this.stavkaUrl,data.value);
-  }
+  // addStavka(data:NgForm)
+  // {  
+  //   return this.http.post(this.stavkaUrl,data.value);
+  // }
 
   addLinija(linija:Linija)
   {
@@ -56,10 +56,10 @@ export class AdminService {
       return this.http.put('http://localhost:52295/api/Cenovniks?id='+cenovnik.Id,cenovnik);
   }
 
-  izmeniStavku(stavka:Stavka)
-  {
-      return this.http.put('http://localhost:52295/api/Stavkas?id='+stavka.Id,stavka);
-  }
+  // izmeniStavku(stavka:Stavka)
+  // {
+  //     return this.http.put('http://localhost:52295/api/Stavkas?id='+stavka.Id,stavka);
+  // }
 
   izmeniKontrolora(kontrolor: Kontrolor) 
   {

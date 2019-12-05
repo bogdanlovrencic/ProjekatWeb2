@@ -19,6 +19,8 @@ namespace JGSPNSWebApp.Models
         [ForeignKey("Stavka")]
         public int Stavka_Id { get; set; }
         public Stavka Stavka { get; set; }
+
+        public double Cena { get; set; }
     }
     
 }

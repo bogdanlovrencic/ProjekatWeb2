@@ -10,8 +10,6 @@ namespace JGSPNSWebApp.Models
         public int Id { get; set; }
         public string Naziv { get; set; }
 
-        public double Cena { get; set; }
-
-        public bool Aktivna { get; set; }
+ 
     }
 }

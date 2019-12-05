@@ -22,7 +22,7 @@ export class UpdateCenovnikComponent implements OnInit {
   public yearItems :Stavka[]
   public cenovnikForm:FormGroup
   public Cenovnik:CenovnikPrikaz
-
+ 
   constructor(private adminService: AdminService,private router: Router,private priceListItemService:StavkaService,  private route:ActivatedRoute) { }
 
   
@@ -50,13 +50,14 @@ export class UpdateCenovnikComponent implements OnInit {
    this.route.queryParams.subscribe((params)=>{
         this.Cenovnik=JSON.parse(params["cenovnik"]); 
         
+       
         this.cenovnikForm.patchValue({
-          VaziOd:this.Cenovnik.VaziOd.getUTCDate,
-          VaziDo:this.Cenovnik.VaziDo.toDateString,
-          HourId:this.Cenovnik.Stavke[0].Id,
-          DayId:this.Cenovnik.Stavke[1].Id,
-          MonthId:this.Cenovnik.Stavke[2].Id,
-          YearId:this.Cenovnik.Stavke[3].Id
+          VaziOd:this.Cenovnik.VaziOd,
+          VaziDo:this.Cenovnik.VaziDo,
+          // HourId:this.Cenovnik.Stavke[0].Id,
+          // DayId:this.Cenovnik.Stavke[1].Id,
+          // MonthId:this.Cenovnik.Stavke[2].Id,
+          // YearId:this.Cenovnik.Stavke[3].Id
 
         
   

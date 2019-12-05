@@ -11,6 +11,8 @@ namespace JGSPNSWebApp.Persistence.Repository
     {
         public CenovnikRepository(DbContext context) : base(context)
         {
+         
+
         }
     }
 }

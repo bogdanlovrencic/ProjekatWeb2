@@ -26,19 +26,14 @@ export class AdminViewComponent implements OnInit {
   selected = false;
   listaCenovnika:CenovnikPrikaz[];
   listaKontrolora:Kontrolor[];
-  //listaPolazaka:PolazakModel[];
   listaRedaVoznji:RedVoznje[];
-  listaStavki:Stavka[];
-  listaStavkeCenovnika:Stavka[];
 
   
 
   ngOnInit() {
     this.dataService.message.subscribe(msg =>{ this.clicked = msg;}); 
     this.dataService.cenovnici.subscribe(msg =>{ this.listaCenovnika = msg;}); 
-    this.dataService.stavke.subscribe(msg=>{ this.listaStavki = msg;});
     this.dataService.kontrolori.subscribe(msg => { this.listaKontrolora = msg;});
-   // this.dataService.polasci.subscribe(msg=>{ this.listaPolazaka=msg});
     this.dataService.timetable.subscribe(msg => { this.listaRedaVoznji = msg;});
     
   }

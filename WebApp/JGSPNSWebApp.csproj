@@ -251,11 +251,9 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CenovniksController.cs" />
-    <Compile Include="Controllers\CenovnikStavkasController.cs" />
     <Compile Include="Controllers\LinijasController.cs" />
     <Compile Include="Controllers\RedVoznjesController.cs" />
     <Compile Include="Controllers\StanicasController.cs" />
-    <Compile Include="Controllers\StavkasController.cs" />
     <Compile Include="Migrations\201911270102262_all.cs" />
     <Compile Include="Migrations\201911270102262_all.Designer.cs">
       <DependentUpon>201911270102262_all.cs</DependentUpon>
@@ -267,6 +265,10 @@
     <Compile Include="Migrations\201912032201455_obrisan_polazakModel.cs" />
     <Compile Include="Migrations\201912032201455_obrisan_polazakModel.Designer.cs">
       <DependentUpon>201912032201455_obrisan_polazakModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912050132181_stavka_izmena.cs" />
+    <Compile Include="Migrations\201912050132181_stavka_izmena.Designer.cs">
+      <DependentUpon>201912050132181_stavka_izmena.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\CenovnikStavka.cs" />
     <Compile Include="Models\Email.cs" />
@@ -421,6 +423,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912032201455_obrisan_polazakModel.resx">
       <DependentUpon>201912032201455_obrisan_polazakModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912050132181_stavka_izmena.resx">
+      <DependentUpon>201912050132181_stavka_izmena.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

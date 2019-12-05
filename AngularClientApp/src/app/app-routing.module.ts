@@ -13,10 +13,8 @@ import { AddCenovnikComponent } from './add-cenovnik/add-cenovnik.component';
 import { AddKontrolorComponent } from './add-kontrolor/add-kontrolor.component';
 import { AddLinijaComponent } from './add-linija/add-linija.component';
 import { AddRedVoznjeComponent } from './add-red-voznje/add-red-voznje.component';
-import { AddStavkaComponent } from './add-stavka/add-stavka.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
 import { UpdateCenovnikComponent } from './update-cenovnik/update-cenovnik.component';
-import { UpdateStavkaComponent } from './update-stavka/update-stavka.component';
 import { UpdateKontrolorComponent } from './update-kontrolor/update-kontrolor.component';
 import { UpdateRedVoznjeComponent } from './update-red-voznje/update-red-voznje.component';
 import { UpdateLinijaComponent } from './update-linija/update-linija.component';
@@ -98,16 +96,7 @@ const routes: Routes = [
     //canActivate: [AuthGuard]
   },
 
-  {
-    path:'Stavke',
-    component:AddStavkaComponent,
-  },
-
-  // {
-  //   path:'Polazak',
-  //   component:AddPolazakComponent,
-  // },
-
+  
   {
     path:'AdminView',
     component:AdminViewComponent,
@@ -118,11 +107,7 @@ const routes: Routes = [
     component:UpdateCenovnikComponent,
   },
 
-  {
-    path:'StavkaIzmena/stavka',
-    component:UpdateStavkaComponent,
-  },
-
+ 
   {
     path:'KontrolorIzmena/kontrolor',
     component:UpdateKontrolorComponent,
