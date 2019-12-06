@@ -15,10 +15,6 @@ import { Cenovnik } from '../Models/Cenovnik';
 export class AddCenovnikComponent implements OnInit {
 
   private validationMessage='';
-  // public hourItems :Stavka[]
-  // public dayItems :Stavka[]
-  // public monthItems :Stavka[]
-  // public yearItems :Stavka[]
   public cenovnikForm:FormGroup
   constructor(private adminService: AdminService,private router: Router,private priceListItemService:StavkaService) { }
 
@@ -57,6 +53,13 @@ export class AddCenovnikComponent implements OnInit {
       this.validationMessage="Datum pocetka vazenja cenovnika mora biti manji od datuma kraja vazenja!";
       return;
     }
+
+    if(this.cenovnikForm.value.HourTicket < 0 || this.cenovnikForm.value.DayTicket < 0 || this.cenovnikForm.value.MonthTicket < 0 || this.cenovnikForm.value.YearTicket < 0)
+    {
+      this.validationMessage="Cena ne sme biti negativna!";
+      return
+    }
+    
     let cenovnik:Cenovnik ={
       VaziOd: this.cenovnikForm.value.VaziOd,
       VaziDo:this.cenovnikForm.value.VaziDo,

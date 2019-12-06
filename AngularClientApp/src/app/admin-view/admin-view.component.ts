@@ -51,17 +51,6 @@ export class AdminViewComponent implements OnInit {
   
   }
 
-  onStavkaUpdateClick(stavka:Stavka)
-  {
-    let navigationExtras:NavigationExtras={
-      queryParams:{
-        "stavka": JSON.stringify(stavka)
-      }
-    }
-
-    this.router.navigate(['StavkaIzmena/stavka'],navigationExtras)
-
-  }
 
   onKontrolorUpdateClick(kontrolor:Kontrolor)
   {
@@ -75,18 +64,6 @@ export class AdminViewComponent implements OnInit {
      
   }
 
-  // onPolazakUpdateClick(polazak:PolazakModel)
-  // {
-
-  //   let navigationExtras:NavigationExtras={
-  //     queryParams:{
-  //       "polazak": JSON.stringify(polazak)
-  //     }
-  //   }
-
-  //   this.router.navigate(['PolazakIzmena/polazak'],navigationExtras)
-   
-  // }
 
   onRedVoznjeUpdateClick(redVoznje:RedVoznje)
   {
@@ -108,18 +85,6 @@ export class AdminViewComponent implements OnInit {
     }, error=>{console.log(error)});
   }
 
-  onStavkaDeleteClick(id:number)
-  {
-      this.dataService.obrisiStavku(id).subscribe(res=>{
-
-      },error=>{console.log(error)});
-  }
-
-  // onPolazakDeleteClick(id:number){
-  //     this.dataService.obrisiPolazak(id).subscribe(res=>{
-
-  //     },error=> {console.log(error)});
-  // }
 
   onKontrolorDeleteClick(email:string){
     this.dataService.obrisiKontrolora(email).subscribe(res =>{

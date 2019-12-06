@@ -55,28 +55,35 @@ namespace JGSPNSWebApp.Controllers
                 return BadRequest();
             }
 
-   
-           
+
+            var lin = db.Linije.Include(x=>x.Stanice).FirstOrDefault(x=>x.Id == id);
+
             foreach(Stanica s in linija.Stanice)
             {
                 if(!s.Aktivna)
                 {
                     s.Aktivna = true;
-                    s.Linije = new List<Linija>();    
-                    db.Entry(s).State = EntityState.Added;
+                    //s.Linije = new List<Linija>();
+                    lin.Stanice.Add(s);
+                    db.Entry(lin).State = EntityState.Modified;
                     db.SaveChanges();
+
+                    //db.Entry(s).State = EntityState.Detached;
+                    //db.Stanice.Add(s);
+                    //db.SaveChanges();
 
                 }
                 else
                 {
-                    db.Entry(s).State = EntityState.Modified;
-                    db.SaveChanges();
+                    //db.Entry(s).State = EntityState.Modified;
+                    //db.SaveChanges();
+                    continue;
                 }
             }
 
            
    
-            db.Entry(linija).State = EntityState.Modified;
+            db.Entry(lin).State = EntityState.Modified;
 
             try
             {

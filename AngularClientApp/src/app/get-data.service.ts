@@ -80,17 +80,10 @@ export class GetDataService {
     return this.http.get<any>('http://localhost:52295/api/Cenovniks/ObrisiCenovnik?id='+id);
   }
 
-  obrisiStavku(id: number) {
-    return this.http.get<any>('http://localhost:52295/api/Stavkas/ObrisiStavku?id='+id);
-  }
-
   obrisiKontrolora(email:string){
     return this.http.get<any>('http://localhost:52295/api/Korisniks/ObrisiKontrolora?id='+email);
   }
 
-  obrisiPolazak(id: number) {
-    return this.http.get<any>('http://localhost:52295/api/Polazaks/ObrisiPolazak?id='+id);
-  }
 
   obrisiRedVoznje(id:number){
     return this.http.get<any>('http://localhost:52295/api/RedVoznjes/ObrisiRedVoznje?id='+id);

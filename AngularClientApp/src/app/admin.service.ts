@@ -5,7 +5,7 @@ import { Linija } from './Models/linija';
 import { RedVoznjeBindingModel } from './Models/RedVoznjeBindingModel';
 import { Observable } from 'rxjs';
 import { CenaStavke } from './Models/cenaStavke';
-import { Cenovnik, CenovnikPrikaz } from './Models/Cenovnik';
+import { Cenovnik, CenovnikPrikaz, CenovnikUpdate } from './Models/Cenovnik';
 import { Polazak, PolazakModel } from './Models/polazak';
 import { Stanica } from './Models/stanica';
 import { Stavka } from './Models/Stavka';
@@ -51,9 +51,10 @@ export class AdminService {
   //     return this.http.post(this.polazakUrl,polazak)
   // }
 
-  izmeniCenovnik(cenovnik: CenovnikPrikaz)
+  izmeniCenovnik(cenovnik: CenovnikUpdate,cenaVremenske,cenaDnevne,cenaMesecne,cenaGodisnje)
   {
-      return this.http.put('http://localhost:52295/api/Cenovniks?id='+cenovnik.Id,cenovnik);
+      return this.http.post<any[]>(`http://localhost:52295/api/Cenovniks/IzmeniCenovnik?id=${cenovnik.Id}&Vaziod=${cenovnik.VaziOd}&VaziDo=${cenovnik.VaziDo}&aktivan=${cenovnik.Aktivan}&cenaVremenske=${cenaVremenske}&cenaDnevne=${cenaDnevne}&cenaMesecne=${cenaMesecne}&cenaGodisnje=${cenaGodisnje}`,
+      [cenovnik.Id,cenovnik.VaziOd,cenovnik.VaziDo,cenovnik.Aktivan,cenaVremenske,cenaDnevne,cenaMesecne,cenaGodisnje]);
   }
 
   // izmeniStavku(stavka:Stavka)

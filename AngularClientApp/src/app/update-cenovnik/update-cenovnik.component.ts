@@ -4,7 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AdminService } from '../admin.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { StavkaService } from '../stavka.service';
-import { CenovnikPrikaz, Cenovnik } from '../Models/Cenovnik';
+import { CenovnikPrikaz, Cenovnik, CenovnikUpdate } from '../Models/Cenovnik';
 
 @Component({
   selector: 'app-update-cenovnik',
@@ -13,13 +13,7 @@ import { CenovnikPrikaz, Cenovnik } from '../Models/Cenovnik';
 })
 export class UpdateCenovnikComponent implements OnInit {
 
-  
-
   private validationMessage='';
-  public hourItems :Stavka[]
-  public dayItems :Stavka[]
-  public monthItems :Stavka[]
-  public yearItems :Stavka[]
   public cenovnikForm:FormGroup
   public Cenovnik:CenovnikPrikaz
  
@@ -30,22 +24,12 @@ export class UpdateCenovnikComponent implements OnInit {
     this.cenovnikForm = new FormGroup({
       VaziOd:new FormControl(null,[Validators.required]),
       VaziDo: new FormControl(null,[Validators.required]),
-      HourId: new FormControl(null,[Validators.required]),
-      DayId:new FormControl(null,[Validators.required]),
-      MonthId: new FormControl(null,[Validators.required]),
-      YearId: new FormControl(null,[Validators.required])
+      HourTicket: new FormControl(null,[Validators.required]),
+      DayTicket:new FormControl(null,[Validators.required]),
+      MonthTicket: new FormControl(null,[Validators.required]),
+      YearTicket: new FormControl(null,[Validators.required])
     })
     
-    this.priceListItemService.subscribeToHourItemsChanged().subscribe((data:Stavka[])=>{
-      this.hourItems = data
-    })
-   this.priceListItemService.subscribeToDayItemsChanged().subscribe((data:Stavka[])=>
-    {this.dayItems = data})
-   this.priceListItemService.subscribeToMonthItemsChanged().subscribe((data:Stavka[])=>{
-     this.monthItems = data
-   })
-   this.priceListItemService.subscribeToYeartemsChanged().subscribe((data:Stavka[])=>
-   { this.yearItems = data})
 
    this.route.queryParams.subscribe((params)=>{
         this.Cenovnik=JSON.parse(params["cenovnik"]); 
@@ -54,13 +38,11 @@ export class UpdateCenovnikComponent implements OnInit {
         this.cenovnikForm.patchValue({
           VaziOd:this.Cenovnik.VaziOd,
           VaziDo:this.Cenovnik.VaziDo,
-          // HourId:this.Cenovnik.Stavke[0].Id,
-          // DayId:this.Cenovnik.Stavke[1].Id,
-          // MonthId:this.Cenovnik.Stavke[2].Id,
-          // YearId:this.Cenovnik.Stavke[3].Id
+          HourTicket:this.Cenovnik.Stavke[0].Cena,
+          DayTicket:this.Cenovnik.Stavke[1].Cena,
+          MonthTicket:this.Cenovnik.Stavke[2].Cena,
+          YearTicket:this.Cenovnik.Stavke[3].Cena
 
-        
-  
      })
    })
 
@@ -80,14 +62,26 @@ export class UpdateCenovnikComponent implements OnInit {
       this.validationMessage="Datum pocetka vazenja cenovnika mora biti manji od datuma kraja vazenja!";
       return;
     }
-    let cenovnik:CenovnikPrikaz ={
+
+    if(this.cenovnikForm.value.HourTicket < 0 || this.cenovnikForm.value.DayTicket < 0 || this.cenovnikForm.value.MonthTicket < 0 || this.cenovnikForm.value.YearTicket < 0)
+    {
+      this.validationMessage="Cena ne sme biti negativna!";
+      return
+    }
+
+    let cenovnik:CenovnikUpdate ={
       Id: this.Cenovnik.Id,
       VaziOd: this.cenovnikForm.value.VaziOd,
       VaziDo:this.cenovnikForm.value.VaziDo,
-      Aktivan:true,
-      Stavke:[this.cenovnikForm.value.HourId,this.cenovnikForm.value.DayId,this.cenovnikForm.value.MonthId,this.cenovnikForm.value.YearId],
+      Aktivan:true
     };
-     this.adminService.izmeniCenovnik(cenovnik).subscribe(res=>{
+
+    let vremenska=this.cenovnikForm.value.HourTicket
+    let dnevna=this.cenovnikForm.value.DayTicket
+    let mesecna=this.cenovnikForm.value.MonthTicket 
+    let godisnja=this.cenovnikForm.value.YearTicket 
+
+     this.adminService.izmeniCenovnik(cenovnik,vremenska,dnevna,mesecna,godisnja).subscribe(res=>{
         this.router.navigate(['/management']);
       },
       error=>{
