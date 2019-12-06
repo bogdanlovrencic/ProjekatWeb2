@@ -117,6 +117,8 @@ namespace JGSPNSWebApp.Controllers
             db.Entry(stanica).State = EntityState.Modified;
             db.SaveChanges();
 
+           
+
             return Ok();
         }
 

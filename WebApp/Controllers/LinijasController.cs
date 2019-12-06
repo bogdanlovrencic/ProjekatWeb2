@@ -56,7 +56,7 @@ namespace JGSPNSWebApp.Controllers
             }
 
 
-            var lin = db.Linije.Include(x=>x.Stanice).FirstOrDefault(x=>x.Id == id);
+            Linija lin=new Linija();
 
             foreach(Stanica s in linija.Stanice)
             {
@@ -64,19 +64,20 @@ namespace JGSPNSWebApp.Controllers
                 {
                     s.Aktivna = true;
                     //s.Linije = new List<Linija>();
+                    lin = db.Linije.Include(x => x.Stanice).FirstOrDefault(x => x.Id == id);
                     lin.Stanice.Add(s);
-                    db.Entry(lin).State = EntityState.Modified;
-                    db.SaveChanges();
+                    //db.Entry(lin).State = EntityState.Modified;
+                    //db.SaveChanges();
 
-                    //db.Entry(s).State = EntityState.Detached;
+
                     //db.Stanice.Add(s);
                     //db.SaveChanges();
 
                 }
                 else
                 {
-                    //db.Entry(s).State = EntityState.Modified;
-                    //db.SaveChanges();
+                    db.Entry(s).State = EntityState.Modified;
+                    db.SaveChanges();
                     continue;
                 }
             }
