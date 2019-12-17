@@ -8,8 +8,7 @@
                         <select for="TipRedaVoznje"  class="form-control"  formControlName="tipRedaVoznje"  (change)="onChange($event)" required>
                           <option value="Gradski" >Gradski</option>
                           <option value="Prigradski">Prigradski</option>                         
-                        </select>
-                       
+                        </select>                    
                     </div>
                 </div>   
                 <div class="form-group">
@@ -27,25 +26,21 @@
                   <div class="col-sm-3">                          
                           <select  name="selectLinija" class="form-control" formControlName="izabranaLinija" required>
                             <option *ngFor=" let linija of Linije" value="{{linija.Id}}">{{linija.Naziv}}</option>    
-                          </select> 
-                          
+                          </select>                        
                   </div>                           
                  </div> 
-
                  <div class="form-group">
                  <label for="polazak" class="col-sm-3 control-label">Polasci:</label>
                      <div class="col-sm-3">
                            <input type="text" id="polasci" class="form-control"  formControlName="polasci" required >
-                     </div>
-                    
+                     </div>          
                  </div>
         </div> 
             <div class="form-group">
                     <div class="col-sm-2" >
                             <button name="btn"  type="submit"   class="btn btn-primary btn-block" (click)="onSubmit()">Dodaj</button>
                      </div>
-             </div>
-                     
+             </div>                    
     </form> <!-- /form -->
 
     <hr *ngIf="validationMessage !== ''">

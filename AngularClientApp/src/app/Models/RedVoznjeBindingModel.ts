@@ -6,7 +6,7 @@ export class RedVoznjeBindingModel{
    // public Polasci: Polazak[];
     public LinijaId: number;
     public TipDana: string;
-    public TipRedaVoznje: number;
-    public
+    public TipRedaVoznje: string;
+    
     
 }

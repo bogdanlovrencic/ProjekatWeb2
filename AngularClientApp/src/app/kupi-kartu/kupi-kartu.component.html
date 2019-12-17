@@ -1,19 +1,49 @@
-<div class="container cenovnik-container">
-    <h3>Kupovina karte</h3>
-    <p>Mozete kupiti samo vremensku kartu(vazi u narednih sat vremena za bilo koju liniju) jer niste registrovani!<br/>
-        Unesite Vasu email adresu, da bismo Vam poslali Vasu kartu. 
-    </p>
-    <form [formGroup]="kupiKartuForm"  >
-        <div class="form-goup" >
-            <label for="labelEmail" class="col-sm-1 control-label"  >Email</label>
-            <input type="text" name="email" formControlName="email"/>
+<link crossorigin="anonymous">
+<script crossorigin="anonymous"></script>
+
+<br><br><div class="container">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="shadow-lg">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+                <div class="form-label-group">
+                    <div *ngIf="userProfileActivated != 1 && temp">
+                        <button type="button" class="btn btn-danger btn-lg btn-block" disabled>Your profile hasn't been verified by controller</button><br>
+                    </div>
+                    <div *ngIf="userProfileActivated == 1 || !temp">
+                        <select name="ticketType" class="form-control" (change)="onSelectTipKarte($event)">
+                        <option>Vremenska karta</option>
+                        <option *ngIf="loggedIn">Dnevna karta</option>
+                        <option *ngIf="loggedIn">Mesecna karta</option>
+                        <option *ngIf="loggedIn">Godisnja karta</option>
+                        </select><br>
+                        <label class="form-control text-center">Cena: {{price}} RSD</label><br>
+                        <div *ngIf="!loggedIn">
+                            <form class="form-signin" [formGroup]="emailForm">
+                                <!-- <div *ngIf="emailForm.controls.email.errors" >
+                                    <div *ngIf="emailForm.controls.email.errors.required && (emailForm.controls.email.dirty || emailForm.controls.email.touched)" class="badge badge-danger">Email is mandatory field</div>
+                                </div> -->
+                                <input formControlName="email" type="email" class="form-control" placeholder="Email"><br>
+                            </form>
+                        </div>
+                        <div>
+                        </div>
+                        <div *ngIf="emailForm.valid && !loggedIn" >
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase active" (click)="KupiKartu()">Kupi</button>
+                        </div>
+                        <div *ngIf="!emailForm.valid && !loggedIn" >
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase disabled" [disabled]="!emailForm.valid" >Kupi</button>
+                        </div>
+                        <div *ngIf="loggedIn" >
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase active" (click)="KupiKartu()">Kupi</button>
+                        </div>
+                        <!-- <br><ngx-paypal [config]="payPalConfig"></ngx-paypal> -->
+                    </div>
+                </div>      
+            </div>
+          </div> 
         </div>
-        <br>
-        <div > 
-            <input type="submit" [disabled]="!kupiKartuForm.valid" (click)="KupiKartu()" class="btn btn-primary " value="Kupi" />
-        </div>
-        
-    </form>
-    
-    
-</div>
+      </div>
+    </div>
+  </div>  

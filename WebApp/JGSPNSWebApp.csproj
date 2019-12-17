@@ -251,27 +251,15 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CenovniksController.cs" />
+    <Compile Include="Controllers\KartasController.cs" />
     <Compile Include="Controllers\LinijasController.cs" />
     <Compile Include="Controllers\RedVoznjesController.cs" />
     <Compile Include="Controllers\StanicasController.cs" />
-    <Compile Include="Migrations\201911270102262_all.cs" />
-    <Compile Include="Migrations\201911270102262_all.Designer.cs">
-      <DependentUpon>201911270102262_all.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912031900278_redVoznje_izmena.cs" />
-    <Compile Include="Migrations\201912031900278_redVoznje_izmena.Designer.cs">
-      <DependentUpon>201912031900278_redVoznje_izmena.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912032201455_obrisan_polazakModel.cs" />
-    <Compile Include="Migrations\201912032201455_obrisan_polazakModel.Designer.cs">
-      <DependentUpon>201912032201455_obrisan_polazakModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912050132181_stavka_izmena.cs" />
-    <Compile Include="Migrations\201912050132181_stavka_izmena.Designer.cs">
-      <DependentUpon>201912050132181_stavka_izmena.cs</DependentUpon>
+    <Compile Include="Migrations\201912170220382_initial_migration.cs" />
+    <Compile Include="Migrations\201912170220382_initial_migration.Designer.cs">
+      <DependentUpon>201912170220382_initial_migration.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\CenovnikStavka.cs" />
-    <Compile Include="Models\Email.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KorisniksController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
@@ -284,7 +272,6 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Cenovnik.cs" />
-    <Compile Include="Models\EmailService.cs" />
     <Compile Include="Models\Karta.cs" />
     <Compile Include="Models\Koeficijent.cs" />
     <Compile Include="Models\Korisnik.cs" />
@@ -415,17 +402,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201911270102262_all.resx">
-      <DependentUpon>201911270102262_all.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912031900278_redVoznje_izmena.resx">
-      <DependentUpon>201912031900278_redVoznje_izmena.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912032201455_obrisan_polazakModel.resx">
-      <DependentUpon>201912032201455_obrisan_polazakModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912050132181_stavka_izmena.resx">
-      <DependentUpon>201912050132181_stavka_izmena.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201912170220382_initial_migration.resx">
+      <DependentUpon>201912170220382_initial_migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

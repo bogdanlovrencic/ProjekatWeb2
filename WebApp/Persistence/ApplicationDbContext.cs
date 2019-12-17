@@ -31,7 +31,7 @@ namespace JGSPNSWebApp.Persistence
         public DbSet<Putnik> Putnici { get; set; }
         public DbSet<Korisnik> Korisnici { get; set; }
         public DbSet<CenovnikStavka> CenovnikStavke { get; set; }
-
         public System.Data.Entity.DbSet<JGSPNSWebApp.Models.Stanica> Stanice { get; set; }
+        public DbSet<Koeficijent> Koeficijenti { get; set; }
     }
 }

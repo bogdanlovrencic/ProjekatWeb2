@@ -110,6 +110,24 @@ namespace JGSPNSWebApp.Controllers
         }
 
         [HttpGet]
+        [Route("getRedVoznje")]
+        public IHttpActionResult GetRedVoznje(string tipRedaVoznje,string tipDana,int linijaId)
+        {
+            var redVoznje = db.RedVoznje.Include(x=>x.Linija).Where(x => x.IzabraniRedVoznje == tipRedaVoznje && x.IzabranTipDana == tipDana && x.LinijaId == linijaId).FirstOrDefault();
+
+            if(redVoznje == null)
+            {
+                return Ok(new List<string>(0));
+            }
+
+           // List<string> polasci = new List<string>();
+
+            //polasci = redVoznje.Polasci.Split(',').ToList();
+
+            return Ok(redVoznje);
+        }
+
+        [HttpGet]
         [Route("getLinije")]
         public IHttpActionResult GetLinije(int tipLinije)
         {
@@ -160,7 +178,7 @@ namespace JGSPNSWebApp.Controllers
     public class RedVoznjeBindingModel
     {
         public int LinijaId { get; set; }
-        public int TipRedaVoznje { get; set; }
+        public string TipRedaVoznje { get; set; }
         public string TipDana { get; set; }
       
     }

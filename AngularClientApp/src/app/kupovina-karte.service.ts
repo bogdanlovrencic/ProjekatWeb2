@@ -15,15 +15,15 @@ const httpOptions = {
 })
 export class KupovinaKarteService {
 
-    private karteUrl='http://localhost:52295/api/karte/kupi';
+    private karteUrl='http://localhost:52295/api/Kartas/kupiKartu';
 
   constructor(private http:HttpClient) { }
 
  
 
-  dodajKartu (email:Email): Observable<string>
+  dodajKartu (email:string): Observable<string>
   {
-      return this.http.post<string>(this.karteUrl, email, httpOptions);
+      return this.http.post<string>(this.karteUrl, email);
   }
 
   private handleError<T> (operation = 'operation', result?: T) {

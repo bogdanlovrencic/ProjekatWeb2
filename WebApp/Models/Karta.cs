@@ -8,26 +8,25 @@ using System.Web;
 namespace JGSPNSWebApp.Models
 {
     public class Karta
-    {
-        public Karta()
-        {
-
-        }
-
-        public Karta(string id,DateTime vremeOd,DateTime vremeDo)
-        {
-            Id = id;
-            VremeOd = vremeOd;
-            VremeDo = vremeDo;
-        }
+    {  
 
         public string Id { get; set; }      
 
-        public DateTime VremeOd { get; set; }
+        public DateTime VaziOd { get; set; }
 
-        public DateTime VremeDo { get; set; }  
+        public DateTime VaziDo { get; set; }  
+       
+        [ForeignKey("CenovnikStavka")]
+        public int IdCenovnikStavka { get; set; }
+        public CenovnikStavka CenovnikStavka { get; set; }
 
-        public Korisnik Kupac { get; set; }
+        [ForeignKey("Korisnik")]
+        public string IdKorisnika { get; set; }
+        public Korisnik Korisnik { get; set; }
+
+        public double Cena { get; set; }
+
+        public bool Validna { get; set; }
       
         
     }

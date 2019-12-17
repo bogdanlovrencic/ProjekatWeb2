@@ -67,6 +67,38 @@ namespace JGSPNSWebApp.Migrations
                 userManager.AddToRole(user.Id, "AppUser");
             }
 
+            if (!context.Koeficijenti.Any(c => c.TipPutnika == TipPutnika.REGULARNI))
+            {
+                var koefRegularni = new Koeficijent()
+                {
+                    TipPutnika = TipPutnika.REGULARNI,
+                    Koef = 1
+                };
+                context.Koeficijenti.Add(koefRegularni);
+            }
+
+            if (!context.Koeficijenti.Any(c => c.TipPutnika == TipPutnika.DJAK))
+            {
+                var koefStudent = new Koeficijent()
+                {
+                    TipPutnika = TipPutnika.DJAK,
+                    Koef = 0.8
+                };
+                context.Koeficijenti.Add(koefStudent);
+            }
+
+            if (!context.Koeficijenti.Any(c => c.TipPutnika == TipPutnika.PENZIONER))
+            {
+                var koefPenzioner = new Koeficijent()
+                {
+                    TipPutnika = TipPutnika.PENZIONER,
+                    Koef = 0.6
+                };
+                context.Koeficijenti.Add(koefPenzioner);
+            }
+
+
+
             //Stavka vremenskaKarta = new Stavka() { Id = 1, Naziv =VrstaKarte.VREMENSKA_KARTA.ToString() };
             //Stavka dnevnaKarta = new Stavka() { Id = 2, Naziv = VrstaKarte.DNEVNA_KARTA.ToString() };
             //Stavka mesecnaKarta = new Stavka() { Id = 3, Naziv=VrstaKarte.MESECNA_KARTA.ToString() };

@@ -3,7 +3,7 @@ namespace JGSPNSWebApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class all : DbMigration
+    public partial class initial_migration : DbMigration
     {
         public override void Up()
         {
@@ -25,6 +25,7 @@ namespace JGSPNSWebApp.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Cenovnik_Id = c.Int(nullable: false),
                         Stavka_Id = c.Int(nullable: false),
+                        Cena = c.Double(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Cenovniks", t => t.Cenovnik_Id, cascadeDelete: true)
@@ -38,8 +39,6 @@ namespace JGSPNSWebApp.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Naziv = c.String(),
-                        Cena = c.Double(nullable: false),
-                        Aktivna = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -48,13 +47,18 @@ namespace JGSPNSWebApp.Migrations
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
-                        VremeOd = c.DateTime(nullable: false),
-                        VremeDo = c.DateTime(nullable: false),
-                        Kupac_Email = c.String(maxLength: 128),
+                        VaziOd = c.DateTime(nullable: false),
+                        VaziDo = c.DateTime(nullable: false),
+                        IdCenovnikStavka = c.Int(nullable: false),
+                        IdKorisnika = c.String(maxLength: 128),
+                        Cena = c.Double(nullable: false),
+                        Validna = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Korisniks", t => t.Kupac_Email)
-                .Index(t => t.Kupac_Email);
+                .ForeignKey("dbo.CenovnikStavkas", t => t.IdCenovnikStavka, cascadeDelete: true)
+                .ForeignKey("dbo.Korisniks", t => t.IdKorisnika)
+                .Index(t => t.IdCenovnikStavka)
+                .Index(t => t.IdKorisnika);
             
             CreateTable(
                 "dbo.Korisniks",
@@ -73,6 +77,16 @@ namespace JGSPNSWebApp.Migrations
                         Aktivan = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Email);
+            
+            CreateTable(
+                "dbo.Koeficijents",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        TipPutnika = c.Int(nullable: false),
+                        Koef = c.Double(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Linijas",
@@ -99,20 +113,6 @@ namespace JGSPNSWebApp.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Polazaks",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Vreme = c.String(),
-                        TipDana = c.String(),
-                        LinijaId = c.Int(nullable: false),
-                        Active = c.Boolean(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Linijas", t => t.LinijaId, cascadeDelete: true)
-                .Index(t => t.LinijaId);
-            
-            CreateTable(
                 "dbo.Putniks",
                 c => new
                     {
@@ -132,6 +132,7 @@ namespace JGSPNSWebApp.Migrations
                         LinijaId = c.Int(nullable: false),
                         IzabraniRedVoznje = c.String(),
                         IzabranTipDana = c.String(),
+                        Polasci = c.String(),
                         Aktivan = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
@@ -240,10 +241,10 @@ namespace JGSPNSWebApp.Migrations
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.RedVoznjes", "LinijaId", "dbo.Linijas");
             DropForeignKey("dbo.Putniks", "Korisnik_Email", "dbo.Korisniks");
-            DropForeignKey("dbo.Polazaks", "LinijaId", "dbo.Linijas");
             DropForeignKey("dbo.StanicaLinijas", "Linija_Id", "dbo.Linijas");
             DropForeignKey("dbo.StanicaLinijas", "Stanica_Id", "dbo.Stanicas");
-            DropForeignKey("dbo.Kartas", "Kupac_Email", "dbo.Korisniks");
+            DropForeignKey("dbo.Kartas", "IdKorisnika", "dbo.Korisniks");
+            DropForeignKey("dbo.Kartas", "IdCenovnikStavka", "dbo.CenovnikStavkas");
             DropForeignKey("dbo.CenovnikStavkas", "Stavka_Id", "dbo.Stavkas");
             DropForeignKey("dbo.CenovnikStavkas", "Cenovnik_Id", "dbo.Cenovniks");
             DropIndex("dbo.StanicaLinijas", new[] { "Linija_Id" });
@@ -256,8 +257,8 @@ namespace JGSPNSWebApp.Migrations
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.RedVoznjes", new[] { "LinijaId" });
             DropIndex("dbo.Putniks", new[] { "Korisnik_Email" });
-            DropIndex("dbo.Polazaks", new[] { "LinijaId" });
-            DropIndex("dbo.Kartas", new[] { "Kupac_Email" });
+            DropIndex("dbo.Kartas", new[] { "IdKorisnika" });
+            DropIndex("dbo.Kartas", new[] { "IdCenovnikStavka" });
             DropIndex("dbo.CenovnikStavkas", new[] { "Stavka_Id" });
             DropIndex("dbo.CenovnikStavkas", new[] { "Cenovnik_Id" });
             DropTable("dbo.StanicaLinijas");
@@ -269,9 +270,9 @@ namespace JGSPNSWebApp.Migrations
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.RedVoznjes");
             DropTable("dbo.Putniks");
-            DropTable("dbo.Polazaks");
             DropTable("dbo.Stanicas");
             DropTable("dbo.Linijas");
+            DropTable("dbo.Koeficijents");
             DropTable("dbo.Korisniks");
             DropTable("dbo.Kartas");
             DropTable("dbo.Stavkas");
