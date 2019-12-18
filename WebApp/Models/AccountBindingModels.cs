@@ -102,7 +102,7 @@ namespace JGSPNSWebApp.Models
         [Required]
         public string Adresa { get; set; }
      
-        public string TipPutnika { get; set; }
+        public TipPutnika TipPutnika { get; set; }
     }
 
     public class RegisterExternalBindingModel

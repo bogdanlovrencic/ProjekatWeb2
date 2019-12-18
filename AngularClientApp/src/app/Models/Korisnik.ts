@@ -1,4 +1,5 @@
 import { AbstractControl } from '@angular/forms';
+import { TipPutnika } from './TipPutnika';
 
 export class Korisnik{
     Ime: string;
@@ -7,7 +8,7 @@ export class Korisnik{
     Lozinka: string;
     DatumRodjenja: string;
     Adresa: string;
-    TipPutnika: string;
+    TipPutnika: TipPutnika;
     Status:string;
     ImgUrl:string;
     ConfirmPassword:string;

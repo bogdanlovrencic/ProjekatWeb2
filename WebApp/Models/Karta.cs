@@ -9,13 +9,10 @@ namespace JGSPNSWebApp.Models
 {
     public class Karta
     {  
+        public int Id { get; set; }      
 
-        public string Id { get; set; }      
+        public DateTime VremeVazenja { get; set; }
 
-        public DateTime VaziOd { get; set; }
-
-        public DateTime VaziDo { get; set; }  
-       
         [ForeignKey("CenovnikStavka")]
         public int IdCenovnikStavka { get; set; }
         public CenovnikStavka CenovnikStavka { get; set; }

@@ -15,21 +15,21 @@ const httpOptions = {
 })
 export class KupovinaKarteService {
 
-    private karteUrl='http://localhost:52295/api/Kartas/kupiKartu';
+  
 
   constructor(private http:HttpClient) { }
 
  
 
-  dodajKartu (email:string): Observable<string>
+  dodajKartu (cenaKarte: any, izabraniTipKarte: any, user: any, email: any): Observable<any>
   {
-      return this.http.post<string>(this.karteUrl, email);
+      return this.http.post<any>(`http://localhost:52295/api/Kartas/kupiKartu?cena=${cenaKarte}&tipKarte=${izabraniTipKarte}&korisnik=${user}&email=${email}`,[cenaKarte,izabraniTipKarte,user,email]);
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      return of(result as T);
-    };
+  getCena(selectedTicketType: string, userType: string):Observable<number> {
+      return this.http.get<number>(`http://localhost:52295/api/Kartas/IzracunajCenu?tipKarte=${selectedTicketType}&tipPutnika=${userType}`);
   }
+
+ 
   
 }

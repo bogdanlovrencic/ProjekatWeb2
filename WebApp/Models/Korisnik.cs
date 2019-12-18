@@ -21,11 +21,9 @@ namespace JGSPNSWebApp.Models
 
         public string Lozinka { get; set; }
 
-        public bool Verifikovan { get; set; } = false;
-       
-       // public List<Karta> KupljenjeKarte { get; set; }
-
         public string Uloga { get; set; }
+
+        public string TipPutnika { get; set; }
 
         public string Status { get; set; }
         public string ImageUrl { get; set; }

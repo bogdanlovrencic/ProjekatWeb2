@@ -7,8 +7,9 @@ namespace JGSPNSWebApp.Models
 {
     public enum TipPutnika
     {
+        REGULARNI,
         DJAK,
-        PENZIONER,
-        REGULARNI
+        PENZIONER
+       
     }
 }

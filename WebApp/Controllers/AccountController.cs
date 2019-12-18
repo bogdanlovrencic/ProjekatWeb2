@@ -384,10 +384,6 @@ namespace JGSPNSWebApp.Controllers
                                 existingRecord.Status = "Ocekuje se verfikacija";
                                 existingRecord.ImgUrl = "UserImages/" + email + extension; 
                                 korisnik.Status = User.IsInRole("Admin") ? "Potvrdjen" : "Ocekuje se verfikacija";
-                                korisnik.Verifikovan = false;
-                               
-
-
                                 await context.SaveChangesAsync();
                             }
                             else
@@ -453,7 +449,7 @@ namespace JGSPNSWebApp.Controllers
                     if (User.IsInRole("Admin"))
                     {
                         uloga = UlogaKorisnika.KONTROLOR.ToString();
-                        model.TipPutnika = TipPutnika.REGULARNI.ToString();
+                        //model.TipPutnika = TipPutnika.REGULARNI;
                     }
 
                     else
@@ -468,23 +464,13 @@ namespace JGSPNSWebApp.Controllers
                         Lozinka = model.Lozinka,
                         DatumRodjenja = model.DatumRodjenja,
                         Adresa = model.Adresa,
-                        Verifikovan = model.TipPutnika.Equals("REGULARNI"),
+                        TipPutnika=model.TipPutnika.ToString(),
                         Uloga = uloga,
                         Aktivan = true
-                        
-                        
 
                     };
 
                     context.Korisnici.Add(newUser);
-
-
-                    context.Putnici.Add(new Putnik()
-                    {
-                        Korisnik = newUser,
-                        TipPutnika = model.TipPutnika ,
-                    });
-
                     context.SaveChanges();
                 }
                 return Ok();

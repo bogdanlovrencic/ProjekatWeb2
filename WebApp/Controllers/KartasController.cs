@@ -26,7 +26,7 @@ namespace JGSPNSWebApp.Controllers
 
         // GET: api/Kartas/5
         [ResponseType(typeof(Karta))]
-        public IHttpActionResult GetKarta(string id)
+        public IHttpActionResult GetKarta(int id)
         {
             Karta karta = db.Karte.Find(id);
             if (karta == null)
@@ -39,7 +39,7 @@ namespace JGSPNSWebApp.Controllers
 
         // PUT: api/Kartas/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutKarta(string id, Karta karta)
+        public IHttpActionResult PutKarta(int id, Karta karta)
         {
             if (!ModelState.IsValid)
             {
@@ -72,39 +72,60 @@ namespace JGSPNSWebApp.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Kartas
-        [ResponseType(typeof(Karta))]
-        public IHttpActionResult PostKarta(Karta karta)
+        [HttpGet]
+        [Route("IzracunajCenu")]
+        [ResponseType(typeof(double))]
+        public IHttpActionResult GetCena(string tipKarte,TipPutnika tipPutnika)
         {
-            if (!ModelState.IsValid)
+            int cenovnikId = db.Cenovnici.Where(x => x.Aktivan).Select(c => c.Id).First();
+            int stavkaId = db.Stavke.Where(x => x.Naziv == tipKarte).Select(c => c.Id).First();
+            double cena = db.CenovnikStavke.Where(x => x.Cenovnik_Id == cenovnikId && x.Stavka_Id == stavkaId).Select(c => c.Cena).First();
+            double koef = db.Koeficijenti.Where(x => x.TipPutnika == tipPutnika).Select(c => c.Koef).First();
+
+            double cenaSaPopustom = Math.Round(cena * koef, 2);
+
+            return Ok(cenaSaPopustom);
+        }
+   
+
+        [Route("kupiKartu")]
+        [ResponseType(typeof(Karta))]
+        public IHttpActionResult PostKarta(double cena,string tipKarte,Korisnik korisnik,string email)
+        {
+            int cenovnikId = db.Cenovnici.Where(x => x.Aktivan).Select(c => c.Id).First();
+            int stavkaId = db.Stavke.Where(x => x.Naziv == tipKarte).Select(c => c.Id).First();
+            int cenovnikStavkaId = db.CenovnikStavke.Where(x => x.Cenovnik_Id == cenovnikId && x.Stavka_Id == stavkaId).Select(c => c.Id).First();
+            
+         
+            Karta karta = new Karta
             {
-                return BadRequest(ModelState);
+                VremeVazenja=DateTime.Now,
+                IdCenovnikStavka = cenovnikStavkaId,       
+                IdKorisnika=null,
+                Cena=cena,
+                Validna = true
+
+            };
+
+            if(korisnik != null)
+            {
+                karta.IdKorisnika = db.Korisnici.Where(x => x.Email == email).Select(c => c.Email).First();
             }
 
             db.Karte.Add(karta);
+            db.SaveChanges();
 
-            try
+            if(korisnik == null)
             {
-                db.SaveChanges();
+                EmailHelper.SendMail(email, "Online kupovina karte", "Uspesno ste kupili " + tipKarte.ToString() +"\n ID:" + karta.Id.ToString() + ",\n Cena: " + karta.Cena.ToString()+",\n Vreme vazenja: "+karta.VremeVazenja.AddHours(1).ToString());
             }
-            catch (DbUpdateException)
-            {
-                if (KartaExists(karta.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtRoute("DefaultApi", new { id = karta.Id }, karta);
+                 
+            return Ok(karta);
         }
 
         // DELETE: api/Kartas/5
         [ResponseType(typeof(Karta))]
-        public IHttpActionResult DeleteKarta(string id)
+        public IHttpActionResult DeleteKarta(int id)
         {
             Karta karta = db.Karte.Find(id);
             if (karta == null)
@@ -127,7 +148,7 @@ namespace JGSPNSWebApp.Controllers
             base.Dispose(disposing);
         }
 
-        private bool KartaExists(string id)
+        private bool KartaExists(int id)
         {
             return db.Karte.Count(e => e.Id == id) > 0;
         }

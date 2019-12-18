@@ -13,7 +13,7 @@ namespace JGSPNSWebApp.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201912170220382_initial_migration"; }
+            get { return "201912180327496_initial_migration"; }
         }
         
         string IMigrationMetadata.Source

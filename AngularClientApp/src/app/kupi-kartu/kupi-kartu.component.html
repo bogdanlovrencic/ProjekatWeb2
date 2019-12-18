@@ -18,7 +18,7 @@
                         <option *ngIf="loggedIn">Mesecna karta</option>
                         <option *ngIf="loggedIn">Godisnja karta</option>
                         </select><br>
-                        <label class="form-control text-center">Cena: {{price}} RSD</label><br>
+                        <label class="form-control text-center">Cena: {{cena}} RSD</label><br>
                         <div *ngIf="!loggedIn">
                             <form class="form-signin" [formGroup]="emailForm">
                                 <!-- <div *ngIf="emailForm.controls.email.errors" >

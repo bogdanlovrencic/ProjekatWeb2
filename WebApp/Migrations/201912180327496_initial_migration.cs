@@ -46,9 +46,8 @@ namespace JGSPNSWebApp.Migrations
                 "dbo.Kartas",
                 c => new
                     {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        VaziOd = c.DateTime(nullable: false),
-                        VaziDo = c.DateTime(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
+                        VremeVazenja = c.DateTime(nullable: false),
                         IdCenovnikStavka = c.Int(nullable: false),
                         IdKorisnika = c.String(maxLength: 128),
                         Cena = c.Double(nullable: false),
@@ -70,8 +69,8 @@ namespace JGSPNSWebApp.Migrations
                         DatumRodjenja = c.DateTime(nullable: false),
                         Adresa = c.String(),
                         Lozinka = c.String(),
-                        Verifikovan = c.Boolean(nullable: false),
                         Uloga = c.String(),
+                        TipPutnika = c.String(),
                         Status = c.String(),
                         ImageUrl = c.String(),
                         Aktivan = c.Boolean(nullable: false),

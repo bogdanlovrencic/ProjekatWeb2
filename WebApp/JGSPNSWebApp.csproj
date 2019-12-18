@@ -255,9 +255,10 @@
     <Compile Include="Controllers\LinijasController.cs" />
     <Compile Include="Controllers\RedVoznjesController.cs" />
     <Compile Include="Controllers\StanicasController.cs" />
-    <Compile Include="Migrations\201912170220382_initial_migration.cs" />
-    <Compile Include="Migrations\201912170220382_initial_migration.Designer.cs">
-      <DependentUpon>201912170220382_initial_migration.cs</DependentUpon>
+    <Compile Include="EmailHelper.cs" />
+    <Compile Include="Migrations\201912180327496_initial_migration.cs" />
+    <Compile Include="Migrations\201912180327496_initial_migration.Designer.cs">
+      <DependentUpon>201912180327496_initial_migration.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\CenovnikStavka.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -402,8 +403,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201912170220382_initial_migration.resx">
-      <DependentUpon>201912170220382_initial_migration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201912180327496_initial_migration.resx">
+      <DependentUpon>201912180327496_initial_migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
