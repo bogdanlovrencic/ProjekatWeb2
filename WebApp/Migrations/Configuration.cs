@@ -67,31 +67,31 @@ namespace JGSPNSWebApp.Migrations
                 userManager.AddToRole(user.Id, "AppUser");
             }
 
-            if (!context.Koeficijenti.Any(c => c.TipPutnika == TipPutnika.REGULARNI))
+            if (!context.Koeficijenti.Any(c => c.TipPutnika == TipPutnika.Regularni))
             {
                 var koefRegularni = new Koeficijent()
                 {
-                    TipPutnika = TipPutnika.REGULARNI,
+                    TipPutnika = TipPutnika.Regularni,
                     Koef = 1
                 };
                 context.Koeficijenti.Add(koefRegularni);
             }
 
-            if (!context.Koeficijenti.Any(c => c.TipPutnika == TipPutnika.DJAK))
+            if (!context.Koeficijenti.Any(c => c.TipPutnika == TipPutnika.Djak))
             {
                 var koefStudent = new Koeficijent()
                 {
-                    TipPutnika = TipPutnika.DJAK,
+                    TipPutnika = TipPutnika.Djak,
                     Koef = 0.8
                 };
                 context.Koeficijenti.Add(koefStudent);
             }
 
-            if (!context.Koeficijenti.Any(c => c.TipPutnika == TipPutnika.PENZIONER))
+            if (!context.Koeficijenti.Any(c => c.TipPutnika == TipPutnika.Penzioner))
             {
                 var koefPenzioner = new Koeficijent()
                 {
-                    TipPutnika = TipPutnika.PENZIONER,
+                    TipPutnika = TipPutnika.Penzioner,
                     Koef = 0.6
                 };
                 context.Koeficijenti.Add(koefPenzioner);

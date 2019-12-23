@@ -1,44 +1,28 @@
-<body>
-    
-   <div class="container cenovnik-container">
-      <h3>Cenovnik</h3>
-      <!-- <form name="cenovnikForm" >
-      
-        <div class="form-group"> 
-          <label for="TipKarte" class="col-sm-2 control-label"  >Tip karte </label>
-          <select name="tipKarte" >     
-              <option value="VREMENSKA_KARTA">Vremenska karta</option>
-              <option value="DNEVNA_KARTA">Dnevna karta</option>
-              <option value="MESECNA_KARTA">Mesecna karta </option>
-              <option value="GODISNJA_KARTA">Godisnja karta</option>
-          </select>
+<br><br><div class="container">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="shadow-lg">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+                <div class="form-label-group">
+                  <label for="tipK">Tip karte:</label><br>
+                <select name="tipKarte" class="form-control" (change)="onSelectTipKarte($event)">
+                  <option>Vremenska karta </option>
+                  <option>Dnevna karta</option>
+                  <option>Mesecna karta</option>
+                  <option>Godisnja karta</option>
+                </select><br>
+                <label for="tipP">Tip putnika:</label><br>
+                <select name="tipPutnika" class="form-control" (change)="onSelectTipPutnika($event)">
+                  <option>Regularni</option>
+                  <option>Djak</option>
+                  <option>Penzioner</option>
+                </select><br>
+              <label class="form-control text-center">Cena: {{cena}} RSD</label>
+              </div><br>      
+            </div>
+          </div> 
         </div>
-      
-          <div class="form-group"> 
-              <label for="TipPutnika" class="col-sm-2 control-label">Vrsta putnika</label>
-            <select name="tipPutnika" >
-              <option value="DJAK">Djak</option>
-              <option value="PENZIONER">Penzioner</option>
-              <option value="REGULARNI_PUTNIK">Regularni putnik</option>
-            </select>
-          </div>
-          <br/>
-         
-      </form> -->
-      <br/>
-      <!-- <div class="form-group"><input type="submit" (click)="PrikaziCenovnik()" value="Prikazi"/> </div> -->
-      <div class="absolute"> 
-        <table border="1">
-            <tr>
-              <th>Tip karte</th>             
-              <th>Cena</th>
-            </tr>
-            <tr *ngFor="let Cenovnik of Cenovnici">
-              <td>{{Cenovnik.TipKarte}}</td>
-              <td>{{Cenovnik.Cena}}</td>           
-            </tr>
-        </table>
-
-       </div>
-  </div>
-</body>
+      </div>
+    </div>
+  </div>  
