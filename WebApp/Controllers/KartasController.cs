@@ -90,7 +90,7 @@ namespace JGSPNSWebApp.Controllers
 
         [Route("kupiKartu")]
         [ResponseType(typeof(Karta))]
-        public IHttpActionResult PostKarta(double cena,string tipKarte,Korisnik korisnik,string email)
+        public IHttpActionResult PostKarta(double cena,string tipKarte,string korisnikEmail,string email)
         {
             int cenovnikId = db.Cenovnici.Where(x => x.Aktivan).Select(c => c.Id).First();
             int stavkaId = db.Stavke.Where(x => x.Naziv == tipKarte).Select(c => c.Id).First();
@@ -107,15 +107,15 @@ namespace JGSPNSWebApp.Controllers
 
             };
 
-            if(korisnik != null)
+            if(korisnikEmail != null)
             {
-                karta.IdKorisnika = db.Korisnici.Where(x => x.Email == email).Select(c => c.Email).First();
+                karta.IdKorisnika = db.Korisnici.Where(x => x.Email == korisnikEmail).Select(c => c.Email).First();
             }
 
             db.Karte.Add(karta);
             db.SaveChanges();
 
-            if(korisnik == null)
+            if(korisnikEmail == null)
             {
                 EmailHelper.SendMail(email, "Online kupovina karte", "Uspesno ste kupili " + tipKarte.ToString() +"\n ID:" + karta.Id.ToString() + ",\n Cena: " + karta.Cena.ToString()+",\n Vreme vazenja: "+karta.VremeVazenja.AddHours(1).ToString());
             }

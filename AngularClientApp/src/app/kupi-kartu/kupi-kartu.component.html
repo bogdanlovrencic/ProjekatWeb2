@@ -8,15 +8,15 @@
         <div class="card card-signin my-5">
           <div class="card-body">
                 <div class="form-label-group">
-                    <div *ngIf="userProfileActivated != 1 && temp">
-                        <button type="button" class="btn btn-danger btn-lg btn-block" disabled>Your profile hasn't been verified by controller</button><br>
+                    <div *ngIf="userProfileActivated != 'Potvrdjen' && isLoggedIn">
+                        <button type="button" class="btn btn-danger btn-lg btn-block" disabled>Vas profil nije jos uvek verifikovan od strane kontrolora!</button><br>
                     </div>
-                    <div *ngIf="userProfileActivated == 1 || !temp">
+                    <div *ngIf="userProfileActivated === 'Potvrdjen' || !isLoggedIn">
                         <select name="ticketType" class="form-control" (change)="onSelectTipKarte($event)">
                         <option>Vremenska karta</option>
-                        <option *ngIf="loggedIn">Dnevna karta</option>
-                        <option *ngIf="loggedIn">Mesecna karta</option>
-                        <option *ngIf="loggedIn">Godisnja karta</option>
+                        <option *ngIf="isLoggedIn">Dnevna karta</option>
+                        <option *ngIf="isLoggedIn">Mesecna karta</option>
+                        <option *ngIf="isLoggedIn">Godisnja karta</option>
                         </select><br>
                         <label class="form-control text-center">Cena: {{cena}} RSD</label><br>
                         <div *ngIf="!loggedIn">

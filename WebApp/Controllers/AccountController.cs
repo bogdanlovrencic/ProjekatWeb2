@@ -432,10 +432,45 @@ namespace JGSPNSWebApp.Controllers
                 }
 
 
-                var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser() {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    Name=model.Ime,
+                    Surname=model.Prezime,
+                    DateOfBirth=model.DatumRodjenja.ToString(),
+                    Address=model.Adresa,
+                    UserType=model.TipPutnika.ToString()                   
+                
+                
+                };
+
+                if (user.UserType == TipPutnika.Regularni.ToString())
+                {
+                    EmailHelper.SendMail(user.Email, "Profile Status", "Your profile is accepted");
+                    user.Status = "Potvrdjen";
+                }
+                else
+                {
+                    EmailHelper.SendMail(user.Email, "Profile Status", "Your profile is being validated");
+                    user.Status = "Ocekuje se verifikacija";
+                }
+
                 IdentityResult result = await UserManager.CreateAsync(user, model.Lozinka);
 
-           
+                if (!result.Succeeded)
+                {
+                    return GetErrorResult(result);
+                }
+
+                if(User.IsInRole("Admin"))
+                {
+                    result = await UserManager.AddToRoleAsync(user.Id, "Controller");
+                }
+
+                else
+                {
+                    result = await UserManager.AddToRoleAsync(user.Id, "AppUser");
+                }
 
                 if (!result.Succeeded)
                 {
@@ -449,7 +484,7 @@ namespace JGSPNSWebApp.Controllers
                     if (User.IsInRole("Admin"))
                     {
                         uloga = UlogaKorisnika.KONTROLOR.ToString();
-                        //model.TipPutnika = TipPutnika.REGULARNI;
+  
                     }
 
                     else
@@ -465,10 +500,18 @@ namespace JGSPNSWebApp.Controllers
                         DatumRodjenja = model.DatumRodjenja,
                         Adresa = model.Adresa,
                         TipPutnika=model.TipPutnika.ToString(),
-                        Uloga = uloga,
+                        Uloga = uloga,          
                         Aktivan = true
 
                     };
+
+                    if(User.IsInRole("Admin"))
+                    {
+                        newUser.Status = "Potvrdjen";
+                    }
+
+                    if (newUser.TipPutnika == TipPutnika.Regularni.ToString())
+                        newUser.Status = "Potvrdjen";
 
                     context.Korisnici.Add(newUser);
                     context.SaveChanges();

@@ -62,9 +62,16 @@ namespace JGSPNSWebApp.Migrations
 
             if (!context.Users.Any(u => u.UserName == "appu@yahoo.com"))
             { 
-                var user = new ApplicationUser() { Id = "appu", UserName = "appu@yahoo", Email = "appu@yahoo.com", PasswordHash = ApplicationUser.HashPassword("Appu123!") };
+                var user = new ApplicationUser() { Id = "appu", UserName = "appu@yahoo.com", Email = "appu@yahoo.com", PasswordHash = ApplicationUser.HashPassword("Appu123!") };
                 userManager.Create(user);
                 userManager.AddToRole(user.Id, "AppUser");
+            }
+
+            if (!context.Users.Any(u => u.UserName == "controller@yahoo.com"))
+            {
+                var user = new ApplicationUser() { Id = "controller", UserName = "controller@yahoo.com", Email = "controller@yahoo.com", PasswordHash = ApplicationUser.HashPassword("Controller123!") };
+                userManager.Create(user);
+                userManager.AddToRole(user.Id, "Controller");
             }
 
             if (!context.Koeficijenti.Any(c => c.TipPutnika == TipPutnika.Regularni))

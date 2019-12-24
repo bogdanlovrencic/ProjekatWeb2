@@ -4,6 +4,8 @@ import { FormBuilder,FormGroup, Validators } from '@angular/forms';
 import { Email } from 'src/app/Email';
 import { UserService } from '../user.service';
 import { TipPutnika } from '../Models/TipPutnika';
+import { DecodeJwtDataService } from '../decode-jwt-data.service';
+import { Korisnik } from '../Models/Korisnik';
 
 @Component({
   selector: 'app-kupi-kartu',
@@ -14,8 +16,8 @@ export class KupiKartuComponent implements OnInit {
 
   private emailForm: FormGroup;
 
-  loggedIn = undefined;
-  userData : any;
+  rola = "";
+  userData : Korisnik;
   userProfileActivated: any;
   userProfileType: any;
   selectedTicketType: any;
@@ -25,11 +27,12 @@ export class KupiKartuComponent implements OnInit {
   isLoggedIn: boolean;
   priceEUR: number;
   tempPrice: number;
+  userEmail:string
 
   // public payPalConfig?: IPayPalConfig;
   // showSuccess: boolean;
 
-  constructor(private userService: UserService, private kartaService: KupovinaKarteService, private fb: FormBuilder) {
+  constructor(private userService: UserService, private kartaService: KupovinaKarteService, private fb: FormBuilder,private decodedJwtService:DecodeJwtDataService) {
       this.emailForm=this.fb.group({
         email: ['', Validators.required],
         
@@ -37,12 +40,13 @@ export class KupiKartuComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.loggedIn = localStorage['role'];
+    this.rola = this.decodedJwtService.getRoleFromToken();
+    this.userEmail=this.decodedJwtService.getEmailFromToken();
     this.selectedTicketType = "Vremenska karta";
-    this.getUser();
+    this.getUser(this.userEmail);
     //this.initConfig();
-    this.temp = localStorage['name'];
-    if(this.temp){
+  
+    if(this.rola !=""){
       this.isLoggedIn = true;
     }
     else{
@@ -53,13 +57,15 @@ export class KupiKartuComponent implements OnInit {
 
   onSelectTipKarte(event : any){
     this.selectedTicketType = event.target.value;
-    this.getUser();
+    this.getUser(this.userEmail);
   }
 
-  getUser(){
-      if(localStorage.getItem('name'))
+  getUser(email:string){
+   
+
+      if(email!="")
       {
-        this.userService.getUserData(localStorage.getItem('name')).subscribe( data =>{
+        this.userService.getUserData(email).subscribe( data =>{
         this.userData = data;
         this.userProfileActivated = this.userData.Status;
         this.userProfileType = this.userData.TipPutnika;
@@ -76,7 +82,7 @@ export class KupiKartuComponent implements OnInit {
             this.priceEUR = data*0.0085;
           } 
           );
-      });
+        });
       }
       else
       {     
@@ -92,7 +98,7 @@ export class KupiKartuComponent implements OnInit {
 
   KupiKartu():void
   {
-    this.kartaService.dodajKartu(this.cena, this.selectedTicketType, localStorage.getItem('name'), this.emailForm.controls.email.value).subscribe( data =>{
+    this.kartaService.dodajKartu(this.cena, this.selectedTicketType,this.userData.Email, this.emailForm.controls.email.value).subscribe( data =>{
       window.alert("Kupili ste kartu!")
       this.emailForm.reset()
     } );     

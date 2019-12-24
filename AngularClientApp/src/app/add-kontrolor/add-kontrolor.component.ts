@@ -26,7 +26,7 @@ export class AddKontrolorComponent implements OnInit {
       confPassword:['',Validators.required],
       birthDate:['',Validators.required],
       adresa : ['',Validators.required],
-      tipPutnika: []    
+      tipPutnika: ['Regularni']    
     });
    }
 

@@ -45,12 +45,8 @@
                               <div class="col-sm-3">
                                       <input type="text" id="address" placeholder="Adresa" class="form-control" formControlName="adresa">
                               </div>
-                           </div>                        
-                        <div class="form-group">
-                            <input type="hidden" name="tipPutnika" ng-value="Regularni"  ng-model="TipPutnika"/>
-                           
-                        </div>                                     
-                      <div class="form-group" *ngIf="tipPutnika!='Regularni'">
+                           </div>                                                            
+                      <div class="form-group" *ngIf="TipPutnika!='Regularni'">
                           <div class="col-sm-9" *ngIf="!isChecked" > 
                               <input type="file"  accept="image/*" name="image" (change)="onFileSelected($event)" >
                           </div>

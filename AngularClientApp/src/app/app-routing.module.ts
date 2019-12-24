@@ -18,6 +18,8 @@ import { UpdateCenovnikComponent } from './update-cenovnik/update-cenovnik.compo
 import { UpdateKontrolorComponent } from './update-kontrolor/update-kontrolor.component';
 import { UpdateRedVoznjeComponent } from './update-red-voznje/update-red-voznje.component';
 import { UpdateLinijaComponent } from './update-linija/update-linija.component';
+import { ValidirajKartuComponent } from './validiraj-kartu/validiraj-kartu.component';
+import { VerifikujKorisnikaComponent } from './verifikuj-korisnika/verifikuj-korisnika.component';
 
 const routes: Routes = [
   
@@ -126,6 +128,16 @@ const routes: Routes = [
   {
     path:'LinijaIzmena/linija',
     component:UpdateLinijaComponent,
+  },
+
+  {
+    path:'validacijaKarti',
+    component:ValidirajKartuComponent
+  },
+
+  {
+    path:'verifikacijaKorisnika',
+    component:VerifikujKorisnikaComponent
   }
 
 

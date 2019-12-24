@@ -36,7 +36,7 @@ export class NavigationBarComponent implements OnInit {
     this.isAdmin = false;
     this.rola="";
     localStorage.removeItem('token');   
-    this.router.navigate(['/redVoznje']); 
+    this.router.navigate(['/login']); 
   }
 
   rola = "";

@@ -260,6 +260,10 @@
     <Compile Include="Migrations\201912180327496_initial_migration.Designer.cs">
       <DependentUpon>201912180327496_initial_migration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912231948320_appUserModelModified.cs" />
+    <Compile Include="Migrations\201912231948320_appUserModelModified.Designer.cs">
+      <DependentUpon>201912231948320_appUserModelModified.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\CenovnikStavka.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KorisniksController.cs" />
@@ -405,6 +409,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201912180327496_initial_migration.resx">
       <DependentUpon>201912180327496_initial_migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912231948320_appUserModelModified.resx">
+      <DependentUpon>201912231948320_appUserModelModified.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
