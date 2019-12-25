@@ -49,30 +49,39 @@ namespace JGSPNSWebApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != redVoznje.Id)
-            {
-                return BadRequest();
-            }
+            var stariRedVoznje = db.RedVoznje.Where(x => x.Aktivan && x.Id == id).First();
 
-            db.Entry(redVoznje).State = EntityState.Modified;
+            if (stariRedVoznje == null) //red voznje obrisan od strane admina
+                return Ok(202);
+            
+            if(stariRedVoznje.Version == redVoznje.Version)
+            {
+                redVoznje.Version += 1;
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!RedVoznjeExists(id))
+                db.Entry(redVoznje).State = EntityState.Modified;
+
+                try
                 {
-                    return NotFound();
+                    db.SaveChanges();
                 }
-                else
+                catch (DbUpdateConcurrencyException)
                 {
-                    throw;
+                    if (!RedVoznjeExists(id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
-            }
 
-            return StatusCode(HttpStatusCode.NoContent);
+                return Ok(200);
+            }
+            else
+            {
+                return Ok(204);
+            }
         }
 
         // POST: api/RedVoznjes
@@ -149,8 +158,8 @@ namespace JGSPNSWebApp.Controllers
         {
             var redVoznje = db.RedVoznje.Find(id);
 
-            if (redVoznje == null)
-                return BadRequest("Red voznje sa prosledjenim id ne postoji!");
+            if (!redVoznje.Aktivan)
+                return Ok(204);
 
             redVoznje.Aktivan = false;
 

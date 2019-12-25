@@ -20,6 +20,7 @@ namespace JGSPNSWebApp.Models
 
         public bool Aktivna { get; set; }
 
+        public long Version { get; set; }
 
 
     }

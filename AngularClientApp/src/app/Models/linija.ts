@@ -7,6 +7,7 @@ export class Linija
     Stanice: Stanica[];
     TipLinije: LineType;
     Aktivna: boolean;
+    Version:number;
 
     constructor(naziv:string, stanice:Stanica[]){
         this.Naziv = naziv;

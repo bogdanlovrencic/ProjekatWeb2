@@ -93,7 +93,8 @@ namespace JGSPNSWebApp.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Naziv = c.String(),
-                        TipLinije = c.Int(nullable: false),
+                        Tip
+                        = c.Int(nullable: false),
                         Aktivna = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);

@@ -4,6 +4,7 @@ export class Stanica{
     Adresa: string;
     Lat: number;
     Lon: number;
+    Version:number;
     
 
     constructor(lat:number, lon:number)

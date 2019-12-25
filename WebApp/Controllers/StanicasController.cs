@@ -105,21 +105,20 @@ namespace JGSPNSWebApp.Controllers
 
         [HttpGet]
         [Route("ObrisiStanicu")]
+        [ResponseType(typeof(Stanica))]
         public IHttpActionResult ObrisiStanicu(int id)
         {
             var stanica = db.Stanice.Find(id);
 
-            if (stanica == null)
-                return BadRequest("Stanica sa prosledjenim id ne postoji!");
+            if(!stanica.Aktivna)
+                return Ok(204);
 
             stanica.Aktivna = false;
 
             db.Entry(stanica).State = EntityState.Modified;
             db.SaveChanges();
 
-           
-
-            return Ok();
+            return Ok(200);
         }
 
         protected override void Dispose(bool disposing)

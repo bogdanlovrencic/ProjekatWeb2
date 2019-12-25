@@ -20,10 +20,11 @@ namespace JGSPNSWebApp.Models
 
         public double Lon { get; set; }
 
-    
         public List<Linija> Linije { get; set; }
 
         public bool Aktivna { get; set; }
+
+        public long Version { get; set; }
 
     }
 }

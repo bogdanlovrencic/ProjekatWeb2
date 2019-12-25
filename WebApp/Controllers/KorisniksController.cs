@@ -115,9 +115,6 @@ namespace JGSPNSWebApp.Controllers
                 return NotFound();
             }
 
-            var putnik = db.Putnici.Include(x => x.Korisnik).FirstOrDefault(x => x.Korisnik.Email.Equals(id));
-            db.Putnici.Remove(putnik);
-
             db.Korisnici.Remove(korisnik);
             db.SaveChanges();
 
@@ -130,10 +127,10 @@ namespace JGSPNSWebApp.Controllers
         {
             var kontrolor = db.Korisnici.Find(id);
 
-            if (kontrolor == null)
-                return BadRequest("Kontrolor sa prosledjenim id ne postoji!");
+            if (!kontrolor.Aktivan)
+                return Ok(204);
 
-           // kontrolor.Aktivan = false;
+            kontrolor.Aktivan = false;
 
             db.Entry(kontrolor).State = EntityState.Modified;
             db.SaveChanges();

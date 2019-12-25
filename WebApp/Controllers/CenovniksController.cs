@@ -259,61 +259,72 @@ namespace JGSPNSWebApp.Controllers
 
         // POST: api/Cenovniks
         [Route("IzmeniCenovnik")]
-        [ResponseType(typeof(void))]
-        public IHttpActionResult IzmeniCenovnik(int id,DateTime VaziOd, DateTime VaziDo, bool aktivan, double cenaVremenske, double cenaDnevne, double cenaMesecne, double cenaGodisnje)
+        [ResponseType(typeof(Cenovnik))]
+        public IHttpActionResult IzmeniCenovnik(int id,DateTime VaziOd, DateTime VaziDo, bool aktivan,long version, double cenaVremenske, double cenaDnevne, double cenaMesecne, double cenaGodisnje)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
+          
             var stariCenovnik = db.Cenovnici.Find(id);
             var stariCenStavki = db.CenovnikStavke.Include(x => x.Cenovnik).Where(x => x.Cenovnik_Id == id).Include(x => x.Stavka).ToList();
 
-            stariCenovnik.Id = id;
-            stariCenovnik.VaziOd = VaziOd;
-            stariCenovnik.VaziDo = VaziDo;
-            stariCenovnik.Aktivan = aktivan;
+            if (!stariCenovnik.Aktivan)
+                return Ok(202);
 
-            db.Entry(stariCenovnik).State = EntityState.Modified;
-            db.SaveChanges();
-
-
-            foreach(var stavka in db.Stavke.ToList())
+            if(stariCenovnik.Version == version)
             {
-                foreach(var cs in stariCenStavki)
+                stariCenovnik.Id = id;
+                stariCenovnik.VaziOd = VaziOd;
+                stariCenovnik.VaziDo = VaziDo;
+                stariCenovnik.Aktivan = aktivan;
+
+                foreach (var stavka in db.Stavke.ToList())
                 {
-                    if (stavka.Naziv == "Vremenska karta" && stavka.Id == cs.Stavka_Id)
+                    foreach (var cs in stariCenStavki)
                     {
-                        cs.Cena = cenaVremenske;
-                        db.Entry(cs).State = EntityState.Modified;
-                        db.SaveChanges();
-                    }
-                    else if (stavka.Naziv == "Dnevna karta" && stavka.Id == cs.Stavka_Id)
-                    {
-                        cs.Cena = cenaDnevne;
-                        db.Entry(cs).State = EntityState.Modified;
-                        db.SaveChanges();
-                    }
-                    else if (stavka.Naziv == "Mesecna karta" && stavka.Id == cs.Stavka_Id)
-                    {
-                        cs.Cena = cenaMesecne;
-                        db.Entry(cs).State = EntityState.Modified;
-                        db.SaveChanges();
-                    }
+                        if (stavka.Naziv == "Vremenska karta" && stavka.Id == cs.Stavka_Id)
+                        {
+                            cs.Cena = cenaVremenske;
+                            db.Entry(cs).State = EntityState.Modified;
+                            db.SaveChanges();
+                        }
+                        else if (stavka.Naziv == "Dnevna karta" && stavka.Id == cs.Stavka_Id)
+                        {
+                            cs.Cena = cenaDnevne;
+                            db.Entry(cs).State = EntityState.Modified;
+                            db.SaveChanges();
+                        }
+                        else if (stavka.Naziv == "Mesecna karta" && stavka.Id == cs.Stavka_Id)
+                        {
+                            cs.Cena = cenaMesecne;
+                            db.Entry(cs).State = EntityState.Modified;
+                            db.SaveChanges();
+                        }
 
-                    else if (stavka.Naziv == "Godisnja karta" && stavka.Id == cs.Stavka_Id)
-                    {
-                        cs.Cena = cenaGodisnje;
-                        db.Entry(cs).State = EntityState.Modified;
-                        db.SaveChanges();
-                    }
+                        else if (stavka.Naziv == "Godisnja karta" && stavka.Id == cs.Stavka_Id)
+                        {
+                            cs.Cena = cenaGodisnje;
+                            db.Entry(cs).State = EntityState.Modified;
+                            db.SaveChanges();
+                        }
+                    }         
                 }
-               
-            }        
 
-          
-            return StatusCode(HttpStatusCode.NoContent);
+                stariCenovnik.Version += 1;
+
+                db.Entry(stariCenovnik).State = EntityState.Modified;
+                db.SaveChanges();
+
+                return Ok(200);
+
+            }
+            else
+            {
+                return Ok(204);
+            }
+
         }
 
         // DELETE: api/Cenovniks/5
@@ -338,15 +349,15 @@ namespace JGSPNSWebApp.Controllers
         {
             var cenovnik = db.Cenovnici.Find(id);
 
-            if (cenovnik == null)
-                return BadRequest("Cenovnik sa prosledjenim id ne postoji!");
+            if (!cenovnik.Aktivan)
+                return Ok(204);
 
             cenovnik.Aktivan = false;
 
             db.Entry(cenovnik).State = EntityState.Modified;
             db.SaveChanges();
 
-            return Ok();
+            return Ok(200);
         }
 
         protected override void Dispose(bool disposing)

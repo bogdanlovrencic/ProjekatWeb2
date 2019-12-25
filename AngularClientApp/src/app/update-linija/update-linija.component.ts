@@ -78,11 +78,19 @@ export class UpdateLinijaComponent implements OnInit {
     this.polyline.Id=this.Linija.Id;
     this.polyline.Naziv = this.editLinijaForm.value.imeLinije;
     this.polyline.TipLinije=this.editLinijaForm.value.izabraniTipLinije;
-    this.polyline.Aktivna=this.Linija.Aktivna
+    this.polyline.Aktivna=this.Linija.Aktivna;
+    this.polyline.Version=this.Linija.Version;
 
-    this.adminSrv.izmeniLiniju(this.polyline).subscribe(res=>{
-      this.router.navigate(['/management']);
-    },(error)=>{})
+    this.adminSrv.izmeniLiniju(this.polyline).subscribe(data=>{
+      console.log("Data: ");
+      console.log(data);
+      if(data == 200){
+        this.router.navigate(['/management']);
+      }
+      else{
+        window.alert("Drugi admin je vec izmenio liniju, molimo Vas da refresujete stranicu!");
+      }
+    },(error)=>{console.log(error)})
 
   }
 

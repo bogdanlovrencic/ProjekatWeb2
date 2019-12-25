@@ -6,4 +6,5 @@ export class RedVoznje{
     public IzabraniRedVoznje: string;
     public Polasci:string
     public Aktivan:boolean;
+    public Version:number;
 }

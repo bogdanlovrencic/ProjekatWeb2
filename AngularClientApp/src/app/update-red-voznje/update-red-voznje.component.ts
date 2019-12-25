@@ -81,9 +81,17 @@ export class UpdateRedVoznjeComponent implements OnInit {
     redVoznje.LinijaId=this.editRedVoznjeForm.controls.izabranaLinija.value;
     redVoznje.Polasci= this.editRedVoznjeForm.controls.polasci.value;
     redVoznje.Aktivan=this.RedVoznje.Aktivan
+    redVoznje.Version=this.RedVoznje.Version
   
-    this.adminService.izmeniRedVoznje(redVoznje).subscribe(res=>{
-          this.router.navigate(['/management'])
+    this.adminService.izmeniRedVoznje(redVoznje).subscribe(data=>{
+      console.log("Data: ");
+      console.log(data);
+      if(data == 200){
+        this.router.navigate(['/management']);
+      }
+      else{
+        window.alert("Drugi admin je vec izmenio red voznje, molimo Vas da refresujete stranicu!");
+      }
 
        }),error=>{console.log(error);}
     

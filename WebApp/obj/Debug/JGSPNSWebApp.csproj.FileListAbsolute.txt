@@ -1055,3 +1055,6 @@ D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.pdb
 D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.Migrations.initial_migration.resources
 D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.csproj.GenerateResource.cache
 D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.Migrations.appUserModelModified.resources
+D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.Migrations.adminTransakcije.resources
+D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.Migrations.ispravka.resources
+D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.csprojAssemblyReference.cache

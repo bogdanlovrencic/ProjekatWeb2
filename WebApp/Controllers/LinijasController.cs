@@ -50,59 +50,83 @@ namespace JGSPNSWebApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != linija.Id)
+            var line = db.Linije.Where(x=>x.Id == id && x.Aktivna).First();
+
+            if(line == null)//ako je null linija je obrisana od strane admina
             {
-                return BadRequest();
+                return Ok(202);
             }
 
+            var oldVersion = db.Linije.Where(x => x.Aktivna && x.Id == id).Select(c => c.Version).First();
+            var stareStanice = db.Stanice.Where(x => x.Aktivna && x.Linije.Contains(linija)).ToList();
+            Linija lin = new Linija();
 
-            Linija lin=new Linija();
-
-            foreach(Stanica s in linija.Stanice)
+            if (oldVersion == linija.Version)
             {
-                if(!s.Aktivna)
+                foreach (Stanica s in linija.Stanice)
                 {
-                    s.Aktivna = true;
-                    //s.Linije = new List<Linija>();
-                    lin = db.Linije.Include(x => x.Stanice).FirstOrDefault(x => x.Id == id);
-                    lin.Stanice.Add(s);
-                    //db.Entry(lin).State = EntityState.Modified;
-                    //db.SaveChanges();
-
-
-                    //db.Stanice.Add(s);
-                    //db.SaveChanges();
+                    foreach (var st in stareStanice)
+                    {
+                        if (st.Id == s.Id)
+                        {
+                            if (st.Version == s.Version)
+                            {
+                                if (!s.Aktivna)
+                                {
+                                    s.Aktivna = true;
+                                    //s.Linije = new List<Linija>();
+                                    lin = db.Linije.Include(x => x.Stanice).FirstOrDefault(x => x.Id == id);
+                                    lin.Stanice.Add(s);
+                                    //db.Entry(lin).State = EntityState.Modified;
+                                    //db.SaveChanges();
+                                    //db.Stanice.Add(s);
+                                    //db.SaveChanges();
+                                }
+                                else
+                                {
+                                    s.Version += 1;
+                                    db.Entry(s).State = EntityState.Modified;
+                                    db.SaveChanges();
+                                    //continue;
+                                }
+                            }
+                            else
+                            {
+                                return Ok(205);
+                            }
+                        }
+                    }
 
                 }
-                else
+
+                lin.Version += 1;
+
+                db.Entry(lin).State = EntityState.Modified;
+
+                try
                 {
-                    db.Entry(s).State = EntityState.Modified;
                     db.SaveChanges();
-                    continue;
                 }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!LinijaExists(id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+
+                return Ok(200);
             }
 
+            else
+            {
+                return Ok(204);
+            }
            
-   
-            db.Entry(lin).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!LinijaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST: api/Linijas
@@ -151,19 +175,20 @@ namespace JGSPNSWebApp.Controllers
 
         [HttpGet]
         [Route("ObrisiLiniju")]
+        [ResponseType(typeof(Linija))]
         public IHttpActionResult ObrisiLiniju(string naziv)
         {
             Linija linija = db.Linije.FirstOrDefault(l=>l.Naziv == naziv);
 
-            if (linija == null)
-                return BadRequest("Linija sa prosledjenim id ne postoji!");
+            if (!linija.Aktivna)
+                return Ok(204); 
 
             linija.Aktivna = false;
 
             db.Entry(linija).State = EntityState.Modified;
             db.SaveChanges();
 
-            return Ok();
+            return Ok(200);
         }
 
         protected override void Dispose(bool disposing)
@@ -181,15 +206,5 @@ namespace JGSPNSWebApp.Controllers
         }
     }
 
-    public class StanicaLinija
-    {
-        public int Stanica_Id;
-        public int Linija_Id;
-
-        public StanicaLinija(int stanicaId,int linijaId)
-        {
-            Stanica_Id = stanicaId;
-            Linija_Id = linijaId;
-        }
-    }
+   
 }

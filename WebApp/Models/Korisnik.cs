@@ -30,6 +30,8 @@ namespace JGSPNSWebApp.Models
 
         public bool Aktivan { get; set; }
 
+        public long Version { get; set; }
+
         
     }
 }

@@ -12,5 +12,6 @@ export class Kontrolor{
     public Status: string;
     public Uloga: string;
     public Aktivan:boolean;
+    public Version: number;
     
 }

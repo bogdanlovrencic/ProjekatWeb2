@@ -81,7 +81,14 @@ export class AdminViewComponent implements OnInit {
 
   onCenovnikDeleteClick(id:number){
     this.dataService.obrisiCenovnik(id).subscribe(res =>{
-         // this.dataService.refreshCenovnikList()
+      console.log("Data: ");
+      console.log(res);
+      if(res == 200){
+        this.router.navigate(['/management']);
+      }
+      else{
+        window.alert("Drugi admin je vec obrisao cenovnik, molimo Vas da refresujete stranicu!");
+      }
     }, error=>{console.log(error)});
   }
 
@@ -93,6 +100,14 @@ export class AdminViewComponent implements OnInit {
 
   onRedVoznjeDeleteClick(id:number){
     this.dataService.obrisiRedVoznje(id).subscribe(res =>{
+      console.log("Data: ");
+        console.log(res);
+        if(res == 200){
+          this.router.navigate(['/management']);
+        }
+        else{
+          window.alert("Drugi admin je vec obrisao red voznje, molimo Vas da refresujete stranicu!");
+        }
     }, error=>{console.log(error)});
   }
 

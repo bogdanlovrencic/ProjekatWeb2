@@ -32,11 +32,6 @@ export class AdminService {
       [cenovnik.VaziOd,cenovnik.VaziDo,cenovnik.Aktivan,cenaVremenske,cenaDnevne,cenaMesecne,cenaGodisnje]);
   }
 
-  // addStavka(data:NgForm)
-  // {  
-  //   return this.http.post(this.stavkaUrl,data.value);
-  // }
-
   addLinija(linija:Linija)
   {
     return this.http.post(this.linijaUrl, linija);
@@ -47,45 +42,35 @@ export class AdminService {
     return this.http.post(this.redVoznjeUrl,redVoznje);
   }
 
-  // addPolazak(polazak: Polazak) {
-  //     return this.http.post(this.polazakUrl,polazak)
-  // }
+ 
 
-  izmeniCenovnik(cenovnik: CenovnikUpdate,cenaVremenske,cenaDnevne,cenaMesecne,cenaGodisnje)
+  izmeniCenovnik(cenovnik: CenovnikUpdate,cenaVremenske,cenaDnevne,cenaMesecne,cenaGodisnje):Observable<any>
   {
-      return this.http.post<any[]>(`http://localhost:52295/api/Cenovniks/IzmeniCenovnik?id=${cenovnik.Id}&Vaziod=${cenovnik.VaziOd}&VaziDo=${cenovnik.VaziDo}&aktivan=${cenovnik.Aktivan}&cenaVremenske=${cenaVremenske}&cenaDnevne=${cenaDnevne}&cenaMesecne=${cenaMesecne}&cenaGodisnje=${cenaGodisnje}`,
-      [cenovnik.Id,cenovnik.VaziOd,cenovnik.VaziDo,cenovnik.Aktivan,cenaVremenske,cenaDnevne,cenaMesecne,cenaGodisnje]);
+      return this.http.post<any[]>(`http://localhost:52295/api/Cenovniks/IzmeniCenovnik?id=${cenovnik.Id}&Vaziod=${cenovnik.VaziOd}&VaziDo=${cenovnik.VaziDo}&aktivan=${cenovnik.Aktivan}&version=${cenovnik.Version}&cenaVremenske=${cenaVremenske}&cenaDnevne=${cenaDnevne}&cenaMesecne=${cenaMesecne}&cenaGodisnje=${cenaGodisnje}`,
+      [cenovnik.Id,cenovnik.VaziOd,cenovnik.VaziDo,cenovnik.Aktivan,cenovnik.Version,cenaVremenske,cenaDnevne,cenaMesecne,cenaGodisnje]);
   }
 
-  // izmeniStavku(stavka:Stavka)
-  // {
-  //     return this.http.put('http://localhost:52295/api/Stavkas?id='+stavka.Id,stavka);
-  // }
-
+  
   izmeniKontrolora(kontrolor: Kontrolor) 
   {
       return this.http.put('http://localhost:52295/api/Korisniks?id='+kontrolor.Email,kontrolor);  
   }
 
-  // izmeniPolazak(polazak: PolazakModel)
-  // {
-  //     return this.http.put('http://localhost:52295/api/Polazaks?id='+polazak.Id,polazak);  
-  // }
-
-  izmeniRedVoznje(redVoznje: RedVoznje)
+  izmeniRedVoznje(redVoznje: RedVoznje):Observable<any>
   {
      return this.http.put('http://localhost:52295/api/RedVoznjes?id='+redVoznje.Id,redVoznje);
   }
 
-  izmeniLiniju(linija:Linija)
+  izmeniLiniju(linija:Linija):Observable<any>
   {
      return this.http.put('http://localhost:52295/api/Linijas?id='+linija.Id,linija)
   }
 
-  removeLinija(linija: Linija) {
+
+  removeLinija(linija: Linija):Observable<any> {
     return this.http.get('http://localhost:52295/api/Linijas/ObrisiLiniju?naziv='+linija.Naziv);
   }
-  removeStanica(stanica: Stanica) {
+  removeStanica(stanica: Stanica):Observable<any> {
     return this.http.get('http://localhost:52295/api/Stanicas/ObrisiStanicu?id='+ stanica.Id);
   }
 

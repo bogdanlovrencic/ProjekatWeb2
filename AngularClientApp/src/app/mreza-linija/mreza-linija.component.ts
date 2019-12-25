@@ -69,12 +69,32 @@ export class MrezaLinijaComponent implements OnInit {
 
   OnDeleteClicked(){
     if(this.selektovanaStanica != null){
-      this.adminSrv.removeStanica(this.selektovanaStanica).subscribe(res => {this.router.navigate(['/management'])},(error)=>{ alert("Stanica ne postoji!")});
+      this.adminSrv.removeStanica(this.selektovanaStanica).subscribe(res => {
+        console.log("Data: ");
+        console.log(res);
+        if(res == 200){
+          this.router.navigate(['/management']);
+        }
+        else{
+          window.alert("Drugi admin je vec obrisao  stanicu sa  linije, molimo Vas da refresujete stranicu!");
+        }
+      },
+      (error)=>{ alert("Stanica ne postoji!")});
     }
       
 
     if(this.selektovanaLinija != null){
-      this.adminSrv.removeLinija(this.selektovanaLinija).subscribe(res=>{ this.router.navigate(['/management'])});
+      this.adminSrv.removeLinija(this.selektovanaLinija).subscribe(res=>{
+        console.log("Data: ");
+        console.log(res);
+        if(res == 200){
+          this.router.navigate(['/management']);
+        }
+        else{
+          window.alert("Drugi admin je vec obrisao ovu liniju, molimo Vas da refresujete stranicu!");
+        }
+        }),
+        (error)=>{console.log(error)}
     }
       
   }

@@ -264,6 +264,14 @@
     <Compile Include="Migrations\201912231948320_appUserModelModified.Designer.cs">
       <DependentUpon>201912231948320_appUserModelModified.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912241810563_adminTransakcije.cs" />
+    <Compile Include="Migrations\201912241810563_adminTransakcije.Designer.cs">
+      <DependentUpon>201912241810563_adminTransakcije.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912241819421_ispravka.cs" />
+    <Compile Include="Migrations\201912241819421_ispravka.Designer.cs">
+      <DependentUpon>201912241819421_ispravka.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\CenovnikStavka.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KorisniksController.cs" />
@@ -282,7 +290,6 @@
     <Compile Include="Models\Korisnik.cs" />
     <Compile Include="Models\Linija.cs" />
     <Compile Include="Models\Lokacija.cs" />
-    <Compile Include="Models\Putnik.cs" />
     <Compile Include="Models\RedVoznje.cs" />
     <Compile Include="Models\Stanica.cs" />
     <Compile Include="Models\StatusRegistracije.cs" />
@@ -412,6 +419,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912231948320_appUserModelModified.resx">
       <DependentUpon>201912231948320_appUserModelModified.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912241810563_adminTransakcije.resx">
+      <DependentUpon>201912241810563_adminTransakcije.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912241819421_ispravka.resx">
+      <DependentUpon>201912241819421_ispravka.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

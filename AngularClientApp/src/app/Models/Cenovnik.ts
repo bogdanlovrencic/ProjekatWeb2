@@ -13,6 +13,7 @@ export class CenovnikPrikaz{
     public VaziDo: Date;
     public Stavke: Stavka[];
     public Aktivan: boolean;
+    public Version: number;
   
 }
 
@@ -21,5 +22,6 @@ export class CenovnikUpdate{
     public VaziOd: Date;
     public VaziDo: Date;
     public Aktivan: boolean;
+    public Version: number;
   
 }

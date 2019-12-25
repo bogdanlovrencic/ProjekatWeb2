@@ -73,7 +73,8 @@ export class UpdateCenovnikComponent implements OnInit {
       Id: this.Cenovnik.Id,
       VaziOd: this.cenovnikForm.value.VaziOd,
       VaziDo:this.cenovnikForm.value.VaziDo,
-      Aktivan:true
+      Aktivan:true,
+      Version:this.Cenovnik.Version
     };
 
     let vremenska=this.cenovnikForm.value.HourTicket
@@ -81,8 +82,16 @@ export class UpdateCenovnikComponent implements OnInit {
     let mesecna=this.cenovnikForm.value.MonthTicket 
     let godisnja=this.cenovnikForm.value.YearTicket 
 
-     this.adminService.izmeniCenovnik(cenovnik,vremenska,dnevna,mesecna,godisnja).subscribe(res=>{
-        this.router.navigate(['/management']);
+     this.adminService.izmeniCenovnik(cenovnik,vremenska,dnevna,mesecna,godisnja).subscribe(data=>{
+        console.log("Data: ");
+        console.log(data);
+        if(data == 200){
+          this.router.navigate(['/management']);
+        }
+        else{
+          window.alert("Drugi admin je vec izmenio cenovnik, molimo Vas da refresujete stranicu!");
+        }
+       
       },
       error=>{
         console.log(error);
