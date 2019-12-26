@@ -49,9 +49,20 @@ namespace JGSPNSWebApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != korisnik.Email)
+            if (korisnik.Uloga== UlogaKorisnika.KONTROLOR.ToString())
             {
-                return BadRequest();
+                var kor = db.Korisnici.Find(id);
+                if (!kor.Aktivan) //kontrolor je obrisan
+                    return Ok(202);
+
+                if(kor.Version == korisnik.Version)
+                {
+                    korisnik.Version += 1;
+                }
+                else //kontrolor je izmenjen od strane drugog admina
+                {
+                    return Ok(204);
+                }
             }
 
             db.Entry(korisnik).State = EntityState.Modified;
@@ -72,7 +83,7 @@ namespace JGSPNSWebApp.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok(200);
         }
 
         // POST: api/Korisniks
@@ -128,14 +139,14 @@ namespace JGSPNSWebApp.Controllers
             var kontrolor = db.Korisnici.Find(id);
 
             if (!kontrolor.Aktivan)
-                return Ok(204);
+                return Ok(202);
 
             kontrolor.Aktivan = false;
 
             db.Entry(kontrolor).State = EntityState.Modified;
             db.SaveChanges();
 
-            return Ok();
+            return Ok(200);
         }
 
         protected override void Dispose(bool disposing)

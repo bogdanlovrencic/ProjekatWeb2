@@ -93,7 +93,7 @@ export class UpdateRedVoznjeComponent implements OnInit {
         window.alert("Drugi admin je vec izmenio red voznje, molimo Vas da refresujete stranicu!");
       }
 
-       }),error=>{console.log(error);}
+       },error=>{console.log(error)})
     
   }
 

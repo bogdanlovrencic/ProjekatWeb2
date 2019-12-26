@@ -84,11 +84,22 @@ export class UpdateKontrolorComponent implements OnInit {
       korisnik.Verifikovan=this.kontrolor.Verifikovan;
       korisnik.ImageUrl=this.kontrolor.ImageUrl;
       korisnik.Aktivan=this.kontrolor.Aktivan;
-
+      korisnik.Version=this.kontrolor.Version;
 
       this.adminService.izmeniKontrolora(korisnik).subscribe(res=>{
-
-       },error=>{console.log(error)});
+        console.log("Data: ");
+        console.log(res);
+        if(res == 200){
+          this.router.navigate(['/management']);
+        }
+        else if(res == 202){
+          window.alert("Drugi admin je obrisao kontrolora, molimo Vas da refresujete stranicu!");
+        }
+        else{
+          window.alert("Drugi admin je vec izmenio kontrolora, molimo Vas da refresujete stranicu!");
+        }
+  
+         },error=>{console.log(error)});
       
   }
 

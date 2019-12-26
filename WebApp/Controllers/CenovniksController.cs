@@ -71,6 +71,8 @@ namespace JGSPNSWebApp.Controllers
                 cp.VaziOd = c.VaziOd;
                 cp.VaziDo = c.VaziDo;
                 cp.Aktivan = c.Aktivan;
+                cp.Version = c.Version;
+
                 sortiraneStavke = cp.Stavke.OrderBy(x => x.Cena).ToList();
                 cp.Stavke = sortiraneStavke;
                 cenovniciZaprikaz.Add(cp);
@@ -401,6 +403,8 @@ namespace JGSPNSWebApp.Controllers
         public bool Aktivan { get; set; }
 
         public List<StavkaP> Stavke { get; set; }
+
+        public long Version { get; set;}
 
     }
 

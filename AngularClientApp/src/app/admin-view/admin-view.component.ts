@@ -95,6 +95,14 @@ export class AdminViewComponent implements OnInit {
 
   onKontrolorDeleteClick(email:string){
     this.dataService.obrisiKontrolora(email).subscribe(res =>{
+      console.log("Data: ");
+        console.log(res);
+        if(res == 200){
+          this.router.navigate(['/management']);
+        }
+        else{
+          window.alert("Drugi admin je obrisao kontrolora, molimo Vas da refresujete stranicu!");
+        }
       }, error=>{console.log(error)});
   }
 

@@ -88,6 +88,10 @@ export class UpdateCenovnikComponent implements OnInit {
         if(data == 200){
           this.router.navigate(['/management']);
         }
+        else if(data == 202)
+        {
+          window.alert("Drugi admin je obrisao ovaj cenovnik,molimo Vas da refresujete stranicu!");
+        }
         else{
           window.alert("Drugi admin je vec izmenio cenovnik, molimo Vas da refresujete stranicu!");
         }

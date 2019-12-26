@@ -87,9 +87,17 @@ export class UpdateLinijaComponent implements OnInit {
       if(data == 200){
         this.router.navigate(['/management']);
       }
-      else{
+      else if(204){
         window.alert("Drugi admin je vec izmenio liniju, molimo Vas da refresujete stranicu!");
       }
+      else if(202)
+      {
+        window.alert("Drugi admin je obrisao liniju,molimo Vas da refresujete stranicu!");
+      }
+      else{
+        window.alert("Drugi admin je izmenio neku stanicu na ovoj liniji, molimo Vas da refresujete stranicu!");
+      }
+
     },(error)=>{console.log(error)})
 
   }

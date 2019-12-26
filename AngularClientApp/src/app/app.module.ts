@@ -25,7 +25,6 @@ import { AddCenovnikComponent } from './add-cenovnik/add-cenovnik.component';
 import { AddKontrolorComponent } from './add-kontrolor/add-kontrolor.component';
 import { AddLinijaComponent } from './add-linija/add-linija.component';
 import { AddRedVoznjeComponent } from './add-red-voznje/add-red-voznje.component';
-import { PolazakComponent } from './polazak/polazak.component';
 import { UpdateCenovnikComponent } from './update-cenovnik/update-cenovnik.component';
 import { UpdateKontrolorComponent } from './update-kontrolor/update-kontrolor.component';
 import { UpdateLinijaComponent } from './update-linija/update-linija.component';
@@ -52,7 +51,6 @@ import { VerifikujKorisnikaComponent } from './verifikuj-korisnika/verifikuj-kor
     AddKontrolorComponent,
     AddLinijaComponent,
     AddRedVoznjeComponent,
-    PolazakComponent,
     UpdateCenovnikComponent,
     UpdateKontrolorComponent,
     UpdateLinijaComponent,

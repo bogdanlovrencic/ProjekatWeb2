@@ -67,33 +67,42 @@ namespace JGSPNSWebApp.Controllers
                 {
                     foreach (var st in stareStanice)
                     {
-                        if (st.Id == s.Id)
+                        if(st.Id == s.Id)
                         {
-                            if (st.Version == s.Version)
+                            if (st.Version == s.Version && !st.Equals(s))
                             {
-                                if (!s.Aktivna)
-                                {
-                                    s.Aktivna = true;
-                                    //s.Linije = new List<Linija>();
-                                    lin = db.Linije.Include(x => x.Stanice).FirstOrDefault(x => x.Id == id);
-                                    lin.Stanice.Add(s);
-                                    //db.Entry(lin).State = EntityState.Modified;
-                                    //db.SaveChanges();
-                                    //db.Stanice.Add(s);
-                                    //db.SaveChanges();
-                                }
-                                else
-                                {
+                                //if (!s.Aktivna)
+                                //{
+                                //    s.Version += 1;
+                                //    s.Aktivna = true;
+                                //    //s.Linije = new List<Linija>();
+                                //    lin = db.Linije.Include(x => x.Stanice).FirstOrDefault(x => x.Id == id);
+                                //    lin.Stanice.Add(s);
+                                //    //db.Entry(lin).State = EntityState.Modified;
+                                //    //db.SaveChanges();
+                                //    //db.Stanice.Add(s);
+                                //    //db.SaveChanges();
+                                //}
+                                //else
+                                //{
                                     s.Version += 1;
                                     db.Entry(s).State = EntityState.Modified;
                                     db.SaveChanges();
                                     //continue;
-                                }
+                                //}
                             }
                             else
                             {
-                                return Ok(205);
+                                return Ok(203);
                             }
+                        }
+                        if(!stareStanice.Contains(s))
+                        {
+                            s.Version += 1;
+                            s.Aktivna = true;
+                            //s.Linije = new List<Linija>();
+                            lin = db.Linije.Include(x => x.Stanice).FirstOrDefault(x => x.Id == id);
+                            lin.Stanice.Add(s);
                         }
                     }
 
