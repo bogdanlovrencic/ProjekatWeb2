@@ -484,6 +484,7 @@ namespace JGSPNSWebApp.Controllers
                     if (User.IsInRole("Admin"))
                     {
                         uloga = UlogaKorisnika.KONTROLOR.ToString();
+                        model.TipPutnika = TipPutnika.Regularni;
   
                     }
 

@@ -57,9 +57,13 @@ namespace JGSPNSWebApp.Controllers
                 return Ok(202);
             }
 
+
             var oldVersion = db.Linije.Where(x => x.Aktivna && x.Id == id).Select(c => c.Version).First();
-            var stareStanice = db.Stanice.Where(x => x.Aktivna && x.Linije.Contains(linija)).ToList();
-            Linija lin = new Linija();
+            var stareStanice = db.Stanice.Where(x=>x.Linije.Any(l=>l.Id == id)).ToList();
+           // var stareStaniceZaOdabranuLiniju = new List<Stanica>();
+
+
+            Linija lin = db.Linije.Where(x=>x.Id == id && x.Aktivna).First();
 
             if (oldVersion == linija.Version)
             {
@@ -67,9 +71,11 @@ namespace JGSPNSWebApp.Controllers
                 {
                     foreach (var st in stareStanice)
                     {
-                        if(st.Id == s.Id)
+                        if (s.Id == st.Id && !st.Aktivna)
+                            return Ok(205);
+                        if(st.Id == s.Id && !st.Equals(s))
                         {
-                            if (st.Version == s.Version && !st.Equals(s))
+                            if (st.Version == s.Version )
                             {
                                 //if (!s.Aktivna)
                                 //{
@@ -86,7 +92,8 @@ namespace JGSPNSWebApp.Controllers
                                 //else
                                 //{
                                     s.Version += 1;
-                                    db.Entry(s).State = EntityState.Modified;
+                                    db.Entry(st).State = EntityState.Detached;
+                                    db.Entry(s).State= EntityState.Modified;
                                     db.SaveChanges();
                                     //continue;
                                 //}
@@ -96,14 +103,21 @@ namespace JGSPNSWebApp.Controllers
                                 return Ok(203);
                             }
                         }
-                        if(!stareStanice.Contains(s))
-                        {
-                            s.Version += 1;
-                            s.Aktivna = true;
-                            //s.Linije = new List<Linija>();
-                            lin = db.Linije.Include(x => x.Stanice).FirstOrDefault(x => x.Id == id);
-                            lin.Stanice.Add(s);
-                        }
+                        //else if(st.Id == s.Id && st.Equals(s))
+                        //{
+                        //    return Ok(205);
+                        //}
+
+                       
+                    }
+                    if (!stareStanice.Any(x => x.Id == s.Id))
+                    {
+
+                        s.Aktivna = true;
+                        //s.Linije = new List<Linija>();
+                        lin = db.Linije.Include(x => x.Stanice).FirstOrDefault(x => x.Id == id);
+                        lin.Stanice.Add(s);
+                        break;
                     }
 
                 }

@@ -24,6 +24,6 @@
        <br/>     
         <button type="button" (click)="onClickPrikazi(linSelected)" [disabled]="!buttonPrikaziDisabled">Prikazi</button>
         <button type="button" (click)="OnDeleteClicked()" *ngIf="rola==='Admin'">Obrisi</button>
-        <button type="button" (click)="onUpdateLinijaClicked(linSelected)" *ngIf="rola==='Admin'" [disabled]="!buttonDisabled">Izmeni</button>
+        <button type="button" (click)="onUpdateLinijaClicked()" *ngIf="rola==='Admin'" [disabled]="!buttonDisabled">Izmeni</button>
       </div>
 </div>

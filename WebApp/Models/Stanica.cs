@@ -26,5 +26,22 @@ namespace JGSPNSWebApp.Models
 
         public long Version { get; set; }
 
+        public override bool Equals(System.Object obj)
+        {
+            if (obj == null)
+                return false;
+
+            Stanica s = obj as Stanica;
+            if ((System.Object)s == null)
+                return false;
+
+            return (Id == s.Id) && (Naziv == s.Naziv) && (Adresa==s.Adresa) && (Lat == s.Lat) && (Lon == s.Lon);
+        }
+
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode() ^ Naziv.GetHashCode() ^ Adresa.GetHashCode() ^ Lat.GetHashCode() ^ Lon.GetHashCode();
+        }
+
     }
 }

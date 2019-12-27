@@ -42,29 +42,30 @@ export class MrezaLinijaComponent implements OnInit {
   
     this.linijeService.getLinija(naziv).subscribe(res => {
         console.log(res);
-        this.linija = new Linija(res.Naziv, res.Stanice);
+        //this.linija = new Linija(res.Naziv, res.Stanice);
+        this.linija=res;
        
     },
     error=>{console.log(error)}
     )
   }
 
-  onUpdateLinijaClicked(naziv)
+  onUpdateLinijaClicked()
   {
 
-    this.linijeService.getLinija(naziv).subscribe(res => {
-      console.log(res);
-      this.linija = res; 
+    // this.linijeService.getLinija(naziv).subscribe(res => {
+    //   console.log(res);
+    //   this.linija = res; 
 
       let navigationExtras:NavigationExtras={
         queryParams:{
-          "linija": JSON.stringify(this.linija)
+          "linija": JSON.stringify(this.selektovanaLinija)
         }
       }
 
       this.router.navigate(['LinijaIzmena/linija'],navigationExtras)
-    },
-      error=>{console.log(error)})    
+    // },
+    //   error=>{console.log(error)})    
   }
 
   OnDeleteClicked(){
@@ -93,8 +94,8 @@ export class MrezaLinijaComponent implements OnInit {
         else{
           window.alert("Drugi admin je vec obrisao ovu liniju, molimo Vas da refresujete stranicu!");
         }
-        }),
-        (error)=>{console.log(error)}
+        },
+        (error)=>{console.log(error)})
     }
       
   }

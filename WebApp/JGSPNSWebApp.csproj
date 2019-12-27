@@ -272,6 +272,10 @@
     <Compile Include="Migrations\201912260308561_ispravka.Designer.cs">
       <DependentUpon>201912260308561_ispravka.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912262333593_1.cs" />
+    <Compile Include="Migrations\201912262333593_1.Designer.cs">
+      <DependentUpon>201912262333593_1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\CenovnikStavka.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KorisniksController.cs" />
@@ -425,6 +429,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912260308561_ispravka.resx">
       <DependentUpon>201912260308561_ispravka.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912262333593_1.resx">
+      <DependentUpon>201912262333593_1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

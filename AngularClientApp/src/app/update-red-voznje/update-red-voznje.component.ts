@@ -89,6 +89,10 @@ export class UpdateRedVoznjeComponent implements OnInit {
       if(data == 200){
         this.router.navigate(['/management']);
       }
+      else if(data == 202)
+      {
+        window.alert("Drugi admin je obrisao red voznje, molimo Vas da refresujete stranicu!");
+      }
       else{
         window.alert("Drugi admin je vec izmenio red voznje, molimo Vas da refresujete stranicu!");
       }

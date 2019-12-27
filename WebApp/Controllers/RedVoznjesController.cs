@@ -58,6 +58,7 @@ namespace JGSPNSWebApp.Controllers
             {
                 redVoznje.Version += 1;
 
+                db.Entry(stariRedVoznje).State = EntityState.Detached;
                 db.Entry(redVoznje).State = EntityState.Modified;
 
                 try
@@ -166,7 +167,7 @@ namespace JGSPNSWebApp.Controllers
             db.Entry(redVoznje).State = EntityState.Modified;
             db.SaveChanges();
 
-            return Ok();
+            return Ok(200);
         }
 
         protected override void Dispose(bool disposing)

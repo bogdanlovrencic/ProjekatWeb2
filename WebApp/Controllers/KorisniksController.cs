@@ -14,7 +14,7 @@ using JGSPNSWebApp.Persistence.UnitOfWork;
 
 namespace JGSPNSWebApp.Controllers
 {
-    
+    [RoutePrefix("api/Korisniks")]
     public class KorisniksController : ApiController
     {
 
@@ -49,9 +49,10 @@ namespace JGSPNSWebApp.Controllers
                 return BadRequest(ModelState);
             }
 
+            var kor = db.Korisnici.Find(id);
+
             if (korisnik.Uloga== UlogaKorisnika.KONTROLOR.ToString())
-            {
-                var kor = db.Korisnici.Find(id);
+            {            
                 if (!kor.Aktivan) //kontrolor je obrisan
                     return Ok(202);
 
@@ -65,6 +66,7 @@ namespace JGSPNSWebApp.Controllers
                 }
             }
 
+            db.Entry(kor).State = EntityState.Detached;
             db.Entry(korisnik).State = EntityState.Modified;
            
             try
@@ -133,7 +135,7 @@ namespace JGSPNSWebApp.Controllers
         }
 
         [HttpGet]
-        [Route("ObrisiKontrolora")]
+        [Route("ObrisiKontrolora")]    
         public IHttpActionResult ObrisiKontrolora(string id)
         {
             var kontrolor = db.Korisnici.Find(id);
