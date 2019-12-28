@@ -1,3 +1,93 @@
-<p>
-  verifikuj-korisnika works!
-</p>
+<br><br><div class="container">
+  <h3>Verifikacija korisnika</h3>
+  <div class="container">
+      <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+          <div class="shadow-lg">
+            <div id="gape1" class="card card-signin my-5">
+              <div class="card-body">
+                  <div>
+                    <label class="badge badge-primary">Zahtevi za verifikaciju korisnika: </label>
+                  </div>
+                  <div class="form-label-group">
+                      <select name="selectedUser" class="form-control" (change)="onSelectUser($event)">
+                          <option *ngIf="users.length == 0">Svi zahtevi korisnika</option>
+                          <option  *ngFor="let u of users" [value]="u.Email">{{u.Email}}</option>
+                      </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form class="form-signin" [formGroup]="profileForm"><br><br>
+        <div class="container">
+            <div class="row">
+              <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="shadow-lg">
+                  <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <div class="form-label-group">
+                            <div *ngIf="profileForm.controls.email.errors" >
+                                <div *ngIf="profileForm.controls.email.errors.required && (profileForm.controls.email.dirty || profileForm.controls.email.touched)" class="badge badge-danger">Email is mandatory field</div>
+                              </div>
+                          <input type="hidden" name="email" class="form-control" placeholder="Email" required formControlName="email">
+                          <button type="button" class="form-control" disabled>{{profileForm.controls.email.value}}</button>
+                        </div><br>
+                        <div class="form-label-group">
+                            <div *ngIf="profileForm.controls.name.errors" >
+                                <div *ngIf="profileForm.controls.name.errors.required && (profileForm.controls.name.dirty || profileForm.controls.name.touched)" class="badge badge-danger">Name is mandatory field</div>
+                              </div>
+                            <span class="badge badge-primary">Ime: </span>
+                            <input name="name" type="text" class="form-control" placeholder="Name" required formControlName="name">
+                        </div><br>
+                        <div class="form-label-group">
+                            <div *ngIf="profileForm.controls.surname.errors" >
+                                <div *ngIf="profileForm.controls.surname.errors.required && (profileForm.controls.surname.dirty || profileForm.controls.surname.touched)" class="badge badge-danger">Surname is mandatory field</div>
+                              </div>
+                            <span class="badge badge-primary">Prezime: </span>
+                          <input name="surname" type="text" class="form-control" placeholder="Surname" required formControlName="surname">
+                        </div><br>
+                        <div class="form-label-group">
+                            <div *ngIf="profileForm.controls.address.errors" >
+                                <div *ngIf="profileForm.controls.address.errors.required && (profileForm.controls.address.dirty || profileForm.controls.address.touched)" class="badge badge-danger">Address is mandatory field</div>
+                              </div>
+                            <span class="badge badge-primary">Adresa: </span>
+                            <input name="address" type="text" class="form-control" placeholder="Address" required formControlName="address">
+                          </div><br>
+                          <div class="form-label-group">
+                              <div *ngIf="profileForm.controls.birthday.errors" >
+                                  <div *ngIf="profileForm.controls.birthday.errors.required && (profileForm.controls.birthday.dirty || profileForm.controls.birthday.touched)" class="badge badge-danger">Birthday is mandatory field</div>
+                                </div>
+                              <span class="badge badge-primary">Datum rodjenja: </span>
+                              <input name="birthday" type="date" class="form-control" placeholder="Birthday" required formControlName="birthday">
+                            </div><br>
+                        <br>
+                        <div *ngIf="profileForm.valid">
+                          <button class="btn btn-lg btn-primary btn-block text-uppercase active" (click)="Validiraj()">Validiraj</button>
+                        </div>
+                        <div *ngIf="!profileForm.valid">
+                          <button class="btn btn-lg btn-primary btn-block text-uppercase disabled" [disabled]="!profileForm.valid">Validiraj</button>
+                        </div><br>
+                        <div *ngIf="profileForm.valid">
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase active" (click)="Odbij()">Odbij</button>
+                          </div>
+                          <div *ngIf="!profileForm.valid">
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase disabled" [disabled]="!profileForm.valid">Odbij</button>
+                          </div>
+              <br><img *ngIf="image" [src]="image" #imageControl style="width: 315px; height: 300px;">
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>   
+          </form>
+          
+
+      
+
+
+

@@ -20,6 +20,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using JGSPNSWebApp.Persistence;
+using System.Web.Http.Description;
+using System.Linq;
 
 namespace JGSPNSWebApp.Controllers
 {
@@ -345,6 +347,49 @@ namespace JGSPNSWebApp.Controllers
 
             return logins;
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("GetNevalidiraniKorisnici")]
+        [ResponseType(typeof(IQueryable<ApplicationUser>))]
+        public IQueryable<ApplicationUser> GetNotActiveUsers()
+        {
+            List<ApplicationUser> ret = new List<ApplicationUser>();
+            foreach (var user in UserManager.Users.Where(p => p.Status == "Ocekuje se verifikacija" && p.Image != null))
+            {
+                if (UserManager.IsInRole(user.Id, "AppUser"))
+                {
+                    ret.Add(user);
+                }
+            }
+            return ret.AsQueryable();
+        }
+
+        [Route("VerifikujKorisnika")]
+        [ResponseType(typeof(Task<IHttpActionResult>))]
+        public async Task<IHttpActionResult> VerifyUser(string email,bool validan)
+        {
+            ApplicationUser applicationUser = UserManager.FindByEmail(email);
+            if (validan)
+            {
+                EmailHelper.SendMail(email, "Status profila", "Vas profil je odobren!");
+                applicationUser.Status = "Potvrdjen";
+            }
+            else
+            {
+                EmailHelper.SendMail(email, "Status profila", "Vas profil je odbijen!");
+                applicationUser.Status = "Odbijen";
+            }
+
+            IdentityResult result = await UserManager.UpdateAsync(applicationUser);
+            if (!result.Succeeded)
+            {
+                return GetErrorResult(result);
+            }
+
+            return Ok(200);
+          
+        }
         //POST api/Account/UploadImage
         [AllowAnonymous]
         [Route("UploadImage")]
@@ -388,12 +433,12 @@ namespace JGSPNSWebApp.Controllers
                             }
                             else
                             {
-                                context.StatusiRegistracije.Add(new StatusRegistracije()
-                                {
-                                    Email = email,
-                                    ImgUrl = "UserImages/" + email + extension,
-                                    Status = User.IsInRole("Admin") ? "Potvrdjen" : "Ocekuje se verfikacija",
-                                });
+                                //context.StatusiRegistracije.Add(new StatusRegistracije()
+                                //{
+                                //    Email = email,
+                                //    ImgUrl = "UserImages/" + email + extension,
+                                //    Status = User.IsInRole("Admin") ? "Potvrdjen" : "Ocekuje se verfikacija",
+                                //});
 
                                 var korisnik = await context.Korisnici.FindAsync(email);
                                 korisnik.ImageUrl = "UserImages/" + email + extension;
@@ -417,6 +462,44 @@ namespace JGSPNSWebApp.Controllers
                 Debug.WriteLine(ex.Message);
                 return new System.Web.Http.Results.InternalServerErrorResult(this);
             }
+        }
+
+        [HttpGet]
+        [Route("DownloadImage")]
+        public IHttpActionResult DownloadImage(string email)
+        {
+            var user = _userManager.Users.Where(userDB => userDB.Email == email).First();
+            ApplicationDbContext context = new ApplicationDbContext();
+            var korisnik = context.Korisnici.Find(email);
+
+            if (korisnik == null)
+            {
+                return BadRequest();
+            }
+
+            if ( korisnik.ImageUrl== null)
+            {
+                return Ok(204);
+            }
+
+            var filePath = HttpContext.Current.Server.MapPath($"~/UserImages/{korisnik.ImageUrl}");
+
+            FileInfo fileInfo = new FileInfo(filePath);
+            string type = fileInfo.Extension.Split('.')[1];
+            byte[] data = new byte[fileInfo.Length];
+
+            HttpResponseMessage response = new HttpResponseMessage();
+            using (FileStream fileStream = fileInfo.OpenRead())
+            {
+                fileStream.Read(data, 0, data.Length);
+                response.StatusCode = System.Net.HttpStatusCode.OK;
+                response.Content = new ByteArrayContent(data);
+                response.Content.Headers.ContentLength = data.Length;
+            }
+
+            response.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/png");
+
+            return Ok(data);
         }
 
         // POST api/Account/Register

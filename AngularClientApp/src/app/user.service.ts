@@ -9,6 +9,7 @@ import { Korisnik } from './Models/Korisnik';
   providedIn: 'root'
 })
 export class UserService {
+ 
   
  
   constructor(private http:HttpClient) { }
@@ -34,6 +35,15 @@ export class UserService {
 
   changePassword(data: NgForm):any {
       return this.http.post(this.changePassUrl+data.value.Email,data.value);
+  }
+
+  downloadImage(email: string):Observable<any[]> 
+  {
+    return this.http.get<any[]>('http://localhost:52295/api/Account/DownloadImage?email='+email)
+  }
+  getKorisniciZaValidaciju():Observable<Korisnik[]> 
+  {
+    return this.http.get<Korisnik[]>('http://localhost://52295/api/Account/GetNevaldiraniKorisnici')
   }
 
 }
