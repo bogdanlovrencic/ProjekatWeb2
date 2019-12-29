@@ -5,11 +5,10 @@ using System.Web;
 
 namespace JGSPNSWebApp.Models
 {
-    public enum VrstaKarte
+    public enum StatusProfila
     {
-        VREMENSKA_KARTA,
-        DNEVNA_KARTA,
-        MESECNA_KARTA,
-        GODISNJA_KARTA
+        Potvrdjen,
+        Ocekuje_se_verifikacija,
+        Odbijen
     }
 }

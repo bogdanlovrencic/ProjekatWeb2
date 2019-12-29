@@ -276,9 +276,20 @@
     <Compile Include="Migrations\201912262333593_1.Designer.cs">
       <DependentUpon>201912262333593_1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912281651000_appUSerModified.cs" />
+    <Compile Include="Migrations\201912281651000_appUSerModified.Designer.cs">
+      <DependentUpon>201912281651000_appUSerModified.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912282242243_neke_izmene_modela.cs" />
+    <Compile Include="Migrations\201912282242243_neke_izmene_modela.Designer.cs">
+      <DependentUpon>201912282242243_neke_izmene_modela.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912290301178_uklonjenKorisnik2.cs" />
+    <Compile Include="Migrations\201912290301178_uklonjenKorisnik2.Designer.cs">
+      <DependentUpon>201912290301178_uklonjenKorisnik2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\CenovnikStavka.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\KorisniksController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -291,18 +302,16 @@
     <Compile Include="Models\Cenovnik.cs" />
     <Compile Include="Models\Karta.cs" />
     <Compile Include="Models\Koeficijent.cs" />
-    <Compile Include="Models\Korisnik.cs" />
     <Compile Include="Models\Linija.cs" />
     <Compile Include="Models\Lokacija.cs" />
     <Compile Include="Models\RedVoznje.cs" />
     <Compile Include="Models\Stanica.cs" />
-    <Compile Include="Models\StatusRegistracije.cs" />
+    <Compile Include="Models\StatusProfila.cs" />
     <Compile Include="Models\Stavka.cs" />
     <Compile Include="Models\TipDana.cs" />
     <Compile Include="Models\TipLinije.cs" />
     <Compile Include="Models\TipPutnika.cs" />
     <Compile Include="Models\TipRedaVoznje.cs" />
-    <Compile Include="Models\VrstaKarte.cs" />
     <Compile Include="Models\UlogaKorisnika.cs" />
     <Compile Include="Persistence\ApplicationDbContext.cs" />
     <Compile Include="Persistence\Repository\CenovnikRepository.cs" />
@@ -310,11 +319,9 @@
     <Compile Include="Persistence\Repository\IKartaRepository.cs" />
     <Compile Include="Persistence\Repository\ILinijeRepository.cs" />
     <Compile Include="Persistence\Repository\IRepository.cs" />
-    <Compile Include="Persistence\Repository\IKorisnikRepository.cs" />
     <Compile Include="Persistence\Repository\KartaRepository.cs" />
     <Compile Include="Persistence\Repository\LinijeRepository.cs" />
     <Compile Include="Persistence\Repository\Repository.cs" />
-    <Compile Include="Persistence\Repository\KorisnikRepository.cs" />
     <Compile Include="Persistence\UnitOfWork\DemoUnitOfWork.cs" />
     <Compile Include="Persistence\UnitOfWork\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -432,6 +439,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912262333593_1.resx">
       <DependentUpon>201912262333593_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912281651000_appUSerModified.resx">
+      <DependentUpon>201912281651000_appUSerModified.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912282242243_neke_izmene_modela.resx">
+      <DependentUpon>201912282242243_neke_izmene_modela.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912290301178_uklonjenKorisnik2.resx">
+      <DependentUpon>201912290301178_uklonjenKorisnik2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

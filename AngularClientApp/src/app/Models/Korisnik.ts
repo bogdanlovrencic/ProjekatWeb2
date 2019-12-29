@@ -2,16 +2,17 @@ import { AbstractControl } from '@angular/forms';
 import { TipPutnika } from './TipPutnika';
 
 export class Korisnik{
-    Ime: string;
-    Prezime: string;
+    Name: string;
+    Surname: string;
     Email: string;
-    Lozinka: string;
-    DatumRodjenja: string;
-    Adresa: string;
-    TipPutnika: TipPutnika;
+    Password: string;
+    DateOfBirth: string;
+    Address: string;
+    UserType: TipPutnika;
     Status:string;
-    ImgUrl:string;
+    Image:string;
     ConfirmPassword:string;
+
 
    
 }

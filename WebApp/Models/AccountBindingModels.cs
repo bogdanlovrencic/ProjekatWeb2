@@ -85,24 +85,47 @@ namespace JGSPNSWebApp.Models
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Lozinka")]
-        public string Lozinka { get; set; }
+        [Display(Name = "Password")]
+        public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm Password")]
-        [Compare("Lozinka", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         [Required]
-        public string Ime { get; set; }
+        public string Name { get; set; }
         [Required]
-        public string Prezime { get; set; }
+        public string Surname { get; set; }
         [Required]
-        public DateTime DatumRodjenja { get; set; }
+        public DateTime DateOfBirth { get; set; }
         [Required]
-        public string Adresa { get; set; }
+        public string Address { get; set; }
         [Required]
-        public TipPutnika TipPutnika { get; set; }
+        public TipPutnika UserType { get; set; }
+    }
+
+    public class EditBindingModel
+    {
+
+        [Required]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+        [Required]
+        [Display(Name = "Ime")]
+        public string Name{ get; set; }
+        [Required]
+        [Display(Name = "Prezime")]
+        public string Surname { get; set; }
+        [Required]
+        [Display(Name = "DatumRodjenja")]
+        public string DateOfBirth { get; set; }
+        [Required]
+        [Display(Name = "Adresa")]
+        public string Address { get; set; }
+        [Required]
+        [Display(Name = "Status")]
+        public string Status { get; set; }
     }
 
     public class RegisterExternalBindingModel

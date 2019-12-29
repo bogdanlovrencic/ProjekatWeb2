@@ -10,7 +10,6 @@ namespace JGSPNSWebApp.Persistence.UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {
-        IKorisnikRepository Korisnici { get; set; }
         IKartaRepository Karte { get; set; }    
         IRepository<Cenovnik,int> Cenovnici { get; set; }
         ILinijeRepository Linije { get; set; }

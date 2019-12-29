@@ -27,8 +27,6 @@ namespace JGSPNSWebApp.Persistence
         public DbSet<RedVoznje> RedVoznje { get; set; }
         public DbSet<Karta> Karte { get; set; }
         public DbSet<Linija> Linije { get; set; }
-        public DbSet<StatusRegistracije> StatusiRegistracije { get; set; }
-        public DbSet<Korisnik> Korisnici { get; set; }
         public DbSet<CenovnikStavka> CenovnikStavke { get; set; }
         public System.Data.Entity.DbSet<JGSPNSWebApp.Models.Stanica> Stanice { get; set; }
         public DbSet<Koeficijent> Koeficijenti { get; set; }

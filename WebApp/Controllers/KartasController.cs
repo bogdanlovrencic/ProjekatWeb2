@@ -101,7 +101,7 @@ namespace JGSPNSWebApp.Controllers
             {
                 VremeVazenja=DateTime.Now,
                 IdCenovnikStavka = cenovnikStavkaId,       
-                IdKorisnika=null,
+                IdApplicationUser=null,
                 Cena=cena,
                 Validna = true
 
@@ -109,7 +109,7 @@ namespace JGSPNSWebApp.Controllers
 
             if(korisnikEmail != null)
             {
-                karta.IdKorisnika = db.Korisnici.Where(x => x.Email == korisnikEmail).Select(c => c.Email).First();
+                karta.IdApplicationUser = db.Users.Where(x => x.Email == korisnikEmail).Select(c => c.Email).First();
             }
 
             db.Karte.Add(karta);

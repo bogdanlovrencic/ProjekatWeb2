@@ -31,13 +31,10 @@ namespace JGSPNSWebApp.Models
 
         public string UserType { get; set; }
 
-        //public string ImageUrl { get; set; }
+        public string Image { get; set; }
 
         public string Status { get; set; }
-
-        //public bool Verifikovan { get; set; } = false;
-
-        //public Rola Uloga { get; set; }
+  
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {

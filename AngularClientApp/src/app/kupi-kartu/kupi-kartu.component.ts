@@ -68,7 +68,7 @@ export class KupiKartuComponent implements OnInit {
         this.userService.getUserData(email).subscribe( data =>{
         this.userData = data;
         this.userProfileActivated = this.userData.Status;
-        this.userProfileType = this.userData.TipPutnika;
+        this.userProfileType = this.userData.UserType;
         //this.email = this.userData.Email;
         this.emailForm.controls.email.setValue(this.userData.Email);
         

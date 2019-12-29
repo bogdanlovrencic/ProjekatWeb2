@@ -14,27 +14,27 @@ export class UserService {
  
   constructor(private http:HttpClient) { }
 
-  private url='http://localhost:52295/api/Korisniks?id=';
-  private urlSaveChanges='http://localhost:52295/api/Korisniks?id=';
-  private uploadImageUrl='http://localhost:52295/api/account/UploadImage?email=';
-  private changePassUrl='http://localhost:52295/api/Account/ChangePassword?id=';
+  private getUserUrl='http://localhost:52295/api/Account/GetUser?email=';
+  private urlSaveChanges='http://localhost:52295/api/Account/IzmeniKorisnika';
+  private uploadImageUrl='http://localhost:52295/api/Account/UploadImage';
+  private changePassUrl='http://localhost:52295/api/Account/ChangePassword';
 
   getUserData(email:string):Observable<Korisnik>
   {
-      return this.http.get<Korisnik>(this.url+email);
+      return this.http.get<Korisnik>(this.getUserUrl+email);
   }
 
   saveUserChanges(user:Korisnik):any
   {
-      return this.http.put(this.urlSaveChanges+user.Email,user);
+      return this.http.post(this.urlSaveChanges,user);
   }
 
-  UploadImage(email: string, imageData: FormData):any {
-    return this.http.post(this.uploadImageUrl+email,imageData);
+  UploadImage(imageData: FormData):any {
+    return this.http.post(this.uploadImageUrl,imageData);
   }
 
   changePassword(data: NgForm):any {
-      return this.http.post(this.changePassUrl+data.value.Email,data.value);
+      return this.http.post(this.changePassUrl,data.value);
   }
 
   downloadImage(email: string):Observable<any[]> 
@@ -43,7 +43,7 @@ export class UserService {
   }
   getKorisniciZaValidaciju():Observable<Korisnik[]> 
   {
-    return this.http.get<Korisnik[]>('http://localhost://52295/api/Account/GetNevaldiraniKorisnici')
+    return this.http.get<Korisnik[]>('http://localhost:52295/api/Account/GetNevalidiraniKorisnici')
   }
 
 }

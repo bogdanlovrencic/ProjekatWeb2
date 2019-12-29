@@ -10,7 +10,6 @@ import { KupiKartuComponent } from './kupi-kartu/kupi-kartu.component';
 import { AdminManagementComponent } from './admin-management/admin-management.component';
 import { ProfilKorisnikaComponent } from './profil-korisnika/profil-korisnika.component';
 import { AddCenovnikComponent } from './add-cenovnik/add-cenovnik.component';
-import { AddKontrolorComponent } from './add-kontrolor/add-kontrolor.component';
 import { AddLinijaComponent } from './add-linija/add-linija.component';
 import { AddRedVoznjeComponent } from './add-red-voznje/add-red-voznje.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
@@ -79,12 +78,6 @@ const routes: Routes = [
     component:AddCenovnikComponent,
    // canActivate: [AuthGuard]
   },
-
-  {
-    path:'Kontrolori',
-    component:AddKontrolorComponent,
-    //canActivate: [AuthGuard]
-  },  
 
   {
     path:'Linije',

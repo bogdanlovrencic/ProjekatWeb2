@@ -23,10 +23,10 @@ export class ProfilKorisnikaComponent implements OnInit {
 
   ngOnInit() {
     this.email=this.decoder.getEmailFromToken();
-    this.getData();
+    this.getUserData();
   }
 
-  getData(){
+  getUserData(){
     this.userService.getUserData(this.email).subscribe(
       res=>{
           this.user=res;
@@ -41,17 +41,18 @@ export class ProfilKorisnikaComponent implements OnInit {
               this.still='red';
               break;
 
-            case 'Ocekuje se verifikacija':
+            case 'Ocekuje_se_verifikacija':
               this.still='orange';
               break;     
           }
 
-          let datum=new Date(res.DatumRodjenja);
+          let datum=new Date(res.DateOfBirth);
           let mesec= datum.getMonth() + 1;
           let mesecFormat = mesec.toLocaleString().length < 2 ? '0' : '';
           let danFormat= datum.getDate().toLocaleString().length < 2 ? '0' : '';
 
-          this.user.DatumRodjenja= datum.getFullYear()+'-' + mesecFormat + mesec +'-'+danFormat+ datum.getDate();
+          this.user.DateOfBirth= datum.getFullYear()+'-' + mesecFormat + mesec +'-'+danFormat+ datum.getDate();
+          
       },
       error=>{
         console.log('error:'+error);
@@ -64,11 +65,12 @@ export class ProfilKorisnikaComponent implements OnInit {
         result=>{
           if(this.selectedFile != null)
           {
-            let imageData=new FormData();
-            imageData.append('image',this.selectedFile,this.selectedFile.name);
-            this.userService.UploadImage(this.user.Email,imageData).subscribe(res=>
+            let userImageData=new FormData();
+            userImageData.append('image',this.selectedFile,this.selectedFile.name);
+            userImageData.append('email',this.decoder.getEmailFromToken());
+            this.userService.UploadImage(userImageData).subscribe(res=>
               {
-                  this.getData();
+                  this.getUserData();
               })
           }
 

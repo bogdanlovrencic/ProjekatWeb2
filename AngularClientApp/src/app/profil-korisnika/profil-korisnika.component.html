@@ -4,7 +4,7 @@
   <!-- left column -->
   <div class="col-md-3">
     <div class="text-center">
-      <img src="http://localhost:52295/{{user.ImageUrl}}" width="150" height="100" class="avatar img-circle" alt="avatar">
+      <img src="http://localhost:52295/UserImages/{{user.Image}}" width="150" height="100"  alt="avatar">
       <h6>Dodaj novi dokument...</h6>
       
       <input type="file" class="form-control" (change)="onFileSelected($event)">
@@ -26,31 +26,31 @@
       <div class="form-group">
         <label class="col-lg-3 control-label">Ime:</label>
         <div class="col-lg-8">
-          <input class="form-control" type="text" name="Ime" [value]="user.Ime" [(ngModel)]="user.Ime">
+          <input class="form-control" type="text" name="Ime" [value]="user.Name" [(ngModel)]="user.Name">
         </div>
       </div>
       <div class="form-group">
         <label class="col-lg-3 control-label">Prezime:</label>
         <div class="col-lg-8">
-          <input class="form-control" name="Prezime" type="text" [value]="user.Prezime" [(ngModel)]="user.Prezime">
+          <input class="form-control" name="Prezime" type="text" [value]="user.Surname" [(ngModel)]="user.Surname">
         </div>
       </div>
       <div class="form-group">
         <label class="col-lg-3 control-label">Email:</label>
         <div class="col-lg-8">
-          <input class="form-control" name="Email" type="text" [value]="user.Email" [(ngModel)]="user.Email">
+          <input class="form-control" name="Email" type="text" [value]="user.Email" [(ngModel)]="user.Email" disabled>
         </div>
       </div>
       <div class="form-group">
         <label class="col-lg-3 control-label">Adresa:</label>
         <div class="col-lg-8">
-          <input class="form-control" name="Adresa" type="text" [value]="user.Adresa" [(ngModel)]="user.Adresa">
+          <input class="form-control" name="Adresa" type="text" [value]="user.Address" [(ngModel)]="user.Address">
         </div>
       </div>
       <div class="form-group">
         <label class="col-lg-3 control-label">Datum Rodjenja:</label>
         <div class="col-lg-8">
-          <input class="form-control" name="DatumRodjenja" type="date" [value]="user.DatumRodjenja" [(ngModel)]="user.DatumRodjenja">
+          <input class="form-control" name="DatumRodjenja" type="date" [value]="user.DateOfBirth" [(ngModel)]="user.DateOfBirth">
         </div>
       </div>
       <hr>

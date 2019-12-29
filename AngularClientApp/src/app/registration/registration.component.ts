@@ -55,36 +55,46 @@ export class RegistrationComponent implements OnInit {
       }
 
       let korisnik=new Korisnik();
-      korisnik.Ime= this.registrationForm.controls.firstName.value;
-      korisnik.Prezime=this.registrationForm.controls.lastName.value;
+      korisnik.Name= this.registrationForm.controls.firstName.value;
+      korisnik.Surname=this.registrationForm.controls.lastName.value;
       korisnik.Email=this.registrationForm.controls.email.value;
-      korisnik.Lozinka=this.registrationForm.controls.password.value;
-      korisnik.DatumRodjenja=this.registrationForm.controls.birthDate.value;
-      korisnik.Adresa=this.registrationForm.controls.adresa.value;
-      korisnik.TipPutnika=this.registrationForm.controls.tipPutnika.value;
+      korisnik.Password=this.registrationForm.controls.password.value;
+      korisnik.DateOfBirth=this.registrationForm.controls.birthDate.value;
+      korisnik.Address=this.registrationForm.controls.adresa.value;
+      korisnik.UserType=this.registrationForm.controls.tipPutnika.value;
       korisnik.ConfirmPassword=this.registrationForm.controls.confPassword.value;
 
       this.registerService.RegisterUser(korisnik).subscribe(
-          (res)=> {     
-            if(this.selectedFile != null)
+          (data)=> {  
+            if(!data)
             {
-                let imageData=new FormData();
-                imageData.append('image',this.selectedFile,this.selectedFile.name);
-                this.registerService.UploadImage(korisnik.Email,imageData)
-            }   
+              window.alert('Korisnik sa email-om: ' + this.registrationForm.controls.email.value + ' je vec registrovan!')
+            
+            }
+            else if (data.toString() == 200) 
+            {   
+              if(this.selectedFile != null)
+              {
+                  let userImageData=new FormData();
+                  userImageData.append('image',this.selectedFile,this.selectedFile.name);
+                  userImageData.append('email',this.registrationForm.value.email);
+              
+                  this.registerService.UploadImage(userImageData).subscribe()
+              }   
             //alert("Uspesno ste se registrovali."); 
             
             //this.router.navigate(['/login']);
 
-            if(this.rola == 'Admin')
-            {
-                this.router.navigate(['/management']);
-            }
-            else
-            {
-                this.router.navigate(['/login']);
-            }
-          },
+              if(this.rola == 'Admin')
+              {
+                  this.router.navigate(['/management']);
+              }
+              else
+              {
+                  this.router.navigate(['/login']);
+              }
+          }
+        },
          
           (err) =>{
               alert("Doslo je do greske pri registraciji.Pokusajte ponovo.")

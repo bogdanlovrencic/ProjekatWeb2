@@ -17,9 +17,9 @@ namespace JGSPNSWebApp.Models
         public int IdCenovnikStavka { get; set; }
         public CenovnikStavka CenovnikStavka { get; set; }
 
-        [ForeignKey("Korisnik")]
-        public string IdKorisnika { get; set; }
-        public Korisnik Korisnik { get; set; }
+        [ForeignKey("ApplicationUser")]
+        public string IdApplicationUser { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
 
         public double Cena { get; set; }
 

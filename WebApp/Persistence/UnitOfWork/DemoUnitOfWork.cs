@@ -16,7 +16,7 @@ namespace JGSPNSWebApp.Persistence.UnitOfWork
         public DemoUnitOfWork(ApplicationDbContext context)
         {
             _context = context;
-            Korisnici = new KorisnikRepository(_context);
+          
             Karte = new KartaRepository(_context);
             Linije = new LinijeRepository(_context);
             Cenovnici = new Repository<Cenovnik, int>(_context);
@@ -27,8 +27,7 @@ namespace JGSPNSWebApp.Persistence.UnitOfWork
         // dodati sve repozitorijume ovde
         [Dependency]
         public IKartaRepository Karte { get; set; }
-        [Dependency]
-        public IKorisnikRepository Korisnici { get; set; }
+     
 
         [Dependency]
         public IRepository<Cenovnik, int> Cenovnici  { get;  set;}

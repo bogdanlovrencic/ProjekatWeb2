@@ -70,7 +70,6 @@ namespace JGSPNSWebApp.App_Start
            
             container.RegisterType<DbContext, ApplicationDbContext>(new PerResolveLifetimeManager());
             container.RegisterType<IUnitOfWork, DemoUnitOfWork>();
-            container.RegisterType<IKorisnikRepository, KorisnikRepository>();
             container.RegisterType<ILinijeRepository, LinijeRepository>();
             container.RegisterType<IKartaRepository, KartaRepository>();
             container.RegisterType<ICenovnikRepository, CenovnikRepository>();

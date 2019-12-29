@@ -15,7 +15,7 @@ export class RegistrationService {
 
   private registerUrl='http://localhost:52295/api/account/register';
 
-  private uploadImageUrl='http://localhost:52295/api/account/UploadImage?email=';
+  private uploadImageUrl='http://localhost:52295/api/Account/UploadImage';
 
   constructor(private http: HttpClient) { }
 
@@ -24,12 +24,9 @@ export class RegistrationService {
       return this.http.post(this.registerUrl,korisnik);
   }
 
-  UploadImage(email:string,data:FormData)
+  UploadImage(imageData:FormData):Observable<any>
   {
-     return this.http.post(this.uploadImageUrl+email,data).subscribe((val)=>
-     {
-       console.log(val);
-     });
+     return this.http.post(this.uploadImageUrl,imageData);
   }
 }
 

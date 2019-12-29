@@ -22,7 +22,6 @@ import { ProfilKorisnikaComponent } from './profil-korisnika/profil-korisnika.co
 import { TokenInterceptor } from './token.interceptor';
 import { AdminViewComponent } from './admin-view/admin-view.component';
 import { AddCenovnikComponent } from './add-cenovnik/add-cenovnik.component';
-import { AddKontrolorComponent } from './add-kontrolor/add-kontrolor.component';
 import { AddLinijaComponent } from './add-linija/add-linija.component';
 import { AddRedVoznjeComponent } from './add-red-voznje/add-red-voznje.component';
 import { UpdateCenovnikComponent } from './update-cenovnik/update-cenovnik.component';
@@ -48,7 +47,6 @@ import { VerifikujKorisnikaComponent } from './verifikuj-korisnika/verifikuj-kor
     ProfilKorisnikaComponent,
     AdminViewComponent,
     AddCenovnikComponent,
-    AddKontrolorComponent,
     AddLinijaComponent,
     AddRedVoznjeComponent,
     UpdateCenovnikComponent,

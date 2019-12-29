@@ -123,7 +123,7 @@ namespace JGSPNSWebApp.Controllers
 
         // POST api/Account/ChangePassword
         [Route("ChangePassword")]
-        public async Task<IHttpActionResult> ChangePassword(string id,ChangePasswordBindingModel model)
+        public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -131,30 +131,8 @@ namespace JGSPNSWebApp.Controllers
             }
 
 
-            IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
-                model.NewPassword);
-
-            using (ApplicationDbContext dbContext = new ApplicationDbContext())
-            {
-                var user = dbContext.Korisnici.Find(id);
-
-                user.Lozinka = model.NewPassword;
-                dbContext.Entry(user).State = System.Data.Entity.EntityState.Modified;
-
-               
-
-                try
-                {
-                    dbContext.SaveChanges();
-                }
-                catch(Exception e)
-                {
-                    Debug.WriteLine(e.Message);
-                    return new System.Web.Http.Results.InternalServerErrorResult(this);
-                }
-                
-            }
-             
+            IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,model.NewPassword);
+           
 
             if (!result.Succeeded)
             {
@@ -348,21 +326,17 @@ namespace JGSPNSWebApp.Controllers
             return logins;
         }
 
-        [HttpGet]
-        [AllowAnonymous]
+        [HttpGet]       
         [Route("GetNevalidiraniKorisnici")]
-        [ResponseType(typeof(IQueryable<ApplicationUser>))]
-        public IQueryable<ApplicationUser> GetNotActiveUsers()
+        [ResponseType(typeof(List<ApplicationUser>))]
+        public async Task<IHttpActionResult> GetNotActiveUsers()
         {
             List<ApplicationUser> ret = new List<ApplicationUser>();
-            foreach (var user in UserManager.Users.Where(p => p.Status == "Ocekuje se verifikacija" && p.Image != null))
+            foreach (var user in UserManager.Users.Where(p => p.Status == StatusProfila.Ocekuje_se_verifikacija.ToString() && p.Image != null))
             {
-                if (UserManager.IsInRole(user.Id, "AppUser"))
-                {
-                    ret.Add(user);
-                }
+                ret.Add(user);
             }
-            return ret.AsQueryable();
+            return Ok(ret);
         }
 
         [Route("VerifikujKorisnika")]
@@ -373,12 +347,12 @@ namespace JGSPNSWebApp.Controllers
             if (validan)
             {
                 EmailHelper.SendMail(email, "Status profila", "Vas profil je odobren!");
-                applicationUser.Status = "Potvrdjen";
+                applicationUser.Status = StatusProfila.Potvrdjen.ToString();
             }
             else
             {
                 EmailHelper.SendMail(email, "Status profila", "Vas profil je odbijen!");
-                applicationUser.Status = "Odbijen";
+                applicationUser.Status = StatusProfila.Odbijen.ToString();
             }
 
             IdentityResult result = await UserManager.UpdateAsync(applicationUser);
@@ -390,99 +364,77 @@ namespace JGSPNSWebApp.Controllers
             return Ok(200);
           
         }
+
+        [Route("GetUser")]
+        public ApplicationUser GetUser(string email)
+        {
+            ApplicationUser user = UserManager.FindByEmail(email);
+            return user;
+        }
+
         //POST api/Account/UploadImage
         [AllowAnonymous]
         [Route("UploadImage")]
-        public async Task<IHttpActionResult> UploadImage(string email)
+        public async Task<IHttpActionResult> UploadImage()
         {
+            var httpRequest = HttpContext.Current.Request;
+
+            var userEmail = httpRequest.Form["email"];
+            var user = UserManager.Users.Where(userDB => userDB.Email == userEmail).FirstOrDefault();
+            EmailHelper.SendMail(userEmail, "Status profila", "Vas profil se validira!");
+
+
             try
             {
-                if (!Request.Content.IsMimeMultipartContent())
+                if (httpRequest.Files.Count > 0)
                 {
-                    throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
-                }
-
-           
-                var files = HttpContext.Current.Request.Files;
-                if (files.Count == 1)
-                {
-                    using (ApplicationDbContext context = new ApplicationDbContext())
+                    foreach (string file in httpRequest.Files)
                     {
-                        // int MaxContentLength = 1024 * 1024 * 1; //Size = 1 MB
-                        var postedFile = files[0];
-
-                        IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".png" };
-                        var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
-                        var extension = ext.ToLower();
-                        if (AllowedFileExtensions.Contains(extension))
+                        if (user != null)
                         {
-                            var existingRecord = await context.StatusiRegistracije.FindAsync(email);
+                            var image = httpRequest.Files[file];
+                            string fileName = $"{user.Email}_{image.FileName}";
+                            var filePath = HttpContext.Current.Server.MapPath($"~/UserImages/{fileName}");
 
-                            if (existingRecord != null)
+                            user.Image = fileName;
+                            IdentityResult result = await UserManager.UpdateAsync(user);
+                            if (!result.Succeeded)
                             {
-                                //user has already uploaded image(s) previously => delete it
-                                var korisnik = await context.Korisnici.FindAsync(email);
-                                var oldPath = HttpContext.Current.Server.MapPath("~/" + korisnik.ImageUrl);
-                                File.Delete(oldPath);
-
-
-                                existingRecord.Status = "Ocekuje se verfikacija";
-                                existingRecord.ImgUrl = "UserImages/" + email + extension; 
-                                korisnik.Status = User.IsInRole("Admin") ? "Potvrdjen" : "Ocekuje se verfikacija";
-                                await context.SaveChangesAsync();
-                            }
-                            else
-                            {
-                                //context.StatusiRegistracije.Add(new StatusRegistracije()
-                                //{
-                                //    Email = email,
-                                //    ImgUrl = "UserImages/" + email + extension,
-                                //    Status = User.IsInRole("Admin") ? "Potvrdjen" : "Ocekuje se verfikacija",
-                                //});
-
-                                var korisnik = await context.Korisnici.FindAsync(email);
-                                korisnik.ImageUrl = "UserImages/" + email + extension;
-                                korisnik.Status = User.IsInRole("Admin") ? "Potvrdjen" : "Ocekuje se verfikacija";
-
-                                await context.SaveChangesAsync();
+                                return GetErrorResult(result);
                             }
 
-                            var filePath = HttpContext.Current.Server.MapPath("~/UserImages/" + email + extension);
-                            postedFile.SaveAs(filePath);
-
-
+                            image.SaveAs(filePath);
                         }
                     }
                 }
-
-                return Ok();
             }
-            catch (Exception ex)
+            catch
             {
-                Debug.WriteLine(ex.Message);
-                return new System.Web.Http.Results.InternalServerErrorResult(this);
+                return BadRequest();
             }
+
+            return Ok(201);
+        
+           
         }
 
         [HttpGet]
         [Route("DownloadImage")]
         public IHttpActionResult DownloadImage(string email)
         {
-            var user = _userManager.Users.Where(userDB => userDB.Email == email).First();
-            ApplicationDbContext context = new ApplicationDbContext();
-            var korisnik = context.Korisnici.Find(email);
-
-            if (korisnik == null)
+            var user = UserManager.Users.Where(userDB => userDB.Email == email).First();
+           
+            if (user == null)
             {
                 return BadRequest();
             }
 
-            if ( korisnik.ImageUrl== null)
+            if ( user.Image == null)
             {
                 return Ok(204);
             }
 
-            var filePath = HttpContext.Current.Server.MapPath($"~/UserImages/{korisnik.ImageUrl}");
+            var filePath = HttpContext.Current.Server.MapPath($"~/UserImages/{user.Image}");
 
             FileInfo fileInfo = new FileInfo(filePath);
             string type = fileInfo.Extension.Split('.')[1];
@@ -518,27 +470,27 @@ namespace JGSPNSWebApp.Controllers
                 var user = new ApplicationUser() {
                     UserName = model.Email,
                     Email = model.Email,
-                    Name=model.Ime,
-                    Surname=model.Prezime,
-                    DateOfBirth=model.DatumRodjenja.ToString(),
-                    Address=model.Adresa,
-                    UserType=model.TipPutnika.ToString()                   
+                    Name=model.Name,
+                    Surname=model.Surname,
+                    DateOfBirth=model.DateOfBirth.ToString(),
+                    Address=model.Address,
+                    UserType=model.UserType.ToString()                   
                 
                 
                 };
 
                 if (user.UserType == TipPutnika.Regularni.ToString())
                 {
-                    EmailHelper.SendMail(user.Email, "Profile Status", "Your profile is accepted");
-                    user.Status = "Potvrdjen";
+                    EmailHelper.SendMail(user.Email, "Status profila", "Vas profil je odobren!");
+                    user.Status = StatusProfila.Potvrdjen.ToString();
                 }
                 else
                 {
-                    EmailHelper.SendMail(user.Email, "Profile Status", "Your profile is being validated");
-                    user.Status = "Ocekuje se verifikacija";
+                    EmailHelper.SendMail(user.Email, "Status profila", "Vas profil se validira!");
+                    user.Status = StatusProfila.Ocekuje_se_verifikacija.ToString();
                 }
 
-                IdentityResult result = await UserManager.CreateAsync(user, model.Lozinka);
+                IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
                 if (!result.Succeeded)
                 {
@@ -560,53 +512,42 @@ namespace JGSPNSWebApp.Controllers
                     return GetErrorResult(result);
                 }
 
-                using (ApplicationDbContext context = new ApplicationDbContext())
-                {
-                    string uloga;
-
-                    if (User.IsInRole("Admin"))
-                    {
-                        uloga = UlogaKorisnika.KONTROLOR.ToString();
-                        model.TipPutnika = TipPutnika.Regularni;
-  
-                    }
-
-                    else
-                        uloga = UlogaKorisnika.PUTNIK.ToString();
-
-
-                    Korisnik newUser = new Korisnik()
-                    {
-                        Ime = model.Ime,
-                        Prezime = model.Prezime,
-                        Email = model.Email,
-                        Lozinka = model.Lozinka,
-                        DatumRodjenja = model.DatumRodjenja,
-                        Adresa = model.Adresa,
-                        TipPutnika=model.TipPutnika.ToString(),
-                        Uloga = uloga,          
-                        Aktivan = true
-
-                    };
-
-                    if(User.IsInRole("Admin"))
-                    {
-                        newUser.Status = "Potvrdjen";
-                    }
-
-                    if (newUser.TipPutnika == TipPutnika.Regularni.ToString())
-                        newUser.Status = "Potvrdjen";
-
-                    context.Korisnici.Add(newUser);
-                    context.SaveChanges();
-                }
-                return Ok();
+               
+                return Ok(200);
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
                 return new System.Web.Http.Results.InternalServerErrorResult(this);
             }
+        }
+
+        [HttpPost]
+        [Route("IzmeniKorisnika")]
+        public async Task<IHttpActionResult> EditUser(EditBindingModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            ApplicationUser user = UserManager.FindByEmail(model.Email);
+            user.UserName = model.Email;
+            user.Email = model.Email;
+            user.DateOfBirth = model.DateOfBirth;
+            user.Address = model.Address;
+            user.Name = model.Name;
+            user.Surname = model.Surname;
+            user.Status = model.Status;
+          
+
+            IdentityResult result = await UserManager.UpdateAsync(user);
+            if (!result.Succeeded)
+            {
+                return GetErrorResult(result);
+            }
+
+            return Ok();
         }
 
         // POST api/Account/RegisterExternal

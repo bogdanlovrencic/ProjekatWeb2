@@ -66,12 +66,12 @@ export class VerifikujKorisnikaComponent implements OnInit {
 
     for(this.i = 0; this.i < this.users.length; this.i++){
       if(this.users[this.i].Email == this.selectedUserEmail){
-        this.profileForm.controls.name.setValue(this.users[this.i].Ime);
-        this.profileForm.controls.surname.setValue(this.users[this.i].Prezime);
-        this.profileForm.controls.address.setValue(this.users[this.i].Adresa);
-        this.profileForm.controls.birthday.setValue(this.users[this.i].DatumRodjenja);
+        this.profileForm.controls.name.setValue(this.users[this.i].Name);
+        this.profileForm.controls.surname.setValue(this.users[this.i].Surname);
+        this.profileForm.controls.address.setValue(this.users[this.i].Address);
+        this.profileForm.controls.birthday.setValue(this.users[this.i].DateOfBirth);
         this.profileForm.controls.email.setValue(this.users[this.i].Email);
-        this.profileForm.controls.userType.setValue(this.users[this.i].TipPutnika);
+        this.profileForm.controls.userType.setValue(this.users[this.i].UserType);
       }
     }
 

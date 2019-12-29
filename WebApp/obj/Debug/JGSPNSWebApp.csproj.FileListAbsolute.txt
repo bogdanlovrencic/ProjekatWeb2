@@ -1058,3 +1058,6 @@ D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.csproj.GenerateResource.cac
 D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.csproj.CopyComplete
 D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.dll
 D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.pdb
+D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.Migrations.appUSerModified.resources
+D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.Migrations.neke_izmene_modela.resources
+D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.Migrations.uklonjenKorisnik2.resources
