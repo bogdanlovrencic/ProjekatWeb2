@@ -33,11 +33,13 @@ export class ValidirajKartuComponent implements OnInit {
           {
             this.validnaKarta=true;
             this.showError=false;
+            this.show=true;
           }
           else if(data == 202)
           {
             this.validnaKarta=false;
             this.showError=false;
+            this.show=true;
           }
           else if(data == 204)
           {

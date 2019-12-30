@@ -256,37 +256,9 @@
     <Compile Include="Controllers\RedVoznjesController.cs" />
     <Compile Include="Controllers\StanicasController.cs" />
     <Compile Include="EmailHelper.cs" />
-    <Compile Include="Migrations\201912180327496_initial_migration.cs" />
-    <Compile Include="Migrations\201912180327496_initial_migration.Designer.cs">
-      <DependentUpon>201912180327496_initial_migration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912231948320_appUserModelModified.cs" />
-    <Compile Include="Migrations\201912231948320_appUserModelModified.Designer.cs">
-      <DependentUpon>201912231948320_appUserModelModified.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912241810563_adminTransakcije.cs" />
-    <Compile Include="Migrations\201912241810563_adminTransakcije.Designer.cs">
-      <DependentUpon>201912241810563_adminTransakcije.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912260308561_ispravka.cs" />
-    <Compile Include="Migrations\201912260308561_ispravka.Designer.cs">
-      <DependentUpon>201912260308561_ispravka.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912262333593_1.cs" />
-    <Compile Include="Migrations\201912262333593_1.Designer.cs">
-      <DependentUpon>201912262333593_1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912281651000_appUSerModified.cs" />
-    <Compile Include="Migrations\201912281651000_appUSerModified.Designer.cs">
-      <DependentUpon>201912281651000_appUSerModified.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912282242243_neke_izmene_modela.cs" />
-    <Compile Include="Migrations\201912282242243_neke_izmene_modela.Designer.cs">
-      <DependentUpon>201912282242243_neke_izmene_modela.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912290301178_uklonjenKorisnik2.cs" />
-    <Compile Include="Migrations\201912290301178_uklonjenKorisnik2.Designer.cs">
-      <DependentUpon>201912290301178_uklonjenKorisnik2.cs</DependentUpon>
+    <Compile Include="Migrations\201912301221046_intialMigration.cs" />
+    <Compile Include="Migrations\201912301221046_intialMigration.Designer.cs">
+      <DependentUpon>201912301221046_intialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\CenovnikStavka.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -425,29 +397,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201912180327496_initial_migration.resx">
-      <DependentUpon>201912180327496_initial_migration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912231948320_appUserModelModified.resx">
-      <DependentUpon>201912231948320_appUserModelModified.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912241810563_adminTransakcije.resx">
-      <DependentUpon>201912241810563_adminTransakcije.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912260308561_ispravka.resx">
-      <DependentUpon>201912260308561_ispravka.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912262333593_1.resx">
-      <DependentUpon>201912262333593_1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912281651000_appUSerModified.resx">
-      <DependentUpon>201912281651000_appUSerModified.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912282242243_neke_izmene_modela.resx">
-      <DependentUpon>201912282242243_neke_izmene_modela.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912290301178_uklonjenKorisnik2.resx">
-      <DependentUpon>201912290301178_uklonjenKorisnik2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201912301221046_intialMigration.resx">
+      <DependentUpon>201912301221046_intialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

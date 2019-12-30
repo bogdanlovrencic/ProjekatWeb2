@@ -3,7 +3,7 @@ namespace JGSPNSWebApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initial_migration : DbMigration
+    public partial class intialMigration : DbMigration
     {
         public override void Up()
         {
@@ -15,6 +15,7 @@ namespace JGSPNSWebApp.Migrations
                         VaziOd = c.DateTime(nullable: false),
                         VaziDo = c.DateTime(nullable: false),
                         Aktivan = c.Boolean(nullable: false),
+                        Version = c.Long(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -49,134 +50,28 @@ namespace JGSPNSWebApp.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         VremeVazenja = c.DateTime(nullable: false),
                         IdCenovnikStavka = c.Int(nullable: false),
-                        IdKorisnika = c.String(maxLength: 128),
+                        IdApplicationUser = c.String(maxLength: 128),
                         Cena = c.Double(nullable: false),
                         Validna = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.AspNetUsers", t => t.IdApplicationUser)
                 .ForeignKey("dbo.CenovnikStavkas", t => t.IdCenovnikStavka, cascadeDelete: true)
-                .ForeignKey("dbo.Korisniks", t => t.IdKorisnika)
                 .Index(t => t.IdCenovnikStavka)
-                .Index(t => t.IdKorisnika);
-            
-            CreateTable(
-                "dbo.Korisniks",
-                c => new
-                    {
-                        Email = c.String(nullable: false, maxLength: 128),
-                        Ime = c.String(),
-                        Prezime = c.String(),
-                        DatumRodjenja = c.DateTime(nullable: false),
-                        Adresa = c.String(),
-                        Lozinka = c.String(),
-                        Uloga = c.String(),
-                        TipPutnika = c.String(),
-                        Status = c.String(),
-                        ImageUrl = c.String(),
-                        Aktivan = c.Boolean(nullable: false),
-                    })
-                .PrimaryKey(t => t.Email);
-            
-            CreateTable(
-                "dbo.Koeficijents",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        TipPutnika = c.Int(nullable: false),
-                        Koef = c.Double(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.Linijas",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Naziv = c.String(),
-                        TipLinije= c.Int(nullable: false),
-                        Aktivna = c.Boolean(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.Stanicas",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Naziv = c.String(),
-                        Adresa = c.String(),
-                        Lat = c.Double(nullable: false),
-                        Lon = c.Double(nullable: false),
-                        Aktivna = c.Boolean(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.Putniks",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        TipPutnika = c.String(),
-                        Korisnik_Email = c.String(maxLength: 128),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Korisniks", t => t.Korisnik_Email)
-                .Index(t => t.Korisnik_Email);
-            
-            CreateTable(
-                "dbo.RedVoznjes",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        LinijaId = c.Int(nullable: false),
-                        IzabraniRedVoznje = c.String(),
-                        IzabranTipDana = c.String(),
-                        Polasci = c.String(),
-                        Aktivan = c.Boolean(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Linijas", t => t.LinijaId, cascadeDelete: true)
-                .Index(t => t.LinijaId);
-            
-            CreateTable(
-                "dbo.AspNetRoles",
-                c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        Name = c.String(nullable: false, maxLength: 256),
-                    })
-                .PrimaryKey(t => t.Id)
-                .Index(t => t.Name, unique: true, name: "RoleNameIndex");
-            
-            CreateTable(
-                "dbo.AspNetUserRoles",
-                c => new
-                    {
-                        UserId = c.String(nullable: false, maxLength: 128),
-                        RoleId = c.String(nullable: false, maxLength: 128),
-                    })
-                .PrimaryKey(t => new { t.UserId, t.RoleId })
-                .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.UserId)
-                .Index(t => t.RoleId);
-            
-            CreateTable(
-                "dbo.StatusRegistracijes",
-                c => new
-                    {
-                        Email = c.String(nullable: false, maxLength: 128),
-                        ImgUrl = c.String(),
-                        Status = c.String(),
-                        Version = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
-                    })
-                .PrimaryKey(t => t.Email);
+                .Index(t => t.IdApplicationUser);
             
             CreateTable(
                 "dbo.AspNetUsers",
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
+                        Name = c.String(),
+                        Surname = c.String(),
+                        DateOfBirth = c.String(),
+                        Address = c.String(),
+                        UserType = c.String(),
+                        Image = c.String(),
+                        Status = c.String(),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -218,6 +113,81 @@ namespace JGSPNSWebApp.Migrations
                 .Index(t => t.UserId);
             
             CreateTable(
+                "dbo.AspNetUserRoles",
+                c => new
+                    {
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        RoleId = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => new { t.UserId, t.RoleId })
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
+                .Index(t => t.UserId)
+                .Index(t => t.RoleId);
+            
+            CreateTable(
+                "dbo.Koeficijents",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        TipPutnika = c.Int(nullable: false),
+                        Koef = c.Double(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Linijas",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Naziv = c.String(),
+                        TipLinije = c.Int(nullable: false),
+                        Aktivna = c.Boolean(nullable: false),
+                        Version = c.Long(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Stanicas",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Naziv = c.String(),
+                        Adresa = c.String(),
+                        Lat = c.Double(nullable: false),
+                        Lon = c.Double(nullable: false),
+                        Aktivna = c.Boolean(nullable: false),
+                        Version = c.Long(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.RedVoznjes",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        LinijaId = c.Int(nullable: false),
+                        IzabraniRedVoznje = c.String(),
+                        IzabranTipDana = c.String(),
+                        Polasci = c.String(),
+                        Aktivan = c.Boolean(nullable: false),
+                        Version = c.Long(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Linijas", t => t.LinijaId, cascadeDelete: true)
+                .Index(t => t.LinijaId);
+            
+            CreateTable(
+                "dbo.AspNetRoles",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        Name = c.String(nullable: false, maxLength: 256),
+                    })
+                .PrimaryKey(t => t.Id)
+                .Index(t => t.Name, unique: true, name: "RoleNameIndex");
+            
+            CreateTable(
                 "dbo.StanicaLinijas",
                 c => new
                     {
@@ -234,45 +204,40 @@ namespace JGSPNSWebApp.Migrations
         
         public override void Down()
         {
+            DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.RedVoznjes", "LinijaId", "dbo.Linijas");
+            DropForeignKey("dbo.StanicaLinijas", "Linija_Id", "dbo.Linijas");
+            DropForeignKey("dbo.StanicaLinijas", "Stanica_Id", "dbo.Stanicas");
+            DropForeignKey("dbo.Kartas", "IdCenovnikStavka", "dbo.CenovnikStavkas");
+            DropForeignKey("dbo.Kartas", "IdApplicationUser", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.RedVoznjes", "LinijaId", "dbo.Linijas");
-            DropForeignKey("dbo.Putniks", "Korisnik_Email", "dbo.Korisniks");
-            DropForeignKey("dbo.StanicaLinijas", "Linija_Id", "dbo.Linijas");
-            DropForeignKey("dbo.StanicaLinijas", "Stanica_Id", "dbo.Stanicas");
-            DropForeignKey("dbo.Kartas", "IdKorisnika", "dbo.Korisniks");
-            DropForeignKey("dbo.Kartas", "IdCenovnikStavka", "dbo.CenovnikStavkas");
             DropForeignKey("dbo.CenovnikStavkas", "Stavka_Id", "dbo.Stavkas");
             DropForeignKey("dbo.CenovnikStavkas", "Cenovnik_Id", "dbo.Cenovniks");
             DropIndex("dbo.StanicaLinijas", new[] { "Linija_Id" });
             DropIndex("dbo.StanicaLinijas", new[] { "Stanica_Id" });
+            DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.RedVoznjes", new[] { "LinijaId" });
+            DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
+            DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
-            DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
-            DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
-            DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropIndex("dbo.RedVoznjes", new[] { "LinijaId" });
-            DropIndex("dbo.Putniks", new[] { "Korisnik_Email" });
-            DropIndex("dbo.Kartas", new[] { "IdKorisnika" });
+            DropIndex("dbo.Kartas", new[] { "IdApplicationUser" });
             DropIndex("dbo.Kartas", new[] { "IdCenovnikStavka" });
             DropIndex("dbo.CenovnikStavkas", new[] { "Stavka_Id" });
             DropIndex("dbo.CenovnikStavkas", new[] { "Cenovnik_Id" });
             DropTable("dbo.StanicaLinijas");
-            DropTable("dbo.AspNetUserLogins");
-            DropTable("dbo.AspNetUserClaims");
-            DropTable("dbo.AspNetUsers");
-            DropTable("dbo.StatusRegistracijes");
-            DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.RedVoznjes");
-            DropTable("dbo.Putniks");
             DropTable("dbo.Stanicas");
             DropTable("dbo.Linijas");
             DropTable("dbo.Koeficijents");
-            DropTable("dbo.Korisniks");
+            DropTable("dbo.AspNetUserRoles");
+            DropTable("dbo.AspNetUserLogins");
+            DropTable("dbo.AspNetUserClaims");
+            DropTable("dbo.AspNetUsers");
             DropTable("dbo.Kartas");
             DropTable("dbo.Stavkas");
             DropTable("dbo.CenovnikStavkas");

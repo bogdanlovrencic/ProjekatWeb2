@@ -30,6 +30,7 @@ import { UpdateLinijaComponent } from './update-linija/update-linija.component';
 import { UpdateRedVoznjeComponent } from './update-red-voznje/update-red-voznje.component';
 import { ValidirajKartuComponent } from './validiraj-kartu/validiraj-kartu.component';
 import { VerifikujKorisnikaComponent } from './verifikuj-korisnika/verifikuj-korisnika.component';
+import { KupljeneKarteComponent } from './kupljene-karte/kupljene-karte.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { VerifikujKorisnikaComponent } from './verifikuj-korisnika/verifikuj-kor
     UpdateRedVoznjeComponent,
     ValidirajKartuComponent,
     VerifikujKorisnikaComponent,
+    KupljeneKarteComponent,
   ],
   imports: [
     BrowserModule,

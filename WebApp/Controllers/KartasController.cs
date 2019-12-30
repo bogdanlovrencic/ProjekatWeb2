@@ -109,10 +109,10 @@ namespace JGSPNSWebApp.Controllers
 
             if(korisnikEmail != null)
             {
-                karta.IdApplicationUser = db.Users.Where(x => x.Email == korisnikEmail).Select(c => c.Email).First();
+                karta.IdApplicationUser = db.Users.Where(x => x.Email == korisnikEmail).Select(c => c.Id).First();
             }
 
-            db.Set<Karta>().Add(karta);
+            db.Karte.Add(karta);
             db.SaveChanges();
 
             if(korisnikEmail == null)
@@ -123,9 +123,10 @@ namespace JGSPNSWebApp.Controllers
             return Ok(karta);
         }
 
-      
-        [Route("ValidacijaKarte")]
-        public IHttpActionResult ProveriKartu(int id)
+        [HttpGet]
+        [Route("ValidirajKartu")]
+        [ResponseType(typeof(IHttpActionResult))]
+        public IHttpActionResult ValidirajKartu(int id)
         {
 
             try
@@ -147,6 +148,8 @@ namespace JGSPNSWebApp.Controllers
                 return Ok(204);    //karta sa zadatim id-em ne postoji
             }
         }
+
+
 
         // DELETE: api/Kartas/5
         [ResponseType(typeof(Karta))]

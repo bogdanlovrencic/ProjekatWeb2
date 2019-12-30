@@ -10,6 +10,7 @@
             <li class="nav-item"> <a routerLink="/cenovnik" *ngIf="rola!=='Admin' && rola!=='Controller'">Cenovnik</a></li>
             <li class="nav-item"> <a routerLink="/kupiKartu" *ngIf="rola!=='Admin' && rola!=='Controller'">Kupi kartu</a></li>
             <li class="nav-item"><a routerLink="/profil" *ngIf="isLoggedIn">Profil</a></li>
+            <li class="nav-item"><a routerLink="/kupljeneKarte" *ngIf="isLoggedIn && rola ==='AppUser'">Kupljene karte</a></li>
             <li class="nav-item" *ngIf="isLoggedIn && isAdmin">
               <a  routerLink="/management">Management </a>
             </li>

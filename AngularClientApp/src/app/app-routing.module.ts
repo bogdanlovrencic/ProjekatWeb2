@@ -19,6 +19,7 @@ import { UpdateRedVoznjeComponent } from './update-red-voznje/update-red-voznje.
 import { UpdateLinijaComponent } from './update-linija/update-linija.component';
 import { ValidirajKartuComponent } from './validiraj-kartu/validiraj-kartu.component';
 import { VerifikujKorisnikaComponent } from './verifikuj-korisnika/verifikuj-korisnika.component';
+import { KupljeneKarteComponent } from './kupljene-karte/kupljene-karte.component';
 
 const routes: Routes = [
   
@@ -131,6 +132,11 @@ const routes: Routes = [
   {
     path:'verifikacijaKorisnika',
     component:VerifikujKorisnikaComponent
+  },
+
+  {
+    path:'kupljeneKarte',
+    component:KupljeneKarteComponent
   }
 
 
