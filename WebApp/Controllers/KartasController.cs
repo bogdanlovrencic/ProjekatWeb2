@@ -112,7 +112,7 @@ namespace JGSPNSWebApp.Controllers
                 karta.IdApplicationUser = db.Users.Where(x => x.Email == korisnikEmail).Select(c => c.Email).First();
             }
 
-            db.Karte.Add(karta);
+            db.Set<Karta>().Add(karta);
             db.SaveChanges();
 
             if(korisnikEmail == null)
@@ -121,6 +121,31 @@ namespace JGSPNSWebApp.Controllers
             }
                  
             return Ok(karta);
+        }
+
+      
+        [Route("ValidacijaKarte")]
+        public IHttpActionResult ProveriKartu(int id)
+        {
+
+            try
+            {
+                if(CheckTicket(id))
+                {
+                    db.SaveChanges();
+                    return Ok(200);   //karta validna
+                }
+                else
+                {
+                    db.SaveChanges();
+                    return Ok(202);  //karta nevalidna
+                }
+                                  
+            }
+            catch
+            {
+                return Ok(204);    //karta sa zadatim id-em ne postoji
+            }
         }
 
         // DELETE: api/Kartas/5
@@ -151,6 +176,65 @@ namespace JGSPNSWebApp.Controllers
         private bool KartaExists(int id)
         {
             return db.Karte.Count(e => e.Id == id) > 0;
+        }
+
+        public bool CheckTicket(int id)
+        {
+            Karta karta = db.Karte.Where(x => x.Id == id).First();
+            CenovnikStavka cenovnikStavka = db.CenovnikStavke.Where(x => x.Id == karta.IdCenovnikStavka).First();
+            string tipKarte = db.Stavke.Where(x => x.Id == cenovnikStavka.Stavka_Id).Select(s => s.Naziv).First();
+            long ticks = DateTime.Now.Ticks;
+
+            if(tipKarte == "Vremenska karta")
+            {
+                if((ticks-karta.VremeVazenja.Ticks) < 36000000000)
+                {
+                    return true;
+                }
+                else
+                {
+                    karta.Validna = false;
+                    return false;
+                }
+            }
+            else if (tipKarte == "Dnevna karta")
+            {
+                if (karta.VremeVazenja.Year == DateTime.Now.Year && karta.VremeVazenja.Month == DateTime.Now.Month && karta.VremeVazenja.Day == DateTime.Now.Day)
+                {
+                    return true;
+                }
+                else
+                {
+                    karta.Validna = false;
+                    return false;
+                }
+            }
+            else if (tipKarte == "Mesecna karta")
+            {
+                if (karta.VremeVazenja.Year == DateTime.Now.Year && karta.VremeVazenja.Month == DateTime.Now.Month)
+                {
+                    return true;
+                }
+                else
+                {
+                    karta.Validna = false;
+                    return false;
+                }
+            }
+            else if (tipKarte == "Godisnja karta")
+            {
+                if (karta.VremeVazenja.Year == DateTime.Now.Year)
+                {
+                    return true;
+                }
+                else
+                {
+                    karta.Validna = false;
+                    return false;
+                }
+            }
+
+            return false;
         }
     }
 }

@@ -1061,3 +1061,4 @@ D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.pdb
 D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.Migrations.appUSerModified.resources
 D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.Migrations.neke_izmene_modela.resources
 D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.Migrations.uklonjenKorisnik2.resources
+D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.csprojAssemblyReference.cache

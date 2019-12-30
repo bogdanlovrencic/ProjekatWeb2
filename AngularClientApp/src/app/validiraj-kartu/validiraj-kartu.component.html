@@ -1,3 +1,44 @@
-<p>
-  validiraj-kartu works!
-</p>
+<form class="form-signin" [formGroup]="validirajKartuForm">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="shadow-lg">
+          <div class="card card-signin my-5">
+            <div class="card-body">
+              <div class="form-label-group">
+                <div *ngIf="validirajKartuForm.controls.id.errors" >
+                  <div *ngIf="validirajKartuForm.controls.id.errors.required && (validirajKartuForm.controls.id.dirty || validirajKartuForm.controls.id.touched)" class="badge badge-danger">Id je obavezan!</div>
+                </div>
+                <span class="badge badge-primary">Karta ID: </span>
+                <input  type="number" name="id"  class="form-control" required formControlName="id">
+                <br>
+                <div *ngIf="!validirajKartuForm.controls.id.errors" >
+                <div *ngIf="!validnaKarta && show">
+                  <button type="button" class="btn btn-danger btn-lg btn-block" disabled>Karta je nevalidna!</button>
+                </div>
+                <div *ngIf="validnaKarta && show">
+                    <button type="button" class="btn btn-success btn-lg btn-block" disabled>Karta je validna</button>
+                  </div>
+                </div>
+                <div *ngIf="!validirajKartuForm.controls.id.errors" >
+                <div *ngIf="showError">
+                    <button type="button" class="btn btn-danger btn-lg btn-block" disabled>Karta sa Id-em ne postoji!</button>
+                  </div>
+                </div>
+                <br>
+                <div *ngIf="validirajKartuForm.valid">
+                  <button class="btn btn-lg btn-primary btn-block text-uppercase active" (click)="ValidirajKartu()">Validiraj</button>
+                </div>
+                <div *ngIf="!validirajKartuForm.valid">
+                  <button class="btn btn-lg btn-primary btn-block text-uppercase disabled" [disabled]="!validirajKartuForm.valid">Validiraj</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+                
+

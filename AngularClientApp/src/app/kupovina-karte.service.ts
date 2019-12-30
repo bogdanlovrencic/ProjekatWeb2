@@ -15,7 +15,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class KupovinaKarteService {
-
+ 
   
 
   constructor(private http:HttpClient) { }
@@ -30,6 +30,11 @@ export class KupovinaKarteService {
   getCena(selectedTicketType: string, userType: string):Observable<number> {
       return this.http.get<number>(`http://localhost:52295/api/Kartas/IzracunajCenu?tipKarte=${selectedTicketType}&tipPutnika=${userType}`);
   }
+
+  ValidirajKartu(id: any):Observable<any> {
+      return this.http.get<any>('http://localhost:52295/api/Kartas/ValidacijaKarte?id='+id)
+  }
+
 
  
   
