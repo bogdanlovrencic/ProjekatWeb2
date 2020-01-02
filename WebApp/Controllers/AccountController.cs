@@ -329,10 +329,10 @@ namespace JGSPNSWebApp.Controllers
         [HttpGet]       
         [Route("GetNevalidiraniKorisnici")]
         [ResponseType(typeof(List<ApplicationUser>))]
-        public async Task<IHttpActionResult> GetNotActiveUsers()
+        public IHttpActionResult GetNotActiveUsers()
         {
-            List<ApplicationUser> ret = new List<ApplicationUser>();
-            foreach (var user in UserManager.Users.Where(p => p.Status == StatusProfila.Ocekuje_se_verifikacija.ToString() && p.Image != null))
+            List<ApplicationUser> ret =  new List<ApplicationUser>();
+            foreach (var user in  UserManager.Users.Where(p => p.Status == StatusProfila.Ocekuje_se_verifikacija.ToString() && p.Image != null))
             {
                 ret.Add(user);
             }

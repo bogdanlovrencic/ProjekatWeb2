@@ -149,6 +149,19 @@ namespace JGSPNSWebApp.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("GetKupljeneKarte")]      
+        public IHttpActionResult GetKupljeneKarte(string email)
+        {
+            List<Karta> karte = new List<Karta>();
+
+            var korisnik = db.Users.Where(x => x.Email == email).FirstOrDefault();
+
+            karte = db.Karte.Where(x => x.IdApplicationUser == korisnik.Id).Include(x=>x.CenovnikStavka).Include(x=>x.CenovnikStavka.Stavka).ToList();
+
+            return Ok(karte);
+        }
+
 
 
         // DELETE: api/Kartas/5

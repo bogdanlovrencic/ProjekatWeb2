@@ -16,8 +16,6 @@ const httpOptions = {
 })
 export class KupovinaKarteService {
  
-  
-
   constructor(private http:HttpClient) { }
 
  
@@ -35,6 +33,10 @@ export class KupovinaKarteService {
       return this.http.get<any>('http://localhost:52295/api/Kartas/ValidirajKartu?id='+id)
   }
 
+
+  getKupljeneKarte(email:string):Observable<any[]> {
+     return this.http.get<any>('http://localhost:52295/api/Kartas/GetKupljeneKarte?email='+email)
+  }
 
  
   

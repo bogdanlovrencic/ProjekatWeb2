@@ -2,8 +2,8 @@ import { CenaStavke } from './cenaStavke';
 
 export class Karta{
     public Id:number;
-    public VremeKupovine:string;
-    public CenaStavke:CenaStavke;
+    public VremeVazenja:any;
+    public CenovnikStavka:CenaStavke;
     public Cena:number;
     
 }

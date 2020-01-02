@@ -1,3 +1,20 @@
 <div class="container">
     <h3>Kupljene karte</h3>
+    <br/>
+    <br/>
+    <h4 *ngIf="Karte === null">{{message}}</h4>
+    <table *ngIf="Karte !== null" border="1" aria-colspan="2">
+        <tr>
+            <td><b>ID</b></td>
+            <td><b>Tip karte</b></td>
+            <td><b>Vreme vazenja</b></td>
+            <td><b>Cena</b></td>
+        </tr>
+        <tr *ngFor="let karta of Karte">
+            <td>{{karta.Id}}</td>
+            <td>{{karta.CenovnikStavka.Stavka.Naziv}}</td>
+            <td>{{karta.VremeVazenja}}</td>
+            <td>{{karta.Cena}} RSD</td>
+        </tr>
+    </table>
 </div>
