@@ -256,6 +256,7 @@
     <Compile Include="Controllers\RedVoznjesController.cs" />
     <Compile Include="Controllers\StanicasController.cs" />
     <Compile Include="EmailHelper.cs" />
+    <Compile Include="Hubs\LokacijaBusa.cs" />
     <Compile Include="Migrations\201912301221046_intialMigration.cs" />
     <Compile Include="Migrations\201912301221046_intialMigration.Designer.cs">
       <DependentUpon>201912301221046_intialMigration.cs</DependentUpon>
@@ -275,7 +276,6 @@
     <Compile Include="Models\Karta.cs" />
     <Compile Include="Models\Koeficijent.cs" />
     <Compile Include="Models\Linija.cs" />
-    <Compile Include="Models\Lokacija.cs" />
     <Compile Include="Models\RedVoznje.cs" />
     <Compile Include="Models\Stanica.cs" />
     <Compile Include="Models\StatusProfila.cs" />

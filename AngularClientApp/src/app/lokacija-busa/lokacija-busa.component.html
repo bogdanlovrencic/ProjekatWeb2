@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="container">
+      <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+          <div class="shadow-lg">
+            <div class="card card-signin my-5">
+              <div class="card-body">
+                  <div>
+                    <label class="badge badge-primary">Linije: </label>
+                  </div>
+                  <div class="form-label-group">
+                      <select class="form-control" (change)="onSelectLine($event)">
+                          <option></option>
+                          <option  *ngFor="let l of lines" [value]="l.Id">{{l.Naziv}}</option>
+                      </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br/>
+<div class="d-flex justify-content-center">
+  <agm-map #AgmMap [latitude]="45.256138" [longitude]="19.828751" [zoom]="mapZoom" style="height: 500px; width: 700px;">
+    <div>
+      <agm-marker [latitude]="BusX" [longitude]="BusY" [iconUrl]="iconPathBus">
+        
+      </agm-marker>
+      <agm-marker *ngFor="let station of lineStations" [latitude]="station.Lat" [longitude]="station.Lon" [title]="station.Naziv" [label]="" [iconUrl]="iconPath">
+        <agm-info-window>
+          Naziv: {{station.Naziv}}
+          <br>
+          Longitude: {{station.Lon}}
+          <br>
+          Latitude: {{station.Lat}}
+          <br>
+          Adresa: {{station.Adresa}}
+        </agm-info-window>
+      </agm-marker>
+      
+    </div>
+    
+    <div>
+      <agm-polyline [strokeColor]="red">
+        <agm-polyline-point *ngFor="let point of selLine.path" [latitude]="point.latitude" [longitude]="point.longitude">
+        </agm-polyline-point>
+      </agm-polyline>
+    </div>
+  </agm-map>
+</div>
+<br>
+</div>

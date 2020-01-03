@@ -9,7 +9,6 @@ import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 import { RedVoznjeComponent } from './red-voznje/red-voznje.component';
 import { MrezaLinijaComponent } from './mreza-linija/mreza-linija.component';
-import { TrenutnaLokacijaComponent } from './trenutna-lokacija/trenutna-lokacija.component';
 import { CenovnikComponent } from './cenovnik/cenovnik.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { KupiKartuComponent } from './kupi-kartu/kupi-kartu.component';
@@ -18,7 +17,6 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
 import { RouterModule } from '@angular/router';
 import { AdminManagementComponent } from './admin-management/admin-management.component';
 import { ProfilKorisnikaComponent } from './profil-korisnika/profil-korisnika.component';
-//import { KupovinaKarteService } from './kupovina-karte.service';
 import { TokenInterceptor } from './token.interceptor';
 import { AdminViewComponent } from './admin-view/admin-view.component';
 import { AddCenovnikComponent } from './add-cenovnik/add-cenovnik.component';
@@ -31,6 +29,7 @@ import { UpdateRedVoznjeComponent } from './update-red-voznje/update-red-voznje.
 import { ValidirajKartuComponent } from './validiraj-kartu/validiraj-kartu.component';
 import { VerifikujKorisnikaComponent } from './verifikuj-korisnika/verifikuj-korisnika.component';
 import { KupljeneKarteComponent } from './kupljene-karte/kupljene-karte.component';
+import { LokacijaBusaComponent } from './lokacija-busa/lokacija-busa.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +39,6 @@ import { KupljeneKarteComponent } from './kupljene-karte/kupljene-karte.componen
     LoginComponent,
     RedVoznjeComponent,
     MrezaLinijaComponent,
-    TrenutnaLokacijaComponent,
     CenovnikComponent,
     KupiKartuComponent,
     MapComponent,
@@ -57,6 +55,7 @@ import { KupljeneKarteComponent } from './kupljene-karte/kupljene-karte.componen
     ValidirajKartuComponent,
     VerifikujKorisnikaComponent,
     KupljeneKarteComponent,
+    LokacijaBusaComponent,
   ],
   imports: [
     BrowserModule,

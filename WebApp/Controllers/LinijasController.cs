@@ -21,7 +21,7 @@ namespace JGSPNSWebApp.Controllers
         // GET: api/Linijas
         public IQueryable<Linija> GetLinije()
         {
-            return db.Linije.Where(linija=>linija.Aktivna);
+            return db.Linije.Include(x=>x.Stanice).Where(linija => linija.Aktivna && linija.Stanice.Any(s=>s.Aktivna));
         }
 
         // GET: api/Linijas/5

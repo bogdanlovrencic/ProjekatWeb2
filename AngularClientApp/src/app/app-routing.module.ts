@@ -4,7 +4,6 @@ import { LoginComponent } from 'src/app/login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { RedVoznjeComponent } from './red-voznje/red-voznje.component';
 import { MrezaLinijaComponent } from './mreza-linija/mreza-linija.component';
-import { TrenutnaLokacijaComponent } from './trenutna-lokacija/trenutna-lokacija.component';
 import { CenovnikComponent } from './cenovnik/cenovnik.component';
 import { KupiKartuComponent } from './kupi-kartu/kupi-kartu.component';
 import { AdminManagementComponent } from './admin-management/admin-management.component';
@@ -20,6 +19,7 @@ import { UpdateLinijaComponent } from './update-linija/update-linija.component';
 import { ValidirajKartuComponent } from './validiraj-kartu/validiraj-kartu.component';
 import { VerifikujKorisnikaComponent } from './verifikuj-korisnika/verifikuj-korisnika.component';
 import { KupljeneKarteComponent } from './kupljene-karte/kupljene-karte.component';
+import { LokacijaBusaComponent } from './lokacija-busa/lokacija-busa.component';
 
 const routes: Routes = [
   
@@ -40,8 +40,8 @@ const routes: Routes = [
   },
 
   {
-    path: 'trenutnaLokacija',
-    component: TrenutnaLokacijaComponent
+    path: 'lokacijaBusa',
+    component: LokacijaBusaComponent
   },
 
   {
