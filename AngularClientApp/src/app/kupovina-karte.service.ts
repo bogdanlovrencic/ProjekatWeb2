@@ -16,6 +16,7 @@ const httpOptions = {
 })
 export class KupovinaKarteService {
  
+ 
   constructor(private http:HttpClient) { }
 
  
@@ -38,6 +39,10 @@ export class KupovinaKarteService {
      return this.http.get<any>('http://localhost:52295/api/Kartas/GetKupljeneKarte?email='+email)
   }
 
- 
+  KupiKartuPrekoPayPal(loggedIn: boolean,email: any, transactionId: any, payer_email: any, payer_id: any, cena: any, tipKarte: any, tipPutnika: any):Observable<any> {
+      return this.http.post<any>(`http://localhost:52295/api/Kartas/KupiKartuPayPal?loggedIn=${loggedIn}&email=${email}&id=${transactionId}&payer_email=${payer_email}&payer_id=${payer_id}&cena=${cena}&tipKarte=${tipKarte}&tipPutnika=${tipPutnika}`,
+           [loggedIn,email,transactionId,payer_email,payer_id,cena,tipKarte,tipPutnika])
+  }
+  
   
 }

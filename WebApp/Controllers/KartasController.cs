@@ -123,6 +123,54 @@ namespace JGSPNSWebApp.Controllers
             return Ok(karta);
         }
 
+
+        [HttpPost]
+        [Route("KupiKartuPayPal")]
+        public IHttpActionResult KupiKartuPrekoPayPal(bool loggedIn,string email,string transactionId,string payer_email,string payer_id,double cena,string tipKarte,TipPutnika tipPutnika)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            string userId = null;
+
+            if(loggedIn)
+            {
+                userId = db.Users.Where(x => x.Email == email).Select(c => c.Id).First();
+            }
+
+            int cenovnikId = db.Cenovnici.Where(x => x.Aktivan).Select(c=>c.Id).First();
+            int stavkaId = db.Stavke.Where(x => x.Naziv == tipKarte).Select(c=>c.Id).First();
+            int cenovnikStavkaId = db.CenovnikStavke.Where(x => x.Cenovnik_Id == cenovnikId && x.Stavka_Id == stavkaId).Select(c => c.Id).First();
+
+
+            Karta karta = new Karta()
+            {
+                VremeVazenja = DateTime.Now,
+                IdCenovnikStavka=cenovnikStavkaId,
+                Cena=cena,
+                Validna=true             
+            };
+
+            if (userId != null)
+                karta.IdApplicationUser = userId;
+
+            else
+                karta.ApplicationUser = null;
+
+            db.Karte.Add(karta);
+            db.SaveChanges();
+
+            db.PayPal.Add(new PayPal() { IdKarte = karta.Id, PayerEmail = payer_email, PayerId = payer_id, TransactionId = transactionId });
+            db.SaveChanges();
+
+            if (!loggedIn)
+                EmailHelper.SendMail(email, "Online kupovina karte", "Uspesno ste kupili " + tipKarte + " preko PayPal-a sa ID: " + karta.Id.ToString() + ",\n Cena: " + cena + ",\n Vreme vazenja: " + karta.VremeVazenja.AddHours(1).ToString());
+
+            return Ok(200);
+        }
+
         [HttpGet]
         [Route("ValidirajKartu")]
         [ResponseType(typeof(IHttpActionResult))]

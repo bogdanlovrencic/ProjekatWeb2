@@ -30,6 +30,7 @@ import { ValidirajKartuComponent } from './validiraj-kartu/validiraj-kartu.compo
 import { VerifikujKorisnikaComponent } from './verifikuj-korisnika/verifikuj-korisnika.component';
 import { KupljeneKarteComponent } from './kupljene-karte/kupljene-karte.component';
 import { LokacijaBusaComponent } from './lokacija-busa/lokacija-busa.component';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { LokacijaBusaComponent } from './lokacija-busa/lokacija-busa.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    NgxPayPalModule,
     ReactiveFormsModule,
     RouterModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'})

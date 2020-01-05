@@ -30,5 +30,6 @@ namespace JGSPNSWebApp.Persistence
         public DbSet<CenovnikStavka> CenovnikStavke { get; set; }
         public System.Data.Entity.DbSet<JGSPNSWebApp.Models.Stanica> Stanice { get; set; }
         public DbSet<Koeficijent> Koeficijenti { get; set; }
+        public DbSet<PayPal> PayPal { get; set; }
     }
 }
