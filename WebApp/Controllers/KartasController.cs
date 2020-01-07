@@ -166,7 +166,7 @@ namespace JGSPNSWebApp.Controllers
             db.SaveChanges();
 
             if (!loggedIn)
-                EmailHelper.SendMail(email, "Online kupovina karte", "Uspesno ste kupili " + tipKarte + " preko PayPal-a sa ID: " + karta.Id.ToString() + ",\n Cena: " + cena + ",\n Vreme vazenja: " + karta.VremeVazenja.AddHours(1).ToString());
+                EmailHelper.SendMail(email, "Online kupovina karte", "Uspesno ste kupili " + tipKarte + " preko PayPal-a sa ID: " + karta.Id.ToString() + ",\n Cena: " + cena + " RSD,\n Vreme vazenja: " + karta.VremeVazenja.AddHours(1).ToString());
 
             return Ok(200);
         }

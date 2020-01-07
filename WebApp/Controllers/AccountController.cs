@@ -139,7 +139,7 @@ namespace JGSPNSWebApp.Controllers
                 return GetErrorResult(result);
             }
 
-            return Ok();
+            return Ok(200);
         }
 
         // POST api/Account/SetPassword

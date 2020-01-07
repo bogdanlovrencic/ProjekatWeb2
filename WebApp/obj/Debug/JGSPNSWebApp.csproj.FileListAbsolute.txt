@@ -1054,5 +1054,5 @@ D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.dll
 D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.pdb
 D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.Migrations.intialMigration.resources
 D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.csproj.GenerateResource.cache
-D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.csprojAssemblyReference.cache
 D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.Migrations.PayPalMigration.resources
+D:\GitHub\ProjekatWeb2\WebApp\obj\Debug\JGSPNSWebApp.csprojAssemblyReference.cache

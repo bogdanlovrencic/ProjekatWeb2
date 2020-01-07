@@ -34,7 +34,7 @@ export class UserService {
   }
 
   changePassword(data: NgForm):any {
-      return this.http.post(this.changePassUrl,data.value);
+      return this.http.post<any>(this.changePassUrl,data.value);
   }
 
   downloadImage(email: string):Observable<any[]> 

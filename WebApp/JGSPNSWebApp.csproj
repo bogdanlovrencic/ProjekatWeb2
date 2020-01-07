@@ -261,9 +261,9 @@
     <Compile Include="Migrations\201912301221046_intialMigration.Designer.cs">
       <DependentUpon>201912301221046_intialMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202001041718504_PayPalMigration.cs" />
-    <Compile Include="Migrations\202001041718504_PayPalMigration.Designer.cs">
-      <DependentUpon>202001041718504_PayPalMigration.cs</DependentUpon>
+    <Compile Include="Migrations\202001051618565_PayPalMigration.cs" />
+    <Compile Include="Migrations\202001051618565_PayPalMigration.Designer.cs">
+      <DependentUpon>202001051618565_PayPalMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\CenovnikStavka.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -405,8 +405,8 @@
     <EmbeddedResource Include="Migrations\201912301221046_intialMigration.resx">
       <DependentUpon>201912301221046_intialMigration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001041718504_PayPalMigration.resx">
-      <DependentUpon>202001041718504_PayPalMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001051618565_PayPalMigration.resx">
+      <DependentUpon>202001051618565_PayPalMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
