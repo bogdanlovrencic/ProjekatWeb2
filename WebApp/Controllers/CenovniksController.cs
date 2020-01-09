@@ -162,43 +162,49 @@ namespace JGSPNSWebApp.Controllers
             db.SaveChanges();
 
         
+
             List<Stavka> dodateStavke = new List<Stavka>();
+            dodateStavke = db.Stavke.ToList();
 
-            Stavka vremenskaKarta = new Stavka()
+            if(dodateStavke.Count == 0)
             {
-                Naziv = "Vremenska karta"
-            };
+                Stavka vremenskaKarta = new Stavka()
+                {
+                    Naziv = "Vremenska karta"
+                };
 
-            db.Stavke.Add(vremenskaKarta);
-            db.SaveChanges();
-            dodateStavke.Add(vremenskaKarta);
+                db.Stavke.Add(vremenskaKarta);
+                db.SaveChanges();
+                dodateStavke.Add(vremenskaKarta);
 
-            Stavka dnevnaKarta = new Stavka()
-            {
-                Naziv = "Dnevna karta"
-            };
+                Stavka dnevnaKarta = new Stavka()
+                {
+                    Naziv = "Dnevna karta"
+                };
 
-            db.Stavke.Add(dnevnaKarta);
-            db.SaveChanges();
-            dodateStavke.Add(dnevnaKarta);
+                db.Stavke.Add(dnevnaKarta);
+                db.SaveChanges();
+                dodateStavke.Add(dnevnaKarta);
 
-            Stavka mesecnaKarta = new Stavka()
-            {
-                Naziv = "Mesecna karta"
-            };
+                Stavka mesecnaKarta = new Stavka()
+                {
+                    Naziv = "Mesecna karta"
+                };
 
-            db.Stavke.Add(mesecnaKarta);
-            db.SaveChanges();
-            dodateStavke.Add(mesecnaKarta);
+                db.Stavke.Add(mesecnaKarta);
+                db.SaveChanges();
+                dodateStavke.Add(mesecnaKarta);
 
-            Stavka godisnjaKarta = new Stavka()
-            {
-                Naziv = "Godisnja karta"
-            };
+                Stavka godisnjaKarta = new Stavka()
+                {
+                    Naziv = "Godisnja karta"
+                };
 
-            db.Stavke.Add(godisnjaKarta);
-            db.SaveChanges();
-            dodateStavke.Add(godisnjaKarta);
+                db.Stavke.Add(godisnjaKarta);
+                db.SaveChanges();
+                dodateStavke.Add(godisnjaKarta);
+            }
+           
 
             CenovnikStavka cs;
 

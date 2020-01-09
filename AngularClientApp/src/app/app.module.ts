@@ -12,7 +12,6 @@ import { MrezaLinijaComponent } from './mreza-linija/mreza-linija.component';
 import { CenovnikComponent } from './cenovnik/cenovnik.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { KupiKartuComponent } from './kupi-kartu/kupi-kartu.component';
-import { MapComponent } from './map/map.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { RouterModule } from '@angular/router';
 import { AdminManagementComponent } from './admin-management/admin-management.component';
@@ -23,7 +22,6 @@ import { AddCenovnikComponent } from './add-cenovnik/add-cenovnik.component';
 import { AddLinijaComponent } from './add-linija/add-linija.component';
 import { AddRedVoznjeComponent } from './add-red-voznje/add-red-voznje.component';
 import { UpdateCenovnikComponent } from './update-cenovnik/update-cenovnik.component';
-import { UpdateKontrolorComponent } from './update-kontrolor/update-kontrolor.component';
 import { UpdateLinijaComponent } from './update-linija/update-linija.component';
 import { UpdateRedVoznjeComponent } from './update-red-voznje/update-red-voznje.component';
 import { ValidirajKartuComponent } from './validiraj-kartu/validiraj-kartu.component';
@@ -42,7 +40,6 @@ import { NgxPayPalModule } from 'ngx-paypal';
     MrezaLinijaComponent,
     CenovnikComponent,
     KupiKartuComponent,
-    MapComponent,
     AdminManagementComponent,
     ProfilKorisnikaComponent,
     AdminViewComponent,
@@ -50,7 +47,6 @@ import { NgxPayPalModule } from 'ngx-paypal';
     AddLinijaComponent,
     AddRedVoznjeComponent,
     UpdateCenovnikComponent,
-    UpdateKontrolorComponent,
     UpdateLinijaComponent,
     UpdateRedVoznjeComponent,
     ValidirajKartuComponent,

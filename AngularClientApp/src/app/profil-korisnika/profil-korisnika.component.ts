@@ -74,20 +74,24 @@ export class ProfilKorisnikaComponent implements OnInit {
               })
           }
 
-          this.userService.changePassword(f).subscribe(res=>{
-            if(res == 200)
-            {
-              console.log(res);
-               window.alert("Uspesno ste promenili loziniku.")
-               f.controls.OldPassword.setValue('')
-               f.controls.NewPassword.setValue('')
-               f.controls.confirmPassword.setValue('')
-            }
-            
-          },error=>{ 
-              console.log(error)
-              window.alert("Dogodila se greska prilikom promene lozinke, pokusajte ponovo!")
-            });
+          if(f.controls.OldPassword.touched || f.controls.NewPassword.touched || f.controls.confirmPassword.touched)
+          {
+            this.userService.changePassword(f).subscribe(res=>{
+              if(res == 200)
+              {
+                console.log(res);
+                 window.alert("Uspesno ste promenili loziniku.")
+                 f.controls.OldPassword.setValue('')
+                 f.controls.NewPassword.setValue('')
+                 f.controls.confirmPassword.setValue('')
+              }
+              
+            },error=>{ 
+                console.log(error)
+                window.alert("Dogodila se greska prilikom promene lozinke, pokusajte ponovo!")
+              });
+          }
+         
         });
   }
  

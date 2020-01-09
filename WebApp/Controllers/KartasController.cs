@@ -79,7 +79,7 @@ namespace JGSPNSWebApp.Controllers
         {
             int cenovnikId = db.Cenovnici.Where(x => x.Aktivan).Select(c => c.Id).First();
             int stavkaId = db.Stavke.Where(x => x.Naziv == tipKarte).Select(c => c.Id).First();
-            double cena = db.CenovnikStavke.Where(x => x.Cenovnik_Id == cenovnikId && x.Stavka_Id == stavkaId).Select(c => c.Cena).First();
+            double cena = db.CenovnikStavke.Where(x => x.Cenovnik_Id == cenovnikId && x.Stavka_Id == stavkaId).Select(c => c.Cena).FirstOrDefault();
             double koef = db.Koeficijenti.Where(x => x.TipPutnika == tipPutnika).Select(c => c.Koef).First();
 
             double cenaSaPopustom = Math.Round(cena * koef, 2);

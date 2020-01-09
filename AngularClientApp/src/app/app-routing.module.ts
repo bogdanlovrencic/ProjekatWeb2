@@ -13,7 +13,6 @@ import { AddLinijaComponent } from './add-linija/add-linija.component';
 import { AddRedVoznjeComponent } from './add-red-voznje/add-red-voznje.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
 import { UpdateCenovnikComponent } from './update-cenovnik/update-cenovnik.component';
-import { UpdateKontrolorComponent } from './update-kontrolor/update-kontrolor.component';
 import { UpdateRedVoznjeComponent } from './update-red-voznje/update-red-voznje.component';
 import { UpdateLinijaComponent } from './update-linija/update-linija.component';
 import { ValidirajKartuComponent } from './validiraj-kartu/validiraj-kartu.component';
@@ -104,14 +103,9 @@ const routes: Routes = [
   },
 
  
-  {
-    path:'KontrolorIzmena/kontrolor',
-    component:UpdateKontrolorComponent,
-  },
-
   // {
-  //   path:'PolazakIzmena/polazak',
-  //   component:UpdatePolazakComponent,
+  //   path:'KontrolorIzmena/kontrolor',
+  //   component:UpdateKontrolorComponent,
   // },
 
   {
