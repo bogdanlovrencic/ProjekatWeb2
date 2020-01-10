@@ -21,6 +21,7 @@ export class RedVoznjeComponent implements OnInit {
   buttonClicked=false
   public redVoznjeZaPrikaz:RedVoznje
   public validationMessage
+  public message
 
 
   
@@ -41,6 +42,7 @@ export class RedVoznjeComponent implements OnInit {
   {
      
       this.validationMessage=""
+      this.message=''
 
       if(!this.prikazRedaVoznjeForm.valid)
       {
@@ -56,8 +58,14 @@ export class RedVoznjeComponent implements OnInit {
       redVoznje.LinijaId=this.prikazRedaVoznjeForm.controls.izabranaLinija.value
 
       this.redVoznjeService.prikaziRedVoznje(redVoznje).subscribe(res=>{
-            this.redVoznjeZaPrikaz=res
-            this.polasci= this.redVoznjeZaPrikaz.Polasci.split(',')
+            if(res == 201)
+               this.message="Trenutno nema polazaka za odabranu liniju i dan!"
+            
+            else{
+              this.redVoznjeZaPrikaz=res
+              this.polasci= this.redVoznjeZaPrikaz.Polasci.split(',')
+            }
+           
             console.log(res)
           
       }),error=>{console.log(error)}

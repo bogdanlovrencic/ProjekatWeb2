@@ -127,7 +127,7 @@ namespace JGSPNSWebApp.Controllers
 
             if(redVoznje == null)
             {
-                return Ok(new List<string>(0));
+                return Ok(201);
             }
 
            // List<string> polasci = new List<string>();

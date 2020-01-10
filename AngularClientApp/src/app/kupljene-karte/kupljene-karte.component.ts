@@ -24,8 +24,8 @@ export class KupljeneKarteComponent implements OnInit {
       this.kartaService.getKupljeneKarte(this.decoderService.getEmailFromToken()).subscribe(res=>{
           this.Karte=res;
         
-          if(this.Karte == null)
-              this.message="Trenutno nije kupljena nijedna karta"
+          if(this.Karte.length == 0)
+              this.message="Trenutno nemate kupljenih karata!"
       },error=>{console.log(error)}
       )
   }

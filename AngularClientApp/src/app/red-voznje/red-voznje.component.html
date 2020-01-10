@@ -1,3 +1,7 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
   <div class="container">
       <h3>Gradski i prigradski red voznje</h3>
     <br>
@@ -39,18 +43,25 @@
   <h4 class="text-danger" *ngIf="validationMessage !== ''">
     {{validationMessage}}
   </h4>
-  <table *ngIf="buttonClicked" border="1">
-    <tr>
-      <td><b>Linija: {{redVoznjeZaPrikaz.Linija.Naziv}}</b></td>
-    </tr>
-    <tr>
-      <td><b>Polasci</b></td>
-    </tr>
-      <tr *ngFor="let polazak of polasci">
-          <td>{{polazak}} </td>
-      </tr>
-  </table>
 
- 
+  <div class="listWrap" *ngIf="message !=='' && buttonClicked">      
+   
+    <h4>{{message}}</h4>
+  </div>
+  <div class="listWrap"  *ngIf="message === '' && buttonClicked">  
+  
+    <ul class="list" >        
+        <li >
+            <span >Linija: {{redVoznjeZaPrikaz.Linija.Naziv}} </span>   
+        </li>    
+        <li *ngFor="let polazak of polasci">
+                <span>{{polazak}}</span>              
+        </li>       
+    </ul>
+  </div>
 </div>
+<!-- <div class="container">
+  
+</div> -->
+
 
