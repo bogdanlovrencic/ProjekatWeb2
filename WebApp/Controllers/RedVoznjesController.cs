@@ -130,10 +130,6 @@ namespace JGSPNSWebApp.Controllers
                 return Ok(201);
             }
 
-           // List<string> polasci = new List<string>();
-
-            //polasci = redVoznje.Polasci.Split(',').ToList();
-
             return Ok(redVoznje);
         }
 

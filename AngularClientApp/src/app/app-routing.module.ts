@@ -19,13 +19,19 @@ import { ValidirajKartuComponent } from './validiraj-kartu/validiraj-kartu.compo
 import { VerifikujKorisnikaComponent } from './verifikuj-korisnika/verifikuj-korisnika.component';
 import { KupljeneKarteComponent } from './kupljene-karte/kupljene-karte.component';
 import { LokacijaBusaComponent } from './lokacija-busa/lokacija-busa.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 const routes: Routes = [
   
   {
     path: '',
-    redirectTo: '/redVoznje',
+    redirectTo: '/home',
     pathMatch: 'full'   
+  },
+
+  {
+    path:'home',
+    component:HomePageComponent
   },
 
   {

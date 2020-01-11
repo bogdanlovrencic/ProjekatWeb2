@@ -29,6 +29,7 @@ import { VerifikujKorisnikaComponent } from './verifikuj-korisnika/verifikuj-kor
 import { KupljeneKarteComponent } from './kupljene-karte/kupljene-karte.component';
 import { LokacijaBusaComponent } from './lokacija-busa/lokacija-busa.component';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
     VerifikujKorisnikaComponent,
     KupljeneKarteComponent,
     LokacijaBusaComponent,
+    HomePageComponent,
   ],
   imports: [
     BrowserModule,

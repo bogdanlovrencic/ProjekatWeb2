@@ -1,6 +1,7 @@
 <div class="container mrezaLinija-container">
       <h2> Mreza linija gradska i prigradska </h2>
-
+      <br/>
+      <br/>
       <agm-map [latitude]="45.256138" [longitude]="19.828751" [zoom]="14" (mapClick)="onMapClick()">      
             <agm-marker *ngFor="let stanica of linija.Stanice" [latitude]="stanica.Lat" [longitude]="stanica.Lon"
              title="naslov neki" [iconUrl]="stationIcon" (markerClick)="onStationClicked(stanica)">
@@ -22,8 +23,8 @@
         <option *ngFor="let lin of sveLinije" [value]="lin.Naziv">{{lin.Naziv}}</option>
       </select> 
        <br/>     
-        <button type="button" (click)="onClickPrikazi(linSelected)" [disabled]="!buttonPrikaziDisabled">Prikazi</button>
-        <button type="button" (click)="OnDeleteClicked()" *ngIf="rola==='Admin'">Obrisi</button>
-        <button type="button" (click)="onUpdateLinijaClicked()" *ngIf="rola==='Admin'" [disabled]="!buttonDisabled">Izmeni</button>
+        <button type="button" class="btn btn-primary" (click)="onClickPrikazi(linSelected)" [disabled]="!buttonPrikaziDisabled">Prikazi</button>
+        <button type="button" class="btn btn-primary" (click)="OnDeleteClicked()" *ngIf="rola==='Admin'">Obrisi</button>
+        <button type="button" class="btn btn-primary" (click)="onUpdateLinijaClicked()" *ngIf="rola==='Admin'" [disabled]="!buttonDisabled">Izmeni</button>
       </div>
 </div>

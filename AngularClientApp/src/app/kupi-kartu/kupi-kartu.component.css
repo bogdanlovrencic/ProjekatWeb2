@@ -1,14 +1,6 @@
-/* .btnSubmit
-{
-    width: 10%;
-    border-radius: 5rem;
-    padding: 1.5%;
-    border: none;
-    cursor: pointer;
-   
+.container{
+    width: 100%;
+    height: 100%;
+    background-color: #dfcfad;
+    padding: 20px;
 }
- .btnSubmit{
-    font-weight: 600;
-    color: #fff;
-    background-color: #0563c7;
-} */
