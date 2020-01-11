@@ -74,8 +74,6 @@ export class AdminViewComponent implements OnInit {
     }
 
     this.router.navigate(['RedVoznjeIzmena/redVoznje'],navigationExtras)
-    
-  
   }
 
 

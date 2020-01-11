@@ -13,7 +13,6 @@
     height: 300px;
     width: 1000px;
     align-items: center;
-    
 }
 
 .list {
@@ -24,7 +23,6 @@
     display: table;
     white-space: nowrap;
     width: 30%;
-    
 }
 
 .list li {
@@ -108,6 +106,10 @@
     padding: 6px;
     vertical-align: middle;
     
+}
+
+.form-group{
+    text-align: center;
 }
 
 

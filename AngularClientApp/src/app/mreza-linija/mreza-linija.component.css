@@ -1,6 +1,9 @@
-agm-map {height: 500px; width: 600px;}
+agm-map {height: 500px; width: 800px;}
+
 .container{
     width: 100%;
     height: 100%;
-    background-color: #b0d314;
+    background-color: #c7cea8;
+    
 }
+

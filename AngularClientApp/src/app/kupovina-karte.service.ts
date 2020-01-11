@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 import { catchError, map ,} from 'rxjs/operators';
-import { Email } from 'src/app/Email';
 import { Korisnik } from './Models/Korisnik';
 
 
