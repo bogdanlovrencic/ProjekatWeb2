@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GetDataService } from '../get-data.service';
 import { CenaStavke } from '../Models/cenaStavke';
-import { Kontrolor } from '../Models/Kontrolor';
 import { RedVoznjeBindingModel } from '../Models/RedVoznjeBindingModel';
 import { RedVoznje } from '../Models/RedVoznje';
 import { CenovnikPrikaz, Cenovnik } from '../Models/Cenovnik';
@@ -12,6 +11,7 @@ import { forEach } from '@angular/router/src/utils/collection';
 import { componentRefresh } from '@angular/core/src/render3/instructions';
 import { Router, NavigationExtras } from '@angular/router';
 import { AdminService } from '../admin.service';
+import { Korisnik } from '../Models/Korisnik';
 
 @Component({
   selector: 'app-admin-view',
@@ -25,7 +25,7 @@ export class AdminViewComponent implements OnInit {
   clicked="Cenovnici";
   selected = false;
   listaCenovnika:CenovnikPrikaz[];
-  listaKontrolora:Kontrolor[];
+  listaKontrolora:Korisnik[];
   listaRedaVoznji:RedVoznje[];
 
   
@@ -33,7 +33,7 @@ export class AdminViewComponent implements OnInit {
   ngOnInit() {
     this.dataService.message.subscribe(msg =>{ this.clicked = msg;}); 
     this.dataService.cenovnici.subscribe(msg =>{ this.listaCenovnika = msg;}); 
-    this.dataService.kontrolori.subscribe(msg => { this.listaKontrolora = msg;});
+   // this.dataService.kontrolori.subscribe(msg => { this.listaKontrolora = msg;});
     this.dataService.timetable.subscribe(msg => { this.listaRedaVoznji = msg;});
     
   }
@@ -52,7 +52,7 @@ export class AdminViewComponent implements OnInit {
   }
 
 
-  onKontrolorUpdateClick(kontrolor:Kontrolor)
+  onKontrolorUpdateClick(kontrolor:Korisnik)
   {
       let navigationExtras:NavigationExtras={
         queryParams:{

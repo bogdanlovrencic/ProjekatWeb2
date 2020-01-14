@@ -347,7 +347,7 @@ namespace JGSPNSWebApp.Controllers
             if (validan)
             {
                 EmailHelper.SendMail(email, "Status profila", "Vas profil je odobren!");
-                applicationUser.Status = StatusProfila.Potvrdjen.ToString();
+                applicationUser.Status = StatusProfila.Odobren.ToString();
             }
             else
             {
@@ -381,7 +381,8 @@ namespace JGSPNSWebApp.Controllers
 
             var userEmail = httpRequest.Form["email"];
             var user = UserManager.Users.Where(userDB => userDB.Email == userEmail).FirstOrDefault();
-            EmailHelper.SendMail(userEmail, "Status profila", "Vas profil se validira!");
+            if(user.Status!=StatusProfila.Odobren.ToString())
+                EmailHelper.SendMail(userEmail, "Status profila", "Vas profil se validira!");
 
 
             try
@@ -482,7 +483,7 @@ namespace JGSPNSWebApp.Controllers
                 if (user.UserType == TipPutnika.Regularni.ToString())
                 {
                     EmailHelper.SendMail(user.Email, "Status profila", "Vas profil je odobren!");
-                    user.Status = StatusProfila.Potvrdjen.ToString();
+                    user.Status = StatusProfila.Odobren.ToString();
                 }
                 else
                 {
@@ -538,9 +539,15 @@ namespace JGSPNSWebApp.Controllers
             user.Address = model.Address;
             user.Name = model.Name;
             user.Surname = model.Surname;
-            user.Status = model.Status;
-          
 
+            if (model.Status == StatusProfila.Odbijen.ToString())
+                user.Status = StatusProfila.Ocekuje_se_verifikacija.ToString();
+            else
+            {
+                user.Status = model.Status;
+            }
+            
+         
             IdentityResult result = await UserManager.UpdateAsync(user);
             if (!result.Succeeded)
             {
@@ -549,6 +556,8 @@ namespace JGSPNSWebApp.Controllers
 
             return Ok();
         }
+
+        
 
         // POST api/Account/RegisterExternal
         [OverrideAuthentication]

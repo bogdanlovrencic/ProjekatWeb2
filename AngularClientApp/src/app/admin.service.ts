@@ -9,8 +9,8 @@ import { Cenovnik, CenovnikPrikaz, CenovnikUpdate } from './Models/Cenovnik';
 import { Polazak, PolazakModel } from './Models/polazak';
 import { Stanica } from './Models/stanica';
 import { Stavka } from './Models/Stavka';
-import { Kontrolor } from './Models/Kontrolor';
 import { RedVoznje } from './Models/RedVoznje';
+import { Korisnik } from './Models/Korisnik';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +20,7 @@ export class AdminService {
 
   public linijaUrl='http://localhost:52295/api/Linijas';
   public redVoznjeUrl='http://localhost:52295/api/RedVoznjes';
-  public stavkaUrl= 'http://localhost:52295/api/Stavkas';
-  public polazakUrl='http://localhost:52295/api/Polazaks';
+
 
   constructor(private http:HttpClient) { }
 
@@ -51,11 +50,7 @@ export class AdminService {
   }
 
   
-  izmeniKontrolora(kontrolor: Kontrolor) 
-  {
-      return this.http.put('http://localhost:52295/api/Korisniks?id='+kontrolor.Email,kontrolor);  
-  }
-
+ 
   izmeniRedVoznje(redVoznje: RedVoznje):Observable<any>
   {
      return this.http.put('http://localhost:52295/api/RedVoznjes?id='+redVoznje.Id,redVoznje);

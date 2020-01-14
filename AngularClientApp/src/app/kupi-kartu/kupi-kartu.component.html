@@ -11,10 +11,10 @@
         <div class="card card-signin my-5">
           <div class="card-body">
                 <div class="form-label-group">
-                    <div *ngIf="userProfileActivated != 'Potvrdjen' && isLoggedIn">
+                    <div *ngIf="userProfileActivated != 'Odobren' && isLoggedIn">
                         <button type="button" class="btn btn-danger btn-lg btn-block" disabled>Vas profil nije jos uvek verifikovan od strane kontrolora!</button><br>
                     </div>
-                    <div *ngIf="userProfileActivated === 'Potvrdjen' || !isLoggedIn">
+                    <div *ngIf="userProfileActivated === 'Odobren' || !isLoggedIn">
                         <select name="ticketType" class="form-control" (change)="onSelectTipKarte($event)">
                         <option>Vremenska karta</option>
                         <option *ngIf="isLoggedIn">Dnevna karta</option>

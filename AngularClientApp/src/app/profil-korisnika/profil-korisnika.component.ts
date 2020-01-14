@@ -33,7 +33,7 @@ export class ProfilKorisnikaComponent implements OnInit {
 
           switch(this.user.Status)
           {
-            case 'Potvrdjen':
+            case 'Odobren':
               this.still='green';
               break;
 
@@ -42,7 +42,7 @@ export class ProfilKorisnikaComponent implements OnInit {
               break;
 
             case 'Ocekuje_se_verifikacija':
-              this.still='orange';
+              this.still='blue';
               break;     
           }
 

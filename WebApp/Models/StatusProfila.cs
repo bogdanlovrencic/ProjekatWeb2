@@ -7,7 +7,7 @@ namespace JGSPNSWebApp.Models
 {
     public enum StatusProfila
     {
-        Potvrdjen,
+        Odobren,
         Ocekuje_se_verifikacija,
         Odbijen
     }

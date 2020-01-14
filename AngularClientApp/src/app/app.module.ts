@@ -30,8 +30,7 @@ import { KupljeneKarteComponent } from './kupljene-karte/kupljene-karte.componen
 import { LokacijaBusaComponent } from './lokacija-busa/lokacija-busa.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { HomePageComponent } from './home-page/home-page.component';
-import { AddKontrolorComponent } from './add-kontrolor/add-kontrolor.component';
-import { UpdateKontrolorComponent } from './update-kontrolor/update-kontrolor.component';
+
 
 @NgModule({
   declarations: [
@@ -57,8 +56,7 @@ import { UpdateKontrolorComponent } from './update-kontrolor/update-kontrolor.co
     KupljeneKarteComponent,
     LokacijaBusaComponent,
     HomePageComponent,
-    AddKontrolorComponent,
-    UpdateKontrolorComponent,
+ 
   ],
   imports: [
     BrowserModule,

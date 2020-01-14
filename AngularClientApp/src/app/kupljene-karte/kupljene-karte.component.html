@@ -17,18 +17,21 @@
             <li>
                 <span>ID</span>
                 <span>Tip karte</span>
-                <span>Vreme vazenja</span>
+                <span>Vreme kupovine</span>
+                <span>Vazi do</span>
                 <span>Cena</span>         
             </li>
            
                 <li *ngFor="let karta of Karte">
                     <span>{{karta.Id}}</span>
                     <span>{{karta.CenovnikStavka.Stavka.Naziv}}</span>
-                    <span>{{karta.VremeVazenja}}</span>
+                    <span>{{karta.VremeVazenja.split('T',2)}}</span>
+                    <span *ngIf="karta.CenovnikStavka.Stavka.Naziv === 'Vremenska karta'">Karta vazi u narednih sat vremena</span>
+                    <span *ngIf="karta.CenovnikStavka.Stavka.Naziv === 'Dnevna karta'">Karta vazi  do kraja tekuceg dana</span>
+                    <span *ngIf="karta.CenovnikStavka.Stavka.Naziv === 'Mesecna karta'">Karta vazi  do kraja tekuceg meseca</span>
+                    <span *ngIf="karta.CenovnikStavka.Stavka.Naziv === 'Godisnja karta'">Karta vazi  do kraja tekuceg godine</span>
                     <span>{{karta.Cena}} RSD</span>    
-                </li>     
-            
-               
+                </li>                
         </ul>
     </div>
 </div>

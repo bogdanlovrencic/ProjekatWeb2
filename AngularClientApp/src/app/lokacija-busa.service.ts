@@ -14,7 +14,6 @@ export class LokacijaBusaService {
   private proxyName:string='LokacijaBusa'
   private connection:any
   public connectionExists:boolean
- 
   public notificationReceived:EventEmitter<string>
 
   constructor() {
@@ -61,5 +60,7 @@ export class LokacijaBusaService {
           observer.next(data);
       });  
     });
-  }      
+  }  
+  
+ 
 }

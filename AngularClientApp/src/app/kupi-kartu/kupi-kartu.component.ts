@@ -72,7 +72,7 @@ export class KupiKartuComponent implements OnInit {
         //this.email = this.userData.Email;
         this.emailForm.controls.email.setValue(this.userData.Email);
         
-        if(this.userProfileActivated != "Potvrdjen")
+        if(this.userProfileActivated != "Odobren")
         {
           this.userProfileType = 0;
         }

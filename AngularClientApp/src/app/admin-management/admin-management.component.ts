@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CenaStavke } from '../Models/cenaStavke';
-import { Kontrolor } from '../Models/Kontrolor';
-import { RedVoznjeBindingModel } from '../Models/RedVoznjeBindingModel';
 import { GetDataService } from '../get-data.service';
 import { Stavka } from '../Models/Stavka';
 import { Linija } from '../Models/linija';
@@ -11,6 +8,7 @@ import { RedVoznje } from '../Models/RedVoznje';
 import { CenovnikPrikaz, Cenovnik } from '../Models/Cenovnik';
 import { CenovnikStavka } from '../Models/CenovnikStavka';
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
+import { Korisnik } from '../Models/Korisnik';
 
 @Component({
   selector: 'app-admin-management',
@@ -21,7 +19,7 @@ export class AdminManagementComponent implements OnInit {
 
   message="";
   listaCenovnika:CenovnikPrikaz[];
-  listaKontrolora:Kontrolor[];
+  listaKontrolora:Korisnik[];
   listaRedaVoznji:RedVoznje[];
   listaStavki:Stavka[];
   listaLinija: Linija[];
@@ -55,12 +53,12 @@ export class AdminManagementComponent implements OnInit {
           this.listaLinija=info;
           this.tableData.changeLinije(this.listaLinija);
       }
-      else if(tableName ==="Kontrolori")
-      {
-        //let info = JSON.parse(JSON.stringify(res));
-        this.listaKontrolora = res;
-        this.tableData.changeKontrolori(this.listaKontrolora);
-      }
+      // else if(tableName ==="Kontrolori")
+      // {
+      //   //let info = JSON.parse(JSON.stringify(res));
+      //   this.listaKontrolora = res;
+      //   this.tableData.changeKontrolori(this.listaKontrolora);
+      // }
       else if(tableName ==="RedoviVoznje")
       {
         let info = JSON.parse(JSON.stringify(res));
@@ -87,9 +85,9 @@ export class AdminManagementComponent implements OnInit {
       case 'Stavka':
         this.router.navigate(['/Stavke'])
         break;
-      case 'Kontrolor':
-        this.router.navigate(['/Kontrolori'])
-      break;
+      // case 'Kontrolor':
+      //   this.router.navigate(['/Kontrolori'])
+      // break;
       case 'Linija':
         this.router.navigate(['/Linije'])
         break;

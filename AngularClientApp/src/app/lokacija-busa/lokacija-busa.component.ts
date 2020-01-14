@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { AgmMap } from '@agm/core';
 import { MarkerInfo } from '../map/model/marker-info.model';
 
@@ -17,6 +17,8 @@ import { LinijeService } from '../linije.service';
   styleUrls: ['./lokacija-busa.component.css']
 })
 export class LokacijaBusaComponent implements OnInit {
+  
+  
 
   constructor( private locationService: LokacijaBusaService, private linijaService: LinijeService) { }
 
@@ -39,7 +41,9 @@ export class LokacijaBusaComponent implements OnInit {
   BusX: number;
   BusY: number;
   mapZoom = 14;
-
+  ngZone: NgZone;
+  time: number[];
+  isChanged: boolean=true;
   isConnected: Boolean;
 
   ngOnInit() {
@@ -51,7 +55,7 @@ export class LokacijaBusaComponent implements OnInit {
     
     
     this.checkConnection();
-    this.registerForHello();
+    this.registerForHello();  
     this.getLines();
   }
 
@@ -120,5 +124,7 @@ export class LokacijaBusaComponent implements OnInit {
     console.log(event);
 
   }
+
+ 
 
 }

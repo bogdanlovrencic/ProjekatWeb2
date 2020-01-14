@@ -20,8 +20,6 @@ import { VerifikujKorisnikaComponent } from './verifikuj-korisnika/verifikuj-kor
 import { KupljeneKarteComponent } from './kupljene-karte/kupljene-karte.component';
 import { LokacijaBusaComponent } from './lokacija-busa/lokacija-busa.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import { AddKontrolorComponent } from './add-kontrolor/add-kontrolor.component';
-import { UpdateKontrolorComponent } from './update-kontrolor/update-kontrolor.component';
 
 const routes: Routes = [
   
@@ -98,11 +96,6 @@ const routes: Routes = [
     component:AddRedVoznjeComponent,
     //canActivate: [AuthGuard]
   },
-  {
-    path:'Kontrolori',
-    component:AddKontrolorComponent,
-    //canActivate: [AuthGuard]
-  },
   
   {
     path:'AdminView',
@@ -112,12 +105,6 @@ const routes: Routes = [
   {
     path:'CenovnikIzmena/cenovnik',
     component:UpdateCenovnikComponent,
-  },
-
- 
-  {
-    path:'KontrolorIzmena/kontrolor',
-    component:UpdateKontrolorComponent,
   },
 
   {

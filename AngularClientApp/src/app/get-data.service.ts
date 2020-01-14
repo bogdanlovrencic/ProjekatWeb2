@@ -4,13 +4,13 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { CenaStavke } from './Models/cenaStavke';
 import { Linija } from './Models/linija';
 import { RedVoznjeBindingModel } from './Models/RedVoznjeBindingModel';
-import { Kontrolor } from './Models/Kontrolor';
 import { Stanica } from './Models/stanica';
 import { Cenovnik, CenovnikPrikaz } from './Models/Cenovnik';
 import { Stavka } from './Models/Stavka';
 import { RedVoznje } from './Models/RedVoznje';
 import { Polazak, PolazakModel } from './Models/polazak';
 import { CenovnikStavka } from './Models/CenovnikStavka';
+import { Korisnik } from './Models/Korisnik';
 
 @Injectable({
   providedIn: 'root'
@@ -32,8 +32,8 @@ export class GetDataService {
   private stavkaSource=new BehaviorSubject(null);
   stavke=this.stavkaSource.asObservable();
 
-  private kontrolorSource = new BehaviorSubject(null);
-  kontrolori = this.kontrolorSource.asObservable();
+  // private kontrolorSource = new BehaviorSubject(null);
+  // kontrolori = this.kontrolorSource.asObservable();
 
   private timetableSource = new BehaviorSubject(null);
   timetable = this.timetableSource.asObservable();
@@ -51,10 +51,10 @@ export class GetDataService {
     this.stavkaSource.next(stavke);
   }
 
-  changeKontrolori(kontrolori:Kontrolor[])
-  {
-    this.kontrolorSource.next(kontrolori);
-  }
+  // changeKontrolori(kontrolori:Korisnik[])
+  // {
+  //   this.kontrolorSource.next(kontrolori);
+  // }
 
   changePolasci(polasci:PolazakModel[])
   {
@@ -111,9 +111,9 @@ export class GetDataService {
     else if(tableName === 'RedoviVoznje'){
       return this.http.get<RedVoznje>('http://localhost:52295/api/RedVoznjes');
     }
-    else if(tableName === 'Kontrolori'){
-      return this.http.get<Kontrolor>('http://localhost:52295/api/Korisniks');
-    }
+    // else if(tableName === 'Kontrolori'){
+    //   return this.http.get<Korisnik>('http://localhost:52295/api/Account/GetKontrolori');
+    // }
 
     else if(tableName == 'Polasci')
     {

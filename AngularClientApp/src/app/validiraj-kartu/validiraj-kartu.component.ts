@@ -17,7 +17,7 @@ export class ValidirajKartuComponent implements OnInit {
     id:['',Validators.required],
   });
 
-  validnaKarta:boolean
+  validnaKarta:boolean=false
   show:boolean=false
   showError:boolean=false
 
