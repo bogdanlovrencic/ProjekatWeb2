@@ -19,9 +19,19 @@ namespace JGSPNSWebApp.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/Linijas
-        public IQueryable<Linija> GetLinije()
+        public List<Linija> GetLinije()
         {
-            return db.Linije.Include(x=>x.Stanice).Where(linija => linija.Aktivna && linija.Stanice.Any(s=>s.Aktivna));
+            var linije = db.Linije.Where(l => l.Aktivna).Include(x => x.Stanice).ToList();
+            var stanice = new List<Stanica>();
+
+            foreach(var lin in linije)
+            {
+                stanice= lin.Stanice.FindAll(s => s.Aktivna);
+                lin.Stanice = stanice;
+              
+            }
+            
+            return linije;
         }
 
         // GET: api/Linijas/5

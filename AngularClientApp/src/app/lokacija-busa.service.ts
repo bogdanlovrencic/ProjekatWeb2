@@ -31,20 +31,17 @@ export class LokacijaBusaService {
   }
  
   startConnection():Observable<boolean> {
-    return Observable.create((observer) => {
-       
+    return Observable.create((observer) => {    
       this.connection.start()
       .done((data: any) => {  
           console.log('Now connected ' + data.transport.name + ', connection ID= ' + data.id)
           this.connectionExists = true;
-
           observer.next(true);
           observer.complete();
       })
       .fail((error: any) => {  
           console.log('Could not connect ' + error);
           this.connectionExists = false;
-
           observer.next(false);
           observer.complete(); 
       });  
@@ -53,7 +50,6 @@ export class LokacijaBusaService {
 
   registerForHello():Observable<any> {
     return Observable.create((observer) => {
-
       this.proxy.on('hello', (data: any) => {  
           console.log('Stiglo sa servera');
           console.log(data);  
@@ -61,6 +57,4 @@ export class LokacijaBusaService {
       });  
     });
   }  
-  
- 
 }

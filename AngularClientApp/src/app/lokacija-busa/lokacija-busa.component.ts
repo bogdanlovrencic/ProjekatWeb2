@@ -41,9 +41,6 @@ export class LokacijaBusaComponent implements OnInit {
   BusX: number;
   BusY: number;
   mapZoom = 14;
-  ngZone: NgZone;
-  time: number[];
-  isChanged: boolean=true;
   isConnected: Boolean;
 
   ngOnInit() {
