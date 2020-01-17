@@ -59,7 +59,6 @@ export class AdminViewComponent implements OnInit {
           "kontrolor": JSON.stringify(kontrolor)
         }
       }
-
       this.router.navigate(['KontrolorIzmena/kontrolor'],navigationExtras)
      
   }
