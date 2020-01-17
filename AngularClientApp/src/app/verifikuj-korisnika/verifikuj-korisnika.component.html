@@ -1,7 +1,7 @@
 <div class="container">
   <h3>Verifikacija korisnika</h3>
   <br>
-  <div class="container">
+  <!-- <div class="container"> -->
       <div class="row">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
           <div class="shadow-lg">
@@ -21,7 +21,7 @@
             </div>
           </div>
         </div>
-      </div>
+      <!-- </div> -->
       <form class="form-signin" [formGroup]="profileForm"><br><br>
         <div class="container">
             <div class="row">
@@ -42,16 +42,16 @@
                                 <div *ngIf="profileForm.controls.name.errors.required && (profileForm.controls.name.dirty || profileForm.controls.name.touched)" class="badge badge-danger">Ime je obavezno polje</div>
                               </div>
                             <span class="badge badge-primary">Ime: </span>
-                            <input name="name" type="text" class="form-control" placeholder="Ime" required formControlName="name">
+                            <input name="name" type="text" class="form-control" placeholder="Ime" required formControlName="name" disabled>
                         </div><br>
                         <div class="form-label-group">
                             <div *ngIf="profileForm.controls.surname.errors" >
                                 <div *ngIf="profileForm.controls.surname.errors.required && (profileForm.controls.surname.dirty || profileForm.controls.surname.touched)" class="badge badge-danger">Prezime je obavezno polje</div>
                               </div>
                             <span class="badge badge-primary">Prezime: </span>
-                          <input name="surname" type="text" class="form-control" placeholder="Prezime" required formControlName="surname">
+                          <input name="surname" type="text" class="form-control" placeholder="Prezime" required formControlName="surname" disabled>
                         </div><br>
-                        <div class="form-label-group">
+                        <!-- <div class="form-label-group">
                             <div *ngIf="profileForm.controls.address.errors" >
                                 <div *ngIf="profileForm.controls.address.errors.required && (profileForm.controls.address.dirty || profileForm.controls.address.touched)" class="badge badge-danger">Adresa je obavezno polje</div>
                               </div>
@@ -64,8 +64,8 @@
                                 </div>
                               <span class="badge badge-primary">Datum rodjenja: </span>
                               <input name="birthday" type="datetime" class="form-control" placeholder="Datum rodjenja" required formControlName="birthday">
-                            </div><br>
-                        <br>
+                            </div><br> -->
+                        
                         <div *ngIf="profileForm.valid">
                           <button class="btn btn-lg btn-primary btn-block text-uppercase active" (click)="Validiraj()">Validiraj</button>
                         </div>

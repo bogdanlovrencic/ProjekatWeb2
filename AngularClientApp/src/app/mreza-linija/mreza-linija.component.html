@@ -12,7 +12,7 @@
               </agm-info-window>
             </agm-marker>
       
-            <agm-polyline strokeColor="blue" >
+            <agm-polyline strokeColor="blue" (lineClick)="onLineClick(linija)">
               <agm-polyline-point *ngFor="let stanica of linija.Stanice"  [latitude]="stanica.Lat" [longitude]="stanica.Lon" >
               </agm-polyline-point>
             </agm-polyline>             

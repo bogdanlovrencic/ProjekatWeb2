@@ -12,7 +12,7 @@
             <li class="nav-item"> <a routerLink="/lokacijaBusa" *ngIf="rola!=='Admin' && rola!=='Controller'">Lokacija autobusa</a></li>
             <li class="nav-item"> <a routerLink="/cenovnik" *ngIf="rola!=='Admin' && rola!=='Controller'">Cenovnik</a></li>
             <li class="nav-item"> <a routerLink="/kupiKartu" *ngIf="rola!=='Admin' && rola!=='Controller'">Kupi kartu</a></li>
-            <li class="nav-item"><a routerLink="/profil" *ngIf="isLoggedIn">Profil</a></li>
+          
             <li class="nav-item"><a routerLink="/kupljeneKarte" *ngIf="isLoggedIn && rola ==='AppUser'">Kupljene karte</a></li>
             <li class="nav-item" *ngIf="isLoggedIn && isAdmin">
               <a  routerLink="/management">Management </a>
@@ -21,6 +21,7 @@
             <li class="nav-item"><a routerLink="/validacijaKarti" *ngIf="rola === 'Controller'">Validiraj karte</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right" >
+              <li class="nav-item"><a routerLink="/profil" *ngIf="isLoggedIn">Profil</a></li>
               <li class="nav-item"  *ngIf="!isLoggedIn"><a class="nav-link" routerLink="/registracija"><span class="glyphicon glyphicon-user"></span> Register</a></li>
               <li class="nav-item"  class="nav-link" *ngIf="!isLoggedIn"><a class="nav-link" routerLink="/login">Login</a></li>
           <!-- </ul>
