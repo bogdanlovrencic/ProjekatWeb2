@@ -45,6 +45,7 @@ export class KupiKartuComponent implements OnInit {
     this.selectedTicketType = "Vremenska karta";
     this.getUser(this.userEmail);
     this.initConfig();
+   
   
     if(this.rola !=""){
       this.isLoggedIn = true;
@@ -170,6 +171,7 @@ export class KupiKartuComponent implements OnInit {
           console.log('onClick', data, actions);
       },
     };
+   
   }
 
 }
