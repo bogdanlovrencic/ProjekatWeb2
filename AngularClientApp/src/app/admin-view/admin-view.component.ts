@@ -81,7 +81,9 @@ export class AdminViewComponent implements OnInit {
       console.log("Data: ");
       console.log(res);
       if(res == 200){
+        window.alert("Cenovnik je uspeno obrisan");
         this.router.navigate(['/management']);
+        //this.dataService.cenovnici.subscribe(msg =>{ this.listaCenovnika = msg;});
       }
       else{
         window.alert("Drugi admin je vec obrisao cenovnik, molimo Vas da refresujete stranicu!");
@@ -108,6 +110,7 @@ export class AdminViewComponent implements OnInit {
       console.log("Data: ");
         console.log(res);
         if(res == 200){
+          window.alert("Red voznje je uspeno obrisan");
           this.router.navigate(['/management']);
         }
         else{

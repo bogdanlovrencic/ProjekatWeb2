@@ -52,6 +52,7 @@
                             <th class="col-text" *ngIf="clicked==='Kontrolori'">Adresa</th>
                         </thead>
                         <tbody *ngIf="clicked==='Cenovnici'">
+                            
                             <tr *ngFor="let cenovnik of listaCenovnika">
                                 <td></td>
                                 <td align="center">
@@ -79,6 +80,7 @@
                                        
                                 </td>
                             </tr>
+                            <h4 *ngIf="listaCenovnika.length === 0">Ne postoji nijedan cenovnik.</h4>
                         </tbody>
                         <!-- <tbody *ngIf="clicked==='Stavke'">
                             <tr *ngFor="let stavka of listaStavki">
@@ -129,6 +131,7 @@
                                 </td>
                                 <td>{{redVoznje.Aktivan}}</td>                                                              
                             </tr>
+                            <h4 *ngIf="listaRedaVoznji.length === 0">Ne postoji nijedan red voznje.</h4>
                         </tbody>                       
                         <tbody *ngIf="clicked==='Kontrolori'">
                             <tr *ngFor="let kontrolor of listaKontrolora"> 
